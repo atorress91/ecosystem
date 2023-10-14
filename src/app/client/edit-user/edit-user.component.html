@@ -1,0 +1,377 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">Editar Datos de Perfil</h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
+    </li>
+  </ul>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>{{ 'ADMIN-MY-PROFILE.TITLE.TEXT' | translate }}</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+                <div class="padding-20">
+                  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                    <li [ngbNavItem]="1">
+                      <a ngbNavLink>Datos de Perfil</a>
+                      <ng-template ngbNavContent>
+                        <div class="tab-pane">
+                          <div class="card-body">
+                            <form class="register-form" [formGroup]="updateUserForm" (ngSubmit)="onSaveUser()">
+                              <div class="row mt-2">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                  <div class="form-group">
+                                    <h6>Datos Principales</h6>
+                                  </div>
+                                  <hr />
+                                  <div class="form-group">
+                                    <label for="user_name">
+                                      Usuario
+                                    </label>
+                                    <br />
+                                    <input id="user_name" class="form-control" placeholder="Usuario" type="text"
+                                      formControlName="user_name" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="email">
+                                      Correo
+                                    </label>
+                                    <br />
+                                    <input id="email" class="form-control" placeholder="Correo" name="email" type="text"
+                                      formControlName="email" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="identification">
+                                      Nro de Identificacion
+                                    </label>
+                                    <br />
+                                    <input id="identification" name="identification" required
+                                      formControlName="identification" placeholder="Nro de Identificacion"
+                                      class="form-control" type="text" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="father">
+                                      Patrocinador
+                                    </label>
+                                    <br />
+                                    <input class="form-control" type="text" id="father" name="father"
+                                      formControlName="father" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="created_at">
+                                      Fecha de Registro
+                                    </label>
+                                    <br />
+                                    <input id="created_at" placeholder="Fecha de Registro" class="form-control"
+                                      name="created_at" type="text" formControlName="created_at" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="side">
+                                      Lado Binario
+                                    </label>
+                                    <br />
+                                    <div class="form-check form-check-inline">
+                                      <span class="me-md-2">P.Izq</span>
+                                      <input id="side" formControlName="side" class="form-check-input" class="me-md-2"
+                                        value="1" name="side" type="radio" />
+                                      <span class="me-md-2">P.Der</span>
+                                      <input id="side" formControlName="side" class="form-check-input" class="me-md-2"
+                                        value="2" name="side" type="radio" />
+                                    </div>
+                                  </div>
+
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4  mb-2">
+                                  <div class="form-group">
+                                    <h6>Datos Secundarios</h6>
+                                  </div>
+                                  <hr />
+                                  <div class="form-group">
+                                    <label for="name">
+                                      Nombre
+                                    </label>
+                                    <br />
+                                    <input id="name" placeholder="Nombre" class="form-control" name="name" type="text"
+                                      formControlName="name" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="last_name">
+                                      Apellido:
+                                    </label>
+                                    <br />
+                                    <input id="last_name" placeholder="Apellido" class="form-control" name="last_name"
+                                      type="text" formControlName="last_name" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="address">
+                                      Direccion
+                                    </label>
+                                    <br />
+                                    <textarea id="address" formControlName="address" placeholder="Direccion"
+                                      class="form-control"></textarea>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="phone">
+                                      Teléfono
+                                    </label>
+                                    <br />
+                                    <input id="phone" required placeholder="Teléfono" class="form-control" name="phone"
+                                      type="text" formControlName="phone" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="zip_code">
+                                      Código Postal
+                                    </label>
+                                    <br />
+                                    <input id="zip_code" placeholder="Código Postal" class="form-control"
+                                      formControlName="zip_code" type="text" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="country">
+                                      Pais
+                                    </label>
+                                    <br />
+                                    <select class="form-select form-control" [selected]="country"
+                                      formControlName="country">
+                                      <option value="" disabled selected>Seleccione una opcion</option>
+                                      <option *ngFor="let country of listcountry" [value]="country.id">
+                                        {{ country.name }}
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4  mb-2">
+                                  <div class="form-group">
+                                    <h6>Campos Adicionales</h6>
+                                  </div>
+                                  <hr />
+                                  <div class="form-group">
+                                    <label for="birthday">
+                                      Fecha de Nacimiento:
+                                    </label>
+                                    <br />
+                                    <div class="form-group">
+                                      <input type="date" id="birthday" formControlName="birthday" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="tax_id">
+                                      No. de Identificación Fiscal
+                                    </label>
+                                    <br />
+                                    <input id="tax_id" placeholder="No. de Identificación Fiscal" class="form-control"
+                                      formControlName="tax_id" type="text" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="beneficiary_name">
+                                      Nombre de Beneficiario
+                                    </label>
+                                    <br />
+                                    <input id="beneficiary_name" placeholder="Nombre de Beneficiario"
+                                      class="form-control" type="text" formControlName="beneficiary_name" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="legal_authorized_first">
+                                      Representante Legal No. 1
+                                    </label>
+                                    <br />
+                                    <input id="legal_authorized_first" placeholder="Representante Legal No. 1"
+                                      class="form-control" type="text" formControlName="legal_authorized_first" />
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="legal_authorized_second">
+                                      Representante Legal No. 2:
+                                    </label>
+                                    <br />
+                                    <input id="legal_authorized_second" placeholder="Representante Legal No. 2"
+                                      class="form-control" type="text" formControlName="legal_authorized_second" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row mt-2">
+                                <div class="col-xl-2 col-lg-2 col-md-2  mb-2">
+                                  <input class="btn btn-primary" value="Guardar Cambios" type="submit" />
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="2">
+                      <a ngbNavLink> Documentos del Afiliado </a>
+                      <ng-template ngbNavContent>
+                        <div class="card-body">
+                          <div class="row mt-2">
+                            <div class="col-sm-12">
+                              <ngb-alert [dismissible]="false" class="alert-has-icon" type="info">
+                                <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                                <div class="alert-body">
+                                  <div class="alert-title"> {{
+                                    'REQUESTS-PAGE.TITTLE-MSJ-INFO.TEXT'
+                                    | translate
+                                    }}</div>
+                    <li>1) Se debe subir una foto de su rostro tipo selfie.</li>
+                    <li>2) Se debe subir el documento de identidad asociado a su país en anverso.</li>
+                    <li>3) La cantidad maxima de archivos a cargar es 2.</li>
+                    <li>4) El sistema verifica automaticamente la documentación, en caso de ser rechazada sera atendido
+                      por el área administrativa en un plazo máximo de 72hrs.</li>
+                    <li>5) La capacidad máxima y obligatoria de archivos a cargar es 28.4 megas (Formatos permitidos
+                      jpg, png, pdf).</li>
+                </div>
+                </ngb-alert>
+              </div>
+              <!-- <div class="row" *ngIf="!user.card_id_authorization">
+                <div class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-danger mx-2" (click)="deleteImage()">
+                    Eliminar
+                  </button>
+                </div>
+              </div> -->
+              <div class="row d-flex justify-content-center align-items-center" *ngIf="!user.card_id_authorization">
+                <div class="col-sm-6">
+                  <label for="imageProfile">
+                    Imagen de identificacion
+                    <span class="text-danger">*</span>
+                  </label>
+                  <ngx-dropzone (change)="onFileSelected($event)" [accept]="'image/*'" [multiple]="true">
+                    <ngx-dropzone-label>Drop it!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files let i = index;" [removable]="true"
+                      (removed)="deleteFile(i)">
+                      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                  </ngx-dropzone>
+                </div>
+              </div>
+
+              <!-- <div class="row mt-4">
+                <div class="col-12 d-flex justify-content-center">
+                  <div class="image-container d-flex justify-content-center align-items-center" style="width: 600px;"
+                    *ngIf="!user.card_id_authorization">
+                    <img [src]="user.image_id_path" alt="img_affiliate" style="max-width: 100%; max-height: 100%;">
+                  </div>
+                </div>
+              </div> -->
+
+            </div>
+            <div class="row" *ngIf="isCheckedAttribute == true">
+              <div class="fw-bold p-t-10 font-17 text-center">
+                Agregar Combinación
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                <label for="attribute_name">
+                  Atributo
+                  <span class="text-danger">*</span></label>
+                <select class="form-select form-control" id="attribute_name" required="required"
+                  formControlName="attribute_name" (change)="getAttributesValues($event)" [ngClass]="{
+                                    'is-invalid':
+                                    submittedAttribute &&
+                                      edit_product_attributes_controls.attribute_name
+                                        .errors
+                                  }">
+                  <option value="">Seleccione una opción</option>
+                  <option value="{{ item.id }}" *ngFor="let item of attributesList">
+                    {{ item.name }}
+                  </option>
+                </select>
+
+                <div *ngIf="
+                                  submittedAttribute &&
+                                    edit_product_attributes_controls.attribute_name
+                                      .errors
+                                  " class="invalid-feedback">
+                  <div *ngIf="
+                                      edit_product_attributes_controls.attribute_name
+                                        .errors.required
+                                    ">
+                    El atributo es requerido.
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                <label for="attribute_value">
+                  Valor
+                  <span class="text-danger">*</span></label>
+                <select class="form-select form-control" id="attribute_value" (change)="getNameValue($event)"
+                  placeholder="" formControlName="attribute_value">
+                  <option value="">Seleccione una opción</option>
+                  <option value="{{ item.attributeValue }}" *ngFor="let item of attributesValuesList">
+                    {{ item.attributeValue }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                <label for="attribute_combination">
+                  Combinacion
+                  <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="attribute_combination"
+                  formControlName="attribute_combination" />
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                <label for="attribute_reference" placement="top" ngbTooltip="">
+                  Referencia
+                  <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="attribute_reference" placeholder="Agregue una referencia"
+                  formControlName="attribute_reference" />
+              </div>
+            </div>
+            <div class="row mt-4" *ngIf="isCheckedAttribute == true">
+              <div class="col d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">
+                  Guardar
+                </button>
+              </div>
+            </div>
+            <div class="row" *ngIf="isCheckedAttribute == true">
+              <div class="fw-bold p-t-10 font-17 text-center">
+                Lista de Combinaciones
+              </div>
+              <ngx-datatable #table class="material overflow-x-auto" style="height: 300px" [rows]="rowsCombinations"
+                [loadingIndicator]="loadingIndicator" columnMode="force" [headerHeight]="50" [footerHeight]="50"
+                rowHeight="auto" [limit]="10" [scrollbarH]="scrollBarHorizontal" [reorderable]="reorderable">
+                <ngx-datatable-column name="Atributo - valor par">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.codeRef }}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Referencia">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row }}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Existencias">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row }}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Eliminar">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div class="col-red" (click)="deleteSingleRowCombination(row.id)">
+                      <i class="bi bi-trash"></i>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+          </ng-template>
+          </li>
+          </ul>
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</section>

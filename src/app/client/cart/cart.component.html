@@ -1,0 +1,168 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">
+        {{ 'MENUITEMS.BILLING.TEXT' | translate }}
+      </h5>
+    </li>
+
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">
+      {{ 'MENUITEMS.BILLING-PURCHASE.TEXT' | translate }}
+    </li>
+    <li class="breadcrumb-item">
+      Payment
+    </li>
+  </ul>
+
+  <div class="section-body">
+    <ng-container *ngIf="products.length != 0">
+      <div class="invoice">
+        <div class="invoice-print">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="invoice-title">
+                <h2>{{ 'CART-PAGE.CART-TITLE.TEXT' | translate }}</h2>
+
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-6">
+                  <address>
+                    <strong>Facturado a:</strong><br>
+                    {{user.name +' '+ user.last_name}}<br>
+                    {{user.user_name}}<br>
+                    {{user.phone}}<br>
+                  </address>
+                </div>
+                <div class="col-md-6 invoice-right-align">
+                  <address>
+                    <strong>Dirección:</strong><br>
+                    {{user.city}}<br>
+                    {{user.address}}<br>
+                  </address>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <address>
+                    <strong>Correo eléctronico:</strong><br>
+                    {{user.email}}
+                  </address>
+                </div>
+                <div class="col-md-6 invoice-right-align">
+                  <address>
+                    <strong>Fecha orden:</strong><br>
+                    {{ today | date:'hh:mm:ss a' }}<br><br>
+                  </address>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <div class="section-title">Resumen del pedido</div>
+              <div id="new-orders" class="media-list position-relative"
+                style="position: relative; max-height: 600px !important" [perfectScrollbar]>
+
+                <div class="table-responsive">
+                  <table class="table table-md">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>{{ 'CART-PAGE.COL-NAME.TEXT' | translate }}</th>
+                        <th>{{ 'CART-PAGE.COL-IMG.TEXT' | translate }}</th>
+                        <th>{{ 'CART-PAGE.COL-DESCRIPTION.TEXT' | translate }}</th>
+                        <th>Puntos Calif</th>
+                        <th>Puntos Binarios</th>
+                        <th>Comisionable</th>
+                        <th>{{ 'CART-PAGE.COL-PRICE.TEXT' | translate }}</th>
+                        <th>Descuento</th>
+                        <th>{{ 'CART-PAGE.COL-QUANTITY.TEXT' | translate }}</th>
+                        <th>{{ 'CART-PAGE.COL-TOTAL.TEXT' | translate }}</th>
+                        <th>{{ 'CART-PAGE.COL-ACTION.TEXT' | translate }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of products; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>
+                          <img style="width: 120px" src="{{ item.image }}" alt="" />
+                        </td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.valuePoints }}</td>
+                        <td>{{ item.binaryPoints }}</td>
+                        <td>{{ item.commissionableValue }}</td>
+                        <td>${{ item.baseAmount }}</td>
+                        <td>$0</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.baseAmount*item.quantity }}</td>
+                        <td>
+                          <button style="background-color: red;" (click)="removeItem(item)"
+                            class="btn btn-danger btn-icon">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-lg-8">
+                </div>
+                <div class="col-lg-4 invoice-right-align">
+                  <div class="invoice-detail-item">
+                    <div class="invoice-detail-name">Subtotal</div>
+                    <div class="invoice-detail-value">${{subTotal}}</div>
+                  </div>
+                  <div class="invoice-detail-item">
+                    <div class="invoice-detail-name">I.V.A</div>
+                    <div class="invoice-detail-value">incluido</div>
+                  </div>
+                  <div class="invoice-detail-item">
+                    <div class="invoice-detail-name">Total descuento</div>
+                    <div class="invoice-detail-value">${{totalDiscount}}</div>
+                  </div>
+
+                  <hr class="mt-2 mb-2">
+                  <div class="invoice-detail-item">
+                    <div class="invoice-detail-name">Total</div>
+                    <div class="invoice-detail-value invoice-detail-value-lg">$ {{total}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="btn-right">
+          <div class="d-flex align-items-center justify-content-end flex-wrap mb-lg-0 mb-3">
+
+            <!-- <div class="image-container">
+              <img src="/assets/img/coinpay.jpeg" alt="Descripción de la Imagen"
+                class="img-fluid image-button rounded-border  w-55" (click)="showCoinPayConfirmation()">
+            </div> -->
+
+            <input (click)="showCoinPaymentConfirmation()" type="image"
+              src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
+              class="m-2">
+
+            <button *ngIf="!showReversePaymentOnly" (click)=" showConfirmation(0)"
+              class="btn btn-primary btn-icon icon-left m-2"><i class="fas fa-credit-card"></i> Pago con
+              balance</button>
+            <button (click)=" showConfirmation(1)" class="btn btn-primary btn-icon icon-left m-2"><i
+                class="fas fa-credit-card"></i> Pago con saldo revertido</button>
+            <button routerLink="/app/billing-purchase" class="btn btn-primary btn-icon icon-left m-2"><i
+                class="bi bi-cart-plus"></i> {{ 'CART-PAGE.BTN-SHOP-MORE.TEXT' | translate }}</button>
+            <button (click)="emptycart()" class="btn btn-danger btn-icon icon-left m-2"><i class="fas fa-times"></i>
+              {{ 'CART-PAGE.BTN-EMPTY-CART.TEXT' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</section>

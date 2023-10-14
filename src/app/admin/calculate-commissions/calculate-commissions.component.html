@@ -1,0 +1,71 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">
+        {{ 'ADMIN-ITEMS.COMMISSIONS.TEXT' | translate }}
+      </h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">
+      {{ 'CALCULATE-COMMISSIONS.TITLE.TEXT' | translate }}
+    </li>
+  </ul>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>{{ 'CALCULATE-COMMISSIONS.SUBTITLE.TEXT' | translate }}</h4>
+          </div>
+          <div class="card-body">
+            <!-- Add content here -->
+            <div class="row">
+              <div class="col-12">
+                <p *ngFor="let alert of alerts" class="text-center">
+                  <ngb-alert
+                    [type]="alert.type"
+                    (closed)="close(alert)"
+                    *ngIf="show"
+                    >{{
+                      'CALCULATE-COMMISSIONS.FIRST-MSJ.TEXT' | translate
+                    }}</ngb-alert
+                  >
+                </p>
+              </div>
+
+              <div class="col-sm-12">
+                <ngb-alert
+                  [dismissible]="false"
+                  class="alert-has-icon text-center"
+                  type="light"
+                >
+                  <div class="alert-body">
+                    <li>
+                      {{ 'CALCULATE-COMMISSIONS.SECOND-MSJ.TEXT' | translate }}
+                    </li>
+                  </div>
+                </ngb-alert>
+              </div>
+            </div>
+
+            <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="col col-lg-2">
+                <button type="button" class="btn btn-outline-primary">{{'CALCULATE-COMMISSIONS.BTN-UPDATE-VOLUME.TEXT' | translate}}</button>
+              </div>
+              <div class="col col-lg-2">
+                <button type="button" class="btn btn-outline-warning">{{'CALCULATE-COMMISSIONS.BTN-WITHOUT-UPDATE.TEXT' | translate}}</button>
+              </div>
+              <div class="col col-lg-2">
+                <button type="button" class="btn btn-outline-danger">{{'CALCULATE-COMMISSIONS.BTN-RECURRING-CHARGES.TEXT' | translate}}</button>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

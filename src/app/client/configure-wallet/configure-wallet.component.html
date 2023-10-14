@@ -1,0 +1,44 @@
+<ng-template #configureWalletModal let-modal>
+  <form class="register-form" [formGroup]="walletAddress" (ngSubmit)="showConfirmation()">
+    <div class="modal-header editRowModal">
+      <h4 class="modal-title" id="modal-basic-title">
+        <div class="table-modal-header">
+          <div class="modal-about">
+            <div class="fw-bold p-t-10 font-17">
+              Configuración de billetera
+            </div>
+          </div>
+        </div>
+      </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true"><i class="material-icons">close</i></span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <label for="trc_address">
+            Dirección (TRC20) USDT
+            <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="trc_address" formControlName="trc_address" placeholder="dirección"
+            required="required" [ngClass]="{
+            'is-invalid': submitted && wallet_address_controls.trc_address.errors
+          }" />
+          <div *ngIf="submitted && wallet_address_controls.trc_address.errors" class="invalid-feedback">
+            <div *ngIf="wallet_address_controls.trc_address.errors.required">
+              La dirección trc20 es requerida.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+          {{ 'USERS-LIST-CREATE-MODAL.BTN-SAVE.TEXT' | translate }}
+        </button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>

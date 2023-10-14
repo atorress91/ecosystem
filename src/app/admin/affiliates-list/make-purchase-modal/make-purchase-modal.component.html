@@ -1,0 +1,49 @@
+<ng-template #makePurchaseModal let-modal>
+  <div class="modal-header editRowModal">
+    <h4 class="modal-title" id="modal-basic-title">
+      <div class="table-modal-header">
+        <div class="modal-about">
+          <div class="fw-bold p-t-10 font-17">Realizar Compra para {{ user.name +' '+ user.last_name}}
+            ({{user.user_name}})</div>
+        </div>
+      </div>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true"><i class="material-icons">close</i></span>
+    </button>
+  </div>
+  <form class="register-form" [formGroup]="makePurchaseForm" (ngSubmit)="addProductToList()">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <label>Producto <span class="text-danger">*</span></label>
+          <select class="form-control" formControlName="selectedProduct">
+            <option *ngFor="let product of productList" [value]="product.id">{{product.name}}</option>
+          </select>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <label>Cantidad <span class="text-danger">*</span></label>
+          <input type="number" class="form-control" formControlName="quantity" required />
+        </div>
+      </div>
+      <div class="mt-3">
+        <h5>Productos agregados:</h5>
+        <ul>
+          <li *ngFor="let item of products">
+            Producto: {{ item.name }} --- Cantidad: {{ item.quantity }}
+            <button type="button" class="btn btn-sm btn-danger mt-2" (click)="removeProductFromList(item)">
+              <i class="material-icons">delete</i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Agregar producto</button>
+      <button type="button" class="btn btn-success" (click)="confirmPurchase(0)">Comprar</button>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
+    </div>
+
+  </form>
+
+</ng-template>

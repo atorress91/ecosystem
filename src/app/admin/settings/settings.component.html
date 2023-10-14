@@ -1,0 +1,89 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style ">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">Modulo configuración</h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main">
+        <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">Configuración General</li>
+  </ul>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Configuración General</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="padding-20">
+                  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                    <li [ngbNavItem]="1">
+                      <a ngbNavLink>Configuración Principal</a>
+                      <ng-template ngbNavContent>
+                        <form [formGroup]="mainConfigurationForm">
+                          <div class="tab-pane">
+
+                            <div class="card-body">
+
+
+                            </div>
+
+                          </div>
+                        </form>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="2">
+                      <a ngbNavLink>Configuración de Sistema</a>
+                      <ng-template ngbNavContent>
+                        <form [formGroup]="additionalParameters">
+                          <div class="card-body">
+
+                          </div>
+                        </form>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="3">
+                      <a ngbNavLink>Datos de Facturación</a>
+                      <ng-template ngbNavContent>
+                        <form [formGroup]="additionalParameters">
+                          <div class="card-body">
+
+                          </div>
+                        </form>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="4">
+                      <a ngbNavLink>Datos Administración</a>
+                      <ng-template ngbNavContent>
+                        <form [formGroup]="additionalParameters">
+                          <div class="card-body">
+
+                          </div>
+                        </form>
+                      </ng-template>
+                    </li>
+                    <li [ngbNavItem]="5">
+                      <a ngbNavLink>Página Perfil Afiliado</a>
+                      <ng-template ngbNavContent>
+                        <form [formGroup]="additionalParameters">
+                          <div class="card-body">
+
+                          </div>
+                        </form>
+                      </ng-template>
+                    </li>
+                  </ul>
+                  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

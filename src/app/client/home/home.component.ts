@@ -1,0 +1,316 @@
+
+import { Component, ViewChild } from '@angular/core';
+import * as am4core from '@amcharts/amcharts4/core';
+import * as am4maps from '@amcharts/amcharts4/maps';
+import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
+import am5themes_Animated from '@amcharts/amcharts4/themes/Animated';
+import { Subject, takeUntil } from 'rxjs';
+import { ChartComponent } from 'ng-apexcharts';
+
+import { BalanceInformation } from '@app/core/models/wallet-model/balance-information.model';
+import { AuthService } from '@app/core/service/authentication-service/auth.service';
+import { WalletService } from '@app/core/service/wallet-service/wallet.service';
+import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import { ToastrService } from 'ngx-toastr';
+import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
+import { Router } from '@angular/router';
+import { EChartsOption } from 'echarts';
+import { PurchasePerMonthDto } from '@app/core/models/wallet-model/network-purchases.model';
+am4core.useTheme(am5themes_Animated);
+
+@Component({
+  selector: 'app-main',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
+})
+export class HomeComponent {
+  public user: UserAffiliate;
+  private destroy$ = new Subject();
+  balanceInformation: BalanceInformation = new BalanceInformation();
+  withdrawalBalance: number = 0;
+  totalPaid: number = 0;
+  maps: any[] = [];
+  circles = [];
+  currentYearPurchases: PurchasePerMonthDto[] = [];
+  previousYearPurchases: PurchasePerMonthDto[] = [];
+  area_line_chart: EChartsOption;
+  currentYear: number;
+  previousYear: number;
+  @ViewChild('chart') chart1: ChartComponent;
+
+  private chart: am4maps.MapChart;
+  public pieChartOptions: any;
+  public avgLecChartOptions: any;
+
+  constructor(
+    private authService: AuthService,
+    private walletService: WalletService,
+    private toastr: ToastrService,
+    private affiliateService: AffiliateService,
+    private router: Router
+
+  ) {
+    this.pieChartOptions = {
+      series: [],
+      chart: {},
+      labels: [],
+      responsive: [],
+      dataLabels: {},
+      legend: {},
+    };
+
+    this.currentYear = new Date().getFullYear();
+    this.previousYear = this.currentYear - 1;
+    this.OnInitMethod();
+  }
+
+  OnInitMethod(){
+    this.authService.currentUserAffiliate.pipe(takeUntil(this.destroy$)).subscribe((user) => {
+      if (user && user.id) {
+        this.user = user;
+        this.getPurchasesInMyNetwork();
+        this.walletService.getBalanceInformationByAffiliateId(user.id).pipe(takeUntil(this.destroy$)).subscribe(balanceInformation => {
+          this.balanceInformation = balanceInformation;
+          console.log(this.balanceInformation);
+          this.initChartReport3();
+        });
+      }
+    });
+    this.loadLocations();
+  }
+
+  get registerUrl() {
+    return `https://www.ecosystemfx.net/#/main-options/${this.user.user_name.toString()}`;
+  }
+
+  showSuccess(message) {
+    this.toastr.success(message);
+  }
+
+  showError(message) {
+    this.toastr.error(message);
+  }
+
+  setMapInfo() {
+    this.chart = am4core.create('chartdiv', am4maps.MapChart);
+    this.chart.geodata = am4geodata_worldLow;
+    this.chart.projection = new am4maps.projections.Miller();
+
+    let polygonSeries = this.chart.series.push(new am4maps.MapPolygonSeries());
+    polygonSeries.exclude = ['AQ'];
+    polygonSeries.useGeodata = true;
+
+    const imageSeries = this.chart.series.push(new am4maps.MapImageSeries());
+    const imageSeriesTemplate = imageSeries.mapImages.template;
+    const circle = imageSeriesTemplate.createChild(am4core.Circle);
+
+    circle.radius = 14;
+    circle.fill = am4core.color('#765cbf');
+    circle.stroke = am4core.color('#B27799');
+    circle.strokeWidth = 1;
+    circle.nonScaling = true;
+
+    circle.tooltipText = '[bold]{title}[/]\nCantidad: {value}';
+
+    imageSeriesTemplate.propertyFields.latitude = 'lat';
+    imageSeriesTemplate.propertyFields.longitude = 'lng';
+
+    const centerLabel = imageSeriesTemplate.createChild(am4core.Label);
+    centerLabel.text = '{value}';
+    centerLabel.horizontalCenter = 'middle';
+    centerLabel.verticalCenter = 'middle';
+    centerLabel.fill = am4core.color('#55555');
+    centerLabel.nonScaling = true;
+
+    const data = this.maps.map(item => item);
+    imageSeries.addData(data);
+
+    let polygonTemplate = polygonSeries.mapPolygons.template;
+    polygonTemplate.tooltipText = '{name}';
+    polygonTemplate.fill = am4core.color('#96a2b4');
+    let hs = polygonTemplate.states.create('hover');
+    hs.properties.fill = am4core.color('#74X999');
+  }
+
+  initializeAreaLineChart() {
+    const currentYearData = this.fillMissingMonths(this.currentYearPurchases);
+    const previousYearData = this.fillMissingMonths(this.previousYearPurchases);
+
+    this.area_line_chart = {
+      tooltip: {
+        trigger: 'axis',
+      },
+      legend: {
+        data: [this.previousYear.toString(), this.currentYear.toString()],
+        textStyle: {
+          color: '#9aa0ac',
+          padding: [0, 5, 0, 5],
+        },
+      },
+      toolbox: {
+        show: !0,
+        feature: {
+          magicType: {
+            show: !0,
+            title: {
+              line: 'Line',
+              bar: 'Bar',
+              stack: 'Stack',
+            },
+            type: ['line'],
+          },
+          restore: {
+            show: !0,
+            title: 'Restore',
+          },
+          saveAsImage: {
+            show: !0,
+            title: 'Save Image',
+          },
+        },
+      },
+      xAxis: [
+        {
+          type: 'category',
+          boundaryGap: !1,
+          data: [
+            'ENE',
+            'FEB',
+            'MAR',
+            'ABR',
+            'MAY',
+            'JUN',
+            'JUL',
+            'AGO',
+            'SEP',
+            'OCT',
+            'NOV',
+            'DIC',
+          ],
+          axisLabel: {
+            fontSize: 10,
+            color: '#9aa0ac',
+          },
+        },
+      ],
+      yAxis: [
+        {
+          type: 'value',
+          axisLabel: {
+            fontSize: 10,
+            color: '#9aa0ac',
+          },
+        },
+      ],
+      series: [
+        {
+          name: this.currentYear.toString(),
+          type: 'line',
+          smooth: !0,
+          areaStyle: {},
+          emphasis: {
+            focus: 'series',
+          },
+          data: currentYearData,
+        },
+        {
+          name: this.previousYear.toString(),
+          type: 'line',
+          smooth: !0,
+          areaStyle: {},
+          emphasis: {
+            focus: 'series',
+          },
+          data: previousYearData,
+        },
+      ],
+      color: ['#9f78ff', '#fa626b'],
+    }
+  };
+
+  private initChartReport3() {
+    this.pieChartOptions = {
+      series: [
+        Number(this.withdrawalBalance),
+        this.balanceInformation.availableBalance,
+        Number(this.balanceInformation.totalCommissionsPaid),
+        Number(this.balanceInformation.totalAcquisitions),
+        Number(this.balanceInformation.reverseBalance)
+      ],
+
+      colors: ['#f44336', '#2196f3', '#96a2b4', '#4caf50', '#9c27b0'],
+      chart: {
+        type: 'donut',
+        width: 200,
+      },
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      labels: [
+        'Por Cobrar',
+        'Saldo Disponible',
+        'Total Pagado',
+        'Total Adquisiciones',
+        'Saldo revertido'
+      ],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            dataLabels: {
+              enabled: true,
+              formatter: function (val) {
+                return val + "%"
+              },
+              plotOptions: {
+                pie: {
+                  expandOnClick: false
+                }
+              }
+            }
+          },
+        },
+      ],
+    };
+  }
+
+  loadLocations() {
+    this.affiliateService.getTotalAffiliatesByCountries().subscribe({
+      next: (value) => {
+        this.maps = value.data;
+        this.setMapInfo();
+      },
+      error: (err) => {
+        this.showError("Error");
+      },
+    })
+  }
+
+  openNewWindow(url: string) {
+    window.open(url)
+  }
+
+  getPurchasesInMyNetwork() {
+    this.walletService.getPurchasesInMyNetwork(this.user.id).subscribe(data => {
+      if (data) {
+        this.currentYearPurchases = data.currentYearPurchases;
+        this.previousYearPurchases = data.previousYearPurchases;
+        this.initializeAreaLineChart();
+      }
+    });
+  }
+
+  fillMissingMonths(yearPurchases: PurchasePerMonthDto[]): number[] {
+    const monthlyData = new Array(12).fill(0);
+
+    for (let purchase of yearPurchases) {
+      monthlyData[purchase.month - 1] = purchase.totalPurchases;
+    }
+
+    return monthlyData;
+  }
+
+}

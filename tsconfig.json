@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    }
+  ],
+  "exclude": [
+    "node_modules/@types/webgl2"
+  ],
+  "compilerOptions": {
+    "experimentalDecorators": true
+  }
+}

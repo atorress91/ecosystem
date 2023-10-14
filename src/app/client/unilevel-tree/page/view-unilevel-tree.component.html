@@ -1,0 +1,152 @@
+<section class="main-content m-t-0">
+  <ul class="breadcrumb breadcrumb-style">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">
+        Mi red
+      </h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a> <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">
+      Arboles de mi red
+    </li>
+  </ul>
+  <div class="section-body">
+    <div class="card">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="padding-20">
+            <ul ngbNav #nav="ngbNav" [activeId]="active" (activeIdChange)="onTabChange($event)" class="nav-tabs">
+              <li [ngbNavItem]="1">
+                <a ngbNavLink>MODELO 2</a>
+                <ng-template ngbNavContent>
+                  <div class="tab-pane">
+                    <div class="card-body">
+                      <div class="row mt-2">
+                        <div class="col-12 col-md-12 col-lg-12">
+                          <div class="card-body media-list position-relative"
+                            style="position: relative; max-width: 100% !important" [perfectScrollbar]>
+                            <div *ngIf="showDiv">
+                              <app-client-unilevel-tree-component [nodeTemplate]="nodeTemplate" [data]="tree"
+                                #exampleChart="orgChart" (loadFamilyTree)="onloadFamilyTree($event)">
+                              </app-client-unilevel-tree-component>
+
+                              <ng-template #nodeTemplate let-node>
+                                <div class="chart-node">
+                                  <img [ngSrc]="node.image" fill />
+                                  <div class="name">
+                                    <span style="font-size: 11px;">
+                                      {{ node.userName || node.user_name }}
+                                    </span>
+                                  </div>
+                                  <div *ngIf="node.children.length" (click)="node.hideChildren = !node.hideChildren"
+                                    class="tree-fold-btn">
+                                    {{ node.hideChildren ? '+' : '-' }}
+                                  </div>
+                                </div>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                <a ngbNavLink>MODELO 3</a>
+                <ng-template ngbNavContent>
+                  <div class="tab-pane">
+                    <div class="card-body">
+                      <div class="row mt-2">
+                        <div class="col-12 col-md-12 col-lg-12">
+                          <div class="card-body media-list position-relative"
+                            style="position: relative; max-width: 100% !important" [perfectScrollbar]>
+                            <div *ngIf="showDiv">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="3">
+                <a ngbNavLink> MODELO 4 </a>
+                <ng-template ngbNavContent>
+                  <div class="card-body">
+                    <div class="row mt-2">
+                      <div class="col-12 col-md-12 col-lg-12">
+                        <div class="card-body media-list position-relative"
+                          style="position: relative; max-width: 100% !important" [perfectScrollbar]>
+                          <div *ngIf="showDiv">
+                            <app-client-unilevel-tree-component [nodeTemplate]="nodeTemplate" [data]="tree"
+                              #exampleChart="orgChart" (loadFamilyTree)="onloadFamilyTree($event)">
+                            </app-client-unilevel-tree-component>
+
+                            <ng-template #nodeTemplate let-node>
+                              <div class="chart-node">
+                                <img [ngSrc]="node.image" fill />
+                                <div class="name">
+                                  <span style="font-size: 11px;">
+                                    {{ node.userName }}
+                                  </span>
+                                </div>
+                                <div *ngIf="node.children.length" (click)="node.hideChildren = !node.hideChildren"
+                                  class="tree-fold-btn">
+                                  {{ node.hideChildren ? '+' : '-' }}
+                                </div>
+                              </div>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="4">
+                <a ngbNavLink>MODELO 5</a>
+                <ng-template ngbNavContent>
+                  <div class="tab-pane">
+                    <div class="card-body">
+                      <div class="row mt-2">
+                        <div class="col-12 col-md-12 col-lg-12">
+                          <div class="card-body media-list position-relative"
+                            style="position: relative; max-width: 100% !important" [perfectScrollbar]>
+                            <div *ngIf="showDiv">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="5">
+                <a ngbNavLink>MODELO 6</a>
+                <ng-template ngbNavContent>
+                  <div class="tab-pane">
+                    <div class="card-body">
+                      <div class="row mt-2">
+                        <div class="col-12 col-md-12 col-lg-12">
+                          <div class="card-body media-list position-relative"
+                            style="position: relative; max-width: 100% !important" [perfectScrollbar]>
+                            <div *ngIf="showDiv">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,156 @@
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+import { AddressesComponent } from './addresses/addresses.component';
+import { BillingOrdersComponent } from './billing-orders/billing-orders.component';
+import { BillingPurchaseComponent } from './billing-purchase/billing-purchase.component';
+import { BillingPurchasesComponent } from './billing-purchases/billing-purchases.component';
+import { CommissionsComponent } from './commissions/commissions.component';
+import { CommissionsBalanceComponent } from './commissions-balance/commissions-balance.component';
+import { InducementsComponent } from './inducements/inducements.component';
+import { NetworkComponent } from './network/network.component';
+import { NewsComponent } from './news/news.component';
+import { ProcurementEcopoolComponent } from './procurement-ecopool/procurement-ecopool.component';
+import { RequestsComponent } from './requests/requests.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { RequestWalletComponent } from './request-wallet/request-wallet.component';
+import { ProductsComponent } from './products/products.component';
+import { CartComponent } from './cart/cart.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { AuthGuard } from '@app/core/guard/auth.guard';
+import { ViewUnilevelTreeComponent } from "@app/client/unilevel-tree/page/view-unilevel-tree.component";
+import { AcademyComponent } from './academy/academy.component';
+import { FundingAccountsComponent } from './funding-accounts/funding-accounts.component';
+import { NetworkDetailsComponent } from './network-details/network-details.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'main',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'addresses',
+    component: AddressesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'billing-orders',
+    component: BillingOrdersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'billing-purchase',
+    component: BillingPurchaseComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'billing-purchases',
+    component: BillingPurchasesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'commissions',
+    component: CommissionsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'commissions-balance',
+    component: CommissionsBalanceComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'inducements',
+    component: InducementsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'network',
+    component: NetworkComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'news',
+    component: NewsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'procurement-ecopool',
+    component: ProcurementEcopoolComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'requests',
+    component: RequestsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'my-profile',
+    component: MyProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-user',
+    component: EditUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'tickets',
+    component: TicketsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'wallet',
+    component: WalletComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'request-wallet',
+    component: RequestWalletComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'products',
+    component: ProductsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'trees',
+    component: ViewUnilevelTreeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'academy',
+    component: AcademyComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'funding-account',
+    component: FundingAccountsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'network-details',
+    component: NetworkDetailsComponent,
+    canActivate: [AuthGuard]
+  }
+];
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class ClientRoutingModule { }

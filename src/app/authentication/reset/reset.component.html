@@ -1,0 +1,76 @@
+<div id="particles-js"></div>
+
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="loading-message">
+    <i class="fas fa-spinner"></i>
+    <p>Cargando... <br>
+      <small>Por favor espera</small>
+    </p>
+  </div>
+</div>
+
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+  <form *ngIf="!isLoading && linkValid" [formGroup]="resetPassword" (ngSubmit)="changePassword()">
+    <div class="container">
+      <div class="auth-card">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h4>Reset Password</h4>
+              </div>
+              <div class="card-body">
+                <p class="text-muted">Enter Your New Password</p>
+
+                <div class="form-group">
+                  <label for="password">New Password</label>
+                  <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator"
+                    name="password" tabindex="2" required formControlName="password" [ngClass]="{
+                      'is-invalid': resetPassword.get('password').errors,
+                      'is-valid': resetPassword.get('password').valid && resetPassword.get('password').dirty
+                    }">
+                  <div *ngIf="resetPassword.get('password').errors" class="invalid-feedback">
+                    <div *ngIf="resetPassword.get('password').errors.required">
+                      Ingrese una contraseña.
+                    </div>
+                    <div *ngIf="resetPassword.get('password').errors.pattern">
+                      La contraseña debe contener al menos un dígito, una letra minúscula, una letra mayúscula, un
+                      carácter especial y al menos 8 caracteres.
+                    </div>
+                  </div>
+                  <div id="pwindicator" class="pwindicator">
+                    <div class="bar"></div>
+                    <div class="label"></div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password-confirm">Confirm Password</label>
+                  <input id="password-confirm" type="password" class="form-control" name="confirm-password" tabindex="2"
+                    required formControlName="confirm_password" [ngClass]="{
+                      'is-invalid': resetPassword.get('confirm_password').errors || resetPassword.errors?.mismatch,
+                      'is-valid': resetPassword.get('confirm_password').valid && !resetPassword.errors?.mismatch && resetPassword.get('confirm_password').dirty
+                    }">
+                  <div *ngIf="resetPassword.get('confirm_password').errors" class="invalid-feedback">
+                    <div *ngIf="resetPassword.get('confirm_password').errors.required">
+                      Confirme su contraseña.
+                    </div>
+                  </div>
+                  <div *ngIf="resetPassword.errors?.mismatch" class="invalid-feedback d-block">
+                    Las contraseñas no coinciden.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    Reset Password
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</main>

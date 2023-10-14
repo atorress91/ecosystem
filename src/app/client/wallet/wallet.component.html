@@ -1,0 +1,208 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">
+        {{ 'MENUITEMS.WALLET.TEXT' | translate }}
+      </h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
+    </li>
+  </ul>
+  <div class="section-body">
+    <div class="row ">
+      <div class="col-xl-3 col-lg-6">
+        <div class="card l-bg-green">
+          <div class="card-statistic-3">
+            <div class="card-icon card-icon-large"><i class="fa fa-award"></i></div>
+            <div class="card-content">
+              <h4 class="card-title">{{'WALLET-PAGE.AVAILABLE-BALANCE.TEXT' | translate}}</h4>
+              <span class="font-20">USD {{balanceInformation?.availableBalance ?? 0 | truncateDecimals:2}}</span>
+              <div class="mt-2">
+              </div>
+              <p class="mb-0 text-sm">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <div class="card l-bg-orange">
+          <div class="card-statistic-3">
+            <div class="card-icon card-icon-large"><i class="fa fa-money-bill-alt"></i></div>
+            <div class="card-content">
+              <h4 class="card-title">{{'WALLET-PAGE.REVERSE-BALANCE.TEXT' | translate}}</h4>
+              <span class="font-20">USD {{balanceInformation?.reverseBalance ?? 0}}</span>
+              <div class="mt-2">
+              </div>
+              <p class="mb-0 text-sm">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <div class="card bg-danger">
+          <div class="card-statistic-3">
+            <div class="card-icon card-icon-large"><i class="fa fa-money-bill-alt"></i></div>
+            <div class="card-content">
+              <h4 class="card-title">{{'WALLET-PAGE.REQUEST-RECHARGE.TEXT' | translate}}</h4>
+              <span class="font-20">USD 0.00</span>
+              <div class="mt-2">
+              </div>
+              <p class="mb-0 text-sm">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <div class="card bg-info">
+          <div class="card-statistic-3">
+            <div class="card-icon card-icon-large"><i class="fa fa-money-bill-alt"></i></div>
+            <div class="card-content">
+              <h4 class="card-title">{{'WALLET-PAGE.WITHDRAWAL-PENDING.TEXT' | translate}}</h4>
+              <span class="font-20">USD 0.00</span>
+              <div class="mt-2">
+              </div>
+              <p class="mb-0 text-sm">
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>
+              {{
+              'WALLET-PAGE.TITTLE-TABLE.TEXT'
+              | translate
+              }}
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="table-search-area">
+                      <div>
+                        <div class="form-group">
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <i-feather name="search" style="color: #96a2b4;"></i-feather>
+                              </div>
+                            </div>
+                            <input style="background-color: white;" type="text" class="form-control"
+                              id="inlineFormInputGroup" (keyup)='updateFilter($event)' aria-label="Search box"
+                              placeholder="{{'WALLET-PAGE.SEARCH.TEXT' | translate}}">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col align-self-end">
+                    <ul class="nav justify-content-end">
+                      <li class="nav-item m-2" (click)="copyTableData()">
+                        <button type="button" class="btn btn-primary">
+                          <i class="bi bi-clipboard-check"></i>
+                          Copiar
+                        </button>
+                      </li>
+
+                      <li class="nav-item m-2" (click)="downloadPDF()">
+                        <button type="button" class="btn btn-primary">
+                          <i class="bi bi-printer"></i>
+                          PDF
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <ngx-datatable id="htmlTable" #table class="material" [rows]="rows"
+                  [loadingIndicator]="loadingIndicator" columnMode="force" [headerHeight]="50" [footerHeight]="50"
+                  rowHeight="auto" [limit]="10" [scrollbarH]="scrollBarHorizontal" [reorderable]="reorderable">
+                  <ngx-datatable-column name="{{
+                      'WALLET-PAGE.USER-COLUMN.TEXT' | translate
+                    }}">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.adminUserName }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="{{
+                      'WALLET-PAGE.AFFILIATE-COLUMN.TEXT' | translate
+                    }}">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.affiliateUserName }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="{{
+                    'WALLET-PAGE.CREDIT-COLUMN.TEXT' | translate
+                    }}">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      <div class="col-green">
+                        {{ row.credit }}
+                      </div>
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="{{
+                    'WALLET-PAGE.DEBIT-COLUMN.TEXT' | translate
+                    }}">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      <div class="col-red">
+                        {{ row.debit }}
+                      </div>
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="{{
+                    'WALLET-PAGE.STATE-COLUMN.TEXT' | translate
+                    }}">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      <div *ngIf="row.status == true" class="badge-outline col-green">
+                        Atendido
+                      </div>
+                      <div *ngIf="row.state == false" class="badge-outline col-red">
+                        No atendido
+                      </div>
+
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="{{
+                    'WALLET-PAGE.CONCEPT-COLUMN.TEXT' | translate
+                    }}">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.concept }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="{{
+                    'WALLET-PAGE.DATE-COLUMN.TEXT' | translate
+                    }}">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.date }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="{{
+                    'WALLET-PAGE.DETAILS-COLUMN.TEXT' | translate
+                    }}" sortable="false">
+                    <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                      <a class="msr-2 h-auto tblEditBtn">
+                        <i class="bi bi-folder2-open">{{
+                          'WALLET-PAGE.DETAILS-BTN.TEXT'
+                          | translate
+                          }}</i>
+                      </a>
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

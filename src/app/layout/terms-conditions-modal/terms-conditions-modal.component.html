@@ -1,0 +1,40 @@
+<ng-template #termsModal let-modal>
+
+  <div class="modal-header">
+    <h4 class="modal-title">Términos y Condiciones</h4>
+  </div>
+
+  <div class="modal-body" style="max-height: 500px; overflow-y: auto;" (scroll)="onScroll($event)">
+    <p>Introducción</p>
+    <p>Al acceder o utilizar el sitio web Ecosystem Sharing Evolution, ("nosotros", "nuestro/a", "la plataforma"),
+      aceptas cumplir y estar vinculado por los siguientes términos y condiciones de uso, que junto con nuestra política
+      de privacidad, rigen la relación de Ecosystem Sharing Evolution con usted en relación con este sitio web.</p>
+
+    <p>Derechos de Propiedad Intelectual</p>
+    <p>Todo el contenido, marcas, logos y demás elementos en el sitio pertenecen a Ecosystem Sharing Evolution o a
+      terceros
+      que han autorizado su uso. Está prohibida su reproducción, transmisión o almacenamiento sin nuestro consentimiento
+      previo por escrito.</p>
+
+    <p>Uso Aceptable</p>
+    <p>El uso de este sitio web debe ser para propósitos legales y no debe:
+      - Infringir derechos de terceros.
+      - Transmitir contenido ilícito, difamatorio o potencialmente perjudicial.
+      - Introducir o propagar virus informáticos.</p>
+
+    <p>Enlaces a Terceros</p>
+    <p>Nuestro sitio puede contener enlaces a sitios web de terceros. No tenemos control sobre estos sitios y no
+      asumimos responsabilidad por el contenido o prácticas de estos.</p>
+
+    <p>Cambios en los Términos y Condiciones</p>
+    <p>Podemos modificar estos términos y condiciones en cualquier momento, y dichas modificaciones entrarán en vigencia
+      inmediatamente después de su publicación en el sitio web.</p>
+
+    <p>Si desea más información por favor diríjase a nuestro sitio web https://ocxgroup.net/</p>
+
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button #acceptButton type="button" class="btn btn-primary" *ngIf="showButton"
+      (click)="acceptTerms()">Aceptar</button>
+  </div>
+</ng-template>
