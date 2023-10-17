@@ -46,9 +46,7 @@ export class HomeComponent {
     private authService: AuthService,
     private walletService: WalletService,
     private toastr: ToastrService,
-    private affiliateService: AffiliateService,
-    private router: Router
-
+    private affiliateService: AffiliateService
   ) {
     this.pieChartOptions = {
       series: [],
@@ -64,7 +62,7 @@ export class HomeComponent {
     this.OnInitMethod();
   }
 
-  OnInitMethod(){
+  OnInitMethod() {
     this.authService.currentUserAffiliate.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       if (user && user.id) {
         this.user = user;

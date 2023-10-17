@@ -1,4 +1,3 @@
-import { options } from '@amcharts/amcharts4/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/core/service/cart.service/cart.service';
 import Swal from 'sweetalert2';
@@ -183,6 +182,8 @@ export class NetworkComponent implements OnInit {
     Swal.fire({
       title: 'Ingrese el código de verificación que ha sido enviado a su correo electrónico.',
       html: `
+      <span style="font-size: 18px;">Transferencia para <span style="color: #ff5733;">${this.user.user_name}</span></span><br>
+      <span style="font-size: 18px;">Saldo Disponible <span style="color: #ff5733;">${this.userBalance}</span></span>
         <input id="swal-input-amount" type="number" placeholder="Monto" min="0" step="0.01" class="swal2-input">
         <input id="swal-input-code" type="text" placeholder="Código de verificación" class="swal2-input">
       `,
