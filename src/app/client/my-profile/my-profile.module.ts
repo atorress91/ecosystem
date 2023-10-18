@@ -17,7 +17,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MyProfileComponent } from './my-profile.component';
 import { MyProfileEditPasswordModalComponent } from './my-profile-edit-password-modal/my-profile-edit-password-modal.component';
 import { MyProfileEditPersonalInfoModalComponent } from './my-profile-edit-personal-info-modal/my-profile-edit-personal-info-modal.component';
-import { MyProfileEditPasswordUploadModalComponent } from './my-profile-edit-password-upload-modal/my-profile-edit-password-upload-modal.component';
+import { EditSecurityPinModalComponent } from './edit-security-pin-modal/edit-security-pin-modal.component';
 import { SecretQuestionModalComponent } from './secret-question-modal/secret-question-modal.component';
 import { ImageProfileModalComponent } from './image-profile-modal/image-profile-modal.component';
 
@@ -26,7 +26,16 @@ const icons = {
 };
 
 @NgModule({
-  declarations: [MyProfileComponent, ImageProfileModalComponent, MyProfileEditPasswordModalComponent, MyProfileEditPersonalInfoModalComponent, MyProfileEditPasswordUploadModalComponent, SecretQuestionModalComponent],
+  declarations:
+    [
+      MyProfileComponent,
+      ImageProfileModalComponent,
+      MyProfileEditPasswordModalComponent,
+      MyProfileEditPersonalInfoModalComponent,
+      EditSecurityPinModalComponent,
+      SecretQuestionModalComponent
+    ],
+
   imports: [
     CommonModule,
     NgxDropzoneModule,
@@ -48,4 +57,4 @@ const icons = {
     NgxGaugeModule,
   ],
 })
-export class MyProfileModule {}
+export class MyProfileModule { }

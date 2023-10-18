@@ -12,23 +12,23 @@ import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affili
 import { UpdatePassword } from '@app/core/models/user-model/update.password.model';
 
 @Component({
-  selector: 'app-my-profile-edit-password-upload-modal',
-  templateUrl: './my-profile-edit-password-upload-modal.component.html',
+  selector: 'app-edit-security-pin-modal',
+  templateUrl: './edit-security-pin-modal.component.html',
 })
-export class MyProfileEditPasswordUploadModalComponent implements OnInit {
-  editPasswordUploadForm: FormGroup;
+export class EditSecurityPinModalComponent implements OnInit {
+  editSecurityPinForm: FormGroup;
   submitted = false;
   public userId: number;
   public credentials: UpdatePassword = new UpdatePassword();
 
-  @ViewChild('editPasswordUploadModal') editPasswordUploadModal: NgbModal;
+  @ViewChild('editSecurityPinModal') editSecurityPinModal: NgbModal;
 
   constructor(
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private affiliateService: AffiliateService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadValidations();
@@ -36,13 +36,13 @@ export class MyProfileEditPasswordUploadModalComponent implements OnInit {
 
   onChangePasswordUpload() {
     this.submitted = true;
-    if (this.editPasswordUploadForm.invalid) {
+    if (this.editSecurityPinForm.invalid) {
       return;
     }
 
-    this.credentials.password = this.editPasswordUploadForm.value.currentPassword;
-    this.credentials.new_password = this.editPasswordUploadForm.value.pin;
-    this.credentials.confirm_password = this.editPasswordUploadForm.value.confirmPin;
+    this.credentials.password = this.editSecurityPinForm.value.currentPassword;
+    this.credentials.new_password = this.editSecurityPinForm.value.pin;
+    this.credentials.confirm_password = this.editSecurityPinForm.value.confirmPin;
     this.credentials.id = this.userId;
 
     this.affiliateService.updatePin(this.credentials).subscribe((response) => {
@@ -61,14 +61,14 @@ export class MyProfileEditPasswordUploadModalComponent implements OnInit {
   }
 
   loadValidations() {
-    this.editPasswordUploadForm = this.formBuilder.group({
+    this.editSecurityPinForm = this.formBuilder.group({
       currentPassword: ['', Validators.required],
       pin: ['', Validators.required],
       confirmPin: ['', Validators.required],
     },
-    {
-      validator: passwordMatchValidator
-    });
+      {
+        validator: passwordMatchValidator
+      });
   }
 
   openEditPasswordUploadModal(content, user: UserAffiliate) {
@@ -78,7 +78,7 @@ export class MyProfileEditPasswordUploadModalComponent implements OnInit {
       size: 'lg',
     });
 
-    this.editPasswordUploadForm.setValue({
+    this.editSecurityPinForm.setValue({
       currentPassword: '',
       pin: '',
       confirmPin: '',
@@ -86,8 +86,8 @@ export class MyProfileEditPasswordUploadModalComponent implements OnInit {
     this.userId = user.id;
   }
 
-  get edit_password_upload_controls(): { [key: string]: AbstractControl } {
-    return this.editPasswordUploadForm.controls;
+  get edit_security_pin_controls(): { [key: string]: AbstractControl } {
+    return this.editSecurityPinForm.controls;
   }
 
   showSuccess(message) {

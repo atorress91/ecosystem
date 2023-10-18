@@ -37,7 +37,6 @@ import { CreateAddressModalComponent } from './addresses/create-address-modal/cr
 import { ClientUnilevelTreeModule } from '@app/client/unilevel-tree/client-unilevel-tree.module';
 import { AcademyComponent } from './academy/academy.component';
 import { FundingAccountsComponent } from './funding-accounts/funding-accounts.component';
-import { TruncateDecimalsPipe } from '@app/shared/truncate-decimals.pipe';
 import { SharedModule } from '@app/shared/shared.module';
 import { NetworkDetailsComponent } from './network-details/network-details.component';
 

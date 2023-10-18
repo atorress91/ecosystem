@@ -206,19 +206,6 @@
                           | translate
                           }}</span>
                       </a>
-                      <a ngbDropdownItem id="btn-change-password-upload" (click)="
-                            modalChildEditPasswordUpload.openEditPasswordUploadModal(
-                                  modalChildEditPasswordUpload[
-                                    'editPasswordUploadModal'
-                                  ],
-                                  user
-                                )
-                              ">
-                        <i class="fa fa-key"></i>
-                        <span style="margin-left: 5px">
-                          Cambiar pin de seguridad
-                        </span>
-                      </a>
                       <a ngbDropdownItem id="btn-edit-question" (click)="
                             modalChildSecretQuestion.openSecretQuestionModal(modalChildSecretQuestion['secretQuestionModal'], user)
                               ">
@@ -330,8 +317,8 @@
 <app-my-profile-edit-personal-info-modal #modalChildEditPersonalInfo [personalInfo]="user">
 </app-my-profile-edit-personal-info-modal>
 
-<app-my-profile-edit-password-upload-modal #modalChildEditPasswordUpload>
-</app-my-profile-edit-password-upload-modal>
+<app-edit-security-pin-modal #modalChildEditSecurityPin>
+</app-edit-security-pin-modal>
 
 <app-secret-question-modal #modalChildSecretQuestion>
 </app-secret-question-modal>
