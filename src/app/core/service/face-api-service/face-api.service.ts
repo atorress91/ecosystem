@@ -106,7 +106,7 @@ export class FaceApiService {
     }
   }
 
-  async verifyImagesWithSsdMobilenetv1(files: File[]): Promise<boolean> {
+  async verifyImagesWithSsdMobilenetv1(files: File[]): Promise<{ matched: boolean, distance: number, canvasSelfie: HTMLCanvasElement, canvasIdDocument: HTMLCanvasElement }> {
     try {
       Swal.fire({
         title: 'Espera un momento mientras se realiza la validación',
@@ -126,34 +126,56 @@ export class FaceApiService {
         this.createImageElement(files[1])
       ]);
 
-      const detectionOptions = new faceapi.SsdMobilenetv1Options({ minConfidence: 0.6 });
+      const detectionOptions = new faceapi.SsdMobilenetv1Options({ minConfidence: 0.5 });
       const [selfieDetection, idDocumentDetection] = await Promise.all([
         faceapi.detectSingleFace(selfieElement, detectionOptions).withFaceLandmarks().withFaceDescriptor(),
         faceapi.detectSingleFace(idDocumentElement, detectionOptions).withFaceLandmarks().withFaceDescriptor()
       ]);
 
-      if (selfieDetection && idDocumentDetection) {
-        const distance = faceapi.euclideanDistance(selfieDetection.descriptor, idDocumentDetection.descriptor);
-        const similarityThreshold = 0.7;
-        if (distance < similarityThreshold) {
-          this.showSuccess('La verificación fue exitosa. Las imágenes coinciden.');
-          this.startUploadFuntion();
-          return Promise.resolve(true);
-        } else {
-          this.showError('La verificación falló. Las imágenes no coinciden.');
-          return Promise.resolve(false);
-        }
+      const canvasSelfie = faceapi.createCanvasFromMedia(selfieElement);
+      canvasSelfie.getContext('2d').drawImage(selfieElement, 0, 0, selfieElement.width, selfieElement.height);
+
+      faceapi.draw.drawDetections(canvasSelfie, selfieDetection);
+      faceapi.draw.drawFaceLandmarks(canvasSelfie, selfieDetection);
+
+      const canvasIdDocument = faceapi.createCanvasFromMedia(idDocumentElement);
+      canvasIdDocument.getContext('2d').drawImage(idDocumentElement, 0, 0, idDocumentElement.width, idDocumentElement.height);
+
+      faceapi.draw.drawDetections(canvasIdDocument, idDocumentDetection);
+      faceapi.draw.drawFaceLandmarks(canvasIdDocument, idDocumentDetection);
+
+
+      const distance = faceapi.euclideanDistance(selfieDetection.descriptor, idDocumentDetection.descriptor);
+      const similarityThreshold = 0.8;
+
+      if (distance < similarityThreshold) {
+        this.showSuccess('La verificación fue exitosa. Las imágenes coinciden.');
+        this.startUploadFuntion();
+        return {
+          matched: true,
+          distance: distance,
+          canvasSelfie: canvasSelfie,
+          canvasIdDocument: canvasIdDocument
+        };
       } else {
-        this.showError('No se encontró una cara en una de las imágenes.');
-        return Promise.resolve(false);
+        this.showError('La verificación falló. Las imágenes no coinciden.');
+        return {
+          matched: false,
+          distance: distance,
+          canvasSelfie: canvasSelfie,
+          canvasIdDocument: canvasIdDocument
+        };
       }
     } catch (error) {
       this.showError('Ha ocurrido un error durante la verificación.');
-      return Promise.resolve(false);
-
+      return {
+        matched: false,
+        distance: NaN,
+        canvasSelfie: null,
+        canvasIdDocument: null
+      };
     }
   }
-
 
   startUploadFuntion() {
     this.startFunctionUpload.next();

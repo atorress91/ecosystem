@@ -1,0 +1,53 @@
+<ng-template #createTicketModal let-modal>
+  <div class="modal-header editRowModal">
+    <h4 class="modal-title" id="modal-basic-title">
+      <div class="table-modal-header">
+        <div class="modal-about">
+          <div class="fw-bold p-t-10 font-17">
+            Crear Ticket
+          </div>
+        </div>
+      </div>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true"><i class="material-icons">close</i></span>
+    </button>
+  </div>
+  <form class="register-form" [formGroup]="createTicketform" [autocomplete]="off" (ngSubmit)="createTicket()">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <div class="form-group">
+            <div class="form-line">
+              <label for="subject_ticket">Asunto</label>
+              <input type="text" id="subject_ticket" class="form-control" placeholder="Asunto">
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <div class="form-group">
+            <div class="form-line">
+              <label for="category_ticket">Categoría</label>
+              <input type="text" id="subject" class="form-control" placeholder="Categoría">
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+          <div class="compose-editor m-t-20">
+
+            <input type="file" class="default" multiple placeholder="cdkEditor">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">
+        Crear
+      </button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">
+        Descartar
+      </button>
+    </div>
+  </form>
+</ng-template>

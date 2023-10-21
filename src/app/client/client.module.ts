@@ -1,3 +1,4 @@
+import { TicketsModule } from './tickets/tickets.module';
 import { RequestsModule } from './requests/requests.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { QrcodeModule } from 'qrcode-angular';
@@ -32,14 +33,12 @@ import { ProductsComponent } from './products/products.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { MyProfileModule } from './my-profile/my-profile.module';
 import { ConfigureWalletComponent } from './configure-wallet/configure-wallet.component';
-import { TicketsComponent } from './tickets/tickets.component';
 import { CreateAddressModalComponent } from './addresses/create-address-modal/create-address-modal.component';
 import { ClientUnilevelTreeModule } from '@app/client/unilevel-tree/client-unilevel-tree.module';
 import { AcademyComponent } from './academy/academy.component';
 import { FundingAccountsComponent } from './funding-accounts/funding-accounts.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { NetworkDetailsComponent } from './network-details/network-details.component';
-
 
 
 const icons = {
@@ -64,12 +63,10 @@ const icons = {
     ProductsComponent,
     EditUserComponent,
     ConfigureWalletComponent,
-    TicketsComponent,
     CreateAddressModalComponent,
     AcademyComponent,
     FundingAccountsComponent,
     NetworkDetailsComponent,
-
   ],
   imports: [
     CommonModule,
@@ -93,7 +90,8 @@ const icons = {
     BillingPurchasesModule,
     RequestsModule,
     ClientUnilevelTreeModule,
-    SharedModule
+    SharedModule,
+    TicketsModule
   ],
   exports: [
     ConfigureWalletComponent

@@ -1,4 +1,4 @@
-import { AffiliateBtc } from './../../core/models/affiliate-btc-model/affiliate-btc.model';
+import { AffiliateBtc } from '@app/core/models/affiliate-btc-model/affiliate-btc.model';
 import { AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
@@ -110,12 +110,25 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
     Swal.fire({
       title: 'Ingrese el código de verificación que ha sido enviado a su correo electrónico.',
       html: `
-            <input id="swal-input-code" type="text" placeholder="Código de verificación" class="swal2-input" autocomplete="off">
-            <input id="swal-input-password" type="password" placeholder="Contraseña" class="swal2-input" autocomplete="off">
+            <input id="swal-input-code" type="text" placeholder="Código de verificación" class="swal2-input">
+            <input id="swal-input-password" type="password" placeholder="Contraseña" class="swal2-input">
         `,
       showCancelButton: true,
       confirmButtonText: 'Guardar',
       cancelButtonText: 'Cancelar',
+      didRender: () => { // Usar didRender
+        const codeElement = document.getElementById('swal-input-code') as HTMLInputElement;
+        const passwordElement = document.getElementById('swal-input-password') as HTMLInputElement;
+
+        if (codeElement) {
+          codeElement.setAttribute('autocomplete', 'off');
+          codeElement.value = '';
+        }
+        if (passwordElement) {
+          passwordElement.setAttribute('autocomplete', 'off');
+          passwordElement.value = '';
+        }
+      },
       preConfirm: () => {
         const codeElement = Swal.getPopup().querySelector('#swal-input-code') as HTMLInputElement;
         const passwordElement = Swal.getPopup().querySelector('#swal-input-password') as HTMLInputElement;
@@ -142,7 +155,6 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
 
         this.affiliateBtc.password = password;
         this.affiliateBtc.verification_code = code;
-
       }
     }).then((result) => {
       if (result.isConfirmed) {
@@ -150,6 +162,8 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
       }
     });
   }
+
+
 
   generateVerificationCode() {
     this.affiliateService.generateVerificationCode(this.user.id, false).subscribe({

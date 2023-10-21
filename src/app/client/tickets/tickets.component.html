@@ -1,7 +1,7 @@
 <section class="main-content">
   <ul class="breadcrumb breadcrumb-style ">
     <li class="breadcrumb-item">
-      <h5 class="page-title m-b-0">Herramientas</h5>
+      <h5 class="page-title m-b-0">Mis Tickets</h5>
     </li>
     <li class="breadcrumb-item bcrumb-1">
       <a routerLink="/dashboard/main">
@@ -11,43 +11,378 @@
   </ul>
   <div class="section-body">
     <div class="row">
-      <div class="col-12 col-md-12 col-lg-12 col">
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
         <div class="card">
-          <div class="chat">
-            <div class="chat-header clearfix">
-              <img src="assets/images/users/user-1.png" alt="avatar">
-              <div class="chat-about">
-                <div class="chat-with">Marcela Paiz Gutierrez</div>
-                <div class="chat-num-messages">{{messages.length}} nuevos mensajes</div>
+          <div class="body">
+            <div id="mail-nav">
+              <button type="button" class="btn btn-danger waves-effect btn-compose m-b-15"
+                (click)="modalChildCreate.openModal(modalChildCreate['createTicketModal'])">Crear Ticket</button>
+              <ul class="" id="mail-folders">
+                <li class="active">
+                  <a routerLink="/email/inbox" title="Inbox">Inbox (10)
+                  </a>
+                </li>
+                <li>
+                  <a onClick="return false;" title="Sent">Sent</a>
+                </li>
+                <li>
+                  <a onClick="return false;" title="Draft">Draft</a>
+                </li>
+                <li>
+                  <a onClick="return false;" title="Bin">Bin</a>
+                </li>
+                <li>
+                  <a onClick="return false;" title="Important">Important</a>
+                </li>
+                <li>
+                  <a onClick="return false;" title="Starred">Starred</a>
+                </li>
+              </ul>
+              <h5 class="b-b p-10 text-strong">Online</h5>
+              <ul class="online-user" id="online-offline">
+                <li><a onClick="return false;"> <img alt="image" src="assets/images/users/user-2.png"
+                      class="rounded-circle" width="35" data-toggle="tooltip" title="Sachin Pandit">
+                    Sachin Pandit
+                  </a></li>
+                <li><a onClick="return false;"> <img alt="image" src="assets/images/users/user-1.png"
+                      class="rounded-circle" width="35" data-toggle="tooltip" title="Sarah Smith">
+                    Sarah Smith
+                  </a></li>
+                <li><a onClick="return false;"> <img alt="image" src="assets/images/users/user-3.png"
+                      class="rounded-circle" width="35" data-toggle="tooltip" title="Airi Satou">
+                    Airi Satou
+                  </a></li>
+                <li><a onClick="return false;"> <img alt="image" src="assets/images/users/user-4.png"
+                      class="rounded-circle" width="35" data-toggle="tooltip" title="Angelica Ramos	">
+                    Angelica Ramos
+                  </a></li>
+                <li><a onClick="return false;"> <img alt="image" src="assets/images/users/user-5.png"
+                      class="rounded-circle" width="35" data-toggle="tooltip" title="Cara Stevens">
+                    Cara Stevens
+                  </a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="card">
+          <div class="boxs mail_listing">
+            <div class="inbox-center table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th class="text-center">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </th>
+                    <th colspan="3">
+                      <div class="inbox-header">
+                        <div class="mail-option">
+                          <div class="email-btn-group m-l-15">
+                            <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="back"
+                              data-toggle="tooltip">
+                              <i class="material-icons">keyboard_return</i>
+                            </a>
+                            <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Archive"
+                              data-toggle="tooltip">
+                              <i class="material-icons">archive</i>
+                            </a>
+                            <div class="p-r-20">|</div>
+                            <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Error"
+                              data-toggle="tooltip">
+                              <i class="material-icons">error</i>
+                            </a>
+                            <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Delete"
+                              data-toggle="tooltip">
+                              <i class="material-icons">delete</i>
+                            </a>
+                            <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Folders"
+                              data-toggle="tooltip">
+                              <i class="material-icons">folder</i>
+                            </a>
+                            <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Tag"
+                              data-toggle="tooltip">
+                              <i class="material-icons">local_offer</i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </th>
+                    <th class="hidden-xs" colspan="2">
+                      <div class="float-end">
+                        <div class="email-btn-group m-l-15">
+                          <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="previous"
+                            data-toggle="tooltip">
+                            <i class="material-icons">navigate_before</i>
+                          </a>
+                          <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="next"
+                            data-toggle="tooltip">
+                            <i class="material-icons">navigate_next</i>
+                          </a>
+                        </div>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="unread">
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Nelson Lane</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        <span class="badge badge-primary">Work</span>
+                        Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> 12:30 PM </td>
+                  </tr>
+                  <tr class="unread">
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons text-warning">star</i>
+                    </td>
+                    <td class="hidden-xs">Kerry Mann</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 13 </td>
+                  </tr>
+                  <tr class="unread">
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Adam Peters</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        <span class="badge badge-secondary">Shopping</span>
+                        Lorem ipsum perspiciatis unde omnis</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 12 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Lula Reese</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        <span class="badge badge-success">Family</span>
+                        Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 12 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Nelson Lane</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 12 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons text-warning">star</i>
+                    </td>
+                    <td class="hidden-xs">Kerry Mann</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 11 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Adam Peters</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        <span class="badge badge-info">Office</span>
+                        Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 11 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Lula Reese</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 11 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Nelson Lane</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        <span class="badge badge-danger">Work</span>
+                        Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 10 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons text-warning">star</i>
+                    </td>
+                    <td class="hidden-xs">Kerry Mann</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 10 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Adam Peters</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        <span class="badge badge-secondary">Shopping</span>
+                        Lorem ipsum perspiciatis unde omnis</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 10 </td>
+                  </tr>
+                  <tr>
+                    <td class="tbl-checkbox">
+                      <label class="form-check-label">
+                        <input type="checkbox">
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">star_border</i>
+                    </td>
+                    <td class="hidden-xs">Lula Reese</td>
+                    <td class="max-texts">
+                      <a routerLink="/email/read-mail">
+                        Lorem ipsum perspiciatis unde omnis iste natus</a>
+                    </td>
+                    <td class="hidden-xs">
+                      <i class="material-icons">attach_file</i>
+                    </td>
+                    <td class="text-end"> May 09 </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-sm-7 ">
+                <p class="p-15">Showing 1 - 15 of 200</p>
               </div>
             </div>
           </div>
-          <div class="chat-box">
-            <div class="card-body chat-content" style="position: relative; max-height: 400px;" [perfectScrollbar]>
-              <div *ngFor="let message of messages"
-                [ngClass]="{'chat-item': true, 'chat-left': message.isUser, 'chat-right': !message.isUser}">
-                <img *ngIf="message.isUser" src="assets/images/users/user-5.png">
-                <img *ngIf="!message.isUser" src="assets/images/Logo-AI.png" style="object-fit: fill;">
-                <div class="chat-details">
-                  <div class="chat-text">{{message.content}}</div>
-                  <div class="chat-time">{{message.time | date:'shortTime'}}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card-footer chat-form">
-              <form id="chat-form" (ngSubmit)="sendMessage(messageInput.value)" #f="ngForm">
-                <input #messageInput type="text" class="form-control" placeholder="Type a message" required>
-                <button type="submit" class="btn btn-primary">
-                  <i class="far fa-paper-plane"></i>
-                </button>
-              </form>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
   </div>
 </section>
+<app-create-ticket-modal #modalChildCreate></app-create-ticket-modal>

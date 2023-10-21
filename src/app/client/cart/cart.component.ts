@@ -35,11 +35,9 @@ export class CartComponent implements OnInit, OnDestroy {
   public user: UserAffiliate = new UserAffiliate();
   public userReceivesPurchase: UserAffiliate = new UserAffiliate();
   public walletRequest: WalletRequest = new WalletRequest();
-  public grandTotal !: number;
   public showReversePaymentOnly: boolean = false;
   transaction: ConpaymentTransaction = new ConpaymentTransaction();
   coinPayTransactionResponse = new CreateTransactionResponse();
-  public api: string = '';
 
   constructor(
     private cartService: CartService,
@@ -52,16 +50,13 @@ export class CartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-
     this.user = this.auth.currentUserAffiliateValue;
-    this.api = environment.apis.coinPayment;
 
     this.today = new Date();
     this.today.getTime();
     this.cartService.getProducts()
       .subscribe(res => {
         this.products = res;
-        this.grandTotal = this.cartService.getTotalPrice();
       })
     this.setValuesToPaid();
     this.verificateUrl();
@@ -99,19 +94,21 @@ export class CartComponent implements OnInit, OnDestroy {
     this.verificateUrl();
   }
 
-  setValuesToPaid() {
-    this.totalTax = 0;
-    this.totalDiscount = 0;
-    this.subTotal = 0;
-    this.total = 0;
+  setValuesToPaid(): void {
+    let totalTax = 0;
+    let subTotal = 0;
+    let grandTotal = 0;
 
     this.products.forEach(item => {
-
-      this.totalTax = parseFloat((item.tax).toFixed(0));
-      this.subTotal += parseFloat(item.total.toFixed(0));
+      console.log(item);
+      grandTotal += item.quantity * item.baseAmount
+      totalTax += parseFloat((item.tax).toFixed(0));
+      subTotal += parseFloat(item.total.toFixed(0));
     });
 
-    this.total = parseFloat((this.subTotal * (1 + (this.totalTax / 100))).toFixed(0));
+    this.totalTax = totalTax;
+    this.subTotal = subTotal;
+    this.total = grandTotal;
   }
 
   showConfirmation(option: number) {
