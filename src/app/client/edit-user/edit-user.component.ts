@@ -39,19 +39,17 @@ export class EditUserComponent implements OnInit, OnDestroy {
   private isUploadCompleted = false;
   progress = 0;
 
+  @ViewChild('table') table: DatatableComponent;
+
   constructor(
-    private modalService: NgbModal,
     private toastr: ToastrService,
     private authService: AuthService,
     private affiliateService: AffiliateService,
     private formBuilder: FormBuilder,
     private storage: Storage,
-    private faceApiService: FaceApiService,
-    private clipboardService: ClipboardService
+    private faceApiService: FaceApiService
   ) {
   }
-
-  @ViewChild('table') table: DatatableComponent;
 
   ngOnInit(): void {
     this.faceApiService.getFunctionUpload()
@@ -104,6 +102,15 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   setValues(affiliate: UserAffiliate) {
+
+    let formattedBirthday = null;
+    if (affiliate.birthday) {
+      const birthdayDate = new Date(affiliate.birthday);
+      formattedBirthday = birthdayDate.toISOString().split('T')[0];
+      this.updateUserForm.get('birthday').setValue(formattedBirthday);
+      this.updateUserForm.get('birthday').disable();
+    }
+
     this.updateUserForm.setValue({
       identification: affiliate.identification,
       user_name: affiliate.user_name,
@@ -118,7 +125,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       country: affiliate.country,
       zip_code: affiliate.zip_code,
       created_at: affiliate.created_at,
-      birthday: affiliate.birthday,
+      birthday: formattedBirthday,
       beneficiary_name: affiliate.beneficiary_name ?? '',
       legal_authorized_first: affiliate.legal_authorized_first ?? '',
       legal_authorized_second: affiliate.legal_authorized_second ?? '',
@@ -140,7 +147,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
       this.listcountry = data;
     });
   }
-
 
   onSelect(event) {
     if (this.files.length === 0) {
@@ -227,11 +233,9 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   private updateProgress(snapshot): void {
     this.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log(`Upload is ${this.progress}% done`);
   }
 
   private handleError(error): void {
-    console.error('Upload failed:', error);
     this.toastr.error('Upload failed');
   }
 
@@ -242,7 +246,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   private async updateAffiliateImage(downloadURL: string): Promise<void> {
-    console.log('File available at:', downloadURL);
     this.updateImageIdPath.image_id_path = downloadURL;
     this.updateImageIdPath.id = this.user.id;
 
@@ -256,7 +259,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   private handleUpdateSuccess(): void {
     if (!this.isUploadCompleted) {
-      console.log('Image updated successfully');
       this.toastr.success('Image updated successfully');
       this.faceApiService.startUploadFuntion();
       this.files = [];
@@ -266,7 +268,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   private handleUpdateError(err): void {
-    console.error('Error updating affiliate image:', err);
     this.toastr.error('Error updating affiliate image');
   }
 
