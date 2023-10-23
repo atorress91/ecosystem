@@ -1,7 +1,6 @@
-import { ClipboardService } from 'ngx-clipboard';
+
 import { FaceApiService } from '@app/core/service/face-api-service/face-api.service';
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
 import { ToastrService } from 'ngx-toastr';
@@ -102,13 +101,33 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   setValues(affiliate: UserAffiliate) {
-
+    console.log(affiliate);
     let formattedBirthday = null;
     if (affiliate.birthday) {
       const birthdayDate = new Date(affiliate.birthday);
       formattedBirthday = birthdayDate.toISOString().split('T')[0];
       this.updateUserForm.get('birthday').setValue(formattedBirthday);
       this.updateUserForm.get('birthday').disable();
+    }
+
+    if (affiliate.tax_id) {
+      this.updateUserForm.get('tax_id').setValue(affiliate.tax_id);
+      this.updateUserForm.get('tax_id').disable();
+    }
+
+    if (affiliate.beneficiary_name) {
+      this.updateUserForm.get('beneficiary_name').setValue(affiliate.beneficiary_name);
+      this.updateUserForm.get('beneficiary_name').disable();
+    }
+
+    if (affiliate.legal_authorized_first) {
+      this.updateUserForm.get('legal_authorized_first').setValue(affiliate.legal_authorized_first);
+      this.updateUserForm.get('legal_authorized_first').disable();
+    }
+
+    if (affiliate.legal_authorized_second) {
+      this.updateUserForm.get('legal_authorized_second').setValue(affiliate.legal_authorized_second);
+      this.updateUserForm.get('legal_authorized_second').disable();
     }
 
     this.updateUserForm.setValue({
@@ -134,9 +153,11 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   getUserInfo() {
     this.userCookie = this.authService.currentUserAffiliateValue;
+    this.setValues(this.userCookie);
     this.affiliateService.getAffiliateById(this.userCookie.id).subscribe((response) => {
       if (response.success) {
         this.user = response.data;
+        console.log(this.user);
         this.setValues(this.user);
       }
     });
@@ -170,9 +191,11 @@ export class EditUserComponent implements OnInit, OnDestroy {
     userUpdate.birthday = this.updateUserForm.value.birthday;
     userUpdate.tax_id = this.updateUserForm.value.tax_id;
     userUpdate.beneficiary_name = this.updateUserForm.value.beneficiary_name;
-    userUpdate.legal_authorized_first = this.updateUserForm.value.legal_authorize_first;
-    userUpdate.legal_authorized_second = this.updateUserForm.value.legal_authorize_second;
+    userUpdate.legal_authorized_first = this.updateUserForm.value.legal_authorized_first;
+
+    userUpdate.legal_authorized_second = this.updateUserForm.value.legal_authorized_second;
     userUpdate.id = this.user.id;
+    console.log(userUpdate);
     this.affiliateService.updateUserProfile(userUpdate).subscribe((response: UserAffiliate) => {
       if (response !== null) {
         this.showSuccess('The credentials is valid!');

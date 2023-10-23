@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   apis: {
     apiUrl: 'https://ecosystemfx.net/',
-    accountService: 'https://account.ecosystemfx.net/api/v1',
+    accountService: 'http://localhost:5200/api/v1',
     systemConfigurationService: 'https://configuration.ecosystemfx.net/api/v1',
     inventoryService: 'https://inventory.ecosystemfx.net/api/v1',
     walletService: 'https://wallet.ecosystemfx.net/api/v1',

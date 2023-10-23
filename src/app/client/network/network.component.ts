@@ -84,7 +84,6 @@ export class NetworkComponent implements OnInit {
     this.loadWithdrawalConfiguration();
   }
 
-
   showSuccess(message) {
     this.toastr.success(message);
   }
@@ -183,7 +182,7 @@ export class NetworkComponent implements OnInit {
     Swal.fire({
       title: 'Ingrese el código de verificación que ha sido enviado a su correo electrónico.',
       html: `
-      <span style="font-size: 18px;">Transferencia para <span style="color: #ff5733;">${this.user.user_name}</span></span><br>
+      <span style="font-size: 18px;">Transferencia para <span style="color: #ff5733;">${row.userName || row.user_name}</span></span><br>
       <span style="font-size: 18px;">Saldo Disponible <span style="color: #ff5733;">${this.userBalance}</span></span>
         <input id="swal-input-amount" type="number" placeholder="Monto" min="0" step="0.01" class="swal2-input">
         <input id="swal-input-code" type="text" placeholder="Código de verificación" class="swal2-input">
@@ -225,7 +224,6 @@ export class NetworkComponent implements OnInit {
   }
 
   handleAmountEntry(result, user) {
-    console.log(result, user);
     if (result && result > 0) {
       const amount = Number(result);
       if (amount > this.userBalance) {
