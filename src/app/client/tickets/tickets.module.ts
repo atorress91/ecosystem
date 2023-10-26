@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-modal.component';
 import { TicketsComponent } from './tickets.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 const icons = {
   Search,
@@ -43,7 +44,8 @@ const icons = {
     PerfectScrollbarModule,
     NgApexchartsModule,
     NgxGaugeModule,
-    CKEditorModule
+    CKEditorModule,
+    NgxDropzoneModule,
   ]
 })
 export class TicketsModule { }

@@ -153,12 +153,13 @@
                                   </div>
                                   <hr />
                                   <div class="form-group">
-                                    <label for="birthday">
-                                      Fecha de Nacimiento:
-                                    </label>
+                                    <label for="birthday">Fecha de Nacimiento:</label>
                                     <br />
-                                    <div class="form-group">
+                                    <div class="form-group" *ngIf="!displayBirthday">
                                       <input type="date" id="birthday" formControlName="birthday" class="form-control">
+                                    </div>
+                                    <div *ngIf="displayBirthday">
+                                      <input type="text" class="form-control" [value]="displayBirthday" readonly>
                                     </div>
                                   </div>
                                   <div class="form-group">

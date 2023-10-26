@@ -16,7 +16,7 @@
   <form class="register-form" [formGroup]="createTicketform" [autocomplete]="off" (ngSubmit)="createTicket()">
     <div class="modal-body">
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
             <div class="form-line">
               <label for="subject_ticket">Asunto</label>
@@ -24,19 +24,26 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
             <div class="form-line">
               <label for="category_ticket">Categoría</label>
-              <input type="text" id="subject" class="form-control" placeholder="Categoría">
+              <select id="category_ticket" class="form-control">
+                <option value="">Seleccione una opción</option>
+                <option *ngFor="let item of categories" [value]="item.id">{{item.categoryName}}</option>
+              </select>
             </div>
           </div>
         </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
+          <div class="form-group">
+            <label for="image_ticket" class="d-block">Adjuntar imagen</label>
+            <input type="file" id="image_ticket" class="form-control-file">
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
           <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
-          <div class="compose-editor m-t-20">
-
-            <input type="file" class="default" multiple placeholder="cdkEditor">
+          <div class="compose-editor m-t-5">
           </div>
         </div>
       </div>

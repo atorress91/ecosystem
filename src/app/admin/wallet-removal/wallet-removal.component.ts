@@ -5,7 +5,6 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { TranslateService } from '@ngx-translate/core';
 
 import { WalletRequestRequest } from '@app/core/models/wallet-request-request-model/wallet-request-request.model';
 import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
@@ -34,8 +33,7 @@ export class WalletRemovalComponent implements OnInit {
     private walletRequestService: WalletRequestService,
     private toastr: ToastrService,
     private configurationService: ConfigurationService,
-    private coinPaymentService: CoinpaymentService,
-    private translateService: TranslateService
+    private coinPaymentService: CoinpaymentService
   ) { }
 
   ngOnInit(): void {
@@ -109,9 +107,9 @@ export class WalletRemovalComponent implements OnInit {
 
     try {
       document.execCommand('copy');
-      this.toastr.success('Se ha copiado al portapapeles')
+      this.showSuccess('Se ha copiado al portapapeles')
     } catch (err) {
-      console.error('Error: ', err);
+      this.showError('No se pudo copiar');
     }
 
     document.body.removeChild(textArea);
@@ -168,23 +166,6 @@ export class WalletRemovalComponent implements OnInit {
     });
   }
 
-  processOption() {
-    Swal.fire({
-      title: 'Excuse me!',
-      text: 'Are you sure about this operation? If so, click on the YES I AM SURE button.',
-      input: 'text',
-      inputPlaceholder: 'Enter an observation',
-      showCancelButton: true,
-      confirmButtonColor: '#8963ff',
-      cancelButtonColor: '#fb7823',
-      confirmButtonText: 'Yes',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const text = result.value;
-      }
-    });
-  }
-
   selectAllRows(event: any) {
     const isChecked = event.target.checked;
     this.rows.forEach(row => {
@@ -213,7 +194,6 @@ export class WalletRemovalComponent implements OnInit {
         this.selectedRows.splice(index, 1);
       }
     }
-
   }
 
   onProccessOption() {
@@ -221,23 +201,18 @@ export class WalletRemovalComponent implements OnInit {
       return;
     }
 
-    const rows: WalletRequestRequest[] = [];
-    this.selectedRows.forEach(item => {
-      rows.push(item);
-    });
-
     switch (this.proccessOptionValue) {
       case 1:
-        this.handleDenyOption(rows);
+        this.handleDenyOption(this.selectedRows);
         break;
       case 2:
-        this.handleCoinPaymentOption(rows);
+        this.handleCoinPaymentOption(this.selectedRows);
         break;
       case 3:
-        this.handleCoinPayCr(rows);
+        this.handleCoinPayCr(this.selectedRows);
         break;
       case 4:
-        this.handlePayItAll(rows);
+        this.handlePayItAll(this.selectedRows);
         break;
       default:
         console.error('Invalid proccessOptionValue:', this.proccessOptionValue);
@@ -252,9 +227,9 @@ export class WalletRemovalComponent implements OnInit {
       next: (value) => {
         if (value) {
           this.showSuccess('The request has been processed correctly.');
+          this.resetWalletRequest();
           this.loadData();
           this.proccessOptionValue = 0
-          this.resetWalletRequest();
         }
       },
       error: (err) => {
@@ -280,8 +255,8 @@ export class WalletRemovalComponent implements OnInit {
 
           if (successfulPayments.length > 0) {
             this.showSuccess(`Pagos realizados correctamente: ${successfulPayments.join(', ')}`);
-            this.loadData();
             this.resetWalletRequest();
+            this.loadData();
           }
 
           if (failedPayments.length > 0) {
@@ -305,9 +280,8 @@ export class WalletRemovalComponent implements OnInit {
     this.walletRequestService.administrativePayment(rows).subscribe({
       next: () => {
         this.showSuccess('Pago realizado correctamente');
-        this.selectedRows = [];
-        this.loadData();
         this.resetWalletRequest();
+        this.loadData();
       },
       error: () => {
         this.showError('No se pudo realizar el pago');
@@ -333,6 +307,6 @@ export class WalletRemovalComponent implements OnInit {
   }
 
   resetWalletRequest() {
-    this.rows = [];
+    this.selectedRows = [];
   }
 }

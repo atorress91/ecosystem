@@ -37,6 +37,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   fileRef: any;
   private isUploadCompleted = false;
   progress = 0;
+  displayBirthday: string | null = null;
 
   @ViewChild('table') table: DatatableComponent;
 
@@ -101,13 +102,22 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   setValues(affiliate: UserAffiliate) {
-    console.log(affiliate);
     let formattedBirthday = null;
+
     if (affiliate.birthday) {
       const birthdayDate = new Date(affiliate.birthday);
+
+      const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+      this.displayBirthday = birthdayDate.toLocaleDateString('es-ES', options);
+
       formattedBirthday = birthdayDate.toISOString().split('T')[0];
       this.updateUserForm.get('birthday').setValue(formattedBirthday);
       this.updateUserForm.get('birthday').disable();
+    }
+
+    if (affiliate.identification) {
+      this.updateUserForm.get('identification').setValue(affiliate.identification);
+      this.updateUserForm.get('identification').disable();
     }
 
     if (affiliate.tax_id) {
@@ -151,13 +161,16 @@ export class EditUserComponent implements OnInit, OnDestroy {
     });
   }
 
+  checkAndDisableInput() {
+
+  }
+
   getUserInfo() {
     this.userCookie = this.authService.currentUserAffiliateValue;
     this.setValues(this.userCookie);
     this.affiliateService.getAffiliateById(this.userCookie.id).subscribe((response) => {
       if (response.success) {
         this.user = response.data;
-        console.log(this.user);
         this.setValues(this.user);
       }
     });
