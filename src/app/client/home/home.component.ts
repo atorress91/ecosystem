@@ -13,7 +13,6 @@ import { WalletService } from '@app/core/service/wallet-service/wallet.service';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { ToastrService } from 'ngx-toastr';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
-import { Router } from '@angular/router';
 import { EChartsOption } from 'echarts';
 import { PurchasePerMonthDto } from '@app/core/models/wallet-model/network-purchases.model';
 am4core.useTheme(am5themes_Animated);
@@ -69,7 +68,6 @@ export class HomeComponent {
         this.getPurchasesInMyNetwork();
         this.walletService.getBalanceInformationByAffiliateId(user.id).pipe(takeUntil(this.destroy$)).subscribe(balanceInformation => {
           this.balanceInformation = balanceInformation;
-          console.log(this.balanceInformation);
           this.initChartReport3();
         });
       }

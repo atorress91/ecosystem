@@ -20,6 +20,7 @@ import { TransferBalance } from '@app/core/models/wallet-model/transfer-balance.
 import { EncryptService } from '@app/core/service/encrypt-service/encrypt.service';
 import { ConfigurationService } from '@app/core/service/configuration-service/configuration.service';
 import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
+import { TruncateDecimalsPipe } from "@app/shared/truncate-decimals.pipe";
 
 @Component({
   selector: 'app-network',
@@ -56,7 +57,8 @@ export class NetworkComponent implements OnInit {
     private route: Router,
     private cartService: CartService,
     private translateService: TranslateService,
-    private configurationService: ConfigurationService
+    private configurationService: ConfigurationService,
+    private truncatedDecimals: TruncateDecimalsPipe
   ) {
   }
 
@@ -179,14 +181,16 @@ export class NetworkComponent implements OnInit {
   showConfirmationTransferBalance(row) {
     this.generateVerificationCode();
 
+    let formattedBalance = this.truncatedDecimals.transform(this.userBalance, 2);
+
     Swal.fire({
       title: 'Ingrese el código de verificación que ha sido enviado a su correo electrónico.',
       html: `
-      <span style="font-size: 18px;">Transferencia para <span style="color: #ff5733;">${row.userName || row.user_name}</span></span><br>
-      <span style="font-size: 18px;">Saldo Disponible <span style="color: #ff5733;">${this.userBalance}</span></span>
-        <input id="swal-input-amount" type="number" placeholder="Monto" min="0" step="0.01" class="swal2-input">
-        <input id="swal-input-code" type="text" placeholder="Código de verificación" class="swal2-input">
-      `,
+    <span style="font-size: 18px;">Transferencia para <span style="color: #ff5733;">${row.userName || row.user_name}</span></span><br>
+    <span style="font-size: 18px;">Saldo Disponible <span style="color: #ff5733;">${formattedBalance}</span></span>
+      <input id="swal-input-amount" type="number" placeholder="Monto" min="0" step="0.01" class="swal2-input">
+      <input id="swal-input-code" type="text" placeholder="Código de verificación" class="swal2-input">
+    `,
       showCancelButton: true,
       confirmButtonText: 'Transferir',
       cancelButtonText: 'Cancelar',
@@ -264,13 +268,13 @@ export class NetworkComponent implements OnInit {
     const result = this.encryptService.encryptObject(this.transferBalance);
     this.walletService.transferBalance(result).subscribe({
       next: (value) => {
-        if (value) {
-          this.showSuccess("Transferencia realizada correctamente");
+        if (value.success) {
+          this.showSuccess(value.message);
         } else {
-          this.showError("Error, verifique que tenga saldo.");
+          this.showError(value.message);
         }
       },
-      error: () => {
+      error: (error) => {
         this.showError("Error");
       },
     })

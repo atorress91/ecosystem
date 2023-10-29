@@ -52,6 +52,7 @@ import { LogoService } from './service/logo-service/logo.service';
 import { AffiliateBtcService } from './service/affiliate-btc-service/affiliate-btc.service';
 import { DocumentCheckService } from './service/document-check-service/document-check.service';
 import { TicketCategoriesService } from './service/ticket-categories-service/ticket-categories.service'
+import { TicketService } from './service/ticket-service/ticket.service'
 
 @NgModule({
   declarations: [],
@@ -104,7 +105,8 @@ import { TicketCategoriesService } from './service/ticket-categories-service/tic
     CoinpaymentService,
     SessionService,
     TermsConditionsService,
-    TicketCategoriesService
+    TicketCategoriesService,
+    TicketService
   ],
 })
 export class CoreModule {

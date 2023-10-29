@@ -26,5 +26,8 @@ import { TruncateDecimalsPipe } from './truncate-decimals.pipe';
     BootstrapModule,
     TruncateDecimalsPipe
   ],
+  providers:[
+    TruncateDecimalsPipe
+  ]
 })
 export class SharedModule {}

@@ -13,37 +13,53 @@
       <span aria-hidden="true"><i class="material-icons">close</i></span>
     </button>
   </div>
-  <form class="register-form" [formGroup]="createTicketform" [autocomplete]="off" (ngSubmit)="createTicket()">
+  <form class="register-form" [formGroup]="createTicketForm" [autocomplete]="off" (ngSubmit)="createTicket()">
     <div class="modal-body">
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
-            <div class="form-line">
+            <div class="form-line"
+              [ngClass]="{'error': createTicketForm.get('subject_ticket').invalid && (createTicketForm.get('subject_ticket').touched || submitted)}">
               <label for="subject_ticket">Asunto</label>
-              <input type="text" id="subject_ticket" class="form-control" placeholder="Asunto">
+              <input type="text" id="subject_ticket" class="form-control" placeholder="Asunto"
+                formControlName="subject_ticket">
+            </div>
+            <div
+              *ngIf="createTicketForm.get('subject_ticket').invalid && (createTicketForm.get('subject_ticket').touched || submitted)">
+              <small class="text-danger">El asunto es obligatorio.</small>
             </div>
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
-            <div class="form-line">
+            <div class="form-line"
+              [ngClass]="{'error': createTicketForm.get('category').invalid && (createTicketForm.get('category').touched || submitted)}">
               <label for="category_ticket">Categoría</label>
-              <select id="category_ticket" class="form-control">
+              <select id="category_ticket" class="form-control" formControlName="category">
                 <option value="">Seleccione una opción</option>
-                <option *ngFor="let item of categories" [value]="item.id">{{item.categoryName}}</option>
+                <option *ngFor="let item of categories" [value]="item.id">
+                  {{item.categoryName}}
+                </option>
               </select>
+            </div>
+            <div
+              *ngIf="createTicketForm.get('category').invalid && (createTicketForm.get('category').touched || submitted)">
+              <small class="text-danger">Debe seleccionar una categoría.</small>
             </div>
           </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
-            <label for="image_ticket" class="d-block">Adjuntar imagen</label>
-            <input type="file" id="image_ticket" class="form-control-file">
-          </div>
-        </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
-          <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
-          <div class="compose-editor m-t-5">
+            <label for="ticket_image">
+              Imagen
+              <span class="text-danger">*</span>
+            </label>
+            <ngx-dropzone (change)="onFileSelected($event)" [accept]="'image/*'" [multiple]="false">
+              <ngx-dropzone-label>Drop it!</ngx-dropzone-label>
+              <ngx-dropzone-preview *ngFor="let f of files let i = index;" [removable]="true" (removed)="deleteFile(i)">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </ngx-dropzone>
           </div>
         </div>
       </div>

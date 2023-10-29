@@ -64,7 +64,7 @@
                       'REQUESTS-PAGE.AVAILABLE-BALANCE-WALLET.TEXT'
                       | translate
                       }}</div>
-                    <h4> $ {{balanceInfo.availableBalance ?? 0}}</h4>
+                    <h4> $ {{balanceInfo.availableBalance ?? 0 | truncateDecimals:2}}</h4>
                   </div>
                 </ngb-alert>
               </div>
@@ -136,7 +136,7 @@
                       <div *ngIf="row.status == 1" class="badge-outline col-green">
                         Atendido
                       </div>
-                      <div *ngIf="row.status == 2'Pending'" class="badge-outline col-red">
+                      <div *ngIf="row.status == 2" class="badge-outline col-red">
                         Cancelado
                       </div>
                     </ng-template>
@@ -151,7 +151,7 @@
                       <div *ngIf="row.status == 1" class="badge-outline col-green">
                         Aprobado
                       </div>
-                      <div *ngIf="row.status == 2'Pending'" class="badge-outline col-red">
+                      <div *ngIf="row.status == 2" class="badge-outline col-red">
                         Cancelado
                       </div>
                     </ng-template>
@@ -164,11 +164,9 @@
                       <div *ngIf="row.type == 'revert_invoice_request'" class="badge-outline col-orange">
                         Devolución de factura
                       </div>
-
                     </ng-template>
                   </ngx-datatable-column>
                 </ngx-datatable>
-
               </div>
             </div>
           </div>

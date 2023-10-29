@@ -1,4 +1,4 @@
-import { BalanceInformation } from './../../core/models/wallet-model/balance-information.model';
+import { BalanceInformation } from '@app/core/models/wallet-model/balance-information.model';
 import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 

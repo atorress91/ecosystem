@@ -24,9 +24,9 @@ export class MainLayoutComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    // if (!this.user.termsConditions) {
-    //   this.showTermsConditionsModal();
-    // }
+    if (!this.user.termsConditions) {
+      this.showTermsConditionsModal();
+    }
 
     if (this.user.activation_date == null) {
       this.showMembershipManager();
@@ -37,7 +37,7 @@ export class MainLayoutComponent implements OnInit {
     this.membershipManagerService.show();
   }
 
-  // showTermsConditionsModal() {
-  //   this.termsConditionsService.show();
-  // }
+  showTermsConditionsModal() {
+    this.termsConditionsService.show();
+  }
 }

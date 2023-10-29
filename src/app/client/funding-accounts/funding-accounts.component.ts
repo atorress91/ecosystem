@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 
 import { Product } from '@app/core/models/product-model/product.model';
 import { CartService } from '@app/core/service/cart.service/cart.service';
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class FundingAccountsComponent implements OnInit {
   products: Product[] = []
 
-  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService) {
+  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService, private ngZone: NgZone) {
 
   }
 
