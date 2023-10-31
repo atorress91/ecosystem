@@ -26,6 +26,7 @@ import { ViewUnilevelTreeComponent } from "@app/client/unilevel-tree/page/view-u
 import { AcademyComponent } from './academy/academy.component';
 import { FundingAccountsComponent } from './funding-accounts/funding-accounts.component';
 import { NetworkDetailsComponent } from './network-details/network-details.component';
+import { TicketViewComponent } from './tickets/ticket-view/ticket-view.component';
 
 const routes: Routes = [
   {
@@ -106,7 +107,12 @@ const routes: Routes = [
   {
     path: 'tickets',
     component: TicketsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'tickets/:id',
+    component: TicketViewComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'wallet',

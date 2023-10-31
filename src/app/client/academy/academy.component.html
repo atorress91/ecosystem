@@ -15,9 +15,19 @@
         <div class="card">
           <div class="card-header"></div>
           <div class="card-body">
+            <div class="row align-items-stretch ml-3">
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12 mb-4" *ngFor="let item of products">
+                <div class="card bg-dark text-white h-90" (mouseenter)="item.showButton = true" (mouseleave)="item.showButton = false">
 
-            <div class="image-container">
-              <img src="./assets/img/academia-trading.png" alt="trading-logo" />
+                  <img [src]="item.image" alt="Imagen del producto" class="card-img img-fluid">
+                  <div class="card-img-overlay d-flex flex-column justify-content-between">
+
+                    <div class="d-flex justify-content-center" *ngIf="item.showButton">
+                      <button class="btn btn-primary pricingTable-signup" (click)="addtocart(item)">Añadir</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

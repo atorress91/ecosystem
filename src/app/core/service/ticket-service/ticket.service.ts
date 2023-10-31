@@ -33,4 +33,14 @@ export class TicketService {
         })
       );
   }
+
+  getAllTicketsByAffiliateId(affiliateId: number) {
+    return this.http
+      .get<Response>(`${this.urlApi}/ticket/GetAllTickets/${affiliateId}`, httpOptions)
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
 }

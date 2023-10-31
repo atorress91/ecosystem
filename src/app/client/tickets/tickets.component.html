@@ -77,33 +77,37 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="unread">
+                  <tr class="unread" *ngFor="let item of tickets; let i = index">
                     <td class="tbl-checkbox">
                       <label class="form-check-label">
                         <input type="checkbox">
                         <span class="form-check-sign"></span>
                       </label>
                     </td>
-                    <td class="hidden-xs">
-                      <i class="material-icons">star_border</i>
+                    <td class="hidden-xs" *ngIf="item.status == 0 || item.status == 1">
+                      <button class="btn"
+                        [ngClass]="{'badge-outline col-green': item.status == 1, 'badge-outline col-red': item.status == 0}"
+                        [disabled]="true">
+                        {{ item.status == 0 ? 'Cerrado' : 'Abierto' }}
+                      </button>
                     </td>
-                    <td class="hidden-xs">Nelson Lane</td>
+                    <td class="hidden-xs">
+                      <a [routerLink]="['/app/tickets', item.id]" class="text-decoration-none"
+                        role="button">{{item.subject}}</a>
+                    </td>
                     <td class="max-texts">
                       <a routerLink="/email/read-mail">
-                        <span class="badge badge-primary">Work</span>
-                        Lorem ipsum perspiciatis unde omnis iste natus</a>
+                        <span class="badge badge-primary">{{getCategoryName(item.categoryId)}}</span>
+                      </a>
                     </td>
-                    <td class="hidden-xs">
-                      <i class="material-icons">attach_file</i>
+                    <td class="text-end"> {{item.createdAt}}
                     </td>
-                    <td class="text-end"> 12:30 PM </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
             <div class="row">
               <div class="col-sm-7 ">
-                <p class="p-15">Showing 1 - 15 of 200</p>
+                <p class="p-15">Showing - {{tickets.length}}</p>
               </div>
             </div>
           </div>

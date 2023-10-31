@@ -17,6 +17,8 @@ import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-
 import { TicketsComponent } from './tickets.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { TicketViewComponent } from './ticket-view/ticket-view.component';
+import { ClientRoutingModule } from '../client-routing.module';
 
 const icons = {
   Search,
@@ -25,7 +27,8 @@ const icons = {
 @NgModule({
   declarations: [
     CreateTicketModalComponent,
-    TicketsComponent
+    TicketsComponent,
+    TicketViewComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ const icons = {
     NgxGaugeModule,
     CKEditorModule,
     NgxDropzoneModule,
+    ClientRoutingModule,
   ]
 })
 export class TicketsModule { }
