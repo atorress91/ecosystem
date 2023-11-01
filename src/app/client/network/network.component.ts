@@ -74,7 +74,6 @@ export class NetworkComponent implements OnInit {
         });
 
         this.affiliateService.GetPersonalNetwork(user.id).pipe(takeUntil(this.destroy$)).subscribe((affiliates: NetworkAffiliate[]) => {
-          console.log(affiliates);
           this.temp = [...affiliates];
           this.rows = affiliates;
         });
@@ -95,7 +94,6 @@ export class NetworkComponent implements OnInit {
   }
 
   getNameGrading(id) {
-
     let grading = this.gradings.find(item => item.id === id);
     return grading !== undefined ? grading.name : 'N/A';
   }
@@ -294,6 +292,7 @@ export class NetworkComponent implements OnInit {
           } else {
             this.isNewUser = false;
           }
+          console.log(value);
           this.rowsGlobal = [value];
           this.tempGlobal = value;
           this.loadingIndicatorGlobal = false;
