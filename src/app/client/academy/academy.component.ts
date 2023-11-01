@@ -42,7 +42,7 @@ export class AcademyComponent implements OnInit {
     })
   }
 
-  addtocart(item: any) {
-    this.cartService.addtoCart(item);
-  }
+  // addtocart(item: any) {
+  //   this.cartService.addtoCart(item);
+  // }
 }

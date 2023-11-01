@@ -54,7 +54,6 @@ export class MainLayoutComponent implements OnInit {
       next: (value) => {
         this.showSuccess('Mensaje recibido correctamente');
         this.authService.setUserAffiliateValue(this.user);
-        window.open('https://us02web.zoom.us/j/3242911575?pwd=clMzOTNheDErWDFaQU9QUFFXSjRZdz09#success');
       },
       error: (err) => {
         this.showError('Error');
