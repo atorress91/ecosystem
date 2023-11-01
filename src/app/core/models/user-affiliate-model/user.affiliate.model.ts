@@ -42,6 +42,7 @@ export class UserAffiliate {
   image_profile_url: string;
   updated_at?: Date;
   termsConditions: boolean;
+  message_alert?: number;
 
   constructor() {
     this.id = 0;

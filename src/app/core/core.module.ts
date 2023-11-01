@@ -1,4 +1,3 @@
-import { TicketCategories } from './models/ticket-categories-model/ticket-categories.model';
 import { TermsConditionsService } from './service/terms-conditions-service/terms-conditions.service';
 import { FaceApiService } from './service/face-api-service/face-api.service';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
@@ -53,6 +52,7 @@ import { AffiliateBtcService } from './service/affiliate-btc-service/affiliate-b
 import { DocumentCheckService } from './service/document-check-service/document-check.service';
 import { TicketCategoriesService } from './service/ticket-categories-service/ticket-categories.service'
 import { TicketService } from './service/ticket-service/ticket.service'
+import { TicketHubService } from './service/ticket-service/ticket-hub.service';
 
 @NgModule({
   declarations: [],
@@ -106,7 +106,8 @@ import { TicketService } from './service/ticket-service/ticket.service'
     SessionService,
     TermsConditionsService,
     TicketCategoriesService,
-    TicketService
+    TicketService,
+    TicketHubService
   ],
 })
 export class CoreModule {

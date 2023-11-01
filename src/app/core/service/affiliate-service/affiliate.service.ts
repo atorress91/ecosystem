@@ -322,7 +322,7 @@ export class AffiliateService {
           return response;
         })
       );
-}
+  }
 
 
   getTotalActiveMembers() {
@@ -434,6 +434,24 @@ export class AffiliateService {
       .put<Response>(
         `${this.urlApi}/useraffiliateinfo/update_image/${id}`,
         imgProfile,
+        httpOptions
+      )
+      .pipe(
+        map((response) => {
+          if (response.success) return response.data;
+          else {
+            console.error('ERROR: ' + response);
+            return null;
+          }
+        })
+      );
+  }
+
+  updateMessageAlert(affiliateId: number) {
+    return this.http
+      .put<Response>(
+        `${this.urlApi}/useraffiliateinfo/update_message_alert/${affiliateId}`,
+        {},
         httpOptions
       )
       .pipe(
