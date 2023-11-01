@@ -81,7 +81,7 @@ export class MainLayoutComponent implements OnInit {
             <li>Estás siendo invitado a una reunión especial a través de Zoom el <strong>1 de noviembre del 2023</strong>. Puedes unirte a la reunión a través del siguiente <a href="https://us02web.zoom.us/j/3242911575?pwd=clMzOTNheDErWDFaQU9QUFFXSjRZdz09#success" target="_blank" rel="noopener noreferrer" class="col-blue">ENLACE</a>. Horarios de la reunión:
                 <ul class="list-unstyled">
                 <br>
-                <li><strong>9:30 am</strong> España.</li>
+                <li><strong>9:30 pm</strong> España.</li>
                 <li><strong>2:30 pm</strong> México y Centroamérica.</li>
                 <li><strong>3:30 pm</strong> Sudamérica y Panamá.</li>
                 </ul>

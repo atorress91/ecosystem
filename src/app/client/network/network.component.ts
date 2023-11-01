@@ -74,7 +74,6 @@ export class NetworkComponent implements OnInit {
         });
 
         this.affiliateService.GetPersonalNetwork(user.id).pipe(takeUntil(this.destroy$)).subscribe((affiliates: NetworkAffiliate[]) => {
-          console.log(affiliates);
           this.temp = [...affiliates];
           this.rows = affiliates;
         });

@@ -72,7 +72,7 @@ export class MyProfileComponent implements OnInit {
     this.affiliateService.getAffiliateById(this.userCookie.id).subscribe((response) => {
       if (response.success) {
         this.user = response.data;
-        this.getGradingInfo(this.user.external_grading_id);
+        this.getGradingInfo(this.user.external_grading_before_id);
       }
     });
   }
