@@ -94,7 +94,6 @@ export class NetworkComponent implements OnInit {
   }
 
   getNameGrading(id) {
-
     let grading = this.gradings.find(item => item.id === id);
     return grading !== undefined ? grading.name : 'N/A';
   }
@@ -293,6 +292,7 @@ export class NetworkComponent implements OnInit {
           } else {
             this.isNewUser = false;
           }
+          console.log(value);
           this.rowsGlobal = [value];
           this.tempGlobal = value;
           this.loadingIndicatorGlobal = false;
