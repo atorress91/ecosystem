@@ -15,6 +15,8 @@ import { User } from '@app/core/models/user-model/user.model';
 import { Subject, takeUntil } from 'rxjs';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
+import { GradingService } from '@app/core/service/grading-service/grading.service';
+import { Grading } from '@app/core/models/grading-model/grading.model';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-sidebar',
@@ -23,6 +25,7 @@ import Swal from 'sweetalert2';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   public user: UserAffiliate = new UserAffiliate();
+  public grading: Grading = new Grading();
   private destroy$ = new Subject();
   public userCookie: User;
   public sidebarItems: any[];
@@ -42,6 +45,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     public elementRef: ElementRef,
     private authService: AuthService,
     private affiliateService: AffiliateService,
+    private gradingService: GradingService,
     private router: Router
   ) {
     this.routerObj = this.router.events.subscribe((event) => {
@@ -150,10 +154,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.affiliateService.getAffiliateById(id).subscribe({
       next: (value) => {
         this.user = value.data;
+        this.getGradingInfo(this.user.external_grading_before_id);
       },
       error: (err) => {
 
       },
     })
+  }
+
+  getGradingInfo(id: number) {
+    this.gradingService.getGradingById(id).subscribe((response) => {
+      if (response.success) {
+        this.grading = response.data;
+      }
+    });
   }
 }

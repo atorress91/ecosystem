@@ -25,7 +25,7 @@
               <div class="btn btn-sm badge-outline col-red" *ngIf="user.activation_date == null"><i
                   class="bi bi-person-exclamation"></i> Inactivo</div>
               <div class="btn btn-sm badge-outline col-green" *ngIf="user.activation_date != null"><i
-                  class="bi bi-person-fill-check"></i> Activo</div>
+                  class="bi bi-person-fill-check"></i> {{ grading === null ? 'Activo' : grading.name }}</div>
             </div>
 
           </div>

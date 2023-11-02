@@ -20,6 +20,7 @@ export class UserAffiliate {
   binary_side_name: string;
   beneficiary_name: string;
   father_user: UserAffiliate;
+  father_user_level: UserAffiliate;
   status: number;
   affiliate_type: string;
   affiliate_mode: string;

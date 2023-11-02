@@ -103,7 +103,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   setValues(affiliate: UserAffiliate) {
     let formattedBirthday = null;
-
     if (affiliate.birthday) {
       const birthdayDate = new Date(affiliate.birthday);
 
@@ -147,7 +146,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       last_name: affiliate.last_name,
       email: affiliate.email,
       side: affiliate.binary_matrix_side.toString() ?? 0,
-      father: affiliate.father_user ? affiliate.father_user.user_name ?? '' : '',
+      father: affiliate.father_user_level ? affiliate.father_user_level.user_name ?? '' : '',
       phone: affiliate.phone,
       address: affiliate.address ?? '',
       tax_id: affiliate.tax_id ?? '',
