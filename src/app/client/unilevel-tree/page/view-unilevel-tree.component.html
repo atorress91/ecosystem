@@ -64,6 +64,24 @@
                           <div class="card-body media-list position-relative"
                             style="position: relative; max-width: 100% !important" [perfectScrollbar]>
                             <div *ngIf="showDiv">
+                              <app-client-unilevel-tree-component [nodeTemplate]="nodeTemplate" [data]="tree"
+                                #exampleChart="orgChart" (loadFamilyTree)="onloadFamilyTree($event)">
+                              </app-client-unilevel-tree-component>
+
+                              <ng-template #nodeTemplate let-node>
+                                <div class="chart-node">
+                                  <img [ngSrc]="node.image" fill />
+                                  <div class="name">
+                                    <span style="font-size: 11px;">
+                                      {{ node.userName || node.user_name }}
+                                    </span>
+                                  </div>
+                                  <div *ngIf="node.children.length" (click)="node.hideChildren = !node.hideChildren"
+                                    class="tree-fold-btn">
+                                    {{ node.hideChildren ? '+' : '-' }}
+                                  </div>
+                                </div>
+                              </ng-template>
                             </div>
                           </div>
                         </div>

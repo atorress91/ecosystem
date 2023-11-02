@@ -45,7 +45,7 @@ export class ViewUnilevelTreeComponent {
     this.showDiv = false;
     this.spinnerService.show();
 
-    if (this.active === 1) {
+    if (this.active === 1 ||this.active === 2 ) {
       this.affiliateService.getUniLevelTree(id).subscribe(
         (users: MyTreeNodeClient) => {
           if (users !== null) {
