@@ -203,6 +203,10 @@
                               | translate
                               }}</span>
                           </a>
+                          <a ngbDropdownItem id="btn-create-balance" (click)="confirmationCreateBalance(row)">
+                            <i class="bi bi-currency-dollar"></i>
+                            <span style="margin-left: 10px">Acreditar Saldo</span>
+                          </a>
                           <a ngbDropdownItem id="btn-delete" (click)="deleteSingleRow(row.id)">
                             <i class="bi bi-arrow-repeat"></i>
                             <span style="margin-left: 10px">{{

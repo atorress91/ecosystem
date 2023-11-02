@@ -8,6 +8,9 @@ import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { PrintService } from '@app/core/service/print-service/print.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { WalletService } from '@app/core/service/wallet-service/wallet.service';
+import { CreditTransactionAdminRequest } from '@app/core/models/wallet-model/creditTransactionAdminRequest.mode';
 
 const header = [
   'Usuario',
@@ -38,10 +41,11 @@ export class AffiliatesListComponent implements OnInit {
     private router: Router,
     private affiliateService: AffiliateService,
     private clipboardService: ClipboardService,
-    private toastr: ToastrService,
+    private toast: ToastrService,
     private modalService: NgbModal,
-    private printService: PrintService
-  ) {}
+    private printService: PrintService,
+    private walletService: WalletService
+  ) { }
 
   ngOnInit() {
     this.loadAffiliateList();
@@ -95,10 +99,18 @@ export class AffiliatesListComponent implements OnInit {
     var result = this.clipboardService.copyFromContent(string);
 
     if (this.temp != null) {
-      this.toastr.info('no data to copy');
+      this.toast.info('no data to copy');
     } else {
-      this.toastr.success('copied ' + this.temp.length + ' rows successfully');
+      this.toast.success('copied ' + this.temp.length + ' rows successfully');
     }
+  }
+
+  showSuccess(message: string) {
+    this.toast.success(message);
+  }
+
+  showError(message: string) {
+    this.toast.error(message);
   }
 
   onPrint() {
@@ -130,5 +142,55 @@ export class AffiliatesListComponent implements OnInit {
 
   onRouteBinaryGenealogicalTree(id: number) {
     this.router.navigate([`admin/binary-genealogical-tree/${id}`]);
+  }
+
+  confirmationCreateBalance(user: UserAffiliate) {
+    Swal.fire({
+      title: 'Acreditar Saldo',
+      html: `
+        <label id="swal-input-label" class="col-red">Usuario: ${user.user_name}</label>
+        <br>
+        <label for="swal-input-amount">Monto a Acreditar:</label>
+        <input id="swal-input-amount" type="number" class="swal2-input" placeholder="Ingrese el monto">
+      `,
+      icon: 'info',
+      confirmButtonText: 'Confirmar',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      focusConfirm: false,
+      preConfirm: () => {
+        const amount = (Swal.getPopup().querySelector('#swal-input-amount') as HTMLInputElement).value;
+        if (!amount || isNaN(Number(amount)) || Number(amount) <= 0) {
+          Swal.showValidationMessage('Por favor ingrese un monto válido.');
+          return false;
+        }
+        return Number(amount);
+      }
+    }).then((result) => {
+      if (result.isConfirmed && result.value !== false) {
+
+        let creditRequest = new CreditTransactionAdminRequest();
+        creditRequest.affiliateId = user.id;
+        creditRequest.amount = result.value;
+
+        this.createBalance(creditRequest);
+      }
+    });
+  }
+
+  createBalance(request: CreditTransactionAdminRequest) {
+    this.walletService.createBalanceAdmin(request).subscribe({
+      next: (value) => {
+        console.log(value);
+        if (value) {
+          this.showSuccess('Se ha acreditado el saldo correctamente.');
+        } else {
+          this.showError('No se pudo crear la transacción');
+        }
+      },
+      error: (err) => {
+        this.showError('Error');
+      },
+    })
   }
 }

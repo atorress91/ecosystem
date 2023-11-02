@@ -195,20 +195,19 @@ export class EditUserComponent implements OnInit, OnDestroy {
   onSaveUser() {
     let userUpdate = new UserAffiliate();
 
-    userUpdate.identification = this.updateUserForm.value.identification;
-    userUpdate.phone = this.updateUserForm.value.phone;
-    userUpdate.binary_matrix_side = this.updateUserForm.value.side;
-    userUpdate.address = this.updateUserForm.value.address;
-    userUpdate.zip_code = this.updateUserForm.value.zip_code;
-    userUpdate.country = this.updateUserForm.value.country;
-    userUpdate.birthday = this.updateUserForm.value.birthday;
-    userUpdate.tax_id = this.updateUserForm.value.tax_id;
-    userUpdate.beneficiary_name = this.updateUserForm.value.beneficiary_name;
-    userUpdate.legal_authorized_first = this.updateUserForm.value.legal_authorized_first;
+    userUpdate.identification = this.updateUserForm.get('identification').value;
+    userUpdate.phone = this.updateUserForm.get('phone').value;
+    userUpdate.binary_matrix_side = this.updateUserForm.get('side').value;
+    userUpdate.address = this.updateUserForm.get('address').value;
+    userUpdate.zip_code = this.updateUserForm.get('zip_code').value;
+    userUpdate.country = this.updateUserForm.get('country').value;
+    userUpdate.birthday = this.updateUserForm.get('birthday').value;
+    userUpdate.tax_id = this.updateUserForm.get('tax_id').value;
+    userUpdate.beneficiary_name = this.updateUserForm.get('beneficiary_name').value;
+    userUpdate.legal_authorized_first = this.updateUserForm.get('legal_authorized_first').value;
 
-    userUpdate.legal_authorized_second = this.updateUserForm.value.legal_authorized_second;
+    userUpdate.legal_authorized_second = this.updateUserForm.get('legal_authorized_second').value;
     userUpdate.id = this.user.id;
-    console.log(userUpdate);
     this.affiliateService.updateUserProfile(userUpdate).subscribe((response: UserAffiliate) => {
       if (response !== null) {
         this.showSuccess('The credentials is valid!');

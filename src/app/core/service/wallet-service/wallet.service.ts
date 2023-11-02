@@ -1,3 +1,4 @@
+import { CreditTransactionAdminRequest } from '@app/core/models/wallet-model/creditTransactionAdminRequest.mode';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -144,4 +145,13 @@ export class WalletService {
       );
   }
 
+  createBalanceAdmin(model: CreditTransactionAdminRequest) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/wallet/createCreditAdmin'), model, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 }
