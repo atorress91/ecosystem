@@ -13,6 +13,7 @@ import { AffiliateService } from "@app/core/service/affiliate-service/affiliate.
 })
 export class ViewUnilevelTreeComponent {
   userId: number;
+  btnBack: boolean = false;
   active;
 
   tree: MyTreeNodeClient = {
@@ -38,13 +39,14 @@ export class ViewUnilevelTreeComponent {
 
     if (this.userId) {
       this.onloadFamilyTree(this.userId);
+      this.btnBack = false;
     }
   }
 
   protected onloadFamilyTree(id: number) {
     this.showDiv = false;
     this.spinnerService.show();
-
+    this.btnBack = true;
     if (this.active === 1 ||this.active === 2 ) {
       this.affiliateService.getUniLevelTree(id).subscribe(
         (users: MyTreeNodeClient) => {
@@ -81,7 +83,6 @@ export class ViewUnilevelTreeComponent {
   onTabChange(newActiveId: number) {
     this.active = newActiveId;
     this.onloadFamilyTree(this.userId);
+    this.btnBack = false;
   }
-
-
 }
