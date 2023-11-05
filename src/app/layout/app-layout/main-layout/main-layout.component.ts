@@ -63,39 +63,24 @@ export class MainLayoutComponent implements OnInit {
 
   showAlert() {
     Swal.fire({
-      title: 'Actualización Importante',
+      title: 'Invitación a Reunión.',
+      imageUrl: 'assets/images/reunion.jpg',
+      imageWidth: 400,
+      imageHeight: 480,
+      imageAlt: 'Imagen de invitación',
       html: `
-            <strong>Resumen de nuevas estrategias:</strong>
-            <ul class="list-unstyled">
-            <li>Saldo revertido.</li>
-            <li>Estructuración completa del modelo 4.</li>
-            <li>Lanzamiento de la academia de trading.</li>
-            <li>Disponibilidad de cuentas de fondeo.</li>
-            </ul>
-            <br>
-            <strong>Notas Adicionales:</strong>
-            <ul class="list-unstyled">
-            <li>En noviembre se estarán dando detalles para las fechas de pago.</li>
-            <li>Se realizarán cambios en el código de seguridad.</li>
-            <li>Estás siendo invitado a una reunión especial a través de Zoom el <strong>1 de noviembre del 2023</strong>. Puedes unirte a la reunión a través del siguiente <a href="https://us02web.zoom.us/j/3242911575?pwd=clMzOTNheDErWDFaQU9QUFFXSjRZdz09#success" target="_blank" rel="noopener noreferrer" class="col-blue">ENLACE</a>. Horarios de la reunión:
-                <ul class="list-unstyled">
-                <br>
-                <li><strong>9:30 pm</strong> España.</li>
-                <li><strong>2:30 pm</strong> México y Centroamérica.</li>
-                <li><strong>3:30 pm</strong> Sudamérica y Panamá.</li>
-                </ul>
-            </li>
-            </ul>
+            <p>Entérese cómo puede comprar por medio de euros y dólares desde cualquier parte del mundo con (EcoPooles, Trading, Cuentas de fondeo y más información).</p>
+            <p>Fecha: 05 de Noviembre del 2023
         `,
-      icon: 'info',
-      confirmButtonText: 'Entendido',
+      confirmButtonText: 'OK',
+      confirmButtonColor: '#3085d6',
+      showCancelButton: false,
     }).then((result) => {
       if (result.isConfirmed) {
         this.messageReceived();
       }
     });
   }
-
 
   showSuccess(message: string) {
     this.toast.success(message);
