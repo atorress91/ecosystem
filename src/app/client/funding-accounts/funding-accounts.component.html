@@ -2,7 +2,7 @@
   <ul class="breadcrumb breadcrumb-style">
     <li class="breadcrumb-item">
       <h5 class="page-title m-b-0">
-        Cuentas de fondeo
+        {{'MENUITEMS.FUNDING-ACCOUNTS.TEXT' | translate}}
       </h5>
     </li>
     <li class="breadcrumb-item bcrumb-1">
@@ -10,25 +10,25 @@
     </li>
   </ul>
   <div class="section-body">
-    <div class="row">
-      <div class="col-12 col-md-12 col-lg-12">
-        <div class="card">
-          <div class="card-header"></div>
-          <div class="card-body">
-            <div class="row align-items-stretch ml-3">
-              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12 mb-4" *ngFor="let item of products">
-                <div class="card bg-dark text-white h-90" (mouseenter)="item.showButton = true" (mouseleave)="item.showButton = false">
-
-                  <img [src]="item.image" alt="Imagen del producto" class="card-img img-fluid">
-                  <div class="card-img-overlay d-flex flex-column justify-content-between">
-
-                    <div class="d-flex justify-content-center" *ngIf="item.showButton">
-                      <button class="btn btn-primary pricingTable-signup" >Añadir</button>
+    <div class="card">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <div class="padding-20">
+            <ul ngbNav #nav="ngbNav" [activeId]="active" (activeIdChange)="onTabChange($event)" class="nav-tabs">
+              <li [ngbNavItem]="4">
+                <a ngbNavLink> {{'MENUITEMS.FUNDING-ACCOUNTS.TEXT' | translate}}</a>
+                <ng-template ngbNavContent>
+                  <div class="tab-pane">
+                    <div class="card-body">
+                      <div class="row mt-2">
+                        <app-products [tabActive]="active" [addPurchase]="false"></app-products>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                </ng-template>
+              </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
           </div>
         </div>
       </div>

@@ -39,6 +39,8 @@ import { AcademyComponent } from './academy/academy.component';
 import { FundingAccountsComponent } from './funding-accounts/funding-accounts.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { NetworkDetailsComponent } from './network-details/network-details.component';
+import { EducationalCoursesComponent } from './educational-courses/educational-courses.component';
+import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
 
 
 const icons = {
@@ -67,6 +69,8 @@ const icons = {
     AcademyComponent,
     FundingAccountsComponent,
     NetworkDetailsComponent,
+    EducationalCoursesComponent,
+    ServicesAndProductsComponent,
   ],
   imports: [
     CommonModule,

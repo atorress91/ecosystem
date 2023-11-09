@@ -73,14 +73,20 @@
     "HOME": {
       "TEXT": "HOME"
     },
-    "BILLING": {
-      "TEXT": "My Purchases"
+    "EDUCATIONAL-COURSES": {
+      "TEXT": "Educational Programs Courses"
+    },
+    "FUNDING-ACCOUNTS": {
+      "TEXT": "Funding Accounts"
+    },
+    "SERVICES-AND-PRODUCTS": {
+      "TEXT": "Services and Products"
     },
     "BILLING-PURCHASE": {
-      "TEXT": "Make purchase in store"
+      "TEXT": "Purchases of environmental courses"
     },
     "BILLING-MY-PURCHASES": {
-      "TEXT": "My shopping"
+      "TEXT": "Review my invoices"
     },
     "BILLING-MY-ORDERS": {
       "TEXT": "My orders"

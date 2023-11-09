@@ -73,14 +73,20 @@
     "HOME": {
       "TEXT": "Inicio"
     },
-    "BILLING": {
-      "TEXT": "Mis Adquisiciones"
+    "EDUCATIONAL-COURSES": {
+      "TEXT": "Cursos de programas educativos"
+    },
+    "FUNDING-ACCOUNTS": {
+      "TEXT": "Cuentas de fondeo"
+    },
+    "SERVICES-AND-PRODUCTS": {
+      "TEXT": "Servicios y Productos"
     },
     "BILLING-PURCHASE": {
-      "TEXT": "Realizar compra en la tienda"
+      "TEXT": "Compras de cursos del medio ambiente"
     },
     "BILLING-MY-PURCHASES": {
-      "TEXT": "Mis Compras"
+      "TEXT": "Revisar mis facturas"
     },
     "BILLING-MY-ORDERS": {
       "TEXT": "Mis Ordenes"

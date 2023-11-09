@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 
-
 @Component({
   selector: 'app-billing-purchase',
   templateUrl: './billing-purchase.component.html',

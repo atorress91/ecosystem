@@ -1,3 +1,4 @@
+import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -27,6 +28,7 @@ import { AcademyComponent } from './academy/academy.component';
 import { FundingAccountsComponent } from './funding-accounts/funding-accounts.component';
 import { NetworkDetailsComponent } from './network-details/network-details.component';
 import { TicketViewComponent } from './tickets/ticket-view/ticket-view.component';
+import { EducationalCoursesComponent } from './educational-courses/educational-courses.component';
 
 const routes: Routes = [
   {
@@ -152,6 +154,16 @@ const routes: Routes = [
   {
     path: 'network-details',
     component: NetworkDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'educational-courses',
+    component: EducationalCoursesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'services-and-products',
+    component: ServicesAndProductsComponent,
     canActivate: [AuthGuard]
   }
 ];

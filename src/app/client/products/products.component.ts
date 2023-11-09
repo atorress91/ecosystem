@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   public filterCategory: any;
   @Input() tabActive: number;
   searchKey: string = '';
+  @Input() addPurchase: boolean;
 
   constructor(
     private cartService: CartService,
@@ -31,7 +32,9 @@ export class ProductsComponent implements OnInit {
   }
 
   addtocart(item: any) {
-    this.cartService.addtoCart(item);
+    if (this.addPurchase) {
+      this.cartService.addtoCart(item);
+    }
   }
 
   filter(category: string) {
@@ -66,6 +69,26 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  loadAllTradingAcademy() {
+    this.productService.getAllTradingAcademy().subscribe((suscriptions: Product) => {
+      this.productList = suscriptions;
+      this.filterCategory = suscriptions;
+      this.productList.forEach((item: any) => {
+        Object.assign(item, { quantity: 1, total: item.salePrice });
+      });
+    })
+  }
+
+  getAllFundingAccounts() {
+    this.productService.getAllFundingAccounts().subscribe((fundingAccounts:Product)=>{
+      this.productList = fundingAccounts;
+      this.filterCategory = fundingAccounts;
+      this.productList.forEach((item: any) => {
+        Object.assign(item, { quantity: 1, total: item.salePrice });
+      });
+    })
+  }
+
   handleProductLoading(tabActive: number) {
     switch (tabActive) {
       case 1:
@@ -73,6 +96,12 @@ export class ProductsComponent implements OnInit {
         break;
       case 2:
         this.loadAllServices();
+        break;
+      case 3:
+        this.loadAllTradingAcademy();
+        break;
+        case 4:
+        this.getAllFundingAccounts();
         break;
       default:
         this.showError('No se encontró productos');

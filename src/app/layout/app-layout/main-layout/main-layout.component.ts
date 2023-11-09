@@ -63,14 +63,10 @@ export class MainLayoutComponent implements OnInit {
 
   showAlert() {
     Swal.fire({
-      title: 'Invitación a Reunión.',
-      imageUrl: 'assets/images/reunion.jpg',
-      imageWidth: 400,
-      imageHeight: 480,
-      imageAlt: 'Imagen de invitación',
+      icon: "info",
+      title: 'Próximas fechas de retiros',
       html: `
-            <p>Entérese cómo puede comprar por medio de euros y dólares desde cualquier parte del mundo con (EcoPooles, Trading, Cuentas de fondeo y más información).</p>
-            <p>Fecha: 05 de Noviembre del 2023
+            <p>Le informamos que las próximas fechas para realizar retiros serán el <strong>21 y 28 de Noviembre</strong>.</p>
         `,
       confirmButtonText: 'OK',
       confirmButtonColor: '#3085d6',
