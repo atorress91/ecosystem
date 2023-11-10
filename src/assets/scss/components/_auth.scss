@@ -5,6 +5,7 @@
     height: 110px;
   }
 }
+
 .auth-card {
   left: 50%;
   top: 50%;
@@ -12,6 +13,7 @@
   position: absolute;
   transform: translate3d(-50%, -50%, 0);
 }
+
 .login-card {
   border: 0;
   border-radius: 27.5px;
@@ -19,23 +21,35 @@
   overflow: hidden;
   margin-bottom: 0px;
 
+  .login-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
   &-img {
     border-radius: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   .login-body {
     padding: 100px;
+
     @media (max-width: 1180px) {
       padding: 30px 0px 30px 0px;
     }
+
     @media (max-width: 820px) {
       padding: 30px 0px 30px 0px;
     }
+
     @media (max-width: 422px) {
       padding: 60px 0px 60px 0px;
     }
+
     .logo-name {
       vertical-align: middle;
       font-size: 38px;
@@ -43,6 +57,7 @@
       margin: 0px 10px;
     }
   }
+
   .forgot-body {
     padding: 60px;
     min-height: 600px;
@@ -50,6 +65,7 @@
     @media (max-width: 422px) {
       padding: 35px 24px;
     }
+
     .logo-name {
       vertical-align: middle;
       font-size: 38px;
@@ -119,6 +135,7 @@
       color: #919aa3;
     }
   }
+
   .login-card-img {
     border-right: 1px solid #f3f3f3;
   }
@@ -137,12 +154,14 @@
     height: 100%;
     object-fit: cover;
   }
+
   .register-body {
     padding: 60px;
 
     @media (max-width: 422px) {
       padding: 35px 24px;
     }
+
     .logo-name {
       vertical-align: middle;
       font-size: 38px;
@@ -205,10 +224,12 @@
       color: #919aa3;
     }
   }
+
   .register-card-img {
     border-right: 1px solid #f3f3f3;
   }
 }
+
 .login-icons {
   position: absolute;
   top: 37px;
@@ -217,6 +238,7 @@
   width: 16px !important;
   color: #161c2d;
 }
+
 .social-icon li a {
   color: #3c4858;
   border: 1px solid #3c4858;
@@ -230,15 +252,18 @@
   overflow: hidden;
   position: relative;
 }
+
 .social-icon li a:hover {
   background-color: #2f55d4;
   border-color: #2f55d4 !important;
   color: #ffffff !important;
 }
+
 .sm-icon {
   height: 16px !important;
   width: 16px !important;
 }
+
 .auth-form-btn {
   width: 100%;
   height: 50px;
@@ -247,6 +272,7 @@
   text-transform: uppercase;
   transition: all 0.4s;
 }
+
 .register-container {
   max-width: 1140px;
 }
