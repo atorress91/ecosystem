@@ -27,6 +27,7 @@ import { SigninComponent } from './signin/signin.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MainOptionsComponent } from './main-options/main-options.component';
 import { ConpaymentConfirmationComponent } from './conpayment-confirmation/conpayment-confirmation.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 const icons = {
@@ -58,6 +59,7 @@ const icons = {
     ReactiveFormsModule,
     AuthenticationRoutingModule,
     PerfectScrollbarModule,
+    TranslateModule.forChild(),
     FeatherModule.pick(icons),
     MatSelectCountryModule.forRoot('en'),
     MatSelectModule

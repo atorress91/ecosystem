@@ -28,6 +28,8 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
     this.getTheme();
     this.authService.logoutUser();
+    particlesJS.load('particles-js', 'assets/particles/particles.json', function () {
+    });
   }
 
   authLogin = new FormGroup({

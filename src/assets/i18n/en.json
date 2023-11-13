@@ -14,6 +14,9 @@
     },
     "LOGOUT": {
       "TEXT": "Logout"
+    },
+    "USER-NAME": {
+      "TEXT": "User Name"
     }
   },
   "ADMIN-ITEMS": {
@@ -83,7 +86,7 @@
       "TEXT": "Services and Products"
     },
     "BILLING-PURCHASE": {
-      "TEXT": "Purchases of environmental courses"
+      "TEXT": "Environmental store"
     },
     "BILLING-MY-PURCHASES": {
       "TEXT": "Review my invoices"

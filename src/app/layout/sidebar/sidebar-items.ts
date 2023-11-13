@@ -1,17 +1,6 @@
 import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
   {
-    path: '',
-    title: 'MENUITEMS.MAIN.TEXT',
-    iconType: '',
-    icon: '',
-    class: '',
-    groupTitle: true,
-    badge: '',
-    badgeClass: '',
-    submenu: [],
-  },
-  {
     path: '/app/home',
     title: 'MENUITEMS.HOME.TEXT',
     iconType: 'feather',
@@ -89,37 +78,27 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: '',
+    path: '/app/requests',
+    title: 'MENUITEMS.REQUEST-PAY.TEXT',
+    iconType: 'feather',
+    icon: 'rss',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    submenu: [],
+  },
+  {
+    path: '/app/wallet',
     title: 'MENUITEMS.WALLET.TEXT',
     iconType: 'feather',
     icon: 'credit-card',
-    class: 'menu-toggle',
+    class: '',
     groupTitle: false,
     badge: '',
     badgeClass: '',
     submenu: [
-      {
-        path: '/app/wallet',
-        title: 'WALLET-PAGE.SUBMENU-TITLE.TEXT',
-        iconType: 'feather',
-        icon: 'credit-card',
-        class: '',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        submenu: [],
-      },
-      {
-        path: '/app/requests',
-        title: 'MENUITEMS.REQUEST-PAY.TEXT',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        submenu: [],
-      },
+
       // {
       //   path: '/app/request-wallet',
       //   title: 'MENUITEMS.REQUEST-WALLET.TEXT',
@@ -154,8 +133,7 @@ export const ROUTES: RouteInfo[] = [
       //   submenu: [],
       // },
     ],
-  },
-
+  }
 
   // {
   //   path: '/app/addresses',
