@@ -66,7 +66,7 @@ export class SigninComponent implements OnInit {
       this.password = this.translate.instant('SIGNIN.PASSWORD.TEXT');
       this.remember = this.translate.instant('SIGNIN.REMEMBER-ME.TEXT');
       this.forgot = this.translate.instant('SIGNIN.FORGOT-PASS.TEXT');
-      this.signin = this.translate.instant('SIGNIN.SIGNIN.TEXT');
+      this.signin = this.translate.instant('SIGNIN.TITLE.TEXT');
     }
   }
 

@@ -33,7 +33,7 @@
       "TEXT": "Cambiar contraseña"
     },
     "TITLE": {
-      "TEXT": "Inicia sesión"
+      "TEXT": "Iniciar sesión"
     },
     "PASS-MESSAGE-ERROR": {
       "TEXT": "La contraseña debe tener al menos 6 y un máximo de 15 caracteres."
