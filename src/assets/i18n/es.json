@@ -19,6 +19,35 @@
       "TEXT": "Usuario"
     }
   },
+  "SIGNIN": {
+    "USER-NAME": {
+      "TEXT": "Su Usuario"
+    },
+    "PASSWORD": {
+      "TEXT": "Contraseña"
+    },
+    "REMEMBER-ME": {
+      "TEXT": "Recordar"
+    },
+    "FORGOT-PASS": {
+      "TEXT": "Cambiar contraseña"
+    },
+    "TITLE": {
+      "TEXT": "Inicia sesión"
+    },
+    "PASS-MESSAGE-ERROR": {
+      "TEXT": "La contraseña debe tener al menos 6 y un máximo de 15 caracteres."
+    },
+    "USER-NAME-MESSAGE-ERROR": {
+      "TEXT": "El usuario es invalido."
+    },
+    "PASS-IS-REQUIRED": {
+      "TEXT": "La contraseña es requerida."
+    },
+    "USER-NAME-IS-REQUIRED": {
+      "TEXT": "El usuario es requerido."
+    }
+  },
   "ADMIN-ITEMS": {
     "USERS": {
       "TEXT": "Usuarios"

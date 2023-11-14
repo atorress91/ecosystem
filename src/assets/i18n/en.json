@@ -14,9 +14,35 @@
     },
     "LOGOUT": {
       "TEXT": "Logout"
-    },
+    }
+  },
+  "SIGNIN": {
     "USER-NAME": {
-      "TEXT": "User Name"
+      "TEXT": "Your User Name"
+    },
+    "PASSWORD": {
+      "TEXT": "Password"
+    },
+    "REMEMBER-ME": {
+      "TEXT": "Remember me"
+    },
+    "FORGOT-PASS": {
+      "TEXT": "Forgot password"
+    },
+    "TITLE": {
+      "TEXT": "Signin"
+    },
+    "PASS-MESSAGE-ERROR": {
+      "TEXT": "Password should be at least 6 and at max 15 characters long"
+    },
+    "USER-NAME-MESSAGE-ERROR": {
+      "TEXT": "User name is invalid"
+    },
+    "PASS-IS-REQUIRED": {
+      "TEXT": "Password is required"
+    },
+    "USER-NAME-IS-REQUIRED": {
+      "TEXT": "User name is required"
     }
   },
   "ADMIN-ITEMS": {
@@ -77,7 +103,7 @@
       "TEXT": "HOME"
     },
     "EDUCATIONAL-COURSES": {
-      "TEXT": "Educational Programs Courses"
+      "TEXT": "Shop Educational Courses"
     },
     "FUNDING-ACCOUNTS": {
       "TEXT": "Funding Accounts"

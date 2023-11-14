@@ -59,7 +59,7 @@ const icons = {
     ReactiveFormsModule,
     AuthenticationRoutingModule,
     PerfectScrollbarModule,
-    TranslateModule.forChild(),
+    TranslateModule,
     FeatherModule.pick(icons),
     MatSelectCountryModule.forRoot('en'),
     MatSelectModule
