@@ -8,8 +8,8 @@
     </div>
     <!-- Menu -->
     <div class="menu">
-      <ul class="list"
-        [ngStyle]="{'position' : 'relative', 'max-height' : listMaxHeight+'px', 'max-width' : listMaxWidth+'px'}"
+      <ul class="list" [ngStyle]="{'max-height': 'calc(100vh - 80px)', 'max-width': listMaxWidth+'px'}"
+
         [perfectScrollbar]>
         <li class="sidebar-user-panel">
           <div role="button" class="user-panel" (click)="profileImgComponent.openProfileImgModal()">

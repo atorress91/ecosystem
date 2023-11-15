@@ -867,6 +867,16 @@
     color: #ffffff;
   }
 
+  @media (max-height: 740px) {
+    .sidebar .menu .list li a {
+      font-size: 12px;
+    }
+
+    .sidebar .menu .list li i {
+      font-size: 12px;
+    }
+  }
+
   // .menu .list .ml-menu .active a::before {
   //   content: '\f068';
   //   font-family: 'Font Awesome 5 Free';
