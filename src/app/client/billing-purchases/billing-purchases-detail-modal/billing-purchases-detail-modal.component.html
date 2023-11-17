@@ -281,7 +281,8 @@
       <div class="col-xl-1 col-sm-6">{{item.productCommissionable}}</div>
       <div class="col-xl-1 col-sm-6">{{item.binaryPoints}}</div>
       <div class="col-xl-1 col-sm-6">{{item.productPoints}}</div>
-      <div class="col-xl-1 col-sm-6">{{ Math.round((item.productPrice * item.productQuantity) * (1 + item.productIva / 100)) }}</div>
+      <div class="col-xl-1 col-sm-6">{{ Math.round((item.productPrice * item.productQuantity) * (1 + item.productIva /
+        100)) }}</div>
     </div>
 
     <div class="row mt-4">
@@ -297,18 +298,5 @@
     <div class="row">
       <div class="col-xl-12 col-sm-12 text-end"><label>Total a pagar: USD {{ invoice.totalInvoice}} </label></div>
     </div>
-    <div class="row">
-      <div class="col-xl-12 col-blue col-sm-12 text-end"><label>Comisionable generados: COM
-          {{invoice.invoiceDetail.productCommissionable}}</label></div>
-    </div>
-    <div class="row">
-      <div class="col-xl-12 col-blue col-sm-12 text-end"><label>Puntos binarios generados: PNTB
-          {{invoice.invoiceDetail.binaryPoints}}</label></div>
-    </div>
-    <div class="row">
-      <div class="col-xl-12 col-blue col-sm-12 text-end"><label>Puntos para calificar generados: PNT
-          {{invoice.invoiceDetail.productPoints}}</label></div>
-    </div>
-
   </div>
 </ng-template>

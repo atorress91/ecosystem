@@ -2,18 +2,14 @@
   <ul class="breadcrumb breadcrumb-style">
     <li class="breadcrumb-item">
       <h5 class="page-title m-b-0">
-        {{ 'MENUITEMS.BILLING.TEXT' | translate }}
+        {{ 'CART-PAGE.CART-TITLE.TEXT' | translate }}
       </h5>
     </li>
-
     <li class="breadcrumb-item bcrumb-1">
       <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
     </li>
     <li class="breadcrumb-item">
-      {{ 'MENUITEMS.BILLING-PURCHASE.TEXT' | translate }}
-    </li>
-    <li class="breadcrumb-item">
-      Payment
+
     </li>
   </ul>
 
@@ -25,7 +21,6 @@
             <div class="col-lg-12">
               <div class="invoice-title">
                 <h2>{{ 'CART-PAGE.CART-TITLE.TEXT' | translate }}</h2>
-
               </div>
               <hr>
               <div class="row">
@@ -151,11 +146,12 @@
               src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
               class="m-2">
 
-            <button *ngIf="!showReversePaymentOnly" (click)=" showConfirmation(0)"
+            <button *ngIf="!showReversePaymentOnly" (click)=" showBalanceConfirmation(0)"
               class="btn btn-primary btn-icon icon-left m-2"><i class="fas fa-credit-card"></i> Pago con
               saldo disponible</button>
-            <button (click)=" showConfirmation(1)" class="btn btn-primary btn-icon icon-left m-2"><i
-                class="fas fa-credit-card"></i> Pago con saldo revertido</button>
+            <button (click)="showBalanceConfirmation(1)" class="btn btn-primary btn-icon icon-left m-2"
+              *ngIf="withdrawalConfiguration.activate_invoice_cancellation"><i class="fas fa-credit-card"></i> Pago con
+              saldo revertido</button>
             <button routerLink="/app/billing-purchase" class="btn btn-primary btn-icon icon-left m-2"><i
                 class="bi bi-cart-plus"></i> {{ 'CART-PAGE.BTN-SHOP-MORE.TEXT' | translate }}</button>
             <button (click)="emptycart()" class="btn btn-danger btn-icon icon-left m-2"><i class="fas fa-times"></i>

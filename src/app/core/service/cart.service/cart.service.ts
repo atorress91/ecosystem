@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Product } from '@app/core/models/product-model/product.model';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
@@ -13,7 +15,12 @@ export class CartService {
   public userReceivesPurchase: BehaviorSubject<UserAffiliate> = new BehaviorSubject<UserAffiliate>(new UserAffiliate());
   public normalUser: BehaviorSubject<UserAffiliate> = new BehaviorSubject<UserAffiliate>(new UserAffiliate());
 
-  constructor() { }
+  constructor(private toast: ToastrService) { }
+
+
+  showError(message: string) {
+    this.toast.error(message);
+  }
 
   getProducts() {
     return this.productList.asObservable().pipe(
@@ -42,6 +49,22 @@ export class CartService {
   }
 
   addtoCart(product: any) {
+    const isEcopool = product.paymentGroup === 2;
+
+    if (this.cartItemList.length > 0) {
+      const cartContainsEcopool = this.cartItemList.some(item => item.paymentGroup === 2);
+
+      if (isEcopool && !cartContainsEcopool) {
+        this.showError('No puedes mezclar ecopooles con otros productos en el carrito.');
+        return;
+      }
+
+      if (!isEcopool && cartContainsEcopool) {
+        this.showError('No puedes agregar otros productos cuando hay ecopooles en el carrito.');
+        return;
+      }
+    }
+
     this.cartItemList.push({ ...product, quantity: 1 });
 
     let grandTotal = this.getTotalPrice();

@@ -17,6 +17,8 @@ import { CreateTransactionResponse } from '@app/core/models/coinpay-model/create
 import { ConpaymentTransaction } from '@app/core/models/coinpayment-model/conpayment-transaction.model';
 import { RequestPayment } from '@app/core/models/coinpay-model/request-payment.model';
 import { CoinpayService } from '@app/core/service/coinpay-service/coinpay.service';
+import { ConfigurationService } from '@app/core/service/configuration-service/configuration.service';
+import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
 
 
 
@@ -38,6 +40,7 @@ export class CartComponent implements OnInit, OnDestroy {
   public showReversePaymentOnly: boolean = false;
   transaction: ConpaymentTransaction = new ConpaymentTransaction();
   coinPayTransactionResponse = new CreateTransactionResponse();
+  withdrawalConfiguration = new WalletWithdrawalsConfiguration();
 
   constructor(
     private cartService: CartService,
@@ -46,7 +49,8 @@ export class CartComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private conpaymentService: CoinpaymentService,
     private walletService: WalletService,
-    private coinpayService: CoinpayService
+    private coinpayService: CoinpayService,
+    private configurationService: ConfigurationService
   ) { }
 
   ngOnInit(): void {
@@ -111,7 +115,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.total = grandTotal;
   }
 
-  showConfirmation(option: number) {
+  showBalanceConfirmation(option: number) {
     Swal.fire({
       title: '¿Está seguro que desea realizar el pago?',
       text: 'Esta acción no se puede deshacer.',
@@ -121,7 +125,7 @@ export class CartComponent implements OnInit, OnDestroy {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.payWithBalance(option);
+        this.handleBalancePayment(option);
       }
     }).catch(error => {
       console.error("Error:", error);
@@ -154,7 +158,7 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  payWithBalance(option: number) {
+  handleBalancePayment(option: number) {
     if (option === 1) {
 
       this.checkExistenceOfAffiliateForReversePayment().then(userExists => {
@@ -162,14 +166,14 @@ export class CartComponent implements OnInit, OnDestroy {
 
           option = 2;
         }
-        this.processPayment(option);
+        this.processBalancePayment(option);
       });
     } else {
-      this.processPayment(option);
+      this.processBalancePayment(option);
     }
   }
 
-  private processPayment(option: number) {
+  processBalancePayment(option: number) {
     this.walletRequest.affiliateId = this.user.id;
     this.walletRequest.affiliateUserName = this.user.user_name;
     this.walletRequest.paymentMethod = option;
@@ -180,14 +184,44 @@ export class CartComponent implements OnInit, OnDestroy {
       this.walletRequest.purchaseFor = 0;
     }
 
+    let useAlternativePaymentMethod = false;
     this.products.forEach(item => {
       const productRequest = new ProductsRequests();
       productRequest.idProduct = item.id;
       productRequest.count = item.quantity;
       this.walletRequest.productsList.push(productRequest);
+
+      if (item.paymentGroup !== 2) {
+        useAlternativePaymentMethod = true;
+      }
     });
 
-    this.walletService.payWithMyBalance(this.walletRequest).subscribe({
+    if (useAlternativePaymentMethod) {
+      this.payWithMyBalanceCourses(this.walletRequest)
+    } else {
+      this.payWithMyBalanceEcoPools(this.walletRequest);
+    }
+  }
+
+  payWithMyBalanceEcoPools(walletRequest) {
+    this.walletService.payWithMyBalance(walletRequest).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (err) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      },
+    });
+  }
+
+  payWithMyBalanceCourses(walletRequest) {
+    this.walletService.payWithMyBalanceCourses(walletRequest).subscribe({
       next: (value) => {
         if (value.success == true) {
           this.showSuccess('Pago realizado correctamente');
@@ -315,5 +349,16 @@ export class CartComponent implements OnInit, OnDestroy {
     }).catch(error => {
       console.error("Error:", error);
     });
+  }
+
+  loadWithdrawalConfiguration() {
+    this.configurationService.getWithdrawalsWalletConfiguration().subscribe({
+      next: (value) => {
+        this.withdrawalConfiguration.activate_invoice_cancellation = value.activate_invoice_cancellation;
+      },
+      error: (err) => {
+        this.showError('Error');
+      },
+    })
   }
 }

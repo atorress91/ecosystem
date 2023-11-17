@@ -96,11 +96,9 @@ export class BillingPurchasesComponent implements OnInit, OnDestroy {
   loadBillingPurchases() {
     this.invoiceService.getAllInvoicesUser(this.user.id).subscribe({
       next: (invoices: Invoice[]) => {
-        if (invoices != null && invoices.length > 0) {
-          this.temp = [...invoices];
-          this.rows = invoices;
-          this.loadingIndicator = false;
-        }
+        this.temp = [...invoices];
+        this.rows = invoices;
+        this.loadingIndicator = false;
       },
       error: (err) => {
         this.showError('Error');

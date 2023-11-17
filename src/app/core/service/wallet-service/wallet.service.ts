@@ -101,6 +101,16 @@ export class WalletService {
       );
   }
 
+  payWithMyBalanceCourses(model: WalletRequest) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/wallet/payWithMyBalanceCourses'), model, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
 
   transferBalanceForMembership(model: TransferBalance) {
     return this.http

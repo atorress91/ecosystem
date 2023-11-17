@@ -81,7 +81,7 @@ export const ROUTES: RouteInfo[] = [
     path: '/app/requests',
     title: 'MENUITEMS.REQUEST-PAY.TEXT',
     iconType: 'feather',
-    icon: 'rss',
+    icon: 'shopping-bag',
     class: '',
     groupTitle: false,
     badge: '',
