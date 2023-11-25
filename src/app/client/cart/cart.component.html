@@ -126,7 +126,7 @@
                   <hr class="mt-2 mb-2">
                   <div class="invoice-detail-item">
                     <div class="invoice-detail-name">Total</div>
-                    <div class="invoice-detail-value invoice-detail-value-lg">$ {{total}}</div>
+                    <div class="invoice-detail-value invoice-detail-value-lg">$ {{total ?? 0 | truncateDecimals:2}}</div>
                   </div>
                 </div>
               </div>
@@ -146,9 +146,12 @@
               src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
               class="m-2">
 
-            <button *ngIf="!showReversePaymentOnly" (click)=" showBalanceConfirmation(0)"
+            <button *ngIf="!showReversePaymentOnly && !balancePaymentNotAvailable" (click)=" showBalanceConfirmation(0)"
               class="btn btn-primary btn-icon icon-left m-2"><i class="fas fa-credit-card"></i> Pago con
               saldo disponible</button>
+            <button (click)="paymentByBankTransfer()" class="btn btn-primary btn-icon icon-left m-2"><i
+                class="fas fa-credit-card"></i> Pago por
+              transferencia</button>
             <button (click)="showBalanceConfirmation(1)" class="btn btn-primary btn-icon icon-left m-2"
               *ngIf="withdrawalConfiguration.activate_invoice_cancellation"><i class="fas fa-credit-card"></i> Pago con
               saldo revertido</button>

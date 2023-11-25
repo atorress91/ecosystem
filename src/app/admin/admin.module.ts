@@ -61,6 +61,7 @@ import { AuthorizeReturnsComponent } from './authorize-returns/authorize-returns
 import { WalkwaysBenchesComponent } from './walkways-benches/walkways-benches.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { SettingsComponent } from './settings/settings.component';
+import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
 
 const icons = {
   Search,
@@ -95,7 +96,8 @@ const icons = {
     ResultsEcopoolComponent,
     AuthorizeReturnsComponent,
     WalkwaysBenchesComponent,
-    SettingsComponent
+    SettingsComponent,
+    WireTransferListComponent
   ],
   imports: [
     CommonModule,

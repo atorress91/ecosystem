@@ -156,6 +156,17 @@ export const ROUTESADMIN: RouteInfo[] = [
         badgeClass: '',
         submenu: [],
       },
+      {
+        path: '/admin/wire-transfer-list',
+        title: 'Lista de transferencias bancarias',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+      },
     ],
   },
 

@@ -50,6 +50,11 @@ export class AffiliatesListEditModalComponent implements OnInit {
 
   setValues(affiliate: UserAffiliate) {
     this.affiliate = affiliate;
+
+    let birthdayFormatted = '';
+    const birthdayDate = new Date(affiliate.birthday);
+    birthdayFormatted = birthdayDate.toISOString().split('T')[0];
+
     this.editAffiliateForm.setValue({
       identification: affiliate.identification,
       user_name: affiliate.user_name,
@@ -64,7 +69,7 @@ export class AffiliatesListEditModalComponent implements OnInit {
       country: affiliate.country,
       zip_code: affiliate.zip_code,
       created_at: affiliate.created_at,
-      birthday: affiliate.birthday,
+      birthday: birthdayFormatted,
       beneficiary_name: affiliate.beneficiary_name ?? '',
       legal_authorized_first: affiliate.legal_authorized_first ?? '',
       legal_authorized_second: affiliate.legal_authorized_second ?? '',

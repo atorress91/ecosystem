@@ -7,7 +7,6 @@ import QRCode from 'qrcode';
 import { ProductsRequests, WalletRequest } from '@app/core/models/wallet-model/wallet-request.model';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
-import { environment } from '@environments/environment';
 import { CoinpaymentService } from '@app/core/service/coinpayment-service/coinpayment.service';
 import { CreatePayment, ProductRequest } from '@app/core/models/coinpayment-model/create-payment.model';
 import { WalletService } from "@app/core/service/wallet-service/wallet.service";
@@ -19,7 +18,8 @@ import { RequestPayment } from '@app/core/models/coinpay-model/request-payment.m
 import { CoinpayService } from '@app/core/service/coinpay-service/coinpay.service';
 import { ConfigurationService } from '@app/core/service/configuration-service/configuration.service';
 import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
-
+import { PaymentTransaction } from '@app/core/models/payment-transaction-model/payment-transaction-request.model';
+import { PaymentTransactionService } from '@app/core/service/payment-transaction-service/payment-transaction.service';
 
 
 @Component({
@@ -33,14 +33,15 @@ export class CartComponent implements OnInit, OnDestroy {
   total: number;
   totalTax: number;
   totalDiscount: number;
-  public products: any = [];
-  public user: UserAffiliate = new UserAffiliate();
-  public userReceivesPurchase: UserAffiliate = new UserAffiliate();
-  public walletRequest: WalletRequest = new WalletRequest();
-  public showReversePaymentOnly: boolean = false;
+  products: any = [];
+  user: UserAffiliate = new UserAffiliate();
+  userReceivesPurchase: UserAffiliate = new UserAffiliate();
+  walletRequest: WalletRequest = new WalletRequest();
+  showReversePaymentOnly: boolean = false;
   transaction: ConpaymentTransaction = new ConpaymentTransaction();
   coinPayTransactionResponse = new CreateTransactionResponse();
   withdrawalConfiguration = new WalletWithdrawalsConfiguration();
+  balancePaymentNotAvailable: boolean = false;
 
   constructor(
     private cartService: CartService,
@@ -50,7 +51,8 @@ export class CartComponent implements OnInit, OnDestroy {
     private conpaymentService: CoinpaymentService,
     private walletService: WalletService,
     private coinpayService: CoinpayService,
-    private configurationService: ConfigurationService
+    private configurationService: ConfigurationService,
+    private paymentTransactionService: PaymentTransactionService
   ) { }
 
   ngOnInit(): void {
@@ -104,7 +106,9 @@ export class CartComponent implements OnInit, OnDestroy {
     let grandTotal = 0;
 
     this.products.forEach(item => {
-      console.log(item);
+      if (item.paymentGroup != 2) {
+        this.balancePaymentNotAvailable = true;
+      }
       grandTotal += item.quantity * item.baseAmount
       totalTax += parseFloat((item.tax).toFixed(0));
       subTotal += parseFloat(item.total.toFixed(0));
@@ -300,7 +304,6 @@ export class CartComponent implements OnInit, OnDestroy {
 
     this.coinpayService.createCoinPayTransaction(request).subscribe({
       next: (response: CreateTransactionResponse) => {
-        console.log(response);
         this.coinPayTransactionResponse = response;
 
         if (response.statusCode === 1) {
@@ -360,5 +363,55 @@ export class CartComponent implements OnInit, OnDestroy {
         this.showError('Error');
       },
     })
+  }
+
+  paymentByBankTransfer() {
+    Swal.fire({
+      title: 'Confirmación para pagos de transferencia',
+      html:
+        '<div class="container">' +
+        '<div class="form-group">' +
+        '<label for="reference">Número de referencia bancaria</label>' +
+        '<input type="text" id="reference" class="form-control swal2-input" placeholder="Número de referencia bancaria">' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="amount">Monto</label>' +
+        '<input type="number" id="amount" class="form-control swal2-input" placeholder="Monto">' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="date">Fecha del pago</label>' +
+        '<input type="date" id="date" class="form-control swal2-input">' +
+        '</div>' +
+        '</div>',
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      cancelButtonText: 'Cancelar',
+      preConfirm: () => {
+        const reference = (document.getElementById('reference') as HTMLInputElement).value;
+        const amount = (document.getElementById('amount') as HTMLInputElement).value;
+        const dateInput = (document.getElementById('date') as HTMLInputElement).value;
+        const date = new Date(dateInput);
+
+        if (reference.trim() === '' || amount.trim() === '' || dateInput.trim() === '') {
+          Swal.showValidationMessage('Por favor, complete todos los campos');
+        } else {
+          let transaction = new PaymentTransaction();
+          transaction.affiliateId = this.user.id;
+          transaction.amount = parseFloat(amount);
+          transaction.products = JSON.stringify(this.constructDetails());
+          transaction.idTransaction = reference;
+          transaction.createdAt = date;
+
+          this.paymentTransactionService.createPaymentTransaction(transaction).subscribe({
+            next: (value) => {
+              this.showSuccess('Solicitud creada correctamente');
+            },
+            error: (err) => {
+              this.showError('Error');
+            },
+          })
+        }
+      }
+    });
   }
 }
