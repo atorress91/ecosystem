@@ -1,4 +1,3 @@
-
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/service/cart.service/cart.service';
 import { Router } from '@angular/router';
@@ -21,7 +20,6 @@ import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdraw
 import { PaymentTransaction } from '@app/core/models/payment-transaction-model/payment-transaction-request.model';
 import { PaymentTransactionService } from '@app/core/service/payment-transaction-service/payment-transaction.service';
 
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -31,8 +29,8 @@ export class CartComponent implements OnInit, OnDestroy {
   today: Date;
   subTotal: number;
   total: number;
-  totalTax: number;
-  totalDiscount: number;
+  totalTax: number = 0;
+  totalDiscount: number = 0;
   products: any = [];
   user: UserAffiliate = new UserAffiliate();
   userReceivesPurchase: UserAffiliate = new UserAffiliate();
@@ -109,9 +107,9 @@ export class CartComponent implements OnInit, OnDestroy {
       if (item.paymentGroup != 2) {
         this.balancePaymentNotAvailable = true;
       }
-      grandTotal += item.quantity * item.baseAmount
+      grandTotal += item.quantity * item.baseAmount;
       totalTax += parseFloat((item.tax).toFixed(0));
-      subTotal += parseFloat(item.total.toFixed(0));
+      subTotal += parseFloat(item.total.toFixed(2));
     });
 
     this.totalTax = totalTax;
@@ -132,7 +130,7 @@ export class CartComponent implements OnInit, OnDestroy {
         this.handleBalancePayment(option);
       }
     }).catch(error => {
-      console.error("Error:", error);
+
     });
   }
 
@@ -375,10 +373,6 @@ export class CartComponent implements OnInit, OnDestroy {
         '<input type="text" id="reference" class="form-control swal2-input" placeholder="Número de referencia bancaria">' +
         '</div>' +
         '<div class="form-group">' +
-        '<label for="amount">Monto</label>' +
-        '<input type="number" id="amount" class="form-control swal2-input" placeholder="Monto">' +
-        '</div>' +
-        '<div class="form-group">' +
         '<label for="date">Fecha del pago</label>' +
         '<input type="date" id="date" class="form-control swal2-input">' +
         '</div>' +
@@ -388,16 +382,15 @@ export class CartComponent implements OnInit, OnDestroy {
       cancelButtonText: 'Cancelar',
       preConfirm: () => {
         const reference = (document.getElementById('reference') as HTMLInputElement).value;
-        const amount = (document.getElementById('amount') as HTMLInputElement).value;
         const dateInput = (document.getElementById('date') as HTMLInputElement).value;
         const date = new Date(dateInput);
 
-        if (reference.trim() === '' || amount.trim() === '' || dateInput.trim() === '') {
+        if (reference.trim() === '' || dateInput.trim() === '') {
           Swal.showValidationMessage('Por favor, complete todos los campos');
         } else {
           let transaction = new PaymentTransaction();
           transaction.affiliateId = this.user.id;
-          transaction.amount = parseFloat(amount);
+          transaction.amount = this.total;
           transaction.products = JSON.stringify(this.constructDetails());
           transaction.idTransaction = reference;
           transaction.createdAt = date;
@@ -405,6 +398,8 @@ export class CartComponent implements OnInit, OnDestroy {
           this.paymentTransactionService.createPaymentTransaction(transaction).subscribe({
             next: (value) => {
               this.showSuccess('Solicitud creada correctamente');
+              this.router.navigate(['app/home']);
+              this.emptycart();
             },
             error: (err) => {
               this.showError('Error');

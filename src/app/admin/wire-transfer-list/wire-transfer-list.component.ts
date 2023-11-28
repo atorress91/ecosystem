@@ -5,6 +5,7 @@ import { PaymentTransaction } from '@app/core/models/payment-transaction-model/p
 import { PaymentTransactionService } from '@app/core/service/payment-transaction-service/payment-transaction.service';
 import { ConfirmPaymentTransaction } from '@app/core/models/payment-transaction-model/confirm-payment-transaction';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-wire-transfer-list',
@@ -44,7 +45,6 @@ export class WireTransferListComponent implements OnInit {
 
   loadAllWireTransactions() {
     this.paymentTransactionService.getAllWireTransactions().subscribe((data: PaymentTransaction[]) => {
-      console.log(data);
       this.rows = data;
       this.temp = [...data];
       this.loadingIndicator = false;
@@ -52,20 +52,31 @@ export class WireTransferListComponent implements OnInit {
   }
 
   confirmPaymentTransaction(row) {
-    let payment = new ConfirmPaymentTransaction();
+    Swal.fire({
+      title: 'Confirmar pago',
+      text: '¿Estás seguro de realizar el pago?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let payment = new ConfirmPaymentTransaction();
 
-    payment.id = row.id;
-    payment.userName = row.userName;
+        payment.id = row.id;
+        payment.userName = row.userName;
 
-    this.paymentTransactionService.confirmPayment(payment).subscribe({
-      next: (value) => {
-        this.showSuccess('Pago confirmado');
-        this.loadAllWireTransactions();
-      },
-      error: (err) => {
-        this.showError(err);
-      },
-    })
+        this.paymentTransactionService.confirmPayment(payment).subscribe({
+          next: (value) => {
+            this.showSuccess('Pago confirmado');
+            this.loadAllWireTransactions();
+          },
+          error: (err) => {
+            this.showError(err);
+          },
+        });
+      }
+    });
   }
 
 }
