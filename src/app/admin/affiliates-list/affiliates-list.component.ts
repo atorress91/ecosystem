@@ -23,6 +23,7 @@ const header = [
   'Patrocinador',
   'Patrocinador Binario',
 ];
+
 @Component({
   selector: 'app-affiliates-list',
   templateUrl: './affiliates-list.component.html',

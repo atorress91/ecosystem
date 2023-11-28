@@ -1,6 +1,5 @@
 import { FirebaseOptions } from '@firebase/app-types';
 
-
 export const environment = {
   production: true,
   apis: {

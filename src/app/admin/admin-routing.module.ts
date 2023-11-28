@@ -46,6 +46,7 @@ import { WalletParametersComponent } from './wallet-parameters/wallet-parameters
 import { ResultsEcopoolComponent } from './results-ecopool/results-ecopool.component';
 import { AuthorizeReturnsComponent } from './authorize-returns/authorize-returns.component';
 import { WalkwaysBenchesComponent } from './walkways-benches/walkways-benches.component';
+import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
 
 const routes: Routes = [
   {
@@ -232,6 +233,10 @@ const routes: Routes = [
   {
     path: 'walkways-benches',
     component: WalkwaysBenchesComponent
+  },
+  {
+    path: 'wire-transfer-list',
+    component: WireTransferListComponent
   }
 ];
 @NgModule({
