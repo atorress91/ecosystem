@@ -263,4 +263,8 @@ export class BillingPurchasesComponent implements OnInit, OnDestroy {
 
     document.body.removeChild(textArea);
   }
+
+  isEligibleForCancellation(row): boolean {
+    return row.invoiceDetail.some(detail => detail.paymentGroupId === 2);
+  }
 }

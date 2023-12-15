@@ -138,11 +138,10 @@
                               }}</span>
                           </a>
                           <a ngbDropdownItem id="btn-invoice"
-                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation"
+                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation && isEligibleForCancellation(row)"
                             (click)="showConfirmationRequest(row)">
                             <i class="bi bi-folder-symlink-fill"></i>
-                            <span style="margin-left: 10px">Solicitar anulación
-                              de factura</span>
+                            <span style="margin-left: 10px">Solicitar anulación de factura</span>
                           </a>
                         </div>
                       </div>
