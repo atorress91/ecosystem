@@ -64,11 +64,10 @@ export class MainLayoutComponent implements OnInit {
   showAlert() {
     Swal.fire({
       icon: "info",
-      title: '🚨 ATENCIÓN 🚨',
+      title: '🚨 ¡Únase a las Clases de Eco Trading! 🚨',
       html: `
-            <p>Saludos cordiales,</p>
-            <p>Deseamos informarles que, debido a la implementación del saldo revertido y el modelo 3 y 4 en nuestro e-commerce, experimentaremos un retraso en el cierre del presente mes. El cierre se llevará a cabo el día 15, con el pago correspondiente programado para el día 19. Agradecemos su comprensión ante cualquier inconveniente que esto pueda ocasionar. Estamos trabajando diligentemente para garantizar una transición fluida.</p>
-            <p>Atentamente Dep administrativo.</p>
+            <p>Explore las estrategias innovadoras en nuestras clases de Eco Trading, que comienzan el 11 de diciembre de 2023. ¡Le extendemos una invitación especial para unirse y aprovechar GRATIS las semanas de diciembre!.</p>
+            <p>No pierda la oportunidad, regístrese ahora para asegurar su lugar y adentrarse en este nuevo camino de conocimiento.</p>
         `,
       confirmButtonText: 'OK',
       confirmButtonColor: '#3085d6',

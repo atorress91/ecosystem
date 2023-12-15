@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Response } from '@app/core/models/response-model/response.model';
 import { environment } from '@environments/environment';
 import { Invoice } from '@app/core/models/invoice-model/invoice.model';
 import { Observable, throwError } from 'rxjs';
-
 
 const httpOptions = {
 
@@ -56,5 +55,15 @@ export class InvoiceService {
         }
       }),
     );
+  }
+
+  getAllInvoicesForTradingAcademyPurchases() {
+    return this.http
+      .get<Response>(this.urlApi.concat('/invoice/GetAllInvoicesForTradingAcademyPurchases'), httpOptions)
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
   }
 }

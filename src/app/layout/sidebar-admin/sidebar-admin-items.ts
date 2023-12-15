@@ -483,6 +483,18 @@ export const ROUTESADMIN: RouteInfo[] = [
       }
     ],
   },
+  ,
+  {
+    path: '/admin/educational-programs-control',
+    title: 'Control de programas educativos',
+    iconType: 'feather',
+    icon: 'calendar',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    submenu: [],
+  },
   {
     path: '',
     title: 'ADMIN-ITEMS.IMPORT.TEXT',

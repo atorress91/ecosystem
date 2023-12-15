@@ -1,3 +1,4 @@
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -59,10 +60,10 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ResultsEcopoolComponent } from './results-ecopool/results-ecopool.component';
 import { AuthorizeReturnsComponent } from './authorize-returns/authorize-returns.component';
 import { WalkwaysBenchesComponent } from './walkways-benches/walkways-benches.component';
-import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { SettingsComponent } from './settings/settings.component';
 import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
-
+import { EducationalProgramsControlComponent } from './educational-programs-control/educational-programs-control.component';
 const icons = {
   Search,
 };
@@ -97,7 +98,8 @@ const icons = {
     AuthorizeReturnsComponent,
     WalkwaysBenchesComponent,
     SettingsComponent,
-    WireTransferListComponent
+    WireTransferListComponent,
+    EducationalProgramsControlComponent
   ],
   imports: [
     CommonModule,

@@ -47,6 +47,7 @@ import { ResultsEcopoolComponent } from './results-ecopool/results-ecopool.compo
 import { AuthorizeReturnsComponent } from './authorize-returns/authorize-returns.component';
 import { WalkwaysBenchesComponent } from './walkways-benches/walkways-benches.component';
 import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
+import { EducationalProgramsControlComponent } from './educational-programs-control/educational-programs-control.component';
 
 const routes: Routes = [
   {
@@ -237,6 +238,10 @@ const routes: Routes = [
   {
     path: 'wire-transfer-list',
     component: WireTransferListComponent
+  },
+  {
+    path: 'educational-programs-control',
+    component: EducationalProgramsControlComponent
   }
 ];
 @NgModule({
