@@ -65,6 +65,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.setValuesToPaid();
     this.verificateUrl();
     this.checkExistenceOfAffiliateForReversePayment();
+    this.loadWithdrawalConfiguration();
   }
 
   ngOnDestroy() {
