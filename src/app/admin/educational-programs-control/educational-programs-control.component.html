@@ -30,6 +30,8 @@
                           [(ngModel)]="searchField"> N°. Factura</label>
                       <label class="ms-2"><input type="radio" name="searchField" value="createdAt"
                           [(ngModel)]="searchField"> Fecha de pago</label>
+                      <label class="ms-2"><input type="radio" name="searchField" value="endDay"
+                          [(ngModel)]="searchField"> Fecha de finalización</label>
                     </div>
                   </div>
                   <div class="col-sm-3">
@@ -59,6 +61,12 @@
                   </div>
                   <div class="col align-self-end">
                     <ul class="nav justify-content-end">
+                      <li class="nav-item m-2">
+                        <button type="button" (click)="sendInvitations()" class="btn btn-primary">
+                          <i class="bi bi-box2-fill"></i>
+                          Enviar invitaciones del curso
+                        </button>
+                      </li>
                       <li class="nav-item m-2">
                         <button type="button" (click)="clipBoardCopy()" class="btn btn-primary">
                           <i class="bi bi-clipboard-check"></i>
@@ -103,9 +111,18 @@
                       {{ row.createdAt }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="Pago valido hasta">
+                  <ngx-datatable-column name="Inicia el curso">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.validPaymentDate }}
+                      <div class="col-green">
+                        {{ row.startDay }}
+                      </div>
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Finaliza el curso">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      <div class="col-red">
+                        {{ row.endDay }}
+                      </div>
                     </ng-template>
                   </ngx-datatable-column>
                   <ngx-datatable-column name="Acciones">

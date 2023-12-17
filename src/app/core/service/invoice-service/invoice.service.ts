@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { Response } from '@app/core/models/response-model/response.model';
 import { environment } from '@environments/environment';
 import { Invoice } from '@app/core/models/invoice-model/invoice.model';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
 
@@ -63,6 +63,21 @@ export class InvoiceService {
       .pipe(
         map((response) => {
           return response.data;
+        })
+      );
+  }
+
+  sendInvitationsForUpcomingCourses(link: string, code: string) {
+    let params = new HttpParams()
+      .set('link', link)
+      .set('code', code);
+
+    const urlWithParams = `${this.urlApi}/invoice/SendInvitationsForUpcomingCourses?${params.toString()}`;
+    return this.http
+      .post<Response>(urlWithParams, {}, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
         })
       );
   }
