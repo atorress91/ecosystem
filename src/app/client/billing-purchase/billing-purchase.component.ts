@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillingPurchaseComponent implements OnInit {
   public searchTerm!: string;
-  active;
+  active: number = 1;
 
   constructor(
   ) { }

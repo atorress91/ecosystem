@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/core/service/cart.service/cart.service';
 import { ProductService } from 'src/app/core/service/product-service/product.service';
 
-
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -80,9 +79,19 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllFundingAccounts() {
-    this.productService.getAllFundingAccounts().subscribe((fundingAccounts:Product)=>{
+    this.productService.getAllFundingAccounts().subscribe((fundingAccounts: Product) => {
       this.productList = fundingAccounts;
       this.filterCategory = fundingAccounts;
+      this.productList.forEach((item: any) => {
+        Object.assign(item, { quantity: 1, total: item.salePrice });
+      });
+    })
+  }
+
+  loadSavingsPlans() {
+    this.productService.getAllSavingsPlans().subscribe((savingsPlans: Product) => {
+      this.productList = savingsPlans;
+      this.filterCategory = savingsPlans;
       this.productList.forEach((item: any) => {
         Object.assign(item, { quantity: 1, total: item.salePrice });
       });
@@ -100,13 +109,15 @@ export class ProductsComponent implements OnInit {
       case 3:
         this.loadAllTradingAcademy();
         break;
-        case 4:
+      case 4:
         this.getAllFundingAccounts();
+        break;
+      case 5:
+        this.loadSavingsPlans();
         break;
       default:
         this.showError('No se encontró productos');
         break;
     }
   }
-
 }

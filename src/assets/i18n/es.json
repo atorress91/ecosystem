@@ -696,6 +696,14 @@
     },
     "BTN-ADD-CART": {
       "TEXT": "Añadir al carrito"
+    },
+    "SUBTITLE": {
+      "TEXT": "Modelo 2 Ahorro Voluntario"
+    }
+  },
+  "SAVINGS-PLANS-PAGE": {
+    "TITLE": {
+      "TEXT": "Modelo 1 Ahorro Empresa"
     }
   },
   "CART-PAGE": {

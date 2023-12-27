@@ -693,6 +693,14 @@
     },
     "BTN-ADD-CART": {
       "TEXT": "Add to cart"
+    },
+    "SUBTITLE": {
+      "TEXT": "Model 2 Voluntary Savings"
+    }
+  },
+  "SAVINGS-PLANS-PAGE": {
+    "TITLE": {
+      "TEXT": "Model 1 Company Savings"
     }
   },
   "CART-PAGE": {
