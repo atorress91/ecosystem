@@ -77,4 +77,8 @@ export class TicketsComponent implements OnInit {
     });
     this.messageInputRef.nativeElement.value = '';
   }
+
+  swipeTicket(ticket: Ticket) {
+    this.ticketService.setTicket(ticket);
+  }
 }

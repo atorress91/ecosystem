@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { Ticket } from '@app/core/models/ticket-model/ticket.model';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
 import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
+import { TicketService } from '@app/core/service/ticket-service/ticket.service';
 
 @Component({
   selector: 'app-ticket-view',
@@ -13,9 +16,15 @@ export class TicketViewComponent {
   ticketId: number;
   user: UserAffiliate;
   newMessage: string;
+  ticket: Ticket = new Ticket();
   messages: { sender: string, content: string, time: Date }[] = [];
 
-  constructor(private route: ActivatedRoute, private authService: AuthService, private ticketHubService: TicketHubService) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService, private ticketHubService: TicketHubService, private ticketService: TicketService) {
+    this.ticketService.getTicket().subscribe(ticket => {
+      this.ticket = ticket;
+      console.log(this.ticket);
+    });
+  }
 
   ngOnInit(): void {
     this.ticketId = +this.route.snapshot.paramMap.get('id');
@@ -24,7 +33,6 @@ export class TicketViewComponent {
       this.ticketHubService.joinRoom(this.ticketId);
     });
   }
-
 
   ngOnDestroy(): void {
     this.ticketHubService.leaveRoom(this.ticketId);

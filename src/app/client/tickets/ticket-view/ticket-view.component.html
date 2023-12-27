@@ -11,11 +11,18 @@
   </ul>
   <div class="section-body">
     <div class="row">
+
+    </div>
+    <div class="row">
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
+          <div *ngIf="ticket" class="col-12">
+            Descripción del problema: <div class="col-red">{{ticket.description ?? 'No hay descripción'}}</div>
+          </div>
           <div class="chat">
             <div class="chat-header clearfix">
-              <img [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'" alt="avatar">
+              <img [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
+                alt="avatar">
               <div class="chat-about">
                 <div class="chat-with">{{user.name}} {{user.last_name}}</div>
               </div>
@@ -23,7 +30,9 @@
           </div>
           <div class="chat-box">
             <div class="card-body chat-content" style="position: relative; max-height: 400px;" [perfectScrollbar]>
-              <div class="chat-item chat-left"><img [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'" alt="avatar">
+              <div class="chat-item chat-left"><img
+                  [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
+                  alt="avatar">
                 <div class="chat-details">
                   <div class="chat-text">Hi, How R U?!</div>
                   <div class="chat-time">09:51</div>
@@ -32,7 +41,8 @@
             </div>
             <div class="card-footer chat-form">
               <form id="chat-form">
-                <input [(ngModel)]="newMessage" name="message" type="text" class="form-control" placeholder="Type a message">
+                <input [(ngModel)]="newMessage" name="message" type="text" class="form-control"
+                  placeholder="Type a message">
                 <button (click)="sendMessage()" class="btn btn-primary">
                   <i class="far fa-paper-plane"></i>
                 </button>

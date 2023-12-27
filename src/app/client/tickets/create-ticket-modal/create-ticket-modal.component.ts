@@ -43,7 +43,8 @@ export class CreateTicketModalComponent implements OnInit {
   initCreateTicketForm() {
     this.createTicketForm = new FormGroup({
       subject_ticket: new FormControl('', Validators.required),
-      category: new FormControl("", Validators.required)
+      category: new FormControl("", Validators.required),
+      description: new FormControl("", [Validators.required, Validators.maxLength(255)]),
     });
   }
 
@@ -81,6 +82,7 @@ export class CreateTicketModalComponent implements OnInit {
 
     this.ticket.affiliateId = this.user.id;
     this.ticket.subject = this.createTicketForm.get('subject_ticket').value;
+    this.ticket.description = this.createTicketForm.get('description').value;
     this.ticket.categoryId = parseInt(this.createTicketForm.get('category').value);
 
     if (this.files && this.files.length > 0) {
