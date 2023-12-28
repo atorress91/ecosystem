@@ -125,4 +125,16 @@ export class ProductService {
       })
     );
   }
+
+  getAllSavingsPlans() {
+    return this.http.get<Response>(this.urlApi.concat('/product/get_all_savings_plans'), httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR: ' + response);
+          return null;
+        }
+      })
+    );
+  }
 }

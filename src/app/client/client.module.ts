@@ -1,3 +1,4 @@
+
 import { TicketsModule } from './tickets/tickets.module';
 import { RequestsModule } from './requests/requests.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
@@ -41,7 +42,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { NetworkDetailsComponent } from './network-details/network-details.component';
 import { EducationalCoursesComponent } from './educational-courses/educational-courses.component';
 import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
-
+import { SavingsPlansComponent } from './savings-plans/savings-plans.component';
 
 const icons = {
   Search
@@ -71,6 +72,7 @@ const icons = {
     NetworkDetailsComponent,
     EducationalCoursesComponent,
     ServicesAndProductsComponent,
+    SavingsPlansComponent
   ],
   imports: [
     CommonModule,

@@ -29,6 +29,7 @@ import { FundingAccountsComponent } from './funding-accounts/funding-accounts.co
 import { NetworkDetailsComponent } from './network-details/network-details.component';
 import { TicketViewComponent } from './tickets/ticket-view/ticket-view.component';
 import { EducationalCoursesComponent } from './educational-courses/educational-courses.component';
+import { SavingsPlansComponent } from './savings-plans/savings-plans.component';
 
 const routes: Routes = [
   {
@@ -164,6 +165,11 @@ const routes: Routes = [
   {
     path: 'services-and-products',
     component: ServicesAndProductsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'savings-plans',
+    component: SavingsPlansComponent,
     canActivate: [AuthGuard]
   }
 ];
