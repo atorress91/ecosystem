@@ -124,6 +124,17 @@ export const ROUTESADMIN: RouteInfo[] = [
         submenu: [],
       },
       {
+        path: '/admin/change-model',
+        title: 'Cambiar Modelo 1 y 2',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+      },
+      {
         path: '/admin/purchase-order-list',
         title: 'PURCHASE-ORDER-LIST.TITLE.TEXT',
         iconType: '',

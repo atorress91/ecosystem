@@ -1,5 +1,4 @@
-import { WalletRefillComponent } from './wallet-refill/wallet-refill.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AffiliatesListComponent } from './affiliates-list/affiliates-list.component';
@@ -48,6 +47,8 @@ import { AuthorizeReturnsComponent } from './authorize-returns/authorize-returns
 import { WalkwaysBenchesComponent } from './walkways-benches/walkways-benches.component';
 import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
 import { EducationalProgramsControlComponent } from './educational-programs-control/educational-programs-control.component';
+import { ChangeModelComponent } from './change-model/change-model.component';
+import { WalletRefillComponent } from './wallet-refill/wallet-refill.component';
 
 const routes: Routes = [
   {
@@ -242,6 +243,10 @@ const routes: Routes = [
   {
     path: 'educational-programs-control',
     component: EducationalProgramsControlComponent
+  },
+  {
+    path: 'change-model',
+    component: ChangeModelComponent
   }
 ];
 @NgModule({

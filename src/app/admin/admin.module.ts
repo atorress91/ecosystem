@@ -64,6 +64,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { SettingsComponent } from './settings/settings.component';
 import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
 import { EducationalProgramsControlComponent } from './educational-programs-control/educational-programs-control.component';
+import { ChangeModelComponent } from './change-model/change-model.component';
 const icons = {
   Search,
 };
@@ -99,7 +100,8 @@ const icons = {
     WalkwaysBenchesComponent,
     SettingsComponent,
     WireTransferListComponent,
-    EducationalProgramsControlComponent
+    EducationalProgramsControlComponent,
+    ChangeModelComponent
   ],
   imports: [
     CommonModule,
