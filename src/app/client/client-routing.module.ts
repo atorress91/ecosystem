@@ -1,5 +1,3 @@
-import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -30,6 +28,8 @@ import { NetworkDetailsComponent } from './network-details/network-details.compo
 import { TicketViewComponent } from './tickets/ticket-view/ticket-view.component';
 import { EducationalCoursesComponent } from './educational-courses/educational-courses.component';
 import { SavingsPlansComponent } from './savings-plans/savings-plans.component';
+import { SavingsPlansOneBComponent } from './savings-plans-one-b/savings-plans-one-b.component';
+import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
 
 const routes: Routes = [
   {
@@ -170,6 +170,11 @@ const routes: Routes = [
   {
     path: 'savings-plans',
     component: SavingsPlansComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'savings-plans-one-b',
+    component: SavingsPlansOneBComponent,
     canActivate: [AuthGuard]
   }
 ];

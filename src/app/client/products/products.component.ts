@@ -98,6 +98,16 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  loadSavingsPlansOneB() {
+    this.productService.getAllSavingsPlansOneB().subscribe((savingsPlans: Product) => {
+      this.productList = savingsPlans;
+      this.filterCategory = savingsPlans;
+      this.productList.forEach((item: any) => {
+        Object.assign(item, { quantity: 1, total: item.salePrice });
+      });
+    })
+  }
+
   handleProductLoading(tabActive: number) {
     switch (tabActive) {
       case 1:
@@ -114,6 +124,9 @@ export class ProductsComponent implements OnInit {
         break;
       case 5:
         this.loadSavingsPlans();
+        break;
+        case 6:
+        this.loadSavingsPlansOneB();
         break;
       default:
         this.showError('No se encontró productos');
