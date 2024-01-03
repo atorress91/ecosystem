@@ -700,10 +700,18 @@
   },
   "SAVINGS-PLANS-PAGE": {
     "TITLE": {
-      "TEXT": "Model 1 Company Savings"
+      "TEXT": "Model (1A) Voluntary Savings"
     },
     "SUBTITLE": {
-      "TEXT": "Model one company savings 5 to 6 years"
+      "TEXT": "Model (1A) Voluntary Savings 3 years and over"
+    }
+  },
+  "SAVINGS-PLANS-ONEB-PAGE": {
+    "TITLE": {
+      "TEXT": "Model (1B) Voluntary Savings"
+    },
+    "SUBTITLE": {
+      "TEXT": "Model (1B) Voluntary Savings 2 years"
     }
   },
   "CART-PAGE": {

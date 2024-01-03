@@ -703,10 +703,18 @@
   },
   "SAVINGS-PLANS-PAGE": {
     "TITLE": {
-      "TEXT": "Modelo 1 Ahorro Empresa"
+      "TEXT": "Modelo (1A) Ahorro Voluntario"
     },
     "SUBTITLE": {
-      "TEXT": "Modelo uno Ahorro Empresa 5 a 6 años"
+      "TEXT": "Modelo (1A) Ahorro Voluntario 3 años en adelante"
+    }
+  },
+  "SAVINGS-PLANS-ONEB-PAGE": {
+    "TITLE": {
+      "TEXT": "Modelo (1B) Ahorro Voluntario"
+    },
+    "SUBTITLE": {
+      "TEXT": "Modelo (1B) Ahorro Voluntario 2 años"
     }
   },
   "CART-PAGE": {

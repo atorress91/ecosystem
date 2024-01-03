@@ -33,6 +33,17 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
+        path: '/app/savings-plans-one-b',
+        title: 'SAVINGS-PLANS-ONEB-PAGE.TITLE.TEXT',
+        iconType: 'feather',
+        icon: 'book-open',
+        class: '',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+      },
+      {
         path: '/app/billing-purchase',
         title: 'BILLING-PURCHASE-PAGE.SUBTITLE.TEXT',
         iconType: 'feather',

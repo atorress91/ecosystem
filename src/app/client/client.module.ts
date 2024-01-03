@@ -43,6 +43,7 @@ import { NetworkDetailsComponent } from './network-details/network-details.compo
 import { EducationalCoursesComponent } from './educational-courses/educational-courses.component';
 import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
 import { SavingsPlansComponent } from './savings-plans/savings-plans.component';
+import { SavingsPlansOneBComponent } from './savings-plans-one-b/savings-plans-one-b.component';
 
 const icons = {
   Search
@@ -72,7 +73,8 @@ const icons = {
     NetworkDetailsComponent,
     EducationalCoursesComponent,
     ServicesAndProductsComponent,
-    SavingsPlansComponent
+    SavingsPlansComponent,
+    SavingsPlansOneBComponent
   ],
   imports: [
     CommonModule,
