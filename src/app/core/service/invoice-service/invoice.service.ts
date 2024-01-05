@@ -81,4 +81,14 @@ export class InvoiceService {
         })
       );
   }
+
+  getAllInvoicesForModelOneAndTwo() {
+    return this.http
+      .get<Response>(this.urlApi.concat('/invoice/GetAllInvoicesForModelOneAndTwo'), httpOptions)
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
 }

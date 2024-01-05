@@ -11,7 +11,7 @@ export const environment = {
     accountService: 'https://account.ecosystemfx.net/api/v1',
     systemConfigurationService: 'https://configuration.ecosystemfx.net/api/v1',
     inventoryService: 'https://inventory.ecosystemfx.net/api/v1',
-    walletService: 'https://wallet.ecosystemfx.net/api/v1',
+    walletService: 'http://localhost:5235/api/v1',
     coinPayment: 'https://www.coinpayments.net/index.php'
   },
   openAI: {
