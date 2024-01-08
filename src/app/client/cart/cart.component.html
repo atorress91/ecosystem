@@ -9,7 +9,6 @@
       <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
     </li>
     <li class="breadcrumb-item">
-
     </li>
   </ul>
 
@@ -59,9 +58,7 @@
           <div class="row mt-4">
             <div class="col-md-12">
               <div class="section-title">Resumen del pedido</div>
-              <div id="new-orders" class="media-list position-relative"
-                style="position: relative; max-height: 600px !important" [perfectScrollbar]>
-
+              <div id="new-orders" class="media-list position-relative custom-div" [perfectScrollbar]>
                 <div class="table-responsive">
                   <table class="table table-md">
                     <thead>
@@ -85,7 +82,7 @@
                         <td>{{ i + 1 }}</td>
                         <td>{{ item.name }}</td>
                         <td>
-                          <img style="width: 120px" src="{{ item.image }}" alt="" />
+                          <img class="custom-img-size" src="{{ item.image }}" alt="" />
                         </td>
                         <td>{{ item.description }}</td>
                         <td>{{ item.valuePoints }}</td>
@@ -96,8 +93,7 @@
                         <td>{{ item.quantity }}</td>
                         <td>${{ item.baseAmount*item.quantity }}</td>
                         <td>
-                          <button style="background-color: red;" (click)="removeItem(item)"
-                            class="btn btn-danger btn-icon">
+                          <button class="btn-danger" (click)="removeItem(item)" title="Remove Item">
                             <i class="fas fa-times"></i>
                           </button>
                         </td>
@@ -126,7 +122,8 @@
                   <hr class="mt-2 mb-2">
                   <div class="invoice-detail-item">
                     <div class="invoice-detail-name">Total</div>
-                    <div class="invoice-detail-value invoice-detail-value-lg">$ {{total ?? 0 | truncateDecimals:2}}</div>
+                    <div class="invoice-detail-value invoice-detail-value-lg">$ {{total ?? 0 | truncateDecimals:2}}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -153,7 +150,8 @@
                 class="fas fa-credit-card"></i> Pago por
               transferencia</button>
             <button (click)="showBalanceConfirmation(1)" class="btn btn-primary btn-icon icon-left m-2"
-              *ngIf="withdrawalConfiguration.activate_invoice_cancellation"><i class="fas fa-credit-card"></i> Pago con
+              *ngIf="withdrawalConfiguration.activate_invoice_cancellation && !reverseBalanceNotAvailable"><i
+                class="fas fa-credit-card"></i> Pago con
               saldo revertido</button>
             <button routerLink="/app/billing-purchase" class="btn btn-primary btn-icon icon-left m-2"><i
                 class="bi bi-cart-plus"></i> {{ 'CART-PAGE.BTN-SHOP-MORE.TEXT' | translate }}</button>

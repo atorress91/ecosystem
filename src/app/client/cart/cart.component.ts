@@ -40,6 +40,8 @@ export class CartComponent implements OnInit, OnDestroy {
   coinPayTransactionResponse = new CreateTransactionResponse();
   withdrawalConfiguration = new WalletWithdrawalsConfiguration();
   balancePaymentNotAvailable: boolean = false;
+  reverseBalanceNotAvailable: boolean = false;
+  excludedPaymentGroups = [2, 7, 8];
 
   constructor(
     private cartService: CartService,
@@ -105,8 +107,11 @@ export class CartComponent implements OnInit, OnDestroy {
     let grandTotal = 0;
 
     this.products.forEach(item => {
-      if (item.paymentGroup != 2) {
+      if (!this.excludedPaymentGroups.includes(item.paymentGroup)) {
         this.balancePaymentNotAvailable = true;
+      }
+      if (item.paymentGroup != 2) {
+        this.reverseBalanceNotAvailable = true;
       }
       grandTotal += item.quantity * item.baseAmount;
       totalTax += parseFloat((item.tax).toFixed(0));
