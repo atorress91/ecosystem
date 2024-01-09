@@ -3,6 +3,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 import { InvoiceService } from '@app/core/service/invoice-service/invoice.service';
 import { InvoiceModelOneTwo } from '@app/core/models/invoice-model/invoice-model-one-two';
+import { SplitBalancesModalComponent } from './split-balances-modal/split-balances-modal.component';
 
 @Component({
   selector: 'app-change-model',
@@ -17,12 +18,19 @@ export class ChangeModelComponent implements OnInit {
   scrollBarHorizontal = window.innerWidth < 1200;
   @ViewChild('table') table: DatatableComponent;
   searchField: any;
+  @ViewChild(SplitBalancesModalComponent) private modalComponent: SplitBalancesModalComponent;
 
   constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit() {
     this.loadAllInvoicesForModelOneAndTwo();
     this.loadingIndicator = false;
+  }
+
+  openModal() {
+    if (this.modalComponent) {
+      this.modalComponent.initModal();
+    }
   }
 
   onPrint() {
@@ -34,11 +42,20 @@ export class ChangeModelComponent implements OnInit {
   }
 
   updateFilter(event) {
-    const val = event.target.value.toLowerCase().trim();
+    let val = event.target.value.toLowerCase().trim();
+
+    const modelMap = {
+      'modelo 2': '2',
+      'modelo 1a': '7',
+      'modelo 1b': '8'
+    };
+
+    val = modelMap[val] || val;
 
     const temp = this.temp.filter(d => {
       if (d[this.searchField]) {
-        return val === '' || d[this.searchField].toString().toLowerCase() === val;
+        const fieldValue = d[this.searchField].toString().toLowerCase();
+        return val === '' || fieldValue === val || fieldValue === modelMap[fieldValue];
       }
       return false;
     });

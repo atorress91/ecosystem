@@ -125,7 +125,7 @@ export const ROUTESADMIN: RouteInfo[] = [
       },
       {
         path: '/admin/change-model',
-        title: 'Cambiar Modelo 1 y 2',
+        title: 'Modificar Modelos (1A), (1B) y (2)',
         iconType: '',
         icon: '',
         class: 'ml-menu',
