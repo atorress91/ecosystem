@@ -9,10 +9,120 @@
   </ul>
   <div class="section-body">
     <div class="row">
-      <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12">
+      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4>{{ 'HOME-PAGE-CLIENT.INFORMATION.TEXT' | translate }}</h4>
+            <h4>Información Modelo (1A)</h4>
+          </div>
+          <div class="card-body">
+            <div id="chart1">
+              <apx-chart style="margin-top: -47px;" [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
+                [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
+                [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend"
+                [colors]="pieChartOptions.colors" class="apex-pie-center">
+              </apx-chart>
+            </div>
+            <div class="table m-t-5">
+              <table class="table align-items-center table-row-border">
+                <tbody>
+                  <tr>
+                    <td class="col-red">
+                      <i class="fa fa-circle col-red msr-2"></i> Por Cobrar
+                    </td>
+                    <td class="col-red">USD 0</td>
+                  </tr>
+                  <tr>
+                    <td class="col-blue">
+                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo balance
+                    </td>
+                    <td class="col-blue">USD 0</td>
+                  </tr>
+                  <tr>
+                    <td class="col-emerald">
+                      <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
+                    </td>
+                    <td class="col-emerald">USD 0
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-green">
+                      <i class="fa fa-circle col-green msr-2 col-green"></i>Total
+                      Adquisiciones
+                    </td>
+                    <td class="col-green">USD 0</td>
+                  </tr>
+                  <tr>
+                    <td class="col-purple">
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Saldo revertido
+
+                    </td>
+                    <td class="col-purple">USD 0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Información Modelo (1B)</h4>
+          </div>
+          <div class="card-body">
+            <div id="chart1">
+              <apx-chart style="margin-top: -47px;" [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
+                [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
+                [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend"
+                [colors]="pieChartOptions.colors" class="apex-pie-center">
+              </apx-chart>
+            </div>
+            <div class="table m-t-5">
+              <table class="table align-items-center table-row-border">
+                <tbody>
+                  <tr>
+                    <td class="col-red">
+                      <i class="fa fa-circle col-red msr-2"></i> Por Cobrar
+                    </td>
+                    <td class="col-red">USD 0</td>
+                  </tr>
+                  <tr>
+                    <td class="col-blue">
+                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo balance
+                    </td>
+                    <td class="col-blue">USD 0</td>
+                  </tr>
+                  <tr>
+                    <td class="col-emerald">
+                      <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
+                    </td>
+                    <td class="col-emerald">USD 0
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-green">
+                      <i class="fa fa-circle col-green msr-2 col-green"></i>Total
+                      Adquisiciones
+                    </td>
+                    <td class="col-green">USD 0</td>
+                  </tr>
+                  <tr>
+                    <td class="col-purple">
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Saldo revertido
+
+                    </td>
+                    <td class="col-purple">USD 0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>{{ 'HOME-PAGE-CLIENT.INFORMATION.TEXT' | translate }} Modelo 2</h4>
           </div>
           <div class="card-body">
             <div id="chart1">
@@ -42,7 +152,8 @@
                     <td class="col-emerald">
                       <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
                     </td>
-                    <td class="col-emerald">USD {{balanceInformation.totalCommissionsPaid ?? 0 | truncateDecimals:2}}</td>
+                    <td class="col-emerald">USD {{balanceInformation.totalCommissionsPaid ?? 0 | truncateDecimals:2}}
+                    </td>
                   </tr>
                   <tr>
                     <td class="col-green">
@@ -64,7 +175,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
             <h4>
@@ -93,7 +204,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12  d-none d-sm-none d-md-block d-xl-block d-xxl-block">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12  d-none d-sm-none d-md-block d-xl-block d-xxl-block">
         <div class="card">
           <div class="card-header">
             <h4>

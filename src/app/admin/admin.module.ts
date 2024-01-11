@@ -1,4 +1,5 @@
 
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -64,6 +65,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { SettingsComponent } from './settings/settings.component';
 import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
 import { EducationalProgramsControlComponent } from './educational-programs-control/educational-programs-control.component';
+import { ChangeModelModule } from './change-model/change-model.module';
 const icons = {
   Search,
 };
@@ -136,6 +138,7 @@ const icons = {
     NgxGaugeModule,
     NgxDropzoneModule,
     CKEditorModule,
+    ChangeModelModule
   ],
   exports: [],
 })

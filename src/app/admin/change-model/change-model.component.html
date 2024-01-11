@@ -9,7 +9,7 @@
       <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
     </li>
     <li class="breadcrumb-item">
-      {{ 'PURCHASES-LIST-PAGE.TITLE.TEXT' | translate }}
+      Modificar Modelos (1A), (1B) y (2)
     </li>
   </ul>
   <div class="section-body">
@@ -23,6 +23,16 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="row">
+                  <div class="col-12">
+                    <div class="d-flex flex-wrap mb-2">
+                      <label class="ms-2"><input type="radio" name="searchField" value="userName"
+                          [(ngModel)]="searchField"> Afiliado</label>
+                      <label class="ms-2"><input type="radio" name="searchField" value="invoiceId"
+                          [(ngModel)]="searchField"> N°. Factura</label>
+                      <label class="ms-2"><input type="radio" name="searchField" value="paymentGroupId"
+                          [(ngModel)]="searchField"> Modelo</label>
+                    </div>
+                  </div>
                   <div class="col-sm-3">
                     <div class="table-search-area">
                       <div class="form-group">
@@ -32,11 +42,8 @@
                               <i-feather name="search" class="default-color"></i-feather>
                             </div>
                           </div>
-                          <input type="text" class="form-control search-background-color"
-                            id="inlineFormInputGroup" (keyup)="updateFilter($event)" aria-label="Search box"
-                            placeholder="{{
-                              'USERS-LIST-PAGE.USERS-SEARCH.TEXT' | translate
-                            }}" />
+                          <input type="text" class="form-control search-background-color" id="inlineFormInputGroup"
+                            (keyup)="updateFilter($event)" aria-label="Search box" placeholder="Busqueda" />
                         </div>
                       </div>
                     </div>
@@ -44,19 +51,18 @@
                   <div class="col align-self-end">
                     <ul class="nav justify-content-end">
                       <li class="nav-item m-2">
-                        <button type="button" class="btn btn-primary" (click)="clipBoardCopy()">
+                        <button type="button" class="btn btn-primary" (click)="openModal()">
                           <i class="bi bi-clipboard-check"></i>
-                          {{ 'PURCHASES-LIST-PAGE.BTN-COPY.TEXT' | translate }}
-                        </button>
-                      </li>
-
-                      <li class="nav-item m-2">
-                        <button type="button" class="btn btn-primary" (click)="onPrint()">
-                          <i class="bi bi-printer"></i>
-                          {{ 'PURCHASES-LIST-PAGE.BTN-PRINT.TEXT' | translate }}
+                          Modificar saldos
                         </button>
                       </li>
                       <li class="nav-item m-2">
+                        <button type="button" class="btn btn-primary" (click)="copyTableData()">
+                          <i class="bi bi-clipboard-check"></i>
+                          Copiar
+                        </button>
+                      </li>
+                      <li class="nav-item m-2" (click)="generetedPdf()">
                         <button type="button" class="btn btn-primary">
                           <i class="bi bi-file-pdf-fill"></i>
                           PDF
@@ -65,75 +71,50 @@
                     </ul>
                   </div>
                 </div>
-                <ngx-datatable #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator"
+                <ngx-datatable id="table" #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator"
                   columnMode="force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"
-                  [selectionType]="'checkbox'" [limit]="10" [scrollbarH]="scrollBarHorizontal"
-                  [reorderable]="reorderable">
+                  [selectionType]="'checkbox'" (select)="onSelect($event)" [limit]="12"
+                  [scrollbarH]="scrollBarHorizontal" [reorderable]="reorderable">
                   <ngx-datatable-column [width]="70" [sortable]="false" [draggable]="false" [resizeable]="false"
                     [canAutoResize]="false" [headerCheckboxable]="true" [checkboxable]="true">
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{
-                      'PURCHASES-LIST-PAGE.COL-AFFILIATE.TEXT' | translate
-                    }}">
+                  <ngx-datatable-column name="Afiliado">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.affiliate }}
+                      {{ row.userName }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{
-                      'PURCHASES-LIST-PAGE.COL-NAME-AND-LASTNAME.TEXT'
-                        | translate
-                    }}">
+                  <ngx-datatable-column name="N# Factura">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.nameAndLastName }}
+                      {{ row.invoiceId }}
                     </ng-template>
                   </ngx-datatable-column>
-
-                  <ngx-datatable-column name="{{ 'PURCHASES-LIST-PAGE.COL-BILL.TEXT' | translate }}">
+                  <ngx-datatable-column name="Monto">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.noBill }}
+                      {{ row.baseAmount }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{ 'PURCHASES-LIST-PAGE.COL-DATE.TEXT' | translate }}">
+                  <ngx-datatable-column name="Modelo">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.date }}
-                    </ng-template>
-                  </ngx-datatable-column>
-                  <ngx-datatable-column name="{{
-                      'PURCHASES-LIST-PAGE.COL-BILL-STATE.TEXT' | translate
-                    }}" sortable="false">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                      <div *ngIf="row.billState == 'Activa'" class="badge-outline col-green">
-                        {{ row.billState }}
+                      <div class="col-red" *ngIf="row.paymentGroupId == 2">
+                        Modelo 2
                       </div>
-                      <div *ngIf="row.billState == 'Anulada'" class="badge-outline col-red">
-                        {{ row.billState }}
+                      <div class="col-blue" *ngIf="row.paymentGroupId == 7">
+                        Modelo 1A
                       </div>
-                      <div *ngIf="row.billState == 'Pending'" class="badge-outline col-indigo">
-                        {{ row.billState }}
+                      <div class="col-green" *ngIf="row.paymentGroupId == 8">
+                        Modelo 1B
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{ 'PURCHASES-LIST-PAGE.COL-PAID.TEXT' | translate }}">
+                  <ngx-datatable-column name="Fecha compra">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      <div *ngIf="row.paid == 'Pagada'" class="badge-outline col-green">
-                        {{ row.paid }}
-                      </div>
-                      <div *ngIf="row.paid == 'Anulada'" class="badge-outline col-red">
-                        {{ row.paid }}
-                      </div>
-                      <div *ngIf="row.paid == 'Pending'" class="badge-outline col-indigo">
-                        {{ row.paid }}
-                      </div>
+                      {{ row.createdAt }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{
-                      'PURCHASES-LIST-PAGE.COL-DETAILS.TEXT' | translate
-                    }}" sortable="false">
+                  <ngx-datatable-column name="Detalles" sortable="false">
                     <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                       <a class="msr-2 h-auto tblEditBtn">
-                        <i class="bi bi-pencil-square">{{
-                          'PURCHASES-LIST-PAGE.BTN-DETAILS.TEXT' | translate
-                          }}</i>
+                        <i class="bi bi-pencil-square">Acciones</i>
                       </a>
                     </ng-template>
                   </ngx-datatable-column>
@@ -146,3 +127,4 @@
     </div>
   </div>
 </section>
+<app-split-balances-modal></app-split-balances-modal>
