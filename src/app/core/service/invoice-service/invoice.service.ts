@@ -1,3 +1,4 @@
+import { ModelBalancesInvoices } from './../../models/invoice-model/model-balances-invoices';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -85,6 +86,16 @@ export class InvoiceService {
   getAllInvoicesForModelOneAndTwo() {
     return this.http
       .get<Response>(this.urlApi.concat('/invoice/GetAllInvoicesForModelOneAndTwo'), httpOptions)
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
+
+  processAndReturnBalancesForModels1A1B2(request: ModelBalancesInvoices) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/invoice/ProcessAndReturnBalancesForModels1A1B2'), request, httpOptions)
       .pipe(
         map((response) => {
           return response.data;

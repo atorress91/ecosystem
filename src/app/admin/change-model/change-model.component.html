@@ -57,18 +57,12 @@
                         </button>
                       </li>
                       <li class="nav-item m-2">
-                        <button type="button" class="btn btn-primary" (click)="clipBoardCopy()">
+                        <button type="button" class="btn btn-primary" (click)="copyTableData()">
                           <i class="bi bi-clipboard-check"></i>
                           Copiar
                         </button>
                       </li>
-                      <li class="nav-item m-2">
-                        <button type="button" class="btn btn-primary" (click)="onPrint()">
-                          <i class="bi bi-printer"></i>
-                          Imprimir
-                        </button>
-                      </li>
-                      <li class="nav-item m-2">
+                      <li class="nav-item m-2" (click)="generetedPdf()">
                         <button type="button" class="btn btn-primary">
                           <i class="bi bi-file-pdf-fill"></i>
                           PDF
@@ -77,10 +71,10 @@
                     </ul>
                   </div>
                 </div>
-                <ngx-datatable #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator"
+                <ngx-datatable id="table" #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator"
                   columnMode="force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"
-                  [selectionType]="'checkbox'" [limit]="12" [scrollbarH]="scrollBarHorizontal"
-                  [reorderable]="reorderable">
+                  [selectionType]="'checkbox'" (select)="onSelect($event)" [limit]="12"
+                  [scrollbarH]="scrollBarHorizontal" [reorderable]="reorderable">
                   <ngx-datatable-column [width]="70" [sortable]="false" [draggable]="false" [resizeable]="false"
                     [canAutoResize]="false" [headerCheckboxable]="true" [checkboxable]="true">
                   </ngx-datatable-column>
