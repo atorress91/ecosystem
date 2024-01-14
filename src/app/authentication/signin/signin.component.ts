@@ -80,12 +80,16 @@ export class SigninComponent implements OnInit {
   }
 
   loginSubmitted() {
-    this.loading = true;
     let signin = new Signin();
     this.submitted = true;
     this.error = '';
     signin.userName = this.authLogin.value.email;
     signin.password = this.authLogin.value.pwd;
+
+    if(signin.userName === '' || signin.password === ''){
+      return;
+    }
+    this.loading = true;
     this.authService.loginUser(signin).subscribe((response: Response) => {
       if (response.success) {
         if (response.data.is_affiliate) {
@@ -98,6 +102,7 @@ export class SigninComponent implements OnInit {
       }
       this.loading = false;
     });
+
   }
 
   showSuccess(message) {
