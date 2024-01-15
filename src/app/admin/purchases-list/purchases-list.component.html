@@ -29,23 +29,14 @@
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <i-feather
-                                name="search"
-                                style="color: #0b4423"
-                              ></i-feather>
+                              <i-feather name="search" class="default-color"></i-feather>
                             </div>
                           </div>
-                          <input
-                            style="background-color: white"
-                            type="text"
-                            class="form-control"
-                            id="inlineFormInputGroup"
-                            (keyup)="updateFilter($event)"
-                            aria-label="Search box"
+                          <input type="text" class="form-control search-background-color"
+                            id="inlineFormInputGroup" (keyup)="updateFilter($event)" aria-label="Search box"
                             placeholder="{{
                               'USERS-LIST-PAGE.USERS-SEARCH.TEXT' | translate
-                            }}"
-                          />
+                            }}" />
                         </div>
                       </div>
                     </div>
@@ -74,131 +65,75 @@
                     </ul>
                   </div>
                 </div>
-                <ngx-datatable
-                  #table
-                  class="material"
-                  [rows]="rows"
-                  [loadingIndicator]="loadingIndicator"
-                  columnMode="force"
-                  [headerHeight]="50"
-                  [footerHeight]="50"
-                  rowHeight="auto"
-                  [selectionType]="'checkbox'"
-                  [limit]="10"
-                  [scrollbarH]="scrollBarHorizontal"
-                  [reorderable]="reorderable"
-                >
-                  <ngx-datatable-column
-                    [width]="70"
-                    [sortable]="false"
-                    [draggable]="false"
-                    [resizeable]="false"
-                    [canAutoResize]="false"
-                    [headerCheckboxable]="true"
-                    [checkboxable]="true"
-                  >
+                <ngx-datatable #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator"
+                  columnMode="force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"
+                  [selectionType]="'checkbox'" [limit]="10" [scrollbarH]="scrollBarHorizontal"
+                  [reorderable]="reorderable">
+                  <ngx-datatable-column [width]="70" [sortable]="false" [draggable]="false" [resizeable]="false"
+                    [canAutoResize]="false" [headerCheckboxable]="true" [checkboxable]="true">
                   </ngx-datatable-column>
-                  <ngx-datatable-column
-                    name="{{
+                  <ngx-datatable-column name="{{
                       'PURCHASES-LIST-PAGE.COL-AFFILIATE.TEXT' | translate
-                    }}"
-                  >
+                    }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{ row.affiliate }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column
-                    name="{{
+                  <ngx-datatable-column name="{{
                       'PURCHASES-LIST-PAGE.COL-NAME-AND-LASTNAME.TEXT'
                         | translate
-                    }}"
-                  >
+                    }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{ row.nameAndLastName }}
                     </ng-template>
                   </ngx-datatable-column>
 
-                  <ngx-datatable-column
-                    name="{{ 'PURCHASES-LIST-PAGE.COL-BILL.TEXT' | translate }}"
-                  >
+                  <ngx-datatable-column name="{{ 'PURCHASES-LIST-PAGE.COL-BILL.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{ row.noBill }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column
-                    name="{{ 'PURCHASES-LIST-PAGE.COL-DATE.TEXT' | translate }}"
-                  >
+                  <ngx-datatable-column name="{{ 'PURCHASES-LIST-PAGE.COL-DATE.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{ row.date }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column
-                    name="{{
+                  <ngx-datatable-column name="{{
                       'PURCHASES-LIST-PAGE.COL-BILL-STATE.TEXT' | translate
-                    }}"
-                    sortable="false"
-                  >
+                    }}" sortable="false">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      <div
-                        *ngIf="row.billState == 'Activa'"
-                        class="badge-outline col-green"
-                      >
+                      <div *ngIf="row.billState == 'Activa'" class="badge-outline col-green">
                         {{ row.billState }}
                       </div>
-                      <div
-                        *ngIf="row.billState == 'Anulada'"
-                        class="badge-outline col-red"
-                      >
+                      <div *ngIf="row.billState == 'Anulada'" class="badge-outline col-red">
                         {{ row.billState }}
                       </div>
-                      <div
-                        *ngIf="row.billState == 'Pending'"
-                        class="badge-outline col-indigo"
-                      >
+                      <div *ngIf="row.billState == 'Pending'" class="badge-outline col-indigo">
                         {{ row.billState }}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column
-                    name="{{ 'PURCHASES-LIST-PAGE.COL-PAID.TEXT' | translate }}"
-                  >
+                  <ngx-datatable-column name="{{ 'PURCHASES-LIST-PAGE.COL-PAID.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      <div
-                        *ngIf="row.paid == 'Pagada'"
-                        class="badge-outline col-green"
-                      >
+                      <div *ngIf="row.paid == 'Pagada'" class="badge-outline col-green">
                         {{ row.paid }}
                       </div>
-                      <div
-                        *ngIf="row.paid == 'Anulada'"
-                        class="badge-outline col-red"
-                      >
+                      <div *ngIf="row.paid == 'Anulada'" class="badge-outline col-red">
                         {{ row.paid }}
                       </div>
-                      <div
-                        *ngIf="row.paid == 'Pending'"
-                        class="badge-outline col-indigo"
-                      >
+                      <div *ngIf="row.paid == 'Pending'" class="badge-outline col-indigo">
                         {{ row.paid }}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column
-                    name="{{
+                  <ngx-datatable-column name="{{
                       'PURCHASES-LIST-PAGE.COL-DETAILS.TEXT' | translate
-                    }}"
-                    sortable="false"
-                  >
-                    <ng-template
-                      let-value="value"
-                      let-row="row"
-                      let-rowIndex="rowIndex"
-                      ngx-datatable-cell-template
-                    >
+                    }}" sortable="false">
+                    <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                       <a class="msr-2 h-auto tblEditBtn">
                         <i class="bi bi-pencil-square">{{
                           'PURCHASES-LIST-PAGE.BTN-DETAILS.TEXT' | translate
-                        }}</i>
+                          }}</i>
                       </a>
                     </ng-template>
                   </ngx-datatable-column>

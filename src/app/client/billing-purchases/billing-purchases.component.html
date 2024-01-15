@@ -34,12 +34,11 @@
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <i-feather name="search" style="color: #96a2b4"></i-feather>
+                              <i-feather name="search" class="default-color"></i-feather>
                             </div>
                           </div>
-                          <input style="background-color: white" type="text" class="form-control"
-                            id="inlineFormInputGroup" (keyup)="updateFilter($event)" aria-label="Search box"
-                            placeholder="{{
+                          <input type="text" class="form-control search-background-color" id="inlineFormInputGroup"
+                            (keyup)="updateFilter($event)" aria-label="Search box" placeholder="{{
                                 'BILLING-PURCHASES-PAGE.SEARCH.TEXT' | translate
                               }}" />
                         </div>
@@ -132,17 +131,17 @@
                           )
                         ">
                             <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px">{{
+                            <span class="ms-2">{{
                               'BILLING-PURCHASES-PAGE.BTN-SEE-DETAILS.TEXT'
                               | translate
                               }}</span>
                           </a>
-<!--                          <a ngbDropdownItem id="btn-invoice"-->
-<!--                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation && isEligibleForCancellation(row)"-->
-<!--                            (click)="showConfirmationRequest(row)">-->
-<!--                            <i class="bi bi-folder-symlink-fill"></i>-->
-<!--                            <span style="margin-left: 10px">Solicitar anulación de factura</span>-->
-<!--                          </a>-->
+                          <!--                          <a ngbDropdownItem id="btn-invoice"-->
+                          <!--                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation && isEligibleForCancellation(row)"-->
+                          <!--                            (click)="showConfirmationRequest(row)">-->
+                          <!--                            <i class="bi bi-folder-symlink-fill"></i>-->
+                          <!--                            <span style="margin-left: 10px">Solicitar anulación de factura</span>-->
+                          <!--                          </a>-->
                         </div>
                       </div>
                     </ng-template>

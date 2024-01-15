@@ -695,15 +695,23 @@
       "TEXT": "Add to cart"
     },
     "SUBTITLE": {
-      "TEXT": "Model 2 Voluntary Savings"
+      "TEXT": "Model 2"
     }
   },
   "SAVINGS-PLANS-PAGE": {
     "TITLE": {
-      "TEXT": "Model 1 Company Savings"
+      "TEXT": "Model (1A)"
     },
     "SUBTITLE": {
-      "TEXT": "Model one company savings 5 to 6 years"
+      "TEXT": "Model (1A)"
+    }
+  },
+  "SAVINGS-PLANS-ONEB-PAGE": {
+    "TITLE": {
+      "TEXT": "Model (1B)"
+    },
+    "SUBTITLE": {
+      "TEXT": "Model (1B) "
     }
   },
   "CART-PAGE": {

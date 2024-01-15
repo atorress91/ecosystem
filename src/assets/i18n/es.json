@@ -698,15 +698,23 @@
       "TEXT": "Añadir al carrito"
     },
     "SUBTITLE": {
-      "TEXT": "Modelo 2 Ahorro Voluntario"
+      "TEXT": "Modelo 2"
     }
   },
   "SAVINGS-PLANS-PAGE": {
     "TITLE": {
-      "TEXT": "Modelo 1 Ahorro Empresa"
+      "TEXT": "Modelo (1A)"
     },
     "SUBTITLE": {
-      "TEXT": "Modelo uno Ahorro Empresa 5 a 6 años"
+      "TEXT": "Modelo (1A)"
+    }
+  },
+  "SAVINGS-PLANS-ONEB-PAGE": {
+    "TITLE": {
+      "TEXT": "Modelo (1B)"
+    },
+    "SUBTITLE": {
+      "TEXT": "Modelo (1B)"
     }
   },
   "CART-PAGE": {
