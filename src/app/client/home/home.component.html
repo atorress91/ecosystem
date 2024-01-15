@@ -16,10 +16,11 @@
           </div>
           <div class="card-body">
             <div id="chart1">
-              <apx-chart style="margin-top: -47px;" [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
-                [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
-                [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend"
-                [colors]="pieChartOptions.colors" class="apex-pie-center">
+              <apx-chart style="margin-top: -47px;" [series]="pieChartOptionsModel1A.series"
+                [chart]="pieChartOptionsModel1A.chart" [labels]="pieChartOptionsModel1A.labels"
+                [responsive]="pieChartOptionsModel1A.responsive" [dataLabels]="pieChartOptionsModel1A.dataLabels"
+                [legend]="pieChartOptionsModel1A.legend" [colors]="pieChartOptionsModel1A.colors"
+                class="apex-pie-center">
               </apx-chart>
             </div>
             <div class="table m-t-5">
@@ -35,7 +36,7 @@
                     <td class="col-blue">
                       <i class="fa fa-circle col-blue msr-2 "></i>Saldo balance
                     </td>
-                    <td class="col-blue">USD 0</td>
+                    <td class="col-blue">USD {{balanceInformationModel1A.availableBalance}}</td>
                   </tr>
                   <tr>
                     <td class="col-emerald">
@@ -71,10 +72,11 @@
           </div>
           <div class="card-body">
             <div id="chart1">
-              <apx-chart style="margin-top: -47px;" [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
-                [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
-                [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend"
-                [colors]="pieChartOptions.colors" class="apex-pie-center">
+              <apx-chart style="margin-top: -47px;" [series]="pieChartOptionsModel1B.series"
+                [chart]="pieChartOptionsModel1B.chart" [labels]="pieChartOptionsModel1B.labels"
+                [responsive]="pieChartOptionsModel1B.responsive" [dataLabels]="pieChartOptionsModel1B.dataLabels"
+                [legend]="pieChartOptionsModel1B.legend" [colors]="pieChartOptionsModel1B.colors"
+                class="apex-pie-center">
               </apx-chart>
             </div>
             <div class="table m-t-5">
@@ -90,7 +92,7 @@
                     <td class="col-blue">
                       <i class="fa fa-circle col-blue msr-2 "></i>Saldo balance
                     </td>
-                    <td class="col-blue">USD 0</td>
+                    <td class="col-blue">USD {{balanceInformationModel1B.availableBalance}}</td>
                   </tr>
                   <tr>
                     <td class="col-emerald">

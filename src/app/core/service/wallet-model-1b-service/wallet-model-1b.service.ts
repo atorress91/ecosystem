@@ -1,0 +1,36 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from '@environments/environment';
+
+import { Response } from '@app/core/models/response-model/response.model';
+import { map } from 'rxjs';
+const httpOptions = {
+
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.walletService.toString() }),
+};
+@Injectable({
+  providedIn: 'root'
+})
+export class WalletModel1BService {
+  private urlApi: string;
+
+  constructor(private router: Router, private http: HttpClient) {
+    this.urlApi = environment.apis.walletService;
+  }
+
+  getBalanceInformationByAffiliateId(id: number) {
+    return this.http
+      .get<Response>(
+        this.urlApi.concat(
+          '/walletModel1B/GetBalanceInformationByAffiliateId/',
+          id.toString()
+        ), httpOptions
+      )
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
+}
