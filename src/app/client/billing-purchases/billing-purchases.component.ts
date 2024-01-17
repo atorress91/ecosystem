@@ -98,6 +98,7 @@ export class BillingPurchasesComponent implements OnInit, OnDestroy {
       next: (invoices: Invoice[]) => {
         this.temp = [...invoices];
         this.rows = invoices;
+        console.log(this.rows);
         this.loadingIndicator = false;
       },
       error: (err) => {

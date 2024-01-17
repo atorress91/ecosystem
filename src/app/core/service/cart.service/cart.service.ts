@@ -49,18 +49,22 @@ export class CartService {
   }
 
   addtoCart(product: any) {
-    const isEcopool = product.paymentGroup === 2;
+    const modelTwo = product.paymentGroup === 2;
+    const modelOneA = product.paymentGroup === 7;
+    const modelOneB = product.paymentGroup === 8;
+    const otherModels = !(modelTwo || modelOneA || modelOneB);
 
     if (this.cartItemList.length > 0) {
-      const cartContainsEcopool = this.cartItemList.some(item => item.paymentGroup === 2);
+      const cartContainsModelTwo = this.cartItemList.some(item => item.paymentGroup === 2);
+      const cartContainsModelOneA = this.cartItemList.some(item => item.paymentGroup === 7);
+      const cartContainsModelOneB = this.cartItemList.some(item => item.paymentGroup === 8);
+      const cartContainsOtherModels = this.cartItemList.some(item => !(item.paymentGroup === 2 || item.paymentGroup === 7 || item.paymentGroup === 8));
 
-      if (isEcopool && !cartContainsEcopool) {
-        this.showError('No puedes mezclar ecopooles con otros productos en el carrito.');
-        return;
-      }
-
-      if (!isEcopool && cartContainsEcopool) {
-        this.showError('No puedes agregar otros productos cuando hay ecopooles en el carrito.');
+      if ((modelTwo && (cartContainsModelOneA || cartContainsModelOneB || cartContainsOtherModels)) ||
+        (modelOneA && (cartContainsModelTwo || cartContainsModelOneB || cartContainsOtherModels)) ||
+        (modelOneB && (cartContainsModelOneA || cartContainsModelTwo || cartContainsOtherModels)) ||
+        (otherModels && (cartContainsModelOneA || cartContainsModelTwo || cartContainsModelOneB))) {
+        this.showError('No puedes mezclar servicios de diferentes modelos en el carrito.');
         return;
       }
     }
@@ -71,7 +75,6 @@ export class CartService {
     this.productList.next(this.cartItemList);
     this.totalPrice.next(grandTotal);
   }
-
 
   getTotalPrice(): number {
     let grandTotal = 0;

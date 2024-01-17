@@ -90,6 +90,26 @@ export class WalletService {
       );
   }
 
+  payWithMyBalanceModel2(model: WalletRequest) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/wallet/payWithMyBalanceModel2'), model, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  payMembershipWithMyBalance(model: WalletRequest) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/wallet/payMembershipWithMyBalance'), model, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
   payWithMyBalanceAdmin(model: WalletRequest) {
     return this.http
       .post<Response>(this.urlApi.concat('/wallet/payWithMyBalanceAdmin'), model, httpOptions)
@@ -109,7 +129,6 @@ export class WalletService {
         })
       );
   }
-
 
   transferBalanceForMembership(model: TransferBalance) {
     return this.http

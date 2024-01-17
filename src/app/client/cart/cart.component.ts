@@ -19,6 +19,8 @@ import { ConfigurationService } from '@app/core/service/configuration-service/co
 import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
 import { PaymentTransaction } from '@app/core/models/payment-transaction-model/payment-transaction-request.model';
 import { PaymentTransactionService } from '@app/core/service/payment-transaction-service/payment-transaction.service';
+import { WalletModel1BService } from '@app/core/service/wallet-model-1b-service/wallet-model-1b.service';
+import { WalletModel1AService } from '@app/core/service/wallet-model-1a-service/wallet-model-1a.service';
 
 @Component({
   selector: 'app-cart',
@@ -42,6 +44,7 @@ export class CartComponent implements OnInit, OnDestroy {
   balancePaymentNotAvailable: boolean = false;
   reverseBalanceNotAvailable: boolean = false;
   excludedPaymentGroups = [2, 7, 8];
+  model: string = ''
 
   constructor(
     private cartService: CartService,
@@ -52,7 +55,9 @@ export class CartComponent implements OnInit, OnDestroy {
     private walletService: WalletService,
     private coinpayService: CoinpayService,
     private configurationService: ConfigurationService,
-    private paymentTransactionService: PaymentTransactionService
+    private paymentTransactionService: PaymentTransactionService,
+    private walletModel1AService: WalletModel1AService,
+    private walletModel1BService: WalletModel1BService
   ) { }
 
   ngOnInit(): void {
@@ -63,8 +68,9 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.getProducts()
       .subscribe(res => {
         this.products = res;
+        this.setValuesToPaid();
       })
-    this.setValuesToPaid();
+
     this.verificateUrl();
     this.checkExistenceOfAffiliateForReversePayment();
     this.loadWithdrawalConfiguration();
@@ -106,11 +112,28 @@ export class CartComponent implements OnInit, OnDestroy {
     let subTotal = 0;
     let grandTotal = 0;
 
+    if (this.products.length > 0) {
+      const firstProduct = this.products[0];
+      switch (firstProduct.paymentGroup) {
+        case 2:
+          this.model = '2';
+          break;
+        case 7:
+          this.model = '1A';
+          break;
+        case 8:
+          this.model = '1B';
+          break;
+        default:
+          break;
+      }
+    }
+
     this.products.forEach(item => {
       if (!this.excludedPaymentGroups.includes(item.paymentGroup)) {
         this.balancePaymentNotAvailable = true;
       }
-      if (item.paymentGroup != 2) {
+      if (!this.excludedPaymentGroups.includes(item.paymentGroup)) {
         this.reverseBalanceNotAvailable = true;
       }
       grandTotal += item.quantity * item.baseAmount;
@@ -123,8 +146,8 @@ export class CartComponent implements OnInit, OnDestroy {
     this.total = grandTotal;
   }
 
-  showBalanceConfirmation(option: number) {
-    Swal.fire({
+  showBalanceConfirmation(): Promise<boolean> {
+    return Swal.fire({
       title: '¿Está seguro que desea realizar el pago?',
       text: 'Esta acción no se puede deshacer.',
       icon: 'warning',
@@ -133,10 +156,13 @@ export class CartComponent implements OnInit, OnDestroy {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.handleBalancePayment(option);
+        return true;
+      } else {
+        return false;
       }
     }).catch(error => {
-
+      console.error("Error en showBalanceConfirmation:", error);
+      return false;
     });
   }
 
@@ -166,53 +192,44 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleBalancePayment(option: number) {
-    if (option === 1) {
-
-      this.checkExistenceOfAffiliateForReversePayment().then(userExists => {
-        if (userExists) {
-
-          option = 2;
-        }
-        this.processBalancePayment(option);
-      });
-    } else {
-      this.processBalancePayment(option);
+  handleBalancePayment() {
+    switch (this.model) {
+      case '2':
+        this.payWithMyBalanceModel2();
+        break;
+      case '1A':
+        this.payWithMyBalanceModel1A();
+        break;
+      case '1B':
+        this.payWithMyBalanceModel1B();
+        break;
+      default:
+        break;
     }
   }
 
-  processBalancePayment(option: number) {
+  createBalanceRequest(): WalletRequest {
     this.walletRequest.affiliateId = this.user.id;
     this.walletRequest.affiliateUserName = this.user.user_name;
-    this.walletRequest.paymentMethod = option;
+    this.walletRequest.paymentMethod = 1;
 
-    if (option === 2 && this.userReceivesPurchase) {
-      this.walletRequest.purchaseFor = this.userReceivesPurchase.id;
-    } else {
-      this.walletRequest.purchaseFor = 0;
-    }
-
-    let useAlternativePaymentMethod = false;
     this.products.forEach(item => {
       const productRequest = new ProductsRequests();
       productRequest.idProduct = item.id;
       productRequest.count = item.quantity;
       this.walletRequest.productsList.push(productRequest);
-
-      if (item.paymentGroup !== 2) {
-        useAlternativePaymentMethod = true;
-      }
     });
 
-    if (useAlternativePaymentMethod) {
-      this.payWithMyBalanceCourses(this.walletRequest)
-    } else {
-      this.payWithMyBalanceEcoPools(this.walletRequest);
-    }
+    return this.walletRequest;
   }
 
-  payWithMyBalanceEcoPools(walletRequest) {
-    this.walletService.payWithMyBalance(walletRequest).subscribe({
+  async payWithMyBalance() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletService.payWithMyBalance(this.createBalanceRequest()).subscribe({
       next: (value) => {
         if (value.success == true) {
           this.showSuccess('Pago realizado correctamente');
@@ -228,8 +245,13 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  payWithMyBalanceCourses(walletRequest) {
-    this.walletService.payWithMyBalanceCourses(walletRequest).subscribe({
+  async payWithMyBalanceModel2() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletService.payWithMyBalanceModel2(this.createBalanceRequest()).subscribe({
       next: (value) => {
         if (value.success == true) {
           this.showSuccess('Pago realizado correctamente');
@@ -413,6 +435,50 @@ export class CartComponent implements OnInit, OnDestroy {
           })
         }
       }
+    });
+  }
+
+  async payWithMyBalanceModel1A() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletModel1AService.payWithMyBalance(this.createBalanceRequest()).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (err) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      },
+    });
+  }
+
+  async payWithMyBalanceModel1B() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletModel1BService.payWithMyBalance(this.createBalanceRequest()).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (err) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      },
     });
   }
 }

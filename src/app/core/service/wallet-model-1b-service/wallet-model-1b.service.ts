@@ -5,6 +5,7 @@ import { environment } from '@environments/environment';
 
 import { Response } from '@app/core/models/response-model/response.model';
 import { map } from 'rxjs';
+import { WalletRequest } from '@app/core/models/wallet-model/wallet-request.model';
 const httpOptions = {
 
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.walletService.toString() }),
@@ -30,6 +31,16 @@ export class WalletModel1BService {
       .pipe(
         map((response) => {
           return response.data;
+        })
+      );
+  }
+
+  payWithMyBalance(model: WalletRequest) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/walletModel1B/payWithMyBalance1B'), model, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
         })
       );
   }
