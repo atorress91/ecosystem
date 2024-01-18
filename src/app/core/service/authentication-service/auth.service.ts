@@ -10,6 +10,8 @@ import { environment } from '@environments/environment';
 import { Response } from '@app/core/models/response-model/response.model';
 import { ToastrService } from 'ngx-toastr';
 
+import { CartService } from '../cart.service/cart.service';
+
 const httpOptions = {
 
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.accountService.toString() }),
@@ -25,7 +27,7 @@ export class AuthService {
   public currentUserAdmin: Observable<User>;
   private urlApi: string;
 
-  constructor(private http: HttpClient, private toastr: ToastrService) {
+  constructor(private http: HttpClient, private toastr: ToastrService, private cartService: CartService) {
     this.currentUserAffiliateSubject = new BehaviorSubject<UserAffiliate>(
       JSON.parse(localStorage.getItem('currentUserAffiliate'))
     );
@@ -89,6 +91,7 @@ export class AuthService {
   }
 
   logoutUser() {
+    this.cartService.removeAllCart();
     localStorage.removeItem('currentUserAdmin');
     localStorage.removeItem('currentUserAffiliate');
     this.currentUserAffiliateSubject.next(null);

@@ -16,10 +16,10 @@
           </div>
           <div class="card-body">
             <div id="chart1">
-              <apx-chart style="margin-top: -47px;" [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
-                [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
-                [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend"
-                [colors]="pieChartOptions.colors" class="apex-pie-center">
+              <apx-chart [series]="pieChartOptionsModel1A.series" [chart]="pieChartOptionsModel1A.chart"
+                [labels]="pieChartOptionsModel1A.labels" [responsive]="pieChartOptionsModel1A.responsive"
+                [dataLabels]="pieChartOptionsModel1A.dataLabels" [legend]="pieChartOptionsModel1A.legend"
+                [colors]="pieChartOptionsModel1A.colors" class="apex-pie-center">
               </apx-chart>
             </div>
             <div class="table m-t-5">
@@ -33,15 +33,15 @@
                   </tr>
                   <tr>
                     <td class="col-blue">
-                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo balance
+                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo de servicios
                     </td>
-                    <td class="col-blue">USD 0</td>
+                    <td class="col-blue">USD {{balanceInformationModel1A.availableBalance | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-emerald">
                       <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
                     </td>
-                    <td class="col-emerald">USD 0
+                    <td class="col-emerald">USD {{balanceInformationModel1A.totalCommissionsPaid | truncateDecimals:2}}
                     </td>
                   </tr>
                   <tr>
@@ -49,14 +49,14 @@
                       <i class="fa fa-circle col-green msr-2 col-green"></i>Total
                       Adquisiciones
                     </td>
-                    <td class="col-green">USD 0</td>
+                    <td class="col-green">USD {{balanceInformationModel1A.totalAcquisitions | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-purple">
-                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Saldo revertido
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Saldo balance
 
                     </td>
-                    <td class="col-purple">USD 0</td>
+                    <td class="col-purple">USD {{balanceInformationModel1A.reverseBalance | truncateDecimals:2}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -71,10 +71,10 @@
           </div>
           <div class="card-body">
             <div id="chart1">
-              <apx-chart style="margin-top: -47px;" [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
-                [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
-                [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend"
-                [colors]="pieChartOptions.colors" class="apex-pie-center">
+              <apx-chart [series]="pieChartOptionsModel1B.series" [chart]="pieChartOptionsModel1B.chart"
+                [labels]="pieChartOptionsModel1B.labels" [responsive]="pieChartOptionsModel1B.responsive"
+                [dataLabels]="pieChartOptionsModel1B.dataLabels" [legend]="pieChartOptionsModel1B.legend"
+                [colors]="pieChartOptionsModel1B.colors" class="apex-pie-center">
               </apx-chart>
             </div>
             <div class="table m-t-5">
@@ -88,15 +88,15 @@
                   </tr>
                   <tr>
                     <td class="col-blue">
-                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo balance
+                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo de servicios
                     </td>
-                    <td class="col-blue">USD 0</td>
+                    <td class="col-blue">USD {{balanceInformationModel1B.availableBalance | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-emerald">
                       <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
                     </td>
-                    <td class="col-emerald">USD 0
+                    <td class="col-emerald">USD {{balanceInformationModel1B.totalCommissionsPaid | truncateDecimals:2}}
                     </td>
                   </tr>
                   <tr>
@@ -104,14 +104,14 @@
                       <i class="fa fa-circle col-green msr-2 col-green"></i>Total
                       Adquisiciones
                     </td>
-                    <td class="col-green">USD 0</td>
+                    <td class="col-green">USD {{balanceInformationModel1B.totalAcquisitions | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-purple">
-                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Saldo revertido
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Saldo balance
 
                     </td>
-                    <td class="col-purple">USD 0</td>
+                    <td class="col-purple">USD {{balanceInformationModel1B.reverseBalance | truncateDecimals:2}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -126,7 +126,7 @@
           </div>
           <div class="card-body">
             <div id="chart1">
-              <apx-chart style="margin-top: -47px;" [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
+              <apx-chart [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
                 [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
                 [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend"
                 [colors]="pieChartOptions.colors" class="apex-pie-center">
@@ -137,7 +137,7 @@
                 <tbody>
                   <tr>
                     <td class="col-red">
-                      <i class="fa fa-circle col-red msr-2"></i> Saldo Modelo (1A), (1B) y (2).
+                      <i class="fa fa-circle col-red msr-2"></i> Por Cobrar
                     </td>
                     <td class="col-red">USD {{withdrawalBalance ?? 0}}</td>
                   </tr>
@@ -164,7 +164,7 @@
                   </tr>
                   <tr>
                     <td class="col-purple">
-                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Saldo revertido
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Saldo balance
 
                     </td>
                     <td class="col-purple">USD {{balanceInformation.reverseBalance ?? 0}}</td>
