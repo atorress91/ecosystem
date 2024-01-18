@@ -134,7 +134,7 @@ export class MembershipManagerComponent implements OnInit, OnDestroy {
     walletRequest.paymentMethod = 3;
     walletRequest.productsList.push(productRequest);
 
-    this.walletService.payWithMyBalance(walletRequest).subscribe({
+    this.walletService.payMembershipWithMyBalance(walletRequest).subscribe({
       next: (value) => {
         this.showSuccess('Pago realizado correctamente')
         this.modalService.dismissAll();
