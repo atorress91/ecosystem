@@ -148,12 +148,16 @@ export class CartComponent implements OnInit, OnDestroy {
 
   showBalanceConfirmation(): Promise<boolean> {
     return Swal.fire({
-      title: '¿Está seguro que desea realizar el pago?',
+      title: '¿Al realizar la compra estás aceptando los términos y condiciones, está seguro que desea realizar el pago?',
       text: 'Esta acción no se puede deshacer.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Sí',
+      confirmButtonText: 'Sí, quiero realizar el pago',
       cancelButtonText: 'No',
+      html: `Por favor, asegúrese de haber leído y aceptado los <a href="https://ecosystemfx.com/wp-content/uploads/2023/09/ECOSYSTEM-1.pdf" target="_blank">términos y condiciones</a>.`,
+      preConfirm: () => {
+
+      }
     }).then((result) => {
       if (result.isConfirmed) {
         return true;
