@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {
   ApexAxisChartSeries,
@@ -15,6 +15,7 @@ import {
   ApexFill,
   ApexPlotOptions,
   ApexResponsive,
+  ChartComponent,
 } from 'ng-apexcharts';
 
 import * as am4core from '@amcharts/amcharts4/core';
@@ -23,6 +24,8 @@ import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts4/themes/Animated";
 import { EChartsOption } from 'echarts';
 import { WalletService } from '@app/core/service/wallet-service/wallet.service';
+import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 am4core.useTheme(am5themes_Animated);
@@ -56,66 +59,39 @@ export class HomeAdminComponent implements OnInit {
   commissionsPaid: number;
   walletProfit: number;
   calculatedCommissions: number;
+  totalReverseBalance: number;
+  maps: any[] = [];
+  @ViewChild('chart') chart1: ChartComponent;
 
-  constructor(private walletService: WalletService) {
-    this.pieChartOptions = {
-      series: [],
-      chart: {},
-      labels: [],
-      responsive: [],
-      dataLabels: {},
-      legend: {},
-    };
+  constructor(private walletService: WalletService, private affiliateService: AffiliateService, private toastr: ToastrService,) {
+    this.pieChartOptions = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
+    this.getBalanceInformationAdmin();
   }
 
   ngOnInit() {
     this.initChartReport();
-    this.getBalanceInformationAdmin();
+    this.loadLocations();
   }
 
-  ngAfterViewInit() {
-    this.chart = am4core.create("chartdiv", am4maps.MapChart);
-    this.chart.geodata = am4geodata_worldLow;
-    this.chart.projection = new am4maps.projections.Miller();
-
-    let polygonSeries = this.chart.series.push(new am4maps.MapPolygonSeries());
-    polygonSeries.exclude = ["AQ"];
-    polygonSeries.useGeodata = true;
-
-    const imageSeries = this.chart.series.push(new am4maps.MapImageSeries());
-    const imageSeriesTemplate = imageSeries.mapImages.template;
-    const circle = imageSeriesTemplate.createChild(am4core.Circle);
-
-    circle.radius = 8;
-    circle.fill = am4core.color('#FFFFFF');
-    circle.stroke = am4core.color('#B27799');
-    circle.strokeWidth = 1;
-    circle.nonScaling = true;
-    circle.tooltipText = '{title}: {value}';
-
-    imageSeriesTemplate.propertyFields.latitude = 'lat';
-    imageSeriesTemplate.propertyFields.longitude = 'lng';
-
-    for (const pin of pins) {
-      imageSeries.addData(pin);
-    }
-
-    let polygonTemplate = polygonSeries.mapPolygons.template;
-    polygonTemplate.tooltipText = "{name}";
-    polygonTemplate.fill = am4core.color('#96a2b4');
-    let hs = polygonTemplate.states.create('hover');
-    hs.properties.fill = am4core.color("#74X999");
+  showSuccess(message) {
+    this.toastr.success(message);
   }
 
+  showError(message) {
+    this.toastr.error(message);
+  }
 
   private initChartReport3() {
     this.pieChartOptions = {
       series: [
+        Number(this.walletProfit),
         Number(this.totalMembers),
         Number(this.calculatedCommissions),
         Number(this.commissionsPaid),
-        Number(this.walletProfit),
+
+        Number(this.totalReverseBalance),
       ],
+      colors: ['#f44336', '#2196f3', '#96a2b4', '#4caf50', '#9c27b0'],
       chart: {
         type: 'donut',
         width: 200,
@@ -127,10 +103,11 @@ export class HomeAdminComponent implements OnInit {
         enabled: false,
       },
       labels: [
-        'Saldo Disponible',
-        'Total adquisiciones',
+        'Beneficio en billetera',
+        'Total afiliados',
+        'Total comisiones calculadas',
         'Total Pagado',
-        'Por Cobrar',
+        'Saldo Modelo 2'
       ],
       responsive: [
         {
@@ -330,29 +307,66 @@ export class HomeAdminComponent implements OnInit {
         this.calculatedCommissions = value.data.calculatedCommissions;
         this.commissionsPaid = value.data.commissionsPaid;
         this.walletProfit = value.data.walletProfit;
-        console.log(this.walletProfit);
+        this.totalReverseBalance = value.data.totalReverseBalance;
+        this.initChartReport3();
       },
       error: (err) => {
         console.log(err);
       },
     })
   }
+
+  setMapInfo() {
+    this.chart = am4core.create('chartdiv', am4maps.MapChart);
+    this.chart.geodata = am4geodata_worldLow;
+    this.chart.projection = new am4maps.projections.Miller();
+
+    let polygonSeries = this.chart.series.push(new am4maps.MapPolygonSeries());
+    polygonSeries.exclude = ['AQ'];
+    polygonSeries.useGeodata = true;
+
+    const imageSeries = this.chart.series.push(new am4maps.MapImageSeries());
+    const imageSeriesTemplate = imageSeries.mapImages.template;
+    const circle = imageSeriesTemplate.createChild(am4core.Circle);
+
+    circle.radius = 14;
+    circle.fill = am4core.color('#765cbf');
+    circle.stroke = am4core.color('#B27799');
+    circle.strokeWidth = 1;
+    circle.nonScaling = true;
+
+    circle.tooltipText = '[bold]{title}[/]\nCantidad: {value}';
+
+    imageSeriesTemplate.propertyFields.latitude = 'lat';
+    imageSeriesTemplate.propertyFields.longitude = 'lng';
+
+    const centerLabel = imageSeriesTemplate.createChild(am4core.Label);
+    centerLabel.text = '{value}';
+    centerLabel.horizontalCenter = 'middle';
+    centerLabel.verticalCenter = 'middle';
+    centerLabel.fill = am4core.color('#55555');
+    centerLabel.nonScaling = true;
+
+    const data = this.maps.map(item => item);
+    imageSeries.addData(data);
+
+    let polygonTemplate = polygonSeries.mapPolygons.template;
+    polygonTemplate.tooltipText = '{name}';
+    polygonTemplate.fill = am4core.color('#96a2b4');
+    let hs = polygonTemplate.states.create('hover');
+    hs.properties.fill = am4core.color('#74X999');
+  }
+
+  loadLocations() {
+    this.affiliateService.getTotalAffiliatesByCountries().subscribe({
+      next: (value) => {
+        this.maps = value.data;
+        this.setMapInfo();
+      },
+      error: (err) => {
+        this.showError("Error");
+      },
+    })
+  }
 }
 
-
-const pins = [{
-  "title": "Costa Rica",
-  "lat": 9.9369951,
-  "lng": -84.0510292,
-  "value": 10
-}, {
-  "title": "Salvador",
-  "lat": 13.68935,
-  "lng": -89.18718,
-  "value": 20
-}, {
-  "title": "Peru",
-  "lat": -9.3,
-  "lng": -75.78,
-  "value": 40
-}];

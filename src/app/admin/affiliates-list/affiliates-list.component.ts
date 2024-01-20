@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { WalletService } from '@app/core/service/wallet-service/wallet.service';
 import { CreditTransactionAdminRequest } from '@app/core/models/wallet-model/creditTransactionAdminRequest.mode';
+import { BalanceInformationModalComponent } from './balance-information-modal/balance-information-modal.component';
 
 const header = [
   'Usuario',
@@ -35,7 +36,7 @@ export class AffiliatesListComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   scrollBarHorizontal = window.innerWidth < 1200;
-
+  @ViewChild(BalanceInformationModalComponent) private balanceInformationModalComponent: BalanceInformationModalComponent;
   @ViewChild('table') table: DatatableComponent;
 
   constructor(
@@ -193,5 +194,11 @@ export class AffiliatesListComponent implements OnInit {
         this.showError('Error');
       },
     })
+  }
+
+  openBalanceInformationModal(userAffiliate: UserAffiliate) {
+    if (this.balanceInformationModalComponent) {
+      this.balanceInformationModalComponent.initModal(userAffiliate);
+    }
   }
 }
