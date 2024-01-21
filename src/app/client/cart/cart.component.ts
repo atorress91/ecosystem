@@ -154,7 +154,7 @@ export class CartComponent implements OnInit, OnDestroy {
       showCancelButton: true,
       confirmButtonText: 'Sí, quiero realizar el pago',
       cancelButtonText: 'No',
-      html: `Por favor, asegúrese de haber leído y aceptado los <a href="https://ecosystemfx.com/wp-content/uploads/2023/09/ECOSYSTEM-1.pdf" target="_blank">términos y condiciones</a>.`,
+      html: `Por favor, asegúrese de haber leído y aceptado los <a href="https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf" target="_blank">términos y condiciones</a>.`,
       preConfirm: () => {
 
       }
