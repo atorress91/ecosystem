@@ -1,5 +1,5 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 
 import { InvoiceModelOneTwo } from '@app/core/models/invoice-model/invoice-model-one-two';
 import { InvoiceService } from '@app/core/service/invoice-service/invoice.service';
@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class SplitBalancesModalComponent implements OnInit {
   @ViewChild('splitBalancesModal') splitBalancesModal: TemplateRef<any>;
+  @Output() reloadRequested = new EventEmitter<void>();
   selectedInvoices: InvoiceModelOneTwo[] = [];
   totalInvoices: number = 0;
   model1aAmount: number = 0;
@@ -92,6 +93,9 @@ export class SplitBalancesModalComponent implements OnInit {
           html: htmlContent,
           icon: 'success'
         });
+
+        this.reloadRequested.emit();
+        this.modalService.dismissAll();
       },
       error: (error) => {
         Swal.fire({

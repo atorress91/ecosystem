@@ -257,7 +257,7 @@ export class HomeComponent {
         'Saldo Disponible',
         'Total Pagado',
         'Total Adquisiciones',
-        'Saldo revertido'
+        'Saldo balance'
       ],
       responsive: [
         {
@@ -306,7 +306,7 @@ export class HomeComponent {
         'Saldo Disponible',
         'Total Pagado',
         'Total Adquisiciones',
-        'Saldo revertido'
+        'Saldo balance'
       ],
       responsive: [
         {
@@ -355,7 +355,7 @@ export class HomeComponent {
         'Saldo Disponible',
         'Total Pagado',
         'Total Adquisiciones',
-        'Saldo revertido'
+        'Saldo balance'
       ],
       responsive: [
         {

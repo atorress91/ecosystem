@@ -225,37 +225,39 @@ export class EditUserComponent implements OnInit, OnDestroy {
       this.files.push(...files);
 
       if (this.files.length == 2) {
-        this.faceApiService.verifyImagesWithSsdMobilenetv1(this.files)
-          .then(result => {
-            const canvasSelfieURL = result.canvasSelfie.toDataURL();
-            const canvasIdDocumentURL = result.canvasIdDocument.toDataURL();
+        // this.faceApiService.verifyImagesWithSsdMobilenetv1(this.files)
+        //   .then(result => {
+        //     const canvasSelfieURL = result.canvasSelfie.toDataURL();
+        //     const canvasIdDocumentURL = result.canvasIdDocument.toDataURL();
 
-            const title = result.matched ? '¡Éxito! Las imágenes coinciden.' : 'Error: Las imágenes no coinciden.';
+        //     const title = result.matched ? '¡Éxito! Las imágenes coinciden.' : 'Error: Las imágenes no coinciden.';
 
-            Swal.fire({
-              title: title,
-              html: `
-                <div style="display: flex; justify-content: space-between;">
-                  <img src="${canvasSelfieURL}" alt="Selfie" style="max-width: 45%; margin-right: 5%;" />
-                  <img src="${canvasIdDocumentURL}" alt="ID Document" style="max-width: 45%;" />
-                </div>
-                <div style="margin-top: 20px;">
-                  Distancia Euclidiana: ${result.distance.toFixed(2)} <br>
-                  Confianza mínima (minConfidence): 0.5
-                </div>
-              `,
-              icon: result.matched ? 'success' : 'error'
-            });
+        //     Swal.fire({
+        //       title: title,
+        //       html: `
+        //         <div style="display: flex; justify-content: space-between;">
+        //           <img src="${canvasSelfieURL}" alt="Selfie" style="max-width: 45%; margin-right: 5%;" />
+        //           <img src="${canvasIdDocumentURL}" alt="ID Document" style="max-width: 45%;" />
+        //         </div>
+        //         <div style="margin-top: 20px;">
+        //           Distancia Euclidiana: ${result.distance.toFixed(2)} <br>
+        //           Confianza mínima (minConfidence): 0.5
+        //         </div>
+        //       `,
+        //       icon: result.matched ? 'success' : 'error'
+        //     });
 
-            if (result.matched) {
-              this.updateCardIdAuthorization(1);
-              this.user.card_id_authorization = true;
-              this.authService.setUserAffiliateValue(this.user);
-            } else {
-              this.updateCardIdAuthorization(0);
-            }
-          });
+        // if (result.matched) {
+        this.updateCardIdAuthorization(1);
+        this.user.card_id_authorization = true;
+        this.authService.setUserAffiliateValue(this.user);
+      } else {
+        // this.updateCardIdAuthorization(1);
+        // this.user.card_id_authorization = true;
+        // this.authService.setUserAffiliateValue(this.user);
       }
+      // });
+
     } else {
       this.showError('Error: demasiados archivos seleccionados.');
       this.updateCardIdAuthorization(0);
