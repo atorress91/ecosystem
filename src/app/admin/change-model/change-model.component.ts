@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './change-model.component.html',
   styleUrls: ['./change-model.component.css']
 })
-export class ChangeModelComponent implements OnInit {
+export class ChangeModelComponent implements OnInit, AfterViewInit {
   rows = [];
   temp = [];
   loadingIndicator = true;
@@ -30,6 +30,12 @@ export class ChangeModelComponent implements OnInit {
   ngOnInit() {
     this.loadAllInvoicesForModelOneAndTwo();
     this.loadingIndicator = false;
+  }
+
+  ngAfterViewInit(): void {
+    this.splitBalanceModalComponent.reloadRequested.subscribe(() => {
+      this.loadAllInvoicesForModelOneAndTwo();
+    });
   }
 
   openModal() {
