@@ -12,8 +12,8 @@ export class TicketHubService {
 
   public async startConnection(): Promise<void> {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5200/ticketHub')
-      .build();
+    .withUrl('http://localhost:5200/ticketHub')
+    .build();
 
     try {
       await this.hubConnection.start();

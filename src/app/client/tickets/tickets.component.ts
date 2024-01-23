@@ -1,28 +1,25 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import { ChatBotService } from '@app/core/service/chat-service/chat-bot.service';
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { TicketService } from '@app/core/service/ticket-service/ticket.service';
-import { Tick } from '@amcharts/amcharts4/.internal/charts/elements/Tick';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
-import { TicketCategories } from '@app/core/models/ticket-categories-model/ticket-categories.model';
 import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
+import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-modal.component';
 
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html'
 })
-export class TicketsComponent implements OnInit {
+export class TicketsComponent implements OnInit, AfterViewInit {
   user: UserAffiliate = new UserAffiliate();
   public messages: Array<any> = [];
   currentTime: Date = new Date();
   tickets = [];
   categories = [];
+  @ViewChild(CreateTicketModalComponent) private createTicketModal: CreateTicketModalComponent;
   @ViewChild('messageInput') messageInputRef: ElementRef;
 
   constructor(
-    private chatBotService: ChatBotService,
     private authService: AuthService,
     private ticketService: TicketService,
     private ticketCategoryService: TicketCategoriesService
@@ -32,6 +29,12 @@ export class TicketsComponent implements OnInit {
     this.user = this.authService.currentUserAffiliateValue;
     this.loadTickets();
     this.loadTicketCategories();
+  }
+
+  ngAfterViewInit(): void {
+    this.createTicketModal.reloadRequested.subscribe(() => {
+      this.loadTickets();
+    });
   }
 
   loadTickets() {
@@ -58,6 +61,10 @@ export class TicketsComponent implements OnInit {
     })
   }
 
+  openCreateTicketModal() {
+    this.createTicketModal.openModal();
+  }
+
   getCategoryName(categoryId: number): string {
     const category = this.categories.find(cat => cat.id === categoryId);
     return category ? category.categoryName : 'Categoría no encontrada';
@@ -65,20 +72,5 @@ export class TicketsComponent implements OnInit {
 
   updateCurrentTime(): void {
     this.currentTime = new Date();
-  }
-
-  sendMessage(messageContent: string): void {
-    this.updateCurrentTime();
-    this.messages.push({ content: messageContent, isUser: true, time: this.currentTime });
-
-    this.chatBotService.getDataFromOpenAI(messageContent).subscribe(response => {
-      this.updateCurrentTime();
-      this.messages.push({ content: response, isUser: false, time: this.currentTime });
-    });
-    this.messageInputRef.nativeElement.value = '';
-  }
-
-  swipeTicket(ticket: Ticket) {
-    this.ticketService.setTicket(ticket);
   }
 }

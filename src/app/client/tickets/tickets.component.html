@@ -29,7 +29,7 @@
                         <div class="mail-option">
                           <div class="email-btn-group m-l-15">
                             <button type="button" class="btn btn-danger waves-effect m-r-20"
-                              (click)="modalChildCreate.openModal(modalChildCreate['createTicketModal'])">Crear
+                              (click)="openCreateTicketModal()">Crear
                               Ticket</button>
                             <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="back"
                               data-toggle="tooltip">
@@ -116,4 +116,4 @@
     </div>
   </div>
 </section>
-<app-create-ticket-modal #modalChildCreate></app-create-ticket-modal>
+<app-create-ticket-modal></app-create-ticket-modal>

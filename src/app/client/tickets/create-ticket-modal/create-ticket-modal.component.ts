@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
@@ -19,12 +19,13 @@ export class CreateTicketModalComponent implements OnInit {
   createTicketForm: FormGroup;
   submitted: boolean = false;
   categories: TicketCategories[] = [];
-  @ViewChild('createTicketModal') createTicketModal: NgbModal
   files: File[] = [];
   ticket: Ticket = new Ticket();
   user: UserAffiliate = new UserAffiliate();
   fileRef: any;
   uploadTask: any;
+  @Output() reloadRequested = new EventEmitter<void>();
+  @ViewChild('createTicketModal') createTicketModal: TemplateRef<any>;
 
   constructor(private modalService: NgbModal,
     private ticketCategoriesService: TicketCategoriesService,
@@ -67,12 +68,8 @@ export class CreateTicketModalComponent implements OnInit {
     })
   }
 
-  openModal(content) {
-    this.modalService.open(content, {
-      ariaLabelledBy: 'modal-basic-title',
-      size: 'lg',
-      centered: true,
-    });
+  openModal() {
+    this.modalService.open(this.createTicketModal, { size: 'lg', centered: true });
   }
 
   createTicket(): void {
@@ -102,7 +99,6 @@ export class CreateTicketModalComponent implements OnInit {
     const filePath = 'tickets/' + `${this.user.user_name}/` + `${this.user.id}`;
     this.fileRef = ref(this.storage, filePath);
   }
-
 
   private startTicketImageUpload(): void {
     this.uploadTask = uploadBytesResumable(this.fileRef, this.files[0]);
@@ -134,6 +130,8 @@ export class CreateTicketModalComponent implements OnInit {
     this.ticketService.createTicket(this.ticket).subscribe({
       next: (value) => {
         this.toast.success('Ticket creado correctamente!.');
+        this.reloadRequested.emit();
+        this.modalService.dismissAll();
       },
       error: (err) => {
         this.toast.error('Error al crear el ticket.');
