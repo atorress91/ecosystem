@@ -30,15 +30,16 @@
           </div>
           <div class="chat-box">
             <div class="card-body chat-content" style="position: relative; max-height: 400px;" [perfectScrollbar]>
-              <div class="chat-item chat-left"><img
-                  [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
+              <div *ngFor="let message of messages" class="chat-item chat-left">
+                <img [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
                   alt="avatar">
                 <div class="chat-details">
-                  <div class="chat-text">Hi, How R U?!</div>
-                  <div class="chat-time">09:51</div>
+                  <div class="chat-text">{{message.content}}</div>
+                  <div class="chat-time">{{message.time | date: 'shortTime'}}</div>
                 </div>
               </div>
             </div>
+
             <div class="card-footer chat-form">
               <form id="chat-form">
                 <input [(ngModel)]="newMessage" name="message" type="text" class="form-control"

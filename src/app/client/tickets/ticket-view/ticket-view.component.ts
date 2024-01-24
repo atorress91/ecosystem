@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
 
 import { Ticket } from '@app/core/models/ticket-model/ticket.model';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
@@ -17,13 +18,12 @@ export class TicketViewComponent {
   user: UserAffiliate;
   newMessage: string;
   ticket: Ticket = new Ticket();
-  messages: { sender: string, content: string, time: Date }[] = [];
+  ticketMessage: TicketMessageRequest = new TicketMessageRequest();
+  messages: any = [];
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private ticketHubService: TicketHubService, private ticketService: TicketService) {
-    this.ticketService.getTicket().subscribe(ticket => {
-      this.ticket = ticket;
-      console.log(this.ticket);
-    });
+    this.route.params.subscribe((params) => { this.ticketId = params.id; });
+    console.log(this.ticketId);
   }
 
   ngOnInit(): void {
@@ -32,6 +32,16 @@ export class TicketViewComponent {
     this.ticketHubService.startConnection().then(() => {
       this.ticketHubService.joinRoom(this.ticketId);
     });
+
+    this.ticketHubService.messageReceived.subscribe((message) => {
+      this.messages.push(message);
+    });
+
+    this.ticketHubService.previousMessagesReceived.subscribe((previousMessages) => {
+      console.log(previousMessages);
+      this.messages = [...previousMessages, ...this.messages];
+    });
+
   }
 
   ngOnDestroy(): void {
@@ -40,8 +50,13 @@ export class TicketViewComponent {
 
   sendMessage(): void {
     if (this.newMessage.trim()) {
-      this.ticketHubService.sendMessage(this.ticketId, this.user.name, this.newMessage);
-      this.newMessage = ''; // Reset the message input
+      this.ticketMessage.ticketId = this.ticketId;
+      this.ticketMessage.userId = this.user.id;
+      this.ticketMessage.messageContent = this.newMessage;
+
+      this.ticketHubService.sendMessage(this.ticketMessage);
+      this.messages.push({ user: this.user.name, content: this.newMessage });
+      this.newMessage = '';
     }
   }
 }

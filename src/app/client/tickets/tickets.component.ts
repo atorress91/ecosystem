@@ -53,7 +53,6 @@ export class TicketsComponent implements OnInit, AfterViewInit {
     this.ticketCategoryService.getAll().subscribe({
       next: (value) => {
         this.categories = value;
-        console.log(this.categories);
       },
       error: (err) => {
         console.log(err);
