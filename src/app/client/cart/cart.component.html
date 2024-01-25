@@ -152,8 +152,9 @@
             <button (click)="handleBalancePayment()" class="btn btn-primary btn-icon icon-left m-2"
               *ngIf="withdrawalConfiguration.activate_invoice_cancellation && !reverseBalanceNotAvailable"><i
                 class="fas fa-credit-card"></i> Pago con balance modelo {{model}}</button>
-            <button routerLink="/app/billing-purchase" class="btn btn-primary btn-icon icon-left m-2"><i
-                class="bi bi-cart-plus"></i> {{ 'CART-PAGE.BTN-SHOP-MORE.TEXT' | translate }}</button>
+            <button (click)="handleBuyMore()" class="btn btn-primary btn-icon icon-left m-2"><i
+                class="bi bi-cart-plus"></i> {{
+              'CART-PAGE.BTN-SHOP-MORE.TEXT' | translate }}</button>
             <button (click)="emptycart()" class="btn btn-danger btn-icon icon-left m-2"><i class="fas fa-times"></i>
               {{ 'CART-PAGE.BTN-EMPTY-CART.TEXT' | translate }}</button>
           </div>
