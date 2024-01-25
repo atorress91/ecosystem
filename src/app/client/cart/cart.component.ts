@@ -90,7 +90,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   verificateUrl() {
     if (this.products.length === 0) {
-      this.router.navigate(['app/billing-purchase']);
+      this.router.navigate(['app/home']);
     }
   }
 
@@ -484,5 +484,22 @@ export class CartComponent implements OnInit, OnDestroy {
         this.showError('Error: No se pudo realizar el pago.');
       },
     });
+  }
+
+  handleBuyMore() {
+    switch (this.model) {
+      case '2':
+        this.router.navigate(['app/billing-purchase']);
+        break;
+      case '1A':
+        this.router.navigate(['app/savings-plans']);
+        break;
+      case '1B':
+        this.router.navigate(['app/savings-plans-one-b']);
+        break;
+      default:
+        this.router.navigate(['app/educational-courses']);
+        break;
+    }
   }
 }
