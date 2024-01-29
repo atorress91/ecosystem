@@ -5,6 +5,7 @@ import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affili
 import { TicketService } from '@app/core/service/ticket-service/ticket.service';
 import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
 import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tickets',
@@ -22,22 +23,23 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   constructor(
     private authService: AuthService,
     private ticketService: TicketService,
-    private ticketCategoryService: TicketCategoriesService
+    private ticketCategoryService: TicketCategoriesService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.user = this.authService.currentUserAffiliateValue;
-    this.loadTickets();
+    this.loadAllTickets();
     this.loadTicketCategories();
   }
 
   ngAfterViewInit(): void {
     this.createTicketModal.reloadRequested.subscribe(() => {
-      this.loadTickets();
+      this.loadAllTickets();
     });
   }
 
-  loadTickets() {
+  loadAllTickets() {
     this.ticketService.getAllTicketsByAffiliateId(this.user.id).subscribe({
       next: (value) => {
         this.tickets = value;
@@ -72,4 +74,11 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   updateCurrentTime(): void {
     this.currentTime = new Date();
   }
+
+  openTicketDetails(ticket) {
+    this.router.navigate(['/app/tickets', ticket.id], {
+      state: { ticket: ticket }
+    });
+  }
+
 }

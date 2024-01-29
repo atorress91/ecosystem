@@ -9,12 +9,12 @@ import { Subject } from 'rxjs';
 export class TicketHubService {
   private hubConnection: signalR.HubConnection;
   public messageReceived = new Subject<{ user: string, content: string }>();
-  public previousMessagesReceived = new Subject<Array<{ user: string, content: string }>>();
   connectionError: any;
 
   public async startConnection(): Promise<void> {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl('http://localhost:5200/ticketHub')
+      .withAutomaticReconnect()
       .build();
 
     try {
@@ -29,20 +29,23 @@ export class TicketHubService {
 
   private addMessageListener(): void {
     this.hubConnection.on('ReceiveMessage', (user, content) => {
-        this.messageReceived.next({ user, content });
+      this.messageReceived.next({ user, content });
     });
 
-    this.hubConnection.on('ReceivePreviousMessages', (messages) => {
-        this.previousMessagesReceived.next(messages);
-    });
-}
+  }
 
-  public joinRoom(ticketId: number): void {
-    this.hubConnection.invoke('JoinTicketRoom', ticketId)
-      .catch(error => {
-        console.error(`Error al unirse a la sala: ${error}`);
-        this.connectionError.next(`Error al unirse a la sala: ${error}`);
-      });
+  public async joinRoom(ticketId: number): Promise<boolean> {
+    try {
+      await this.hubConnection.invoke('JoinTicketRoom', ticketId);
+      console.log(`Unido exitosamente a la sala con ticketId: ${ticketId}`);
+
+      return true;
+    } catch (error) {
+      console.error(`Error al unirse a la sala: ${error}`);
+      this.connectionError.next(`Error al unirse a la sala: ${error}`);
+
+      return false;
+    }
   }
 
   public leaveRoom(ticketId: number): void {

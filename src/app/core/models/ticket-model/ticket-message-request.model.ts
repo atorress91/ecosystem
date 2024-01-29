@@ -17,7 +17,6 @@ export class TicketMessageRequest {
     this.messageContent = '';
     this.createdAt = new Date();
     this.updatedAt = new Date();
-    this.deletedAt = new Date();
     this.isRead = false;
   }
 }

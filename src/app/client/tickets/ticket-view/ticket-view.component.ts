@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
 
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
 import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
@@ -14,43 +13,56 @@ import { TicketService } from '@app/core/service/ticket-service/ticket.service';
   styleUrls: ['./ticket-view.component.sass']
 })
 export class TicketViewComponent {
-  ticketId: number;
+  ticket: any;
   user: UserAffiliate;
   newMessage: string;
-  ticket: Ticket = new Ticket();
   ticketMessage: TicketMessageRequest = new TicketMessageRequest();
   messages: any = [];
 
-  constructor(private route: ActivatedRoute, private authService: AuthService, private ticketHubService: TicketHubService, private ticketService: TicketService) {
-    this.route.params.subscribe((params) => { this.ticketId = params.id; });
-    console.log(this.ticketId);
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private ticketHubService: TicketHubService,
+    private ticketService: TicketService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
-    this.ticketId = +this.route.snapshot.paramMap.get('id');
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state) {
+      this.ticket = navigation.extras.state.ticket;
+      console.log(this.ticket);
+    }
+
     this.user = this.authService.currentUserAffiliateValue;
-    this.ticketHubService.startConnection().then(() => {
-      this.ticketHubService.joinRoom(this.ticketId);
-    });
 
-    this.ticketHubService.messageReceived.subscribe((message) => {
-      this.messages.push(message);
-    });
+    if (this.ticket.id != null || this.ticket.id != 0) {
+      this.startConnection(this.ticket.id);
+    }
 
-    this.ticketHubService.previousMessagesReceived.subscribe((previousMessages) => {
-      console.log(previousMessages);
-      this.messages = [...previousMessages, ...this.messages];
+    this.ticketHubService.messageReceived.subscribe({
+      next: (message) => this.messages.push(message),
+      error: (err) => {
+        console.error('error recibiendo mensajes: ' + err);
+      },
     });
-
   }
 
   ngOnDestroy(): void {
-    this.ticketHubService.leaveRoom(this.ticketId);
+    this.ticketHubService.leaveRoom(this.ticket.id);
+    this.ticketHubService.messageReceived.unsubscribe();
+  }
+
+  startConnection(ticketId: number) {
+    this.ticketHubService.startConnection().then(
+      () => this.ticketHubService.joinRoom(ticketId),
+      error => console.error('Error al conectar o unirse a la sala:', error)
+    );
   }
 
   sendMessage(): void {
     if (this.newMessage.trim()) {
-      this.ticketMessage.ticketId = this.ticketId;
+      this.ticketMessage.ticketId = this.ticket.id;
       this.ticketMessage.userId = this.user.id;
       this.ticketMessage.messageContent = this.newMessage;
 

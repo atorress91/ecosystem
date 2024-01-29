@@ -5,7 +5,7 @@ import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fir
 
 import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
 import { TicketCategories } from '@app/core/models/ticket-categories-model/ticket-categories.model';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model'
+import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model'
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { TicketService } from '@app/core/service/ticket-service/ticket.service';
@@ -20,7 +20,7 @@ export class CreateTicketModalComponent implements OnInit {
   submitted: boolean = false;
   categories: TicketCategories[] = [];
   files: File[] = [];
-  ticket: Ticket = new Ticket();
+  ticket: TicketRequest = new TicketRequest();
   user: UserAffiliate = new UserAffiliate();
   fileRef: any;
   uploadTask: any;
