@@ -1,3 +1,4 @@
+import { PaymentGroup } from '@app/core/models/payment-group-model/payment.group.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/service/cart.service/cart.service';
 import { Router } from '@angular/router';
@@ -21,6 +22,7 @@ import { PaymentTransaction } from '@app/core/models/payment-transaction-model/p
 import { PaymentTransactionService } from '@app/core/service/payment-transaction-service/payment-transaction.service';
 import { WalletModel1BService } from '@app/core/service/wallet-model-1b-service/wallet-model-1b.service';
 import { WalletModel1AService } from '@app/core/service/wallet-model-1a-service/wallet-model-1a.service';
+import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
 
 @Component({
   selector: 'app-cart',
@@ -44,6 +46,8 @@ export class CartComponent implements OnInit, OnDestroy {
   balancePaymentNotAvailable: boolean = false;
   reverseBalanceNotAvailable: boolean = false;
   excludedPaymentGroups = [2, 7, 8];
+  serviceBalanceExcludedPaymentGroups = [7, 8];
+  serviceBalanceNotAvailable: boolean = false;
   model: string = ''
 
   constructor(
@@ -57,7 +61,8 @@ export class CartComponent implements OnInit, OnDestroy {
     private configurationService: ConfigurationService,
     private paymentTransactionService: PaymentTransactionService,
     private walletModel1AService: WalletModel1AService,
-    private walletModel1BService: WalletModel1BService
+    private walletModel1BService: WalletModel1BService,
+    private affiliateService: AffiliateService,
   ) { }
 
   ngOnInit(): void {
@@ -133,9 +138,14 @@ export class CartComponent implements OnInit, OnDestroy {
       if (!this.excludedPaymentGroups.includes(item.paymentGroup)) {
         this.balancePaymentNotAvailable = true;
       }
+
       if (!this.excludedPaymentGroups.includes(item.paymentGroup)) {
         this.reverseBalanceNotAvailable = true;
       }
+
+      this.serviceBalanceNotAvailable = !this.products.some(item =>
+        this.serviceBalanceExcludedPaymentGroups.includes(item.paymentGroup));
+
       grandTotal += item.quantity * item.baseAmount;
       totalTax += parseFloat((item.tax).toFixed(0));
       subTotal += parseFloat(item.total.toFixed(2));
@@ -160,6 +170,7 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     }).then((result) => {
       if (result.isConfirmed) {
+        this.acceptTerms();
         return true;
       } else {
         return false;
@@ -206,6 +217,21 @@ export class CartComponent implements OnInit, OnDestroy {
         break;
       case '1B':
         this.payWithMyBalanceModel1B();
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleServiceBalancePayment() {
+    switch (this.model) {
+      case '1A':
+        console.log('Entrando al 1a');
+        this.payWithMyServiceBalanceModel1A();
+        break;
+      case '1B':
+        console.log('Entrando al 1b');
+        this.payWithMyServiceBalanceModel1B();
         break;
       default:
         break;
@@ -500,6 +526,64 @@ export class CartComponent implements OnInit, OnDestroy {
       default:
         this.router.navigate(['app/educational-courses']);
         break;
+    }
+  }
+
+  async payWithMyServiceBalanceModel1A() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletModel1AService.payWithServiceBalance(this.createBalanceRequest()).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (error) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      }
+    })
+  }
+
+  async payWithMyServiceBalanceModel1B() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletModel1BService.payWithMyServiceBalance(this.createBalanceRequest()).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (err) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      },
+    })
+  }
+
+  acceptTerms() {
+    if (this.user.termsConditions != true) {
+      this.affiliateService.updateAffiliate(this.user).subscribe({
+        next: (value) => {
+          this.showSuccess('Términos y condiciones actualizados correctamente');
+          this.auth.setUserAffiliateValue(this.user);
+        },
+        error: (err) => {
+          this.showError('Error');
+        },
+      })
     }
   }
 }
