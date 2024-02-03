@@ -143,6 +143,10 @@
               src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
               class="m-2">
 
+            <button (click)="handleServiceBalancePayment()" *ngIf="!serviceBalanceNotAvailable"
+              class="btn btn-primary btn-icon icon-left m-2"><i class="fas fa-credit-card"></i> Pago con saldo de
+              servicios {{model}}</button>
+
             <button *ngIf="!showReversePaymentOnly && !balancePaymentNotAvailable" (click)="payWithMyBalance()"
               class="btn btn-primary btn-icon icon-left m-2"><i class="fas fa-credit-card"></i> Pago con
               saldo disponible</button>
