@@ -44,4 +44,14 @@ export class WalletModel1BService {
         })
       );
   }
+
+  payWithMyServiceBalance(model: WalletRequest) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/walletModel1B/payWithMyServiceBalance'), model, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      )
+  }
 }

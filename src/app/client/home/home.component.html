@@ -29,7 +29,7 @@
                     <td class="col-red">
                       <i class="fa fa-circle col-red msr-2"></i> Saldo de servicios
                     </td>
-                    <td class="col-red">USD 0</td>
+                    <td class="col-red">USD {{balanceInformationModel1A.serviceBalance | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-blue">
@@ -84,7 +84,7 @@
                     <td class="col-red">
                       <i class="fa fa-circle col-red msr-2"></i> Saldo de servicios
                     </td>
-                    <td class="col-red">USD 0</td>
+                    <td class="col-red">USD {{balanceInformationModel1B.serviceBalance | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-blue">
@@ -139,7 +139,7 @@
                     <td class="col-red">
                       <i class="fa fa-circle col-red msr-2"></i> Saldo de servicios
                     </td>
-                    <td class="col-red">USD {{withdrawalBalance ?? 0}}</td>
+                    <td class="col-red">USD {{ balanceInformation.serviceBalance ?? 0 | truncateDecimals:2 }}</td>
                   </tr>
                   <tr>
                     <td class="col-blue">
@@ -255,7 +255,7 @@
                   Términos y condiciones
                 </span>
                 <span class="float-end text-muted">
-                    <a rel="noopener" href="https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf"
+                  <a rel="noopener" href="https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf"
                     target="_blank">https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf</a>
                 </span>
               </p>

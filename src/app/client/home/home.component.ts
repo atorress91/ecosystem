@@ -234,11 +234,11 @@ export class HomeComponent {
   private initChartReport3() {
     this.pieChartOptions = {
       series: [
-        Number(this.withdrawalBalance),
+        this.balanceInformation.serviceBalance,
         this.balanceInformation.availableBalance,
-        Number(this.balanceInformation.totalCommissionsPaid),
-        Number(this.balanceInformation.totalAcquisitions),
-        Number(this.balanceInformation.reverseBalance)
+        this.balanceInformation.totalCommissionsPaid,
+        this.balanceInformation.totalAcquisitions,
+        this.balanceInformation.reverseBalance
       ],
 
       colors: ['#f44336', '#2196f3', '#96a2b4', '#4caf50', '#9c27b0'],
@@ -253,7 +253,7 @@ export class HomeComponent {
         enabled: false,
       },
       labels: [
-        'Por Cobrar',
+        'Saldo de servicios',
         'Saldo Disponible',
         'Total Pagado',
         'Total Adquisiciones',
@@ -283,11 +283,11 @@ export class HomeComponent {
   private initChartModel1A() {
     this.pieChartOptionsModel1A = {
       series: [
-        Number(this.withdrawalBalance),
+        this.balanceInformationModel1A.serviceBalance,
         this.balanceInformationModel1A.availableBalance,
-        Number(this.balanceInformationModel1A.totalCommissionsPaid),
-        Number(this.balanceInformationModel1A.totalAcquisitions),
-        Number(this.balanceInformationModel1A.reverseBalance)
+        this.balanceInformationModel1A.totalCommissionsPaid,
+        this.balanceInformationModel1A.totalAcquisitions,
+        this.balanceInformationModel1A.reverseBalance
       ],
 
       colors: ['#f44336', '#2196f3', '#96a2b4', '#4caf50', '#9c27b0'],
@@ -302,7 +302,7 @@ export class HomeComponent {
         enabled: false,
       },
       labels: [
-        'Por Cobrar',
+        'Saldo de servicios',
         'Saldo Disponible',
         'Total Pagado',
         'Total Adquisiciones',
@@ -332,11 +332,11 @@ export class HomeComponent {
   private initChartModel1B() {
     this.pieChartOptionsModel1B = {
       series: [
-        Number(this.withdrawalBalance),
+        this.balanceInformationModel1B.serviceBalance,
         this.balanceInformationModel1B.availableBalance,
-        Number(this.balanceInformationModel1B.totalCommissionsPaid),
-        Number(this.balanceInformationModel1B.totalAcquisitions),
-        Number(this.balanceInformationModel1B.reverseBalance)
+        this.balanceInformationModel1B.totalCommissionsPaid,
+        this.balanceInformationModel1B.totalAcquisitions,
+        this.balanceInformationModel1B.reverseBalance
       ],
 
       colors: ['#f44336', '#2196f3', '#96a2b4', '#4caf50', '#9c27b0'],
@@ -351,7 +351,7 @@ export class HomeComponent {
         enabled: false,
       },
       labels: [
-        'Por Cobrar',
+        'Saldo de servicios',
         'Saldo Disponible',
         'Total Pagado',
         'Total Adquisiciones',
