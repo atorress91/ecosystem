@@ -149,4 +149,16 @@ export class ProductService {
       })
     );
   }
+
+  getAllAlternativeHealth() {
+    return this.http.get<Response>(this.urlApi.concat('/product/get_all_alternative_health'), httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR' + response);
+          return null;
+        }
+      })
+    )
+  }
 }
