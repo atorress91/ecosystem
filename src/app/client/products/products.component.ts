@@ -108,6 +108,16 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  loadAllAlternativeHealth() {
+    this.productService.getAllAlternativeHealth().subscribe((alternativeHealth: Product) => {
+      this.productList = alternativeHealth;
+      this.filterCategory = alternativeHealth;
+      this.productList.forEach((item: any) => {
+        Object.assign(item, { quantity: 1, total: item.salePrice });
+      });
+    })
+  }
+
   handleProductLoading(tabActive: number) {
     switch (tabActive) {
       case 1:
@@ -125,8 +135,11 @@ export class ProductsComponent implements OnInit {
       case 5:
         this.loadSavingsPlans();
         break;
-        case 6:
+      case 6:
         this.loadSavingsPlansOneB();
+        break;
+      case 7:
+        this.loadAllAlternativeHealth();
         break;
       default:
         this.showError('No se encontró productos');

@@ -10,7 +10,7 @@ export const environment = {
     apiUrl: 'http://ec2-52-87-171-214.compute-1.amazonaws.com/',
     accountService: 'http://accountserviceapi-902719179.us-east-1.elb.amazonaws.com/api/v1',
     systemConfigurationService: 'http://systemconfigurationservicesapi-976242165.us-east-1.elb.amazonaws.com/api/v1',
-    inventoryService: 'http://inventoryserviceapi-1517761922.us-east-1.elb.amazonaws.com/api/v1',
+    inventoryService: 'http://localhost:5059/api/v1',
     walletService: 'http://walletserviceapi-210446736.us-east-1.elb.amazonaws.com/api/v1',
     coinPayment: 'https://www.coinpayments.net/index.php'
   },
