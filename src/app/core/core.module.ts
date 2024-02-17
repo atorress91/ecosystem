@@ -1,5 +1,3 @@
-
-
 import { TermsConditionsService } from './service/terms-conditions-service/terms-conditions.service';
 import { FaceApiService } from './service/face-api-service/face-api.service';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
@@ -58,7 +56,7 @@ import { TicketHubService } from './service/ticket-service/ticket-hub.service';
 import { PaymentTransactionService } from './service/payment-transaction-service/payment-transaction.service';
 import { WalletModel1BService } from './service/wallet-model-1b-service/wallet-model-1b.service';
 import { WalletModel1AService } from './service/wallet-model-1a-service/wallet-model-1a.service';
-
+import { PagaditoService } from './service/pagadito-service/pagadito.service';
 @NgModule({
   declarations: [],
   imports: [CommonModule, HttpClientModule],
@@ -115,7 +113,8 @@ import { WalletModel1AService } from './service/wallet-model-1a-service/wallet-m
     TicketHubService,
     PaymentTransactionService,
     WalletModel1AService,
-    WalletModel1BService
+    WalletModel1BService,
+    PagaditoService
   ],
 })
 export class CoreModule {
