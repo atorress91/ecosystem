@@ -616,7 +616,6 @@ export class CartComponent implements OnInit, OnDestroy {
       confirmButtonText: 'Sí, realizar pago'
     }).then((result) => {
       if (result.isConfirmed) {
-
         this.pagaditoService.createTransaction(this.pagaditoRequest).subscribe({
           next: (response) => {
             if (response.success) {
