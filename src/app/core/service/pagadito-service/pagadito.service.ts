@@ -24,7 +24,7 @@ export class PagaditoService {
 
   createTransaction(request: CreatePagaditoTransactionRequest) {
     return this.http
-      .post<Response>(this.urlApi.concat('/Pagadito/createTransaction'), request, httpOptions)
+      .post<Response>(this.urlApi.concat('/Pagadito/create_transaction'), request, httpOptions)
       .pipe(
         map((response) => {
           return response;

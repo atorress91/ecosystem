@@ -595,15 +595,18 @@ export class CartComponent implements OnInit, OnDestroy {
     let detail = new PagaditoTransactionDetailRequest();
 
     this.pagaditoRequest.amount = this.total;
+    this.pagaditoRequest.affiliate_id = this.user.id;
+
     this.products.forEach(item => {
       let detail = new PagaditoTransactionDetailRequest();
-      detail.quantity = item.quantity;
+      detail.quantity = item.quantity.toString();
       detail.description = item.name;
-      detail.price = item.salePrice;
+      detail.price = item.salePrice.toString();
       detail.url_product = item.id.toString();
 
       this.pagaditoRequest.details.push(detail);
     });
+    console.log(this.pagaditoRequest);
 
     Swal.fire({
       title: 'Confirmación de pago',
