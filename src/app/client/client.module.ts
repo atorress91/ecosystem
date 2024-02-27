@@ -44,6 +44,7 @@ import { EducationalCoursesComponent } from './educational-courses/educational-c
 import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
 import { SavingsPlansComponent } from './savings-plans/savings-plans.component';
 import { SavingsPlansOneBComponent } from './savings-plans-one-b/savings-plans-one-b.component';
+import { PurchaseConfirmationComponent } from './purchase-confirmation/purchase-confirmation.component';
 
 const icons = {
   Search
@@ -74,7 +75,8 @@ const icons = {
     EducationalCoursesComponent,
     ServicesAndProductsComponent,
     SavingsPlansComponent,
-    SavingsPlansOneBComponent
+    SavingsPlansOneBComponent,
+    PurchaseConfirmationComponent
   ],
   imports: [
     CommonModule,
