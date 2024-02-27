@@ -118,7 +118,6 @@
                     <div class="invoice-detail-name">Total descuento</div>
                     <div class="invoice-detail-value">${{totalDiscount}}</div>
                   </div>
-
                   <hr class="mt-2 mb-2">
                   <div class="invoice-detail-item">
                     <div class="invoice-detail-name">Total</div>
@@ -131,36 +130,30 @@
           </div>
         </div>
         <hr>
-        <div class="btn-right">
-          <div class="d-flex align-items-center justify-content-end flex-wrap mb-lg-0 mb-3">
+        <div class="row">
+          <div class="container my-3">
+            <div class="d-flex flex-wrap justify-content-end">
+              <div class="d-flex flex-column align-items-end mb-2 me-4">
+                <input (click)="createPagaditoTransaction()" type="image" src="assets/images/cards/visa-mast.webp"
+                  alt="Pago con tarjeta de credito y debito" class="img-fluid mb-2">
+                <input (click)="showCoinPaymentConfirmation()" type="image"
+                  src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
+                  class="img-fluid mb-2">
+                <button (click)="paymentByBankTransfer()" class="btn btn-primary mb-2">Pago por transferencia</button>
+                <button (click)="handleBuyMore()" class="btn btn-primary mb-2">Comprar Más</button>
+              </div>
 
-            <!-- <div class="image-container">
-              <img src="/assets/img/coinpay.jpeg" alt="Descripción de la Imagen"
-                class="img-fluid image-button rounded-border  w-55" (click)="showCoinPayConfirmation()">
-            </div> -->
-
-            <input (click)="showCoinPaymentConfirmation()" type="image"
-              src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
-              class="m-2">
-
-            <button (click)="handleServiceBalancePayment()" *ngIf="!serviceBalanceNotAvailable"
-              class="btn btn-primary btn-icon icon-left m-2"><i class="fas fa-credit-card"></i> Pago con saldo de
-              servicios {{model}}</button>
-
-            <button *ngIf="!showReversePaymentOnly && !balancePaymentNotAvailable" (click)="payWithMyBalance()"
-              class="btn btn-primary btn-icon icon-left m-2"><i class="fas fa-credit-card"></i> Pago con
-              saldo disponible</button>
-            <button (click)="paymentByBankTransfer()" class="btn btn-primary btn-icon icon-left m-2"><i
-                class="fas fa-credit-card"></i> Pago por
-              transferencia</button>
-            <button (click)="handleBalancePayment()" class="btn btn-primary btn-icon icon-left m-2"
-              *ngIf="withdrawalConfiguration.activate_invoice_cancellation && !reverseBalanceNotAvailable"><i
-                class="fas fa-credit-card"></i> Pago con solicitud modelo {{model}}</button>
-            <button (click)="handleBuyMore()" class="btn btn-primary btn-icon icon-left m-2"><i
-                class="bi bi-cart-plus"></i> {{
-              'CART-PAGE.BTN-SHOP-MORE.TEXT' | translate }}</button>
-            <button (click)="emptycart()" class="btn btn-danger btn-icon icon-left m-2"><i class="fas fa-times"></i>
-              {{ 'CART-PAGE.BTN-EMPTY-CART.TEXT' | translate }}</button>
+              <div class="btn-group-vertical mb-2 ms-2">
+                <button (click)="handleServiceBalancePayment()" *ngIf="!serviceBalanceNotAvailable"
+                  class="btn btn-primary mb-2">Pago con saldo de servicios {{model}}</button>
+                <button *ngIf="!showReversePaymentOnly && !balancePaymentNotAvailable" (click)="payWithMyBalance()"
+                  class="btn btn-primary mb-2">Pago con saldo disponible</button>
+                <button (click)="handleBalancePayment()"
+                  *ngIf="withdrawalConfiguration.activate_invoice_cancellation && !reverseBalanceNotAvailable"
+                  class="btn btn-primary mb-2">Pago con solicitud modelo {{model}}</button>
+                <button (click)="emptycart()" class="btn btn-danger mb-2">Vaciar Carrito</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

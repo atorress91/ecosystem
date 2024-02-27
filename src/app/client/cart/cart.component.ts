@@ -1,12 +1,12 @@
-import { PaymentGroup } from '@app/core/models/payment-group-model/payment.group.model';
+import { CreatePagaditoTransactionRequest } from '@app/core/models/pagadito-model/create-pagadito-transaction-request.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/service/cart.service/cart.service';
 import { Router } from '@angular/router';
 import QRCode from 'qrcode';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 import { ProductsRequests, WalletRequest } from '@app/core/models/wallet-model/wallet-request.model';
-import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
 import { CoinpaymentService } from '@app/core/service/coinpayment-service/coinpayment.service';
 import { CreatePayment, ProductRequest } from '@app/core/models/coinpayment-model/create-payment.model';
 import { WalletService } from "@app/core/service/wallet-service/wallet.service";
@@ -23,6 +23,8 @@ import { PaymentTransactionService } from '@app/core/service/payment-transaction
 import { WalletModel1BService } from '@app/core/service/wallet-model-1b-service/wallet-model-1b.service';
 import { WalletModel1AService } from '@app/core/service/wallet-model-1a-service/wallet-model-1a.service';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
+import { PagaditoService } from '@app/core/service/pagadito-service/pagadito.service';
+import { PagaditoTransactionDetailRequest } from '@app/core/models/pagadito-model/pagadito-transaction-detail-request.model';
 
 @Component({
   selector: 'app-cart',
@@ -49,6 +51,7 @@ export class CartComponent implements OnInit, OnDestroy {
   serviceBalanceExcludedPaymentGroups = [7, 8];
   serviceBalanceNotAvailable: boolean = false;
   model: string = ''
+  pagaditoRequest = new CreatePagaditoTransactionRequest();
 
   constructor(
     private cartService: CartService,
@@ -63,6 +66,7 @@ export class CartComponent implements OnInit, OnDestroy {
     private walletModel1AService: WalletModel1AService,
     private walletModel1BService: WalletModel1BService,
     private affiliateService: AffiliateService,
+    private pagaditoService: PagaditoService
   ) { }
 
   ngOnInit(): void {
@@ -585,5 +589,49 @@ export class CartComponent implements OnInit, OnDestroy {
         },
       })
     }
+  }
+
+  createPagaditoTransaction() {
+    let detail = new PagaditoTransactionDetailRequest();
+
+    this.pagaditoRequest.amount = this.total;
+    this.pagaditoRequest.affiliate_id = this.user.id;
+
+    this.products.forEach(item => {
+      let detail = new PagaditoTransactionDetailRequest();
+      detail.quantity = item.quantity.toString();
+      detail.description = item.name;
+      detail.price = item.salePrice.toString();
+      detail.url_product = item.id.toString();
+
+      this.pagaditoRequest.details.push(detail);
+    });
+    console.log(this.pagaditoRequest);
+
+    Swal.fire({
+      title: 'Confirmación de pago',
+      text: 'Una vez realizado el pago la transacción no será reembolsable. ¿Desea continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, realizar pago'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pagaditoService.createTransaction(this.pagaditoRequest).subscribe({
+          next: (response) => {
+            if (response.success) {
+              window.open(response.data);
+              this.router.navigate(['app/home']);
+              this.emptycart();
+            }
+          },
+          error: (err) => {
+            console.log(err)
+          },
+        });
+      }
+    });
   }
 }

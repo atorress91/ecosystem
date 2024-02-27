@@ -27,7 +27,7 @@ export class MainLayoutComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.currentUserAffiliateValue;
     if (this.user.message_alert == 0) {
-      // this.showAlert();
+      this.showAlert();
     }
   }
 
@@ -61,33 +61,24 @@ export class MainLayoutComponent implements OnInit {
     })
   }
 
-  // showAlert() {
-  //   Swal.fire({
-  //     icon: "info",
-  //     title: 'Asunto: Confirmación y Elección del Modelo para la distribución de Ecopooles Educativos',
-  //     html: `
-  //           <p>Estimado/a Cliente,</p>
-  //           <p>Espero que este mensaje le encuentre bien. En referencia a la reunión de Zoom que tuvo lugar el pasado 3 de enero de 2024, en la cual se proporcionaron detalles sobre los modelos de trabajo de la compañía, agradecemos su participación y atención a este importante asunto.</p>
-  //           <p>En cumplimiento con las normativas vigentes asociadas con nuestro modelo de negocio, solicitamos su confirmación y elección respecto al modelo que considere más adecuado para la colocación de sus Ecopooles. Cabe destacar que la transparencia y la conformidad con los requisitos voluntarios son fundamentales para el éxito de nuestras operaciones.</p>
-  //           <p>Agradeceríamos recibir su confirmación y elección lo antes posible, con el fin de avanzar en la implementación y asegurar una transición efectiva hacia la generación de comisiones voluntarias para los clientes.</p>
-  //           <p>Por favor, envíe un correo a administracion@ecosystemfx.com adjuntando el nombre del usuario y modelo elegido con el monto. Una vez solicitado el modelo se pondrá a disposición en la oficina para que realice las compras en el o los modelos elegidos de manera personal.</p>
-  //           <p>Agradecemos su compromiso y cooperación en este proceso vital para continuar nuestro éxito de por vida y le reiteramos nuestro firme compromiso con el cumplimiento normativo.</p>
-  //           <p>Saludos cordiales,</p>
-  //           <p>CEO Alvaro Rodríguez.</p>
-  //       `,
-  //     confirmButtonText: 'OK',
-  //     confirmButtonColor: '#3085d6',
-  //     showCancelButton: false,
-  //     allowOutsideClick: false,
-  //     allowEscapeKey: false,
-  //     allowEnterKey: false
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.messageReceived();
-  //     }
-  //   });
-  // }
-
+  showAlert() {
+    Swal.fire({
+      icon: "info",
+      title: 'Celebración Especial de Ecosystem',
+      html: `
+            <p>Querida familia de Ecosystem,</p>
+            <p>En este día tan especial, queremos celebrar la maravilla de conectar, compartir y crecer juntos. Que este día sea un recordatorio de que la verdadera riqueza se encuentra en los lazos que tejemos.</p>
+            <p>Brindemos por el amor, la amistad y el éxito compartido!</p>
+        `,
+      confirmButtonText: 'OK',
+      confirmButtonColor: '#3085d6',
+      showCancelButton: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.messageReceived();
+      }
+    });
+  }
 
   showSuccess(message: string) {
     this.toast.success(message);

@@ -30,6 +30,8 @@ import { EducationalCoursesComponent } from './educational-courses/educational-c
 import { SavingsPlansComponent } from './savings-plans/savings-plans.component';
 import { SavingsPlansOneBComponent } from './savings-plans-one-b/savings-plans-one-b.component';
 import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
+import { PurchaseConfirmationComponent } from './purchase-confirmation/purchase-confirmation.component';
+
 
 const routes: Routes = [
   {
@@ -176,6 +178,14 @@ const routes: Routes = [
     path: 'savings-plans-one-b',
     component: SavingsPlansOneBComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'purchase-confirmation',
+    children: [
+      { path: 'token/:token/comprobante/:comprobante', component: PurchaseConfirmationComponent },
+      { path: ':token/:comprobante', component: PurchaseConfirmationComponent }
+    ],
+    canActivate: [AuthGuard],
   }
 ];
 @NgModule({
