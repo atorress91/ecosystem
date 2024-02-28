@@ -182,8 +182,8 @@ const routes: Routes = [
   {
     path: 'purchase-confirmation',
     children: [
-      { path: 'token/:token/comprobante/:comprobante', component: PurchaseConfirmationComponent },
-      { path: ':token/:comprobante', component: PurchaseConfirmationComponent }
+      { path: 'parametro1/:parametro1/parametro2/:parametro2', component: PurchaseConfirmationComponent },
+      { path: ':parametro1/:parametro2', component: PurchaseConfirmationComponent }
     ],
     canActivate: [AuthGuard],
   }
