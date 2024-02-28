@@ -12,17 +12,8 @@ export class PurchaseConfirmationComponent {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      const token = params['token'];
-      const comprobante = params['comprobante'];
-
-      if (token && comprobante) {
-        this.showConfirmationAlert(token, comprobante);
-      }
-    });
-
-    this.activatedRoute.queryParams.subscribe(params => {
-      const token = params['token'];
-      const comprobante = params['comprobante'];
+      const token = params['parametro1'];
+      const comprobante = params['parametro2'];
 
       if (token && comprobante) {
         this.showConfirmationAlert(token, comprobante);
