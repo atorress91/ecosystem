@@ -47,7 +47,8 @@ export class CartComponent implements OnInit, OnDestroy {
   withdrawalConfiguration = new WalletWithdrawalsConfiguration();
   balancePaymentNotAvailable: boolean = false;
   reverseBalanceNotAvailable: boolean = false;
-  excludedPaymentGroups = [2, 7, 8];
+  excludedPaymentGroups = [2,3, 7, 8, 9];
+  reverseBalanceExcludedPaymentGroups = [2, 7, 8];
   serviceBalanceExcludedPaymentGroups = [7, 8];
   serviceBalanceNotAvailable: boolean = false;
   model: string = ''
@@ -143,7 +144,7 @@ export class CartComponent implements OnInit, OnDestroy {
         this.balancePaymentNotAvailable = true;
       }
 
-      if (!this.excludedPaymentGroups.includes(item.paymentGroup)) {
+      if (this.reverseBalanceExcludedPaymentGroups.includes(item.paymentGroup)) {
         this.reverseBalanceNotAvailable = true;
       }
 
@@ -418,6 +419,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.configurationService.getWithdrawalsWalletConfiguration().subscribe({
       next: (value) => {
         this.withdrawalConfiguration.activate_invoice_cancellation = value.activate_invoice_cancellation;
+        console.log('Configuración de retiros:', this.withdrawalConfiguration);
       },
       error: (err) => {
         this.showError('Error');
