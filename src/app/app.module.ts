@@ -95,7 +95,7 @@ export function createTranslateLoader(http: HttpClient): any {
     NgxDropzoneModule,
   ],
   providers: [
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
