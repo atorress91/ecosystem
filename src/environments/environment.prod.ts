@@ -2,7 +2,6 @@ import { FirebaseOptions } from '@firebase/app-types';
 
 export const environment = {
   production: true,
-  maintenance: false,
   apis: {
     apiUrl: 'https://ecosystemfx.net/',
     accountService: 'https://account.ecosystemfx.net/api/v1',
