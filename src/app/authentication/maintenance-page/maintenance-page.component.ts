@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-page404',
+  selector: 'app-maintenance',
   templateUrl: './maintenance-page.component.html'
 })
 export class MaintenancePageComponent implements OnInit {
