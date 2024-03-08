@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guard/auth.guard';
 import { AuthGuardAdmin } from './core/guard/auth.guard.admin';
+import { environment } from '@environments/environment';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: '/signin', pathMatch: 'full' },
+      { path: '', redirectTo: environment.maintenance ? '/maintenance' : '/signin', pathMatch: 'full' },
       {
         path: 'app',
         loadChildren: () =>
@@ -25,7 +26,7 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     canActivate: [AuthGuardAdmin],
     children: [
-      { path: '', redirectTo: '/signin', pathMatch: 'full' },
+      { path: '', redirectTo: environment.maintenance ? '/maintenance' : '/signin', pathMatch: 'full' },
       {
         path: 'admin',
         loadChildren: () =>
@@ -33,7 +34,6 @@ const routes: Routes = [
       }
     ],
   },
-
   {
     path: '',
     component: AuthLayoutComponent,
