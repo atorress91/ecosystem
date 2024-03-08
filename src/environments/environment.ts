@@ -6,7 +6,7 @@ import { FirebaseOptions } from '@firebase/app-types';
 
 export const environment = {
   production: false,
-  maintenance: true,
+  maintenance: false,
   apis: {
     apiUrl: 'http://ec2-52-87-171-214.compute-1.amazonaws.com/',
     accountService: 'http://accountserviceapi-902719179.us-east-1.elb.amazonaws.com/api/v1',

@@ -13,7 +13,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: environment.maintenance ? '/maintenance' : '/signin', pathMatch: 'full' },
+      { path: '', redirectTo: '/signin', pathMatch: 'full' },
       {
         path: 'app',
         loadChildren: () =>
@@ -26,7 +26,7 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     canActivate: [AuthGuardAdmin],
     children: [
-      { path: '', redirectTo: environment.maintenance ? '/maintenance' : '/signin', pathMatch: 'full' },
+      { path: '', redirectTo: '/signin', pathMatch: 'full' },
       {
         path: 'admin',
         loadChildren: () =>

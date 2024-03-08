@@ -14,6 +14,8 @@ import { ConpaymentConfirmationComponent } from './conpayment-confirmation/conpa
 import { AuthGuard } from '@app/core/guard/auth.guard';
 import { MaintenancePageComponent } from './maintenance-page/maintenance-page.component';
 import { environment } from '@environments/environment';
+import { AuthGuardAdmin } from '@app/core/guard/auth.guard.admin';
+import { MaintenanceGuard } from '@app/core/guard/maintenance.guard';
 
 const routes: Routes = [
   {
@@ -35,7 +37,8 @@ const routes: Routes = [
   },
   {
     path: 'signin',
-    component: environment.maintenance ? MaintenancePageComponent : SigninComponent,
+    component: SigninComponent,
+    canActivate: [MaintenanceGuard]
   },
   {
     path: 'signup/:key',
