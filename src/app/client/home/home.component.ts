@@ -83,7 +83,7 @@ export class HomeComponent {
   }
 
   get registerUrl() {
-    return `https://www.ecosystemfx.net/#/main-options/${this.user.user_name.toString()}`;
+    return `https://www.ecosystemfx.net/main-options/${this.user.user_name.toString()}`;
   }
 
   showSuccess(message) {
