@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./services-and-products.component.sass']
 })
 export class ServicesAndProductsComponent implements OnInit {
+  active: any;
 
   constructor(private toast: ToastrService) {
 
@@ -32,5 +33,9 @@ export class ServicesAndProductsComponent implements OnInit {
 
       }
     });
+  }
+
+  onTabChange(newActive: number) {
+    this.active = newActive;
   }
 }
