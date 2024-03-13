@@ -15,7 +15,7 @@ export class ServicesAndProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showAlert();
+
   }
 
   showAlert() {
