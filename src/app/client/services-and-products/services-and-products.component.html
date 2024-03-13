@@ -14,12 +14,50 @@
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
           <div class="card-header">
-            <h4>Próximos Lanzamientos</h4>
           </div>
-          <div class="card-body">
-            <p class="text-muted">¡Estamos emocionados de anunciar que próximamente estarán disponibles nuevos servicios
-              y productos!</p>
-            <p class="text-muted">Manténgase al tanto para descubrir lo que hemos preparado para usted.</p>
+          <div class="section-body">
+            <div class="card">
+              <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                  <div class="padding-20">
+                    <ul ngbNav #nav="ngbNav" [activeId]="active" (activeIdChange)="onTabChange($event)"
+                      class="nav-tabs">
+                      <li [ngbNavItem]="2">
+                        <a ngbNavLink> MecaniClick</a>
+                        <ng-template ngbNavContent>
+                          <div class="card-body">
+                            <div class="row mt-2">
+                              <app-products [tabActive]="active" [addPurchase]="true"></app-products>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </li>
+                      <li [ngbNavItem]="7">
+                        <a ngbNavLink> Salud Alternativa América</a>
+                        <ng-template ngbNavContent>
+                          <div class="card-body">
+                            <div class="row mt-2">
+                              <app-products [tabActive]="active" [addPurchase]="true"></app-products>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </li>
+                      <li [ngbNavItem]="8">
+                        <a ngbNavLink> Salud Alternativa Europa</a>
+                        <ng-template ngbNavContent>
+                          <div class="card-body">
+                            <div class="row mt-2">
+                              <app-products [tabActive]="active" [addPurchase]="true"></app-products>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </li>
+                    </ul>
+                    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
