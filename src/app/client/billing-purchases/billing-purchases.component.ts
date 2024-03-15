@@ -145,7 +145,6 @@ export class BillingPurchasesComponent implements OnInit, OnDestroy {
     });
   }
 
-
   showConfirmationRequest(row) {
     let reason;
 

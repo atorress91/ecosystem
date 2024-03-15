@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { InvoiceService } from '@app/core/service/invoice-service/invoice.service';
+import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./purchase-confirmation.component.sass']
 })
 export class PurchaseConfirmationComponent {
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private invoiceService: InvoiceService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -29,12 +31,15 @@ export class PurchaseConfirmationComponent {
         cancelButton: 'btn btn-danger'
       },
       buttonsStyling: false
-    })
+    });
 
     const swalTimerInterval = setInterval(() => {
       const content = Swal.getHtmlContainer().querySelector('b') as HTMLElement;
       if (content) {
         content.textContent = String(counter);
+      }
+      if (counter === 5) {
+        this.onDownloadInvoice(reference);
       }
       if (counter === 0) {
         clearInterval(swalTimerInterval);
@@ -49,12 +54,38 @@ export class PurchaseConfirmationComponent {
       timer: 10000,
       timerProgressBar: true,
       didOpen: () => {
-        Swal.showLoading()
+        Swal.showLoading();
       },
     }).then((result) => {
       if (result.dismiss === Swal.DismissReason.timer) {
         this.router.navigate(['/app/home']);
       }
     });
+  }
+
+  onDownloadInvoice(reference: string) {
+    this.invoiceService.createInvoiceByReference(reference).subscribe({
+      next: (blob: Blob) => {
+        const blobUrl = window.URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = `invoice_${reference}.pdf`;
+
+        document.body.appendChild(a);
+        a.click();
+
+        window.URL.revokeObjectURL(blobUrl);
+        document.body.removeChild(a);
+      },
+      error: (err) => {
+        console.log(err);
+        this.showError('Error downloading the invoice. Please try again.');
+      },
+    });
+  }
+
+  showError(message: string) {
+    this.toastrService.error(message, 'Error');
   }
 }
