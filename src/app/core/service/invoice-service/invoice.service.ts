@@ -102,4 +102,20 @@ export class InvoiceService {
         })
       );
   }
+
+  createInvoice(invoiceId: number): Observable<Blob> {
+    // Ajustamos los httpOptions para esperar un 'blob' como respuesta
+    const options = {
+      responseType: 'blob' as 'json', // Esto es necesario debido a la forma en que TypeScript maneja los generics y los tipos de respuesta
+      params: new HttpParams().set('invoiceId', invoiceId.toString()), // Pasamos 'invoiceId' como parámetro de consulta
+      headers: new HttpHeaders({
+        'Authorization': environment.tokens.walletService.toString()
+        // Aquí no establecemos 'Content-Type': 'application/json' porque no estamos enviando un cuerpo JSON
+      })
+    };
+
+    // Usamos los 'options' ajustados en la llamada HTTP
+    return this.http.get<Blob>(`${this.urlApi}/invoice/CreateInvoice`, options);
+  }
+
 }

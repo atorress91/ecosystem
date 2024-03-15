@@ -11,7 +11,7 @@ export const environment = {
     accountService: 'http://accountserviceapi-902719179.us-east-1.elb.amazonaws.com/api/v1',
     systemConfigurationService: 'http://systemconfigurationservicesapi-976242165.us-east-1.elb.amazonaws.com/api/v1',
     inventoryService: 'http://inventoryserviceapi-1517761922.us-east-1.elb.amazonaws.com/api/v1',
-    walletService: 'http://walletserviceapi-210446736.us-east-1.elb.amazonaws.com/api/v1',
+    walletService: 'http://localhost:5235/api/v1',
     coinPayment: 'https://www.coinpayments.net/index.php'
   },
   openAI: {
