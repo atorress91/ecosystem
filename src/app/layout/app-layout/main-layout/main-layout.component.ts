@@ -26,9 +26,9 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.currentUserAffiliateValue;
-    if (this.user.message_alert == 0) {
-      this.showAlert();
-    }
+    // if (this.user.message_alert == 0) {
+    //   this.showAlert();
+    // }
   }
 
   ngAfterViewInit(): void {
@@ -61,24 +61,24 @@ export class MainLayoutComponent implements OnInit {
     })
   }
 
-  showAlert() {
-    Swal.fire({
-      icon: "info",
-      title: 'Celebración Especial de Ecosystem',
-      html: `
-            <p>Querida familia de Ecosystem,</p>
-            <p>En este día tan especial, queremos celebrar la maravilla de conectar, compartir y crecer juntos. Que este día sea un recordatorio de que la verdadera riqueza se encuentra en los lazos que tejemos.</p>
-            <p>Brindemos por el amor, la amistad y el éxito compartido!</p>
-        `,
-      confirmButtonText: 'OK',
-      confirmButtonColor: '#3085d6',
-      showCancelButton: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.messageReceived();
-      }
-    });
-  }
+  // showAlert() {
+  //   Swal.fire({
+  //     icon: "info",
+  //     title: 'Celebración Especial de Ecosystem',
+  //     html: `
+  //           <p>Querida familia de Ecosystem,</p>
+  //           <p>En este día tan especial, queremos celebrar la maravilla de conectar, compartir y crecer juntos. Que este día sea un recordatorio de que la verdadera riqueza se encuentra en los lazos que tejemos.</p>
+  //           <p>Brindemos por el amor, la amistad y el éxito compartido!</p>
+  //       `,
+  //     confirmButtonText: 'OK',
+  //     confirmButtonColor: '#3085d6',
+  //     showCancelButton: false,
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.messageReceived();
+  //     }
+  //   });
+  // }
 
   showSuccess(message: string) {
     this.toast.success(message);
