@@ -1,9 +1,5 @@
 import { FirebaseOptions } from '@firebase/app-types';
 
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
   production: false,
   apis: {
@@ -11,7 +7,7 @@ export const environment = {
     accountService: 'http://accountserviceapi-902719179.us-east-1.elb.amazonaws.com/api/v1',
     systemConfigurationService: 'http://systemconfigurationservicesapi-976242165.us-east-1.elb.amazonaws.com/api/v1',
     inventoryService: 'http://inventoryserviceapi-1517761922.us-east-1.elb.amazonaws.com/api/v1',
-    walletService: 'http://localhost:5235/api/v1',
+    walletService: 'http://walletserviceapi-210446736.us-east-1.elb.amazonaws.com/api/v1',
     coinPayment: 'https://www.coinpayments.net/index.php'
   },
   openAI: {
@@ -44,15 +40,3 @@ export const firebaseConfig: FirebaseOptions = {
   appId: "1:1077107109427:web:bbe6268a7b4f1831717d46",
   measurementId: "G-64EF1WMHB8"
 };
-
-
-
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-
