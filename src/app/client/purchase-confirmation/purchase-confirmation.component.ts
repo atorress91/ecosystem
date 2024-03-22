@@ -27,7 +27,7 @@ export class PurchaseConfirmationComponent {
   }
 
   private showConfirmationAlert(token: string, reference: string): void {
-    let counter = 20;
+    let counter = 120;
 
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -38,7 +38,7 @@ export class PurchaseConfirmationComponent {
     });
 
     const swalTimerInterval = setInterval(() => {
-      if (counter === 5) {
+      if (counter === 110) {
         this.onDownloadInvoice(reference);
       }
       if (counter === 0 || this.invoiceDownloaded) {
@@ -51,9 +51,9 @@ export class PurchaseConfirmationComponent {
 
     swalWithBootstrapButtons.fire({
       title: 'Confirmación de Compra',
-      html: `Su compra está siendo procesada, por favor espere mientras se realiza el proceso, pronto será redireccionado a su oficina.<br></strong>`,
+      html: `Su compra está siendo procesada, por favor espere mientras se realiza el proceso.<br></strong>`,
       icon: 'success',
-      timer: 20000,
+      timer: 120000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading();
@@ -68,7 +68,7 @@ export class PurchaseConfirmationComponent {
   onDownloadInvoice(reference: string) {
     this.invoiceService.createInvoiceByReference(reference).pipe(
       retryWhen(errors => errors.pipe(
-        delay(6666),
+        delay(30000),
         take(3)
       ))
     ).subscribe({
