@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InvoiceService } from '@app/core/service/invoice-service/invoice.service';
 import { ToastrService } from 'ngx-toastr';
+import { delay, retryWhen, take } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,6 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./purchase-confirmation.component.sass']
 })
 export class PurchaseConfirmationComponent {
+  private invoiceDownloaded = false;
+
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private invoiceService: InvoiceService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
@@ -24,7 +27,8 @@ export class PurchaseConfirmationComponent {
   }
 
   private showConfirmationAlert(token: string, reference: string): void {
-    let counter = 10;
+    let counter = 20;
+
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -34,24 +38,22 @@ export class PurchaseConfirmationComponent {
     });
 
     const swalTimerInterval = setInterval(() => {
-      const content = Swal.getHtmlContainer().querySelector('b') as HTMLElement;
-      if (content) {
-        content.textContent = String(counter);
-      }
       if (counter === 5) {
         this.onDownloadInvoice(reference);
       }
-      if (counter === 0) {
+      if (counter === 0 || this.invoiceDownloaded) {
         clearInterval(swalTimerInterval);
+        Swal.close();
+        this.router.navigate(['/app/home']);
       }
       counter--;
     }, 1000);
 
     swalWithBootstrapButtons.fire({
       title: 'Confirmación de Compra',
-      html: `Su compra se ha procesado correctamente, pronto será redireccionado a su oficina en <b></b> segundos.<br><br>Transaction Token: <strong> ${token} </strong><br>Receipt Number: <strong> ${reference} </strong>`,
+      html: `Su compra está siendo procesada, por favor espere mientras se realiza el proceso, pronto será redireccionado a su oficina.<br></strong>`,
       icon: 'success',
-      timer: 10000,
+      timer: 20000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading();
@@ -64,7 +66,12 @@ export class PurchaseConfirmationComponent {
   }
 
   onDownloadInvoice(reference: string) {
-    this.invoiceService.createInvoiceByReference(reference).subscribe({
+    this.invoiceService.createInvoiceByReference(reference).pipe(
+      retryWhen(errors => errors.pipe(
+        delay(6666),
+        take(3)
+      ))
+    ).subscribe({
       next: (blob: Blob) => {
         const blobUrl = window.URL.createObjectURL(blob);
 
@@ -77,6 +84,8 @@ export class PurchaseConfirmationComponent {
 
         window.URL.revokeObjectURL(blobUrl);
         document.body.removeChild(a);
+
+        this.invoiceDownloaded = true;
       },
       error: (err) => {
         console.log(err);
