@@ -47,7 +47,7 @@ export class CartComponent implements OnInit, OnDestroy {
   withdrawalConfiguration = new WalletWithdrawalsConfiguration();
   balancePaymentNotAvailable: boolean = false;
   reverseBalanceNotAvailable: boolean = false;
-  excludedPaymentGroups = [2,3, 7, 8, 9,10];
+  excludedPaymentGroups = [2, 3, 7, 8, 9, 10];
   reverseBalanceExcludedPaymentGroups = [2, 7, 8];
   serviceBalanceExcludedPaymentGroups = [7, 8];
   serviceBalanceNotAvailable: boolean = false;
@@ -594,8 +594,6 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   createPagaditoTransaction() {
-    let detail = new PagaditoTransactionDetailRequest();
-
     this.pagaditoRequest.amount = this.total;
     this.pagaditoRequest.affiliate_id = this.user.id;
 

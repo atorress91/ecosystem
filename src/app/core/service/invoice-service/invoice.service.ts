@@ -102,4 +102,30 @@ export class InvoiceService {
         })
       );
   }
+
+  createInvoice(invoiceId: number): Observable<Blob> {
+    const options = {
+      responseType: 'blob' as 'json',
+      params: new HttpParams().set('invoiceId', invoiceId.toString()),
+      headers: new HttpHeaders({
+        'Authorization': environment.tokens.walletService.toString()
+
+      })
+    };
+
+    return this.http.get<Blob>(`${this.urlApi}/invoice/create_invoice`, options);
+  }
+
+  createInvoiceByReference(reference: string): Observable<Blob> {
+    const options = {
+      responseType: 'blob' as 'json',
+      params: new HttpParams().set('reference', reference.toString()),
+      headers: new HttpHeaders({
+        'Authorization': environment.tokens.walletService.toString()
+
+      })
+    };
+
+    return this.http.get<Blob>(`${this.urlApi}/invoice/create_invoice_by_reference`, options);
+  }
 }
