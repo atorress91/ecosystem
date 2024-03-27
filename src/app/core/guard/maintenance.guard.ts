@@ -12,7 +12,6 @@ export class MaintenanceGuard implements CanActivate {
 
   constructor(private router: Router, private maintenanceService: MaintenanceService) {
     this.maintenanceService.checkMaintenance().subscribe((maintenance) => {
-      console.log(maintenance);
       this.isUnderMaintenance = maintenance;
     });
   }

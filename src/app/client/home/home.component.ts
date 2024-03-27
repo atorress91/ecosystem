@@ -417,7 +417,6 @@ export class HomeComponent {
   getBalanceInformationModel1A(id: number) {
     this.walletModel1AService.getBalanceInformationByAffiliateId(id).subscribe({
       next: (value: BalanceInformationModel1A) => {
-        console.log(value);
         this.balanceInformationModel1A = value;
         this.initChartModel1A();
       },
@@ -430,7 +429,6 @@ export class HomeComponent {
   getBalanceInformationModel1B(id: number) {
     this.walletModel1BService.getBalanceInformationByAffiliateId(id).subscribe({
       next: (value: BalanceInformationModel1B) => {
-        console.log(value);
         this.balanceInformationModel1B = value;
         this.initChartModel1B();
       },
