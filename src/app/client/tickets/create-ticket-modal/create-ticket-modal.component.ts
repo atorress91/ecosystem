@@ -128,7 +128,6 @@ export class CreateTicketModalComponent implements OnInit {
   }
 
   private saveTicket(): void {
-    console.log(this.ticket);
     this.ticketService.createTicket(this.ticket).subscribe({
       next: (value) => {
         this.toast.success('Ticket creado correctamente!.');

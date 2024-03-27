@@ -35,7 +35,6 @@ export class SplitBalancesModalComponent implements OnInit {
 
   setInvoices(invoices: InvoiceModelOneTwo[]) {
     this.selectedInvoices = invoices;
-    console.log(this.selectedInvoices);
   }
 
   calculateSelectedInvoicesTotal() {

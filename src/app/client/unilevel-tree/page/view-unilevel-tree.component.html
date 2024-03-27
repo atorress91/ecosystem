@@ -19,11 +19,17 @@
           <div class="padding-20">
             <ul ngbNav #nav="ngbNav" [activeId]="active" (activeIdChange)="onTabChange($event)" class="nav-tabs">
               <li [ngbNavItem]="1">
-                <a ngbNavLink>MODELO 2</a>
+                <a ngbNavLink>MODELO 1, 2, 3 (UniLevel)</a>
                 <ng-template ngbNavContent>
                   <div class="tab-pane">
                     <div class="card-body">
                       <div class="row mt-2">
+                        <div class="col-2">
+                          <button type="button" (click)="onloadFamilyTree(userId)"  class="btn btn-primary">
+                            <i class="bi bi-backspace"></i>
+                            Volver
+                          </button>
+                        </div>
                         <div class="col-12 col-md-12 col-lg-12">
                           <div class="card-body media-list position-relative"
                             style="position: relative; max-width: 100% !important" [perfectScrollbar]>
@@ -55,46 +61,16 @@
                 </ng-template>
               </li>
               <li [ngbNavItem]="2">
-                <a ngbNavLink>MODELO 3</a>
-                <ng-template ngbNavContent>
-                  <div class="tab-pane">
-                    <div class="card-body">
-                      <div class="row mt-2">
-                        <div class="col-12 col-md-12 col-lg-12">
-                          <div class="card-body media-list position-relative"
-                            style="position: relative; max-width: 100% !important" [perfectScrollbar]>
-                            <div *ngIf="showDiv">
-                              <app-client-unilevel-tree-component [nodeTemplate]="nodeTemplate" [data]="tree"
-                                #exampleChart="orgChart" (loadFamilyTree)="onloadFamilyTree($event)">
-                              </app-client-unilevel-tree-component>
-
-                              <ng-template #nodeTemplate let-node>
-                                <div class="chart-node">
-                                  <img [ngSrc]="node.image" fill style="height: 50% !important; width: 50% !important; margin: 5px 0px 0px 5px !important;" />
-                                  <div class="name" style="margin-top: 1.25em !important;">
-                                    <span style="font-size: 9px;">
-                                      {{ node.userName || node.user_name }}
-                                    </span>
-                                  </div>
-                                  <div *ngIf="node.children.length" style="margin: 5px 5px 0px 0px !important" (click)="node.hideChildren = !node.hideChildren"
-                                    class="tree-fold-btn">
-                                    {{ node.hideChildren ? '+' : '-' }}
-                                  </div>
-                                </div>
-                              </ng-template>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </ng-template>
-              </li>
-              <li [ngbNavItem]="3">
-                <a ngbNavLink> MODELO 4 </a>
+                <a ngbNavLink> MODELO 4 (Binario)</a>
                 <ng-template ngbNavContent>
                   <div class="card-body">
                     <div class="row mt-2">
+                      <div class="col-2">
+                        <button type="button" (click)="onloadFamilyTree(userId)" class="btn btn-primary">
+                          <i class="bi bi-backspace"></i>
+                          Volver
+                        </button>
+                      </div>
                       <div class="col-12 col-md-12 col-lg-12">
                         <div class="card-body media-list position-relative"
                           style="position: relative; max-width: 100% !important" [perfectScrollbar]>
@@ -124,17 +100,39 @@
                   </div>
                 </ng-template>
               </li>
-              <li [ngbNavItem]="4">
-                <a ngbNavLink>MODELO 5</a>
+              <li [ngbNavItem]="3">
+                <a ngbNavLink>MODELO 5 (Matriz)</a>
                 <ng-template ngbNavContent>
-                  <div class="tab-pane">
-                    <div class="card-body">
-                      <div class="row mt-2">
-                        <div class="col-12 col-md-12 col-lg-12">
-                          <div class="card-body media-list position-relative"
-                            style="position: relative; max-width: 100% !important" [perfectScrollbar]>
-                            <div *ngIf="showDiv">
-                            </div>
+                  <div class="card-body">
+                    <div class="row mt-2">
+                      <div class="col-2">
+                        <button type="button" (click)="onloadFamilyTree(userId)" class="btn btn-primary">
+                          <i class="bi bi-backspace"></i>
+                          Volver
+                        </button>
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-12">
+                        <div class="card-body media-list position-relative"
+                             style="position: relative; max-width: 100% !important" [perfectScrollbar]>
+                          <div *ngIf="showDiv">
+                            <app-client-unilevel-tree-component [nodeTemplate]="nodeTemplate" [data]="tree"
+                                                                #exampleChart="orgChart" (loadFamilyTree)="onloadFamilyTree($event)">
+                            </app-client-unilevel-tree-component>
+
+                            <ng-template #nodeTemplate let-node>
+                              <div class="chart-node">
+                                <img [ngSrc]="node.image" fill style="height: 50% !important; width: 50% !important; margin: 5px 0px 0px 5px !important;" />
+                                <div class="name" style="margin-top: 1.25em !important;">
+                                  <span style="font-size: 9px;">
+                                    {{ node.userName || node.user_name }}
+                                  </span>
+                                </div>
+                                <div *ngIf="node.children.length" style="margin: 5px 5px 0px 0px !important" (click)="node.hideChildren = !node.hideChildren"
+                                     class="tree-fold-btn">
+                                  {{ node.hideChildren ? '+' : '-' }}
+                                </div>
+                              </div>
+                            </ng-template>
                           </div>
                         </div>
                       </div>
@@ -142,12 +140,18 @@
                   </div>
                 </ng-template>
               </li>
-              <li [ngbNavItem]="5">
-                <a ngbNavLink>MODELO 6</a>
+              <li [ngbNavItem]="4">
+                <a ngbNavLink>MODELO 6 (Matriz)</a>
                 <ng-template ngbNavContent>
                   <div class="tab-pane">
                     <div class="card-body">
-                      <div class="row mt-2">
+                      <div class="row">
+                        <div class="col-2">
+                          <button type="button" (click)="onloadFamilyTree(userId)" class="btn btn-primary">
+                            <i class="bi bi-backspace"></i>
+                            Volver
+                          </button>
+                        </div>
                         <div class="col-12 col-md-12 col-lg-12">
                           <div class="card-body media-list position-relative"
                             style="position: relative; max-width: 100% !important" [perfectScrollbar]>

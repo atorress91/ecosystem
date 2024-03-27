@@ -256,7 +256,46 @@ export class AffiliateService {
   }
 
   getBinaryTree(id: number) {
-    let url = id == 0 ? `/matrix/binary` : `/matrix/binary?id=${id}`;
+    let url = id == 0 ? `/LeaderBoard/model4/getTree` : `/LeaderBoard/model4/getTree?id=${id}`;
+
+    return this.http
+      .get<Response>(
+        `${this.urlApi}${url}`,
+        httpOptions
+      )
+      .pipe(
+        map((response) => {
+          if (response.success) return JSON.parse(response.data);
+          else {
+            console.error('ERROR: ' + response);
+            return null;
+          }
+        })
+      );
+  }
+
+  getTreeModel5(id: number) {
+    let url = id == 0 ? `/LeaderBoard/model5/getTree` : `/LeaderBoard/model5/getTree?id=${id}`;
+
+    return this.http
+      .get<Response>(
+        `${this.urlApi}${url}`,
+        httpOptions
+      )
+      .pipe(
+        map((response) => {
+          if (response.success) return response.data;
+          else {
+            console.error('ERROR: ' + response);
+            return null;
+          }
+        })
+      );
+  }
+
+  getTreeModel6(id: number) {
+    let url = id == 0 ? `/LeaderBoard/model6/getTree` : `/LeaderBoard/model6/getTree?id=${id}`;
+
     return this.http
       .get<Response>(
         `${this.urlApi}${url}`,
@@ -274,7 +313,9 @@ export class AffiliateService {
   }
 
   getUniLevelTree(id: number) {
-    let url = id == 0 ? `/matrix/uni_level` : `/matrix/uni_level?id=${id}`;
+
+    const url = id == 0 ? `/matrix/uni_level` : `/matrix/uni_level?id=${id}`;
+
     return this.http
       .get<Response>(
         `${this.urlApi}${url}`,
@@ -282,7 +323,8 @@ export class AffiliateService {
       )
       .pipe(
         map((response) => {
-          if (response.success) return response.data;
+          if (response.success)
+            return response.data;
           else {
             console.error('ERROR: ' + response);
             return null;

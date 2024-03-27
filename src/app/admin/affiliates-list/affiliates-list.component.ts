@@ -183,7 +183,6 @@ export class AffiliatesListComponent implements OnInit {
   createBalance(request: CreditTransactionAdminRequest) {
     this.walletService.createBalanceAdmin(request).subscribe({
       next: (value) => {
-        console.log(value);
         if (value) {
           this.showSuccess('Se ha acreditado el saldo correctamente.');
         } else {

@@ -45,7 +45,6 @@ export class CoinpaymentsComponent {
     this.loadingChange.emit(true);
     this.coinPaymentService.createTransaction(this.buildCoinPaymentRequest()).subscribe({
       next: (value: ConpaymentTransaction) => {
-        console.log(value);
         this.qrImageUrl = value.qrcode_Url;
         this.address = value.address;
         this.txn_Id = value.txn_Id;
@@ -88,7 +87,6 @@ export class CoinpaymentsComponent {
       )
       .subscribe({
         next: (value: TransactionInfo) => {
-          console.log(value);
           if (value.status === 1) {
             this.showSuccess('La membresía se activó correctamente');
             this.close();

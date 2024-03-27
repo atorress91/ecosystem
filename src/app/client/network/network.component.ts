@@ -292,7 +292,6 @@ export class NetworkComponent implements OnInit {
           } else {
             this.isNewUser = false;
           }
-          console.log(value);
           this.rowsGlobal = [value];
           this.tempGlobal = value;
           this.loadingIndicatorGlobal = false;
