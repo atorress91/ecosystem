@@ -24,7 +24,6 @@ export class MaintenanceService {
   checkMaintenance(): Observable<boolean> {
     return this.http.get<Response>(this.urlApi.concat('/configuration/is_under_maintenance'), httpOptions).pipe(
       map((response) => {
-        console.log('Response: ', response);
         if (response.success) return response.data;
         else {
           console.error('ERROR: ' + response);

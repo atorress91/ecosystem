@@ -419,7 +419,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.configurationService.getWithdrawalsWalletConfiguration().subscribe({
       next: (value) => {
         this.withdrawalConfiguration.activate_invoice_cancellation = value.activate_invoice_cancellation;
-        console.log('Configuración de retiros:', this.withdrawalConfiguration);
       },
       error: (err) => {
         this.showError('Error');

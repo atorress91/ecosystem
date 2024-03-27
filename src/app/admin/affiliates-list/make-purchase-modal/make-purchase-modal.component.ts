@@ -66,7 +66,6 @@ export class MakePurchaseModalComponent implements OnInit {
       this.walletRequest.productsList.push(productRequest);
     });
 
-    console.log(this.walletRequest);
     this.walletService.payWithMyBalanceAdmin(this.walletRequest).subscribe({
       next: (value) => {
         if (value.success == true) {

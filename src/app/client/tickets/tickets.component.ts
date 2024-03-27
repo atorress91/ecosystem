@@ -38,7 +38,6 @@ export class TicketsComponent implements OnInit {
     this.ticketService.getAllTicketsByAffiliateId(this.user.id).subscribe({
       next: (value) => {
         this.tickets = value;
-        console.log(this.tickets);
       },
       error: (err) => {
         console.log(err);
@@ -50,7 +49,6 @@ export class TicketsComponent implements OnInit {
     this.ticketCategoryService.getAll().subscribe({
       next: (value) => {
         this.categories = value;
-        console.log(this.categories);
       },
       error: (err) => {
         console.log(err);

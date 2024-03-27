@@ -47,36 +47,75 @@ export class ViewUnilevelTreeComponent {
     this.showDiv = false;
     this.spinnerService.show();
     this.btnBack = true;
-    if (this.active === 1 ||this.active === 2 ) {
-      this.affiliateService.getUniLevelTree(id).subscribe(
-        (users: MyTreeNodeClient) => {
-          if (users !== null) {
-            this.tree = users;
-            setTimeout(() => {
-              this.spinnerService.hide();
-              this.showDiv = true;
-            }, 500);
+    switch (this.active) {
+      case 1:
+        this.affiliateService.getUniLevelTree(id).subscribe(
+          (users: MyTreeNodeClient) => {
+            if (users !== null) {
+              console.log(users);
+              this.tree = users;
+              setTimeout(() => {
+                this.spinnerService.hide();
+                this.showDiv = true;
+              }, 500);
+            }
+          },
+          error => {
+            this.spinnerService.hide();
           }
-        },
-        error => {
-          this.spinnerService.hide();
-        }
-      );
-    } else if (this.active === 3) {
-      this.affiliateService.getBinaryTree(id).subscribe(
-        (users: MyTreeNodeClient) => {
-          if (users !== null) {
-            this.tree = users;
-            setTimeout(() => {
-              this.spinnerService.hide();
-              this.showDiv = true;
-            }, 500);
+        );
+        break;
+      case 2:
+        this.affiliateService.getBinaryTree(id).subscribe(
+          (users: MyTreeNodeClient) => {
+            if (users !== null) {
+              console.log(users);
+              this.tree = users;
+              setTimeout(() => {
+                this.spinnerService.hide();
+                this.showDiv = true;
+              }, 500);
+            }
+          },
+          error => {
+            this.spinnerService.hide();
           }
-        },
-        error => {
-          this.spinnerService.hide();
-        }
-      );
+        );
+        break;
+      case 3:
+        this.affiliateService.getTreeModel5(id).subscribe(
+          (users: MyTreeNodeClient) => {
+            if (users !== null) {
+              console.log(users);
+              this.tree = users;
+              setTimeout(() => {
+                this.spinnerService.hide();
+                this.showDiv = true;
+              }, 500);
+            }
+          },
+          error => {
+            this.spinnerService.hide();
+          }
+        );
+        break;
+      case 4:
+        this.affiliateService.getTreeModel6(id).subscribe(
+          (users: MyTreeNodeClient) => {
+            if (users !== null) {
+              console.log(users);
+              this.tree = users;
+              setTimeout(() => {
+                this.spinnerService.hide();
+                this.showDiv = true;
+              }, 500);
+            }
+          },
+          error => {
+            this.spinnerService.hide();
+          }
+        );
+        break;
     }
   }
 

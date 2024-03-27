@@ -52,7 +52,6 @@ export class BalanceInformationModalComponent implements OnInit, AfterViewInit {
   getBalanceInformationModel2(id: number) {
     this.walletService.getBalanceInformationByAffiliateId(id).subscribe({
       next: (value: BalanceInformation) => {
-        console.log(value);
         this.balanceInformation = value;
         this.initChartReport3();
       },
@@ -65,7 +64,6 @@ export class BalanceInformationModalComponent implements OnInit, AfterViewInit {
   getBalanceInformationModel1A(id: number) {
     this.walletModel1AService.getBalanceInformationByAffiliateId(id).subscribe({
       next: (value: BalanceInformationModel1A) => {
-        console.log(value);
         this.balanceInformationModel1A = value;
         this.initChartModel1A();
       },
@@ -78,7 +76,6 @@ export class BalanceInformationModalComponent implements OnInit, AfterViewInit {
   getBalanceInformationModel1B(id: number) {
     this.walletModel1BService.getBalanceInformationByAffiliateId(id).subscribe({
       next: (value: BalanceInformationModel1B) => {
-        console.log(value);
         this.balanceInformationModel1B = value;
         this.initChartModel1B();
       },
