@@ -1,3 +1,4 @@
+import { CreateChannelResponse } from './../../core/models/coinpay-model/create-channel-response.model';
 import { CreatePagaditoTransactionRequest } from '@app/core/models/pagadito-model/create-pagadito-transaction-request.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/service/cart.service/cart.service';
@@ -336,17 +337,18 @@ export class CartComponent implements OnInit, OnDestroy {
     return request;
   }
 
-  async showAlert(coinPayResponse: CreateTransactionResponse) {
+  async showCoinpayAlert(coinPayTransaction: CreateChannelResponse) {
 
     const qrCanvas = document.createElement('canvas');
-    await QRCode.toCanvas(qrCanvas, coinPayResponse.data.qrCode);
+    await QRCode.toCanvas(qrCanvas, coinPayTransaction.data.address);
 
     Swal.fire({
-      title: 'Realiza tu pago, escanea el código QR',
+      title: 'Realiza tu pago, escanea el código QR o ingresa la dirección de billetera',
       html: `
         <div>
-          <div>Id Transacción: ${coinPayResponse.data.idTransaction}</div>
-          <div>Monto: $${coinPayResponse.data.amount}</div>
+        <div>Dirección Billetera: <strong> ${coinPayTransaction.data.address} </strong></div>
+          <div>Id Transacción: <strong> ${coinPayTransaction.data.id} </strong> </div>
+          <div>Monto: <strong> $${this.total} </strong> </div>
           <br>
         </div>
       `,
@@ -360,40 +362,33 @@ export class CartComponent implements OnInit, OnDestroy {
   createCoinPayTransaction() {
     let request = new RequestPayment();
     request.affiliateId = this.user.id;
+    request.userName = this.user.user_name;
     request.amount = this.total;
-    request.products = this.constructDetails();
+    request.products = this.constructProductDetails();
 
-    this.coinpayService.createCoinPayTransaction(request).subscribe({
-      next: (response: CreateTransactionResponse) => {
-        this.coinPayTransactionResponse = response;
-
-        if (response.statusCode === 1) {
-          this.showAlert(response);
+    this.coinpayService.createChannel(request).subscribe({
+      next: (response) => {
+        console.log(response);
+        if (response.success) {
+          this.showCoinpayAlert(response.data);
         } else {
-          this.showError(response.message || "Error");
+          this.showError("Error");
         }
       },
       error: (err) => {
+        console.log(err);
         this.showError("Error");
       },
     });
   }
 
-  constructDetails(): ProductRequest[] {
+  constructProductDetails(): ProductRequest[] {
     return this.products.map(product => {
       return {
         productId: product.id,
         quantity: product.quantity
       };
     });
-  }
-
-  constructCoinPayRequest(): RequestPayment {
-    let request = new RequestPayment();
-    request.affiliateId = this.user.id;
-    request.amount = this.total;
-    request.products = this.constructDetails();
-    return request;
   }
 
   showCoinPayConfirmation() {
@@ -455,7 +450,7 @@ export class CartComponent implements OnInit, OnDestroy {
           let transaction = new PaymentTransaction();
           transaction.affiliateId = this.user.id;
           transaction.amount = this.total;
-          transaction.products = JSON.stringify(this.constructDetails());
+          transaction.products = JSON.stringify(this.constructProductDetails());
           transaction.idTransaction = reference;
           transaction.createdAt = date;
 
