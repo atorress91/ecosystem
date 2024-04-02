@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import 'perfect-scrollbar';
 import { AuthService } from "@app/core/service/authentication-service/auth.service";
 import { AffiliateService } from "@app/core/service/affiliate-service/affiliate.service";
+import {UserAffiliate} from "@app/core/models/user-affiliate-model/user.affiliate.model";
 
 @Component({
   selector: 'app-view-unilevel-tree',
@@ -13,6 +14,7 @@ import { AffiliateService } from "@app/core/service/affiliate-service/affiliate.
 })
 export class ViewUnilevelTreeComponent {
   userId: number;
+  user: UserAffiliate;
   btnBack: boolean = false;
   active;
 
@@ -35,8 +37,8 @@ export class ViewUnilevelTreeComponent {
 
   ngOnInit() {
     this.active = 1;
-    this.userId = this.authService.currentUserAffiliateValue.id;
-
+    this.user = this.authService.currentUserAffiliateValue;
+    this.userId = this.user.id;
     if (this.userId) {
       this.onloadFamilyTree(this.userId);
       this.btnBack = false;
