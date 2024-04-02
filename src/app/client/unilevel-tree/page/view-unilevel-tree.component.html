@@ -60,7 +60,7 @@
                   </div>
                 </ng-template>
               </li>
-              <li [ngbNavItem]="2">
+              <li [ngbNavItem]="2" *ngIf="user.external_grading_before_id !== null  && user.external_grading_before_id >= 16">
                 <a ngbNavLink> MODELO 4 (Binario)</a>
                 <ng-template ngbNavContent>
                   <div class="card-body">
@@ -100,7 +100,7 @@
                   </div>
                 </ng-template>
               </li>
-              <li [ngbNavItem]="3">
+              <li [ngbNavItem]="3" *ngIf="user.external_grading_before_id !== null  && user.external_grading_before_id >= 19">
                 <a ngbNavLink>MODELO 5 (Matriz)</a>
                 <ng-template ngbNavContent>
                   <div class="card-body">
@@ -140,7 +140,7 @@
                   </div>
                 </ng-template>
               </li>
-              <li [ngbNavItem]="4">
+              <li [ngbNavItem]="4" *ngIf="user.external_grading_before_id !== null  && user.external_grading_before_id >= 20">
                 <a ngbNavLink>MODELO 6 (Matriz)</a>
                 <ng-template ngbNavContent>
                   <div class="tab-pane">
