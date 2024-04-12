@@ -1,3 +1,4 @@
+import { LoginMovements } from './../../core/models/signin-model/login-movements.model';
 import { Component, HostListener, ViewChild, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
@@ -11,6 +12,7 @@ import { GradingService } from '@app/core/service/grading-service/grading.servic
 
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { Grading } from '@app/core/models/grading-model/grading.model';
+import { error } from 'console';
 
 const header = ['Movimientos', 'IP', 'Fecha'];
 
@@ -73,6 +75,7 @@ export class MyProfileComponent implements OnInit {
       if (response.success) {
         this.user = response.data;
         this.getGradingInfo(this.user.external_grading_before_id);
+        this.loadLoginMovements();
       }
     });
   }
@@ -103,5 +106,22 @@ export class MyProfileComponent implements OnInit {
     } else {
       this.toastr.success('Copied ' + this.temp.length + ' rows successfully');
     }
+  }
+
+  loadLoginMovements() {
+    this.authService.getLoginMovementsByAffiliatedId(this.user.id).subscribe({
+      next: (response: LoginMovements[]) => {
+        console.log(response);
+        if (response !== null) {
+          this.temp = response;
+          this.rows = [...response];
+        }
+        this.loadingIndicator = false;
+      },
+      error: (error) => {
+        this.toastr.error('Error loading movements');
+        this.loadingIndicator = false;
+      }
+    });
   }
 }
