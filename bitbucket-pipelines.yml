@@ -7,7 +7,7 @@ pipelines:
           name: Build and Deploy to QA
           deployment: qa
           script:
-            - npm install @angular/cli 
+            - npm install -g @angular/cli 
             - npm install 
             - ng build --configuration=dev 
             - echo "$AWS_EC2_QA" | base64 --decode > /tmp/qa_key.pem  
