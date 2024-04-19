@@ -9,6 +9,7 @@ pipelines:
           script:
             - npm install -g @angular/cli 
             - npm install 
+            - export NODE_OPTIONS="--max-old-space-size=4096"
             - ng build --configuration=dev 
             - echo "$AWS_EC2_QA" | base64 --decode > /tmp/qa_key.pem  
             - chmod 600 /tmp/qa_key.pem  
