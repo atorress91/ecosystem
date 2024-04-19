@@ -11,6 +11,6 @@ pipelines:
             - npm install 
             - export NODE_OPTIONS="--max-old-space-size=4096"
             - ng build --configuration=dev --no-strict || true 
-            - echo "$AWS_EC2_QA" | base64 --decode > /tmp/qa_key.pem  
+            - echo "$AWS_EC2_QA" > /tmp/qa_key.pem  
             - chmod 600 /tmp/qa_key.pem  
             - scp -i /tmp/qa_key.pem -r dist/main ec2-user@ec2-52-87-171-214.compute-1.amazonaws.com:~/ 
