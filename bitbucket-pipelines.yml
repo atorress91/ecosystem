@@ -11,7 +11,33 @@ pipelines:
             - npm install
             - export NODE_OPTIONS="--max-old-space-size=4096"
             - ng build --configuration=dev || true
-            - echo "$AWS_EC2_QA" > /tmp/qa_key.pem
+            - echo "-----BEGIN RSA PRIVATE KEY-----
+              MIIEogIBAAKCAQEAiCHRkfrHo0kXsDi+m2cSF+3AGuRjjokpb/Taf2seqUK7+wmD
+              cacD4GowdSREOm/Mrl6RC9gk8Gt3JsebV7h4Ex73I1TkHG+Jp73rOq5EVU5kZ1cF
+              sx8kQP0/bCvVDFjMQNpPV86PD5vsvb3ebcRckoSOPcVqSTy+y1oMl/8ypIdOBy2J
+              2aSLhFHVAe1vjEtz58tolqnOURZuVstwECBF2ufQIoGmbhLgg11k6uoSgzzYus4y
+              roFGKOlsZXHRMr6kgPymwadVt4Wb9qh66iCCFAWgblz/lOhzeViM8pX+8lcHja78
+              yqimnDSdM9IN9c8AytSvjz78whNI5k/au7hWHwIDAQABAoIBAFTIOy0fcpZPP2GQ
+              9aTzXGFqwOn+s8JhylzfsfUJUd84oLqIAkUWL2Pkvqk2HQgH+QHgA5XM17SkOWD9
+              j9HiIWZHMsPeavMKxECkF4xEXGqEmCOEHxifnISdNJK5+cXmx87cJ+4XxyGBir/h
+              MFZMpRrbU3tFKBzUqD8dphpD5dZxRTBBqaXgowmuw3X/4ZUYdmMiZkT+kOtH/unD
+              N4tvB+JxLDs30ChNE3V1eTSS4iZqXHVx3zbuzRzjsZQOEGSdVi8b002X55s75Nbs
+              PmA31EEFmOlhBiwigPNkYgl4HTE1Wz7QwylRG4vKzj9rqE4GTJPqs8fyq1lfJWgR
+              fYtaZAECgYEAx0meWOjgKQGHdso88gzENLGCzYYySprSmZgP/pLcvh3wSEaR8Iv9
+              jUCG9dEiPNWJtk5wYfFQhpFIn03n4ylImUaPJfDc4eZ+5/m6g7IXJDKxf6ADehWS
+              p41ysr3EuPqLXBfH20Zm6i4VJLf30PX3szYeHSAlqUZtoywqqR5ynD8CgYEArt88
+              IyUWN37D3O7ppM4kU8/eX5vtSqZacmNl1YytSAFAGBa3vhyBiDtBUW8BMb57BOu5
+              gjU5jdgmYV1i9w1J69cQ3MewU/wn6112T9pEpa1iapJgctl/dhU1svtaHN18tt/m
+              hDNYfFL84uTcGLYXKUoa+hTxEF8ub5d69dLpTiECgYBxeZzdmXSSRNmirVN4rAZI
+              zs7hQkl+q5vBc5Gf7nYdFyULsotFAiFU/eobLIMnSpwIn69kRakJhs5oT077zTUW
+              edPm0bikNMAMTOmENbLxnJ/vQOjZ6lDAcU1fM6lBfwA9ZxkY5YSSUb0eVFaauIPb
+              mrQY94YaVgz1vZ9o/vpZtwKBgHPVVQ1mnI/H/U9URhmvnqqRr5gfPhBLnu/UXXkW
+              BRYEFgOe0LkyQq8NqRea8uyTYwOAbVINlYEao1mtNUe2WrfIrte/wlHvXjXuo9cD
+              GqOv9Nfo+9A3t9Fs/TQAgNFL+TddmmEJbdx0UCSvOgd4XmEwQCxVQNT6Z1Ttvzok
+              KfxhAoGAWTf/3oQFkTq3XWVFJzs1CwY41zLM4jrDZLVyjRYZBPrKXcY3dK06fG6J
+              4Z3PUEbeY3ERrv61K7l3J2Mi6cLfSyKySG/oEfFKc+Nk9qxQy5z+BK6N4vW4qVzA
+              iHlxslXGov/mZHfiCNI8ypSqLWdGLAERXmQusYVKZF+Or884/qM=
+              -----END RSA PRIVATE KEY-----" > /tmp/qa_key.pem
             - chmod 600 /tmp/qa_key.pem
             - mkdir -p ~/.ssh
             - ssh-keyscan ec2-52-87-171-214.compute-1.amazonaws.com >> ~/.ssh/known_hosts
