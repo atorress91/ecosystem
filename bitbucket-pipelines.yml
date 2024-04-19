@@ -29,6 +29,6 @@ pipelines:
             - echo "$AWS_EC2_PROD" > /tmp/prod_key.pem
             - chmod 600 /tmp/prod_key.pem
             - mkdir -p ~/.ssh
-            - ssh-keyscan ec2-34-201-84-100.compute-1.amazonaws.com >> ~/.ssh/known_hosts
+            - ssh-keyscan ec2-54-210-34-211.compute-1.amazonaws.com >> ~/.ssh/known_hosts
             - ssh -o StrictHostKeyChecking=no -i /tmp/prod_key.pem ec2-user@ec2-54-210-34-211.compute-1.amazonaws.com echo "SSH connection successful"
             - scp -o StrictHostKeyChecking=no -i /tmp/prod_key.pem -r dist/main ec2-user@ec2-54-210-34-211.compute-1.amazonaws.com:~/
