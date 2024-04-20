@@ -22,7 +22,6 @@ pipelines:
                 S3_BUCKET: 'hero-deploy'
                 LOCAL_PATH: '.'
                 S3_PATH: 'deployments/qa/'
-                EXTRA_ARGS: '--acl public-read'
     master:
       - step:
           name: Build and Deploy to Production
@@ -43,4 +42,4 @@ pipelines:
                 S3_BUCKET: 'hero-deploy'
                 LOCAL_PATH: '.'
                 S3_PATH: 'deployments/prod/'
-                EXTRA_ARGS: '--acl public-read'
+              
