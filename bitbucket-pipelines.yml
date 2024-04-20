@@ -14,14 +14,14 @@ pipelines:
             - ls -ltr
             - cd dist/main
             - pipe: atlassian/aws-s3-deploy:1.0.0
-                  variables:
-                    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-                    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-                    AWS_DEFAULT_REGION: 'us-east-1'
-                    S3_BUCKET: 'hero-deploy'
-                    LOCAL_PATH: 'dist/main/'
-                    S3_PATH: 'deployments/qa/'
-                    EXTRA_ARGS: '--acl public-read'
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: 'us-east-1'
+                S3_BUCKET: 'hero-deploy'
+                LOCAL_PATH: 'dist/main/'
+                S3_PATH: 'deployments/qa/'
+                EXTRA_ARGS: '--acl public-read'
     master:
       - step:
           name: Build and Deploy to Production
@@ -34,11 +34,11 @@ pipelines:
             - ls -ltr
             - cd dist/main
             - pipe: atlassian/aws-s3-deploy:1.0.0
-                  variables:
-                    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-                    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-                    AWS_DEFAULT_REGION: 'us-east-1'
-                    S3_BUCKET: 'hero-deploy'
-                    LOCAL_PATH: 'dist/main/'
-                    S3_PATH: 'deployments/prod/'
-                    EXTRA_ARGS: '--acl public-read'
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: 'us-east-1'
+                S3_BUCKET: 'hero-deploy'
+                LOCAL_PATH: 'dist/main/'
+                S3_PATH: 'deployments/prod/'
+                EXTRA_ARGS: '--acl public-read'
