@@ -5,6 +5,7 @@ pipelines:
     development:
       - step:
           name: Build and Deploy to QA
+          size: 2x
           deployment: qa
           script:
             - npm install -g @angular/cli
@@ -25,6 +26,7 @@ pipelines:
     master:
       - step:
           name: Build and Deploy to Production
+          size: 2x
           deployment: production
           script:
             - npm install -g @angular/cli
