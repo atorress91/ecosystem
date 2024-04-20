@@ -1,4 +1,4 @@
-image: node:latest
+image: node:20
 
 pipelines:
   branches:
@@ -12,7 +12,7 @@ pipelines:
             - npm install
             - export NODE_OPTIONS="--max-old-space-size=4096"
             - ng build --configuration=dev || true
-            - ls -ltr
+            - ls -lR dist/
             - cd dist/main
             - pipe: atlassian/aws-s3-deploy:1.0.0
               variables:
@@ -33,7 +33,7 @@ pipelines:
             - npm install
             - export NODE_OPTIONS="--max-old-space-size=4096"
             - ng build --configuration=production || true
-            - ls -ltr
+            - ls -lR dist/
             - cd dist/main
             - pipe: atlassian/aws-s3-deploy:1.0.0
               variables:
