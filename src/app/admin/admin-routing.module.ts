@@ -38,7 +38,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { AttributesListComponent } from './attributes-list/attributes-list.component';
 import { PassivePackComponent } from './passive-pack/passive-pack.component';
 import { ProductsServicesConfigurationsComponent } from './products-services-configurations/products-services-configurations.component';
-import { BalanceOfWalletComponent } from './balance-of-wallet/balance-of-wallet.component';
+import { BalanceOfWalletComponent } from './Balance-of-wallet/balance-of-wallet.component';
 import { WalletRemovalComponent } from './wallet-removal/wallet-removal.component';
 import { TransactionsCommissionComponent } from './transactions-commission/transactions-commission.component';
 import { WalletParametersComponent } from './wallet-parameters/wallet-parameters.component';
