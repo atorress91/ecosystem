@@ -20,7 +20,7 @@ pipelines:
                 AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
                 AWS_DEFAULT_REGION: 'us-east-1'
                 S3_BUCKET: 'hero-deploy'
-                LOCAL_PATH: 'dist/main/'
+                LOCAL_PATH: '.'
                 S3_PATH: 'deployments/qa/'
                 EXTRA_ARGS: '--acl public-read'
     master:
@@ -41,6 +41,6 @@ pipelines:
                 AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
                 AWS_DEFAULT_REGION: 'us-east-1'
                 S3_BUCKET: 'hero-deploy'
-                LOCAL_PATH: 'dist/main/'
+                LOCAL_PATH: '.'
                 S3_PATH: 'deployments/prod/'
                 EXTRA_ARGS: '--acl public-read'
