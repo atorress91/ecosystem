@@ -277,28 +277,28 @@
                 </div>
               </div>
               <div class="row mt-0">
-                <ngx-datatable id="table" #table class="material" [rows]="" [loadingIndicator]="loadingIndicator"
+                <ngx-datatable id="table" #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator"
                   columnMode="force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
                   [scrollbarH]="scrollBarHorizontal" [reorderable]="reorderable">
                   <ngx-datatable-column name="{{
                             'ADMIN-MY-PROFILE.COL-MOVEMENTS.TEXT' | translate
                           }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.movements }}
+                      {{ row.browserInfo }}
                     </ng-template>
                   </ngx-datatable-column>
                   <ngx-datatable-column name="{{
                             'ADMIN-MY-PROFILE.COL-IP.TEXT' | translate
                           }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.ip }}
+                      {{ row.ipAddress }}
                     </ng-template>
                   </ngx-datatable-column>
                   <ngx-datatable-column name="{{
                             'ADMIN-MY-PROFILE.COL-DATE.TEXT' | translate
                           }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.date }}
+                      {{ row.createdAt }}
                     </ng-template>
                   </ngx-datatable-column>
                 </ngx-datatable>
