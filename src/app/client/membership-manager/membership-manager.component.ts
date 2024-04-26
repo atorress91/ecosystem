@@ -20,6 +20,9 @@ import { ProductsRequests, WalletRequest } from '@app/core/models/wallet-model/w
 import { ToastrService } from 'ngx-toastr';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
 import { Router } from '@angular/router';
+import { CreatePagaditoTransactionRequest } from '@app/core/models/pagadito-model/create-pagadito-transaction-request.model';
+import { PagaditoTransactionDetailRequest } from '@app/core/models/pagadito-model/pagadito-transaction-detail-request.model';
+import { PagaditoService } from '@app/core/service/pagadito-service/pagadito.service';
 
 
 @Component({
@@ -38,6 +41,7 @@ export class MembershipManagerComponent implements OnInit, OnDestroy {
   @ViewChild('membershipManagerModal', { static: true })
   membershipManagerModal!: TemplateRef<any>;
   private destroy$ = new Subject<void>();
+  pagaditoRequest = new CreatePagaditoTransactionRequest();
 
   constructor(
     private modalService: NgbModal,
@@ -47,7 +51,8 @@ export class MembershipManagerComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private affiliateService: AffiliateService,
     private router: Router,
-    private membershipManagerService: MembershipManagerService
+    private membershipManagerService: MembershipManagerService,
+    private pagaditoService: PagaditoService
   ) { }
 
   ngOnInit(): void {
@@ -180,4 +185,62 @@ export class MembershipManagerComponent implements OnInit, OnDestroy {
     })
   }
 
+  createPagaditoTransaction() {
+    this.pagaditoRequest.amount = 10;
+    this.pagaditoRequest.affiliate_id = this.user.id;
+
+    let detail = new PagaditoTransactionDetailRequest();
+    detail.quantity = '1';
+    detail.description = 'Membresía Ecosystem';
+    detail.price = '10';
+    detail.url_product = this.currentMembership.id.toString();
+
+    this.pagaditoRequest.details.push(detail);
+
+    Swal.fire({
+      title: 'Confirmación de pago',
+      text: 'Una vez realizado el pago la transacción no será reembolsable. ¿Desea continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, realizar pago'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.executePagaditoTransaction();
+      }
+    });
+  }
+
+  executePagaditoTransaction() {
+    this.pagaditoService.createTransaction(this.pagaditoRequest).subscribe({
+      next: (response) => {
+        if (response.success) {
+          window.open(response.data);
+          this.showPostPaymentModal();
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        Swal.fire({
+          title: 'Error',
+          text: 'Ocurrió un error al procesar el pago. Por favor, intente nuevamente.',
+          icon: 'error',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Cerrar'
+        });
+      },
+    });
+  }
+
+  showPostPaymentModal() {
+    Swal.fire({
+      title: 'Pago en Proceso',
+      text: 'Una vez realizado el pago, el sistema activará automáticamente al usuario.',
+      icon: 'info',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Entendido'
+    });
+  }
 }
