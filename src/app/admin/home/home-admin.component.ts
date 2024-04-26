@@ -21,7 +21,7 @@ import {
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
-import am5themes_Animated from "@amcharts/amcharts4/themes/Animated";
+import am5themes_Animated from "@amcharts/amcharts4/themes/animated";
 import { EChartsOption } from 'echarts';
 import { WalletService } from '@app/core/service/wallet-service/wallet.service';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';

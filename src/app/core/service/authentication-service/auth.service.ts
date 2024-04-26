@@ -9,14 +9,15 @@ import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affili
 import { environment } from '@environments/environment';
 import { Response } from '@app/core/models/response-model/response.model';
 import { ToastrService } from 'ngx-toastr';
-import { DeviceDetectorService } from 'ngx-device-detector';
+
 
 import { CartService } from '../cart.service/cart.service';
 
-
 const httpOptions = {
-
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.accountService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: environment.tokens.accountService.toString(),
+  }),
 };
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,12 @@ export class AuthService {
   public currentUserAdmin: Observable<User>;
   private urlApi: string;
 
-  constructor(private http: HttpClient, private toastr: ToastrService, private cartService: CartService, private deviceService: DeviceDetectorService) {
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private cartService: CartService,
+  
+  ) {
     this.currentUserAffiliateSubject = new BehaviorSubject<UserAffiliate>(
       JSON.parse(localStorage.getItem('currentUserAffiliate'))
     );
@@ -45,14 +51,11 @@ export class AuthService {
     return this.currentUserAffiliateSubject.value;
   }
 
-
   public get currentUserAdminValue(): User {
     return this.currentUserAdminSubject.value;
   }
 
   loginUser(userCredentials: Signin) {
-    userCredentials.browserInfo = this.deviceService.getDeviceInfo().browser;
-    userCredentials.operatingSystem = this.deviceService.getDeviceInfo().os;
     return this.http
       .post<Response>(
         this.urlApi.concat('/auth/login'),
@@ -82,7 +85,9 @@ export class AuthService {
     console.log(httpOptions);
     return this.http
       .put(
-        this.urlApi.concat('/useraffiliateinfo/email_confirmation/', userName), {}, httpOptions
+        this.urlApi.concat('/useraffiliateinfo/email_confirmation/', userName),
+        {},
+        httpOptions
       )
       .pipe(
         map((data) => {
@@ -118,12 +123,21 @@ export class AuthService {
 
   getLoginMovementsByAffiliatedId(affiliateId: number) {
     return this.http
-      .get<Response>(`${this.urlApi}/auth/login_movements/${affiliateId}`, httpOptions)
+      .get<Response>(
+        `${this.urlApi}/auth/login_movements/${affiliateId}`,
+        httpOptions
+      )
       .pipe(
         map((response) => {
           console.log(response);
           return response.data;
         })
       );
+  }
+
+  fetchIpAddress(): Observable<string> {
+    return this.http
+      .get<{ ip: string }>('https://api.ipify.org?format=json')
+      .pipe(map((data) => data.ip));
   }
 }
