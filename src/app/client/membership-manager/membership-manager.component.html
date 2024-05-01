@@ -74,7 +74,7 @@
         </div>
       </div>
 
-      <div class="row text-center" *ngIf="!payMethodSelected">
+      <!-- <div class="row text-center" *ngIf="!payMethodSelected">
         <div class="col-lg-12" style="margin-left: 8px;">
           <h6>Método de pago</h6>
           <div class="" ngbRadioGroup name="pay_method">
@@ -84,7 +84,7 @@
             </label>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="row text-center mt-2" *ngIf="!payMethodSelected">
         <div class="col-lg-12" style="margin-left: 8px;">
           <button class="btn" (click)=" confirmTransaction()" [ngClass]="{'btn-danger': balanceInformation?.availableBalance == 0 || balanceInformation?.availableBalance == null,
@@ -93,6 +93,12 @@
         <!-- <div role="button" class="col-lg-12 mt-2" style="margin-left: 8px;">
           <img src="assets/images/cards/coinpayment.png" alt="img_coinpayment" class="" style="border-radius: 10px;">
         </div> -->
+      </div>
+      <div class="row text-center mt-2" *ngIf="!payMethodSelected">
+        <div class="col-lg-12" style="margin-left: 8px;">
+          <input (click)="createPagaditoTransaction()" type="image" src="assets/images/cards/visa-mast.webp"
+            alt="Pago con tarjeta de credito y debito" class="img-fluid mb-2">
+        </div>
       </div>
       <div class="row mt-2 d-flex align-items-center justify-content-center" *ngIf="payMethodSelected == 1">
         <app-coinpayments [membership]="currentMembership"></app-coinpayments>
