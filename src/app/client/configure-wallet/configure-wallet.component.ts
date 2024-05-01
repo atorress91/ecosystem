@@ -70,7 +70,6 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
   loadConfiguration() {
     this.affiliateBtcService.getAffiliateBtcByAffiliateId(this.user.id).subscribe({
       next: (value) => {
-        console.log(value);
         this.setConfiguration(value);
       },
       error: () => {
