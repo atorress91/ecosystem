@@ -70,6 +70,7 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
   loadConfiguration() {
     this.affiliateBtcService.getAffiliateBtcByAffiliateId(this.user.id).subscribe({
       next: (value) => {
+        console.log(value);
         this.setConfiguration(value);
       },
       error: () => {
@@ -80,7 +81,7 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
 
   setConfiguration(value) {
     this.walletAddress.patchValue({
-      trc_address: value.address
+      trc_address: value.Address
     });
   }
 
@@ -95,8 +96,12 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
 
     this.affiliateBtcService.createAffiliateBtc(this.affiliateBtc).subscribe({
       next: (value) => {
-        this.showSuccess('Configuracion de la billetera creada correctamente.');
-        this.configureWalletService.closeConfigureWalletModal();
+        if (value.success) {
+          this.showSuccess('Configuracion de la billetera creada correctamente.');
+          this.configureWalletService.closeConfigureWalletModal();
+        } else {
+          this.showError('Billetera no valida.');
+        }
       },
       error: (error) => {
         this.showError('Error');
@@ -116,7 +121,7 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
       showCancelButton: true,
       confirmButtonText: 'Guardar',
       cancelButtonText: 'Cancelar',
-      didRender: () => { // Usar didRender
+      didRender: () => {
         const codeElement = document.getElementById('swal-input-code') as HTMLInputElement;
         const passwordElement = document.getElementById('swal-input-password') as HTMLInputElement;
 
