@@ -26,9 +26,9 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.currentUserAffiliateValue;
-    if (this.user.message_alert == 0) {
-      this.showAlert();
-    }
+    // if (this.user.message_alert == 0) {
+    //   this.showAlert();
+    // }
   }
 
   ngAfterViewInit(): void {
@@ -61,24 +61,24 @@ export class MainLayoutComponent implements OnInit {
     })
   }
 
-  showAlert() {
-    Swal.fire({
-      icon: "info",
-      title: 'Habilitación de Retiros de Saldo disponible a su billetera',
-      html: `
-            <p>Querida familia de Ecosystem,</p>
-            <p>Nos complace anunciar que el próximo martes, 23 de abril, estaremos habilitando los retiros de saldo. Esta es una oportunidad para que todos nuestros miembros puedan gestionar sus recursos de manera más efectiva dentro de nuestra plataforma.</p>
-            <p>¡Agradecemos su paciencia y confianza en nosotros! Prepárense para realizar sus retiros.</p>
-        `,
-      confirmButtonText: 'OK',
-      confirmButtonColor: '#3085d6',
-      showCancelButton: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.messageReceived();
-      }
-    });
-  }
+  // showAlert() {
+  //   Swal.fire({
+  //     icon: "info",
+  //     title: 'Habilitación de Retiros de Saldo disponible a su billetera',
+  //     html: `
+  //           <p>Querida familia de Ecosystem,</p>
+  //           <p>Nos complace anunciar que el próximo martes, 23 de abril, estaremos habilitando los retiros de saldo. Esta es una oportunidad para que todos nuestros miembros puedan gestionar sus recursos de manera más efectiva dentro de nuestra plataforma.</p>
+  //           <p>¡Agradecemos su paciencia y confianza en nosotros! Prepárense para realizar sus retiros.</p>
+  //       `,
+  //     confirmButtonText: 'OK',
+  //     confirmButtonColor: '#3085d6',
+  //     showCancelButton: false,
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.messageReceived();
+  //     }
+  //   });
+  // }
 
 
   showSuccess(message: string) {
