@@ -2,25 +2,25 @@ export class StatisticsInformation
 {
   amountPoolModel1A: number;
   amountPoolModel1B: number;
-  AmountPoolModel2: number;
-  AmountPoolModel3: number;
-  VolumeLeftModel4: number;
-  VolumeRightModel4: number;
-  AmountChildrenLeftModel4: number;
-  AmountChildrenRightModel4: number;
-  AmountPassiveModel1A: number;
-  AmountResidualModel1A: number;
-  AmountPassiveModel1B: number;
-  AmountResidualModel1B: number;
-  AmountPassiveModel2: number;
-  AmountResidualModel2: number;
-  AmountPercentageModel3: number;
-  AmountResidualModel3: number;
-  AmountUsersDirectModel123: number;
-  AmountUsersNetworkModel123: number;
-  AmountUsersDirectModel5: number;
-  AmountUsersNetworkModel5: number;
-  AmountUsersDirectModel6: number;
-  AmountUsersNetworkModel6: number;
+  amountPoolModel2: number;
+  amountPoolModel3: number;
+  volumeLeftModel4: number;
+  volumeRightModel4: number;
+  amountChildrenLeftModel4: number;
+  amountChildrenRightModel4: number;
+  amountPassiveModel1A: number;
+  amountResidualModel1A: number;
+  amountPassiveModel1B: number;
+  amountResidualModel1B: number;
+  amountPassiveModel2: number;
+  amountResidualModel2: number;
+  amountPercentageModel3: number;
+  amountResidualModel3: number;
+  amountUsersDirectModel123: number;
+  amountUsersNetworkModel123: number;
+  amountUsersDirectModel5: number;
+  amountUsersNetworkModel5: number;
+  amountUsersDirectModel6: number;
+  amountUsersNetworkModel6: number;
 
 }
