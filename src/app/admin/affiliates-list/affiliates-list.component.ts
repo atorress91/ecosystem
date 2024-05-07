@@ -1,3 +1,4 @@
+
 import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ClipboardService } from 'ngx-clipboard';
@@ -11,6 +12,9 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { WalletService } from '@app/core/service/wallet-service/wallet.service';
 import { CreditTransactionAdminRequest } from '@app/core/models/wallet-model/creditTransactionAdminRequest.mode';
+import { BalanceInformationModalComponent } from './balance-information-modal/balance-information-modal.component';
+import { WalletModel1AService } from '@app/core/service/wallet-model-1a-service/wallet-model-1a.service';
+import { WalletModel1BService } from '@app/core/service/wallet-model-1b-service/wallet-model-1b.service';
 
 const header = [
   'Usuario',
@@ -35,7 +39,7 @@ export class AffiliatesListComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   scrollBarHorizontal = window.innerWidth < 1200;
-
+  @ViewChild(BalanceInformationModalComponent) private balanceInformationModalComponent: BalanceInformationModalComponent;
   @ViewChild('table') table: DatatableComponent;
 
   constructor(
@@ -45,7 +49,9 @@ export class AffiliatesListComponent implements OnInit {
     private toast: ToastrService,
     private modalService: NgbModal,
     private printService: PrintService,
-    private walletService: WalletService
+    private walletService: WalletService,
+    private walletModel1AService: WalletModel1AService,
+    private walletModel1BService: WalletModel1BService
   ) { }
 
   ngOnInit() {
@@ -153,6 +159,16 @@ export class AffiliatesListComponent implements OnInit {
         <br>
         <label for="swal-input-amount">Monto a Acreditar:</label>
         <input id="swal-input-amount" type="number" class="swal2-input" placeholder="Ingrese el monto">
+        <br>
+        <br>
+        <label for="swal-select-type">Elija el saldo a crear:</label>
+        <br>
+        <br>
+        <select id="swal-select-type" class="swal2-input">
+          <option value="modelo2">Saldo Disponible Modelo2</option>
+          <option value="modelo1a">Saldo Servicios Modelo1A</option>
+          <option value="modelo1b">Saldo Servicios Modelo1B</option>
+        </select>
       `,
       icon: 'info',
       confirmButtonText: 'Confirmar',
@@ -161,29 +177,43 @@ export class AffiliatesListComponent implements OnInit {
       focusConfirm: false,
       preConfirm: () => {
         const amount = (Swal.getPopup().querySelector('#swal-input-amount') as HTMLInputElement).value;
+        const type = (Swal.getPopup().querySelector('#swal-select-type') as HTMLSelectElement).value;
         if (!amount || isNaN(Number(amount)) || Number(amount) <= 0) {
           Swal.showValidationMessage('Por favor ingrese un monto válido.');
           return false;
         }
-        return Number(amount);
+        return {
+          amount: Number(amount),
+          type
+        };
       }
     }).then((result) => {
       if (result.isConfirmed && result.value !== false) {
-
         let creditRequest = new CreditTransactionAdminRequest();
         creditRequest.affiliateId = user.id;
-        creditRequest.amount = result.value;
+        creditRequest.amount = result.value.amount;
 
-        this.createBalance(creditRequest);
+        switch (result.value.type) {
+          case 'modelo2':
+            this.createAvailableBalance(creditRequest);
+            break;
+          case 'modelo1a':
+            this.createServiceBalanceModel1A(creditRequest);
+            break;
+          case 'modelo1b':
+            this.createServiceBalanceModel1B(creditRequest);
+            break;
+          default:
+            console.error('Tipo de saldo desconocido:', result.value.type);
+        }
       }
     });
   }
 
-  createBalance(request: CreditTransactionAdminRequest) {
+  createAvailableBalance(request: CreditTransactionAdminRequest) {
     this.walletService.createBalanceAdmin(request).subscribe({
       next: (value) => {
-        console.log(value);
-        if (value) {
+        if (value.success) {
           this.showSuccess('Se ha acreditado el saldo correctamente.');
         } else {
           this.showError('No se pudo crear la transacción');
@@ -193,5 +223,41 @@ export class AffiliatesListComponent implements OnInit {
         this.showError('Error');
       },
     })
+  }
+
+  createServiceBalanceModel1A(request: CreditTransactionAdminRequest) {
+    this.walletModel1AService.createServiceBalanceAdmin(request).subscribe({
+      next: (value) => {
+        if (value.success) {
+          this.showSuccess('Se ha acreditado el saldo correctamente.');
+        } else {
+          this.showError('No se pudo crear la transacción');
+        }
+      },
+      error: (err) => {
+        this.showError('Error');
+      },
+    })
+  }
+
+  createServiceBalanceModel1B(request: CreditTransactionAdminRequest) {
+    this.walletModel1BService.createServiceBalanceAdmin(request).subscribe({
+      next: (value) => {
+        if (value.success) {
+          this.showSuccess('Se ha acreditado el saldo correctamente.');
+        } else {
+          this.showError('No se pudo crear la transacción');
+        }
+      },
+      error: (err) => {
+        this.showError('Error');
+      },
+    })
+  }
+
+  openBalanceInformationModal(userAffiliate: UserAffiliate) {
+    if (this.balanceInformationModalComponent) {
+      this.balanceInformationModalComponent.initModal(userAffiliate);
+    }
   }
 }

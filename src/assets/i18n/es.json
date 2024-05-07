@@ -112,7 +112,7 @@
       "TEXT": "Capital de apoyo"
     },
     "SERVICES-AND-PRODUCTS": {
-      "TEXT": "Servicios y Productos"
+      "TEXT": "Productos"
     },
     "BILLING-PURCHASE": {
       "TEXT": "Tienda medio ambiente"
@@ -357,7 +357,7 @@
       "TEXT": "Saldo Disponible"
     },
     "REVERSE-BALANCE": {
-      "TEXT": "Saldo revertido"
+      "TEXT": "Saldo balance"
     },
     "REQUEST-RECHARGE": {
       "TEXT": "Recarga Solicitada"
@@ -696,6 +696,25 @@
     },
     "BTN-ADD-CART": {
       "TEXT": "Añadir al carrito"
+    },
+    "SUBTITLE": {
+      "TEXT": "Modelo 2"
+    }
+  },
+  "SAVINGS-PLANS-PAGE": {
+    "TITLE": {
+      "TEXT": "Modelo (1A)"
+    },
+    "SUBTITLE": {
+      "TEXT": "Modelo (1A)"
+    }
+  },
+  "SAVINGS-PLANS-ONEB-PAGE": {
+    "TITLE": {
+      "TEXT": "Modelo (1B)"
+    },
+    "SUBTITLE": {
+      "TEXT": "Modelo (1B)"
     }
   },
   "CART-PAGE": {

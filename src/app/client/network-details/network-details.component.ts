@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
 import { WalletService } from '@app/core/service/wallet-service/wallet.service';
-import { BalanceInformation } from '@app/core/models/wallet-model/balance-information.model';
+import {StatisticsInformation} from "@app/core/models/wallet-model/statisticsInformation";
 
 @Component({
   selector: 'app-network-details',
@@ -14,7 +14,7 @@ import { BalanceInformation } from '@app/core/models/wallet-model/balance-inform
 })
 export class NetworkDetailsComponent implements OnInit, OnDestroy {
   user: UserAffiliate = new UserAffiliate();
-  balanceInfo: BalanceInformation = new BalanceInformation();
+  information: StatisticsInformation = new StatisticsInformation();
 
   constructor(
     private walletService: WalletService,
@@ -26,7 +26,7 @@ export class NetworkDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.authService.currentUserAffiliateValue;
-    this.loadBalance();
+    this.loadInformation();
     this.contractSidebar();
   }
 
@@ -34,10 +34,10 @@ export class NetworkDetailsComponent implements OnInit, OnDestroy {
     this.expandSidebar()
   }
 
-  loadBalance() {
-    this.walletService.getBalanceInformationByAffiliateId(this.user.id).subscribe({
+  loadInformation() {
+    this.walletService.getStatisticsInformationByAffiliateId(this.user.id).subscribe({
       next: (value) => {
-        this.balanceInfo = value;
+        this.information = value;
       },
       error: (err) => {
         this.showError('Error');

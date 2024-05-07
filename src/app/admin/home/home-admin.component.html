@@ -18,36 +18,44 @@
             <div id="chart1">
               <apx-chart [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
                 [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
-                [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend" class="apex-pie-center">
+                [dataLabels]="pieChartOptions.dataLabels" [legend]="pieChartOptions.legend"
+                [colors]="pieChartOptions.colors" class="apex-pie-center">
               </apx-chart>
             </div>
-            <div class="table-responsive m-t-15">
+            <div class="table m-t-5">
               <table class="table align-items-center table-row-border">
                 <tbody>
                   <tr>
                     <td class="col-red">
                       <i class="fa fa-circle col-red msr-2"></i> Beneficio en billetera
                     </td>
-                    <td class="col-red">USD {{walletProfit}}</td>
+                    <td class="col-red">USD {{walletProfit | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-blue">
                       <i class="fa fa-circle col-blue msr-2 "></i>Total comisiones pagadas
 
                     </td>
-                    <td class="col-blue">USD {{commissionsPaid}}</td>
+                    <td class="col-blue">USD {{commissionsPaid | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-emerald">
                       <i class="fa fa-circle col-emerald msr-2"></i>Comisiones calculadas
                     </td>
-                    <td class="col-emerald">USD {{calculatedCommissions}}</td>
+                    <td class="col-emerald">USD {{calculatedCommissions | truncateDecimals:2}}</td>
                   <tr>
                     <td class="col-green">
                       <i class="fa fa-circle col-green msr-2 col-green"></i>
                       Afiliados activos
                     </td>
-                    <td class="col-green">USD {{totalMembers}}</td>
+                    <td class="col-green">USD {{totalMembers | truncateDecimals:2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="col-purple">
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>
+                      Saldo balance 2
+                    </td>
+                    <td class="col-purple">USD {{totalReverseBalance | truncateDecimals:2}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -58,34 +66,26 @@
       <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4>Origen de Registros</h4>
+            <h4>
+              {{ 'HOME-PAGE-CLIENT.TITTLE-FIRST-CHART.TEXT' | translate }}
+            </h4>
           </div>
           <div class="card-body">
-            <div class="row mb-4">
+            <div class="row">
               <div id="chartdiv"></div>
             </div>
-            <div class="row mb-5">
-              <div class="float-start">
-                <div id="new-orders" class="media-list position-relative"
-                  style="position: relative; max-height: 170px !important" [perfectScrollbar]>
-                  <div class="table-responsive">
-                    <table id="new-orders-table" class="table table-hover table-xl table-row-border mb-0">
-                      <tbody>
-                        <tr>
-                          <td class="text-truncate">Salvador</td>
-                          <td class="text-truncate">20</td>
-                        </tr>
-                        <tr>
-                          <td class="text-truncate">Costa Rica</td>
-                          <td class="text-truncate">10</td>
-                        </tr>
-                        <tr>
-                          <td class="text-truncate">Peru</td>
-                          <td class="text-truncate">40</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+            <div class="row">
+              <div id="new-orders" class="media-list" style="position: relative; max-height: 315px !important"
+                [perfectScrollbar]>
+                <div class="table">
+                  <table id="new-orders-table" class="table table-hover table-xl table-row-border mb-0">
+                    <tbody *ngFor="let item of maps">
+                      <tr>
+                        <td class="text-truncate">{{item.title}}</td>
+                        <td class="text-truncate">{{item.value}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

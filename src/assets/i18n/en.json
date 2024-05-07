@@ -109,7 +109,7 @@
       "TEXT": "Support capital"
     },
     "SERVICES-AND-PRODUCTS": {
-      "TEXT": "Services and Products"
+      "TEXT": "Products"
     },
     "BILLING-PURCHASE": {
       "TEXT": "Environmental store"
@@ -389,7 +389,7 @@
       "TEXT": "Available Balance"
     },
     "REVERSE-BALANCE": {
-      "TEXT": "Reverse Balance"
+      "TEXT": "Balance amount"
     },
     "REQUEST-RECHARGE": {
       "TEXT": "Recharge Requested"
@@ -693,6 +693,25 @@
     },
     "BTN-ADD-CART": {
       "TEXT": "Add to cart"
+    },
+    "SUBTITLE": {
+      "TEXT": "Model 2"
+    }
+  },
+  "SAVINGS-PLANS-PAGE": {
+    "TITLE": {
+      "TEXT": "Model (1A)"
+    },
+    "SUBTITLE": {
+      "TEXT": "Model (1A)"
+    }
+  },
+  "SAVINGS-PLANS-ONEB-PAGE": {
+    "TITLE": {
+      "TEXT": "Model (1B)"
+    },
+    "SUBTITLE": {
+      "TEXT": "Model (1B) "
     }
   },
   "CART-PAGE": {

@@ -21,6 +21,11 @@ import { EncryptService } from '@app/core/service/encrypt-service/encrypt.servic
 import { ConfigurationService } from '@app/core/service/configuration-service/configuration.service';
 import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
 import { TruncateDecimalsPipe } from "@app/shared/truncate-decimals.pipe";
+import { PagaditoTransactionDetailRequest } from '@app/core/models/pagadito-model/pagadito-transaction-detail-request.model';
+import { CreatePagaditoTransactionRequest } from '@app/core/models/pagadito-model/create-pagadito-transaction-request.model';
+import { PagaditoService } from '@app/core/service/pagadito-service/pagadito.service';
+import { Product } from '@app/core/models/product-model/product.model';
+import { ProductService } from '@app/core/service/product-service/product.service';
 
 @Component({
   selector: 'app-network',
@@ -44,6 +49,8 @@ export class NetworkComponent implements OnInit {
   userName: string;
   withdrawalConfiguration = new WalletWithdrawalsConfiguration();
   isNewUser: boolean = false;
+  pagaditoRequest = new CreatePagaditoTransactionRequest();
+  currentMembership: Product = new Product();
 
   @ViewChild('table') table: DatatableComponent;
 
@@ -58,13 +65,15 @@ export class NetworkComponent implements OnInit {
     private cartService: CartService,
     private translateService: TranslateService,
     private configurationService: ConfigurationService,
-    private truncatedDecimals: TruncateDecimalsPipe
+    private truncatedDecimals: TruncateDecimalsPipe,
+    private pagaditoService: PagaditoService,
+    private productService: ProductService,
   ) {
   }
 
   ngOnInit() {
     this.loadingIndicatorGlobal = false;
-
+    this.loadAllMemberships()
     this.authService.currentUserAffiliate.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       if (user.id) {
         this.user = user;
@@ -107,6 +116,15 @@ export class NetworkComponent implements OnInit {
         this.showError("Error");
       },
     })
+  }
+
+  loadAllMemberships() {
+    this.productService.getAllMembership().subscribe({
+      next: (resp) => {
+        this.currentMembership = resp[0];
+      },
+      error: (err) => { },
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -292,7 +310,6 @@ export class NetworkComponent implements OnInit {
           } else {
             this.isNewUser = false;
           }
-          console.log(value);
           this.rowsGlobal = [value];
           this.tempGlobal = value;
           this.loadingIndicatorGlobal = false;
@@ -406,5 +423,65 @@ export class NetworkComponent implements OnInit {
         this.showError('Error');
       }
     })
+  }
+
+  createPagaditoTransaction(row: UserAffiliate) {
+    this.pagaditoRequest.amount = this.currentMembership.salePrice * 1.10;
+    this.pagaditoRequest.affiliate_id = row.id;
+
+    let detail = new PagaditoTransactionDetailRequest();
+    detail.quantity = 1;
+    detail.description = this.currentMembership.description;
+
+    detail.price = this.currentMembership.salePrice * 1.10;
+    detail.url_product = this.currentMembership.id.toString();
+
+    this.pagaditoRequest.details.push(detail);
+
+    Swal.fire({
+      title: 'Confirmación de pago',
+      text: 'Se aplicará una comisión por uso de tarjeta. Una vez realizado el pago la transacción no será reembolsable. ¿Desea continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, realizar pago'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.executePagaditoTransaction();
+      }
+    });
+  }
+
+  executePagaditoTransaction() {
+    this.pagaditoService.createTransaction(this.pagaditoRequest).subscribe({
+      next: (response) => {
+        if (response.success) {
+          window.open(response.data);
+          this.showPostPaymentModal();
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        Swal.fire({
+          title: 'Error',
+          text: 'Ocurrió un error al procesar el pago. Por favor, intente nuevamente.',
+          icon: 'error',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Cerrar'
+        });
+      },
+    });
+  }
+
+  showPostPaymentModal() {
+    Swal.fire({
+      title: 'Pago en Proceso',
+      text: 'Una vez realizado el pago, el sistema activará automáticamente al usuario.',
+      icon: 'info',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Entendido'
+    });
   }
 }

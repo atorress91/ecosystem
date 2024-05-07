@@ -125,4 +125,52 @@ export class ProductService {
       })
     );
   }
+
+  getAllSavingsPlans() {
+    return this.http.get<Response>(this.urlApi.concat('/product/get_all_savings_plans'), httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR: ' + response);
+          return null;
+        }
+      })
+    );
+  }
+
+  getAllSavingsPlansOneB() {
+    return this.http.get<Response>(this.urlApi.concat('/product/get_all_savings_plans_one_b'), httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR: ' + response);
+          return null;
+        }
+      })
+    );
+  }
+
+  getAllAlternativeHealth() {
+    return this.http.get<Response>(this.urlApi.concat('/product/get_all_alternative_health'), httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR' + response);
+          return null;
+        }
+      })
+    )
+  }
+
+  getAllAlternativeHealthForEurope() {
+    return this.http.get<Response>(this.urlApi.concat('/product/get_all_alternative_health_for_europe'), httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR' + response);
+          return null;
+        }
+      })
+    )
+  }
 }

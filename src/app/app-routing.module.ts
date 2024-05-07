@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guard/auth.guard';
 import { AuthGuardAdmin } from './core/guard/auth.guard.admin';
+import { environment } from '@environments/environment';
+
 const routes: Routes = [
   {
     path: '',
@@ -32,7 +34,6 @@ const routes: Routes = [
       }
     ],
   },
-
   {
     path: '',
     component: AuthLayoutComponent,
@@ -44,6 +45,6 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, {})],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,4 +1,4 @@
-
+import { MaintenanceGuard } from './guard/maintenance.guard';
 import { TermsConditionsService } from './service/terms-conditions-service/terms-conditions.service';
 import { FaceApiService } from './service/face-api-service/face-api.service';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
@@ -55,6 +55,10 @@ import { TicketCategoriesService } from './service/ticket-categories-service/tic
 import { TicketService } from './service/ticket-service/ticket.service'
 import { TicketHubService } from './service/ticket-service/ticket-hub.service';
 import { PaymentTransactionService } from './service/payment-transaction-service/payment-transaction.service';
+import { WalletModel1BService } from './service/wallet-model-1b-service/wallet-model-1b.service';
+import { WalletModel1AService } from './service/wallet-model-1a-service/wallet-model-1a.service';
+import { PagaditoService } from './service/pagadito-service/pagadito.service';
+import { MaintenanceService } from './service/maintenance-service/maintenance.service';
 
 @NgModule({
   declarations: [],
@@ -110,7 +114,12 @@ import { PaymentTransactionService } from './service/payment-transaction-service
     TicketCategoriesService,
     TicketService,
     TicketHubService,
-    PaymentTransactionService
+    PaymentTransactionService,
+    WalletModel1AService,
+    WalletModel1BService,
+    PagaditoService,
+    MaintenanceService,
+    MaintenanceGuard
   ],
 })
 export class CoreModule {

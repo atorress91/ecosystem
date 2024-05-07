@@ -122,8 +122,26 @@ export class BillingPurchasesComponent implements OnInit, OnDestroy {
     this.table.offset = 0;
   }
 
-  onPrintInvoice(invoice: Invoice,) {
-    this.printService.downloadInvoice(invoice, this.user);
+  onPrintInvoice(invoice: Invoice) {
+    this.invoiceService.createInvoice(invoice.id).subscribe({
+      next: (blob: Blob) => {
+        const blobUrl = window.URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = `invoice_${invoice.id}.pdf`;
+
+        document.body.appendChild(a);
+        a.click();
+
+        window.URL.revokeObjectURL(blobUrl);
+        document.body.removeChild(a);
+      },
+      error: (err) => {
+        console.log(err);
+        this.showError('Error downloading the invoice. Please try again.');
+      },
+    });
   }
 
   showConfirmationRequest(row) {

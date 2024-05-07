@@ -1,9 +1,11 @@
+import { BalanceInformationModel1A } from './../../core/models/wallet-model-1a/balance-information-1a.model';
+import { BalanceInformationModel1B } from './../../core/models/wallet-model-1b/balance-information-1b.model';
 
 import { Component, ViewChild } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
-import am5themes_Animated from '@amcharts/amcharts4/themes/Animated';
+import am5themes_Animated from '@amcharts/amcharts4/themes/animated';
 import { Subject, takeUntil } from 'rxjs';
 import { ChartComponent } from 'ng-apexcharts';
 
@@ -15,6 +17,9 @@ import { ToastrService } from 'ngx-toastr';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
 import { EChartsOption } from 'echarts';
 import { PurchasePerMonthDto } from '@app/core/models/wallet-model/network-purchases.model';
+import { WalletModel1AService } from '@app/core/service/wallet-model-1a-service/wallet-model-1a.service';
+import { WalletModel1BService } from '@app/core/service/wallet-model-1b-service/wallet-model-1b.service';
+
 am4core.useTheme(am5themes_Animated);
 
 @Component({
@@ -26,6 +31,8 @@ export class HomeComponent {
   public user: UserAffiliate;
   private destroy$ = new Subject();
   balanceInformation: BalanceInformation = new BalanceInformation();
+  balanceInformationModel1A: BalanceInformationModel1A = new BalanceInformationModel1A();
+  balanceInformationModel1B: BalanceInformationModel1B = new BalanceInformationModel1B();
   withdrawalBalance: number = 0;
   totalPaid: number = 0;
   maps: any[] = [];
@@ -40,21 +47,19 @@ export class HomeComponent {
   private chart: am4maps.MapChart;
   public pieChartOptions: any;
   public avgLecChartOptions: any;
-
+  public pieChartOptionsModel1A: any;
+  public pieChartOptionsModel1B: any;
   constructor(
     private authService: AuthService,
     private walletService: WalletService,
     private toastr: ToastrService,
-    private affiliateService: AffiliateService
+    private affiliateService: AffiliateService,
+    private walletModel1AService: WalletModel1AService,
+    private walletModel1BService: WalletModel1BService
   ) {
-    this.pieChartOptions = {
-      series: [],
-      chart: {},
-      labels: [],
-      responsive: [],
-      dataLabels: {},
-      legend: {},
-    };
+    this.pieChartOptions = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
+    this.pieChartOptionsModel1A = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
+    this.pieChartOptionsModel1B = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
 
     this.currentYear = new Date().getFullYear();
     this.previousYear = this.currentYear - 1;
@@ -66,6 +71,8 @@ export class HomeComponent {
       if (user && user.id) {
         this.user = user;
         this.getPurchasesInMyNetwork();
+        this.getBalanceInformationModel1A(user.id);
+        this.getBalanceInformationModel1B(user.id);
         this.walletService.getBalanceInformationByAffiliateId(user.id).pipe(takeUntil(this.destroy$)).subscribe(balanceInformation => {
           this.balanceInformation = balanceInformation;
           this.initChartReport3();
@@ -76,7 +83,7 @@ export class HomeComponent {
   }
 
   get registerUrl() {
-    return `https://www.ecosystemfx.net/#/main-options/${this.user.user_name.toString()}`;
+    return `https://www.ecosystemfx.net/main-options/${this.user.user_name.toString()}`;
   }
 
   showSuccess(message) {
@@ -227,11 +234,11 @@ export class HomeComponent {
   private initChartReport3() {
     this.pieChartOptions = {
       series: [
-        Number(this.withdrawalBalance),
+        this.balanceInformation.serviceBalance,
         this.balanceInformation.availableBalance,
-        Number(this.balanceInformation.totalCommissionsPaid),
-        Number(this.balanceInformation.totalAcquisitions),
-        Number(this.balanceInformation.reverseBalance)
+        this.balanceInformation.totalCommissionsPaid,
+        this.balanceInformation.totalAcquisitions,
+        this.balanceInformation.reverseBalance
       ],
 
       colors: ['#f44336', '#2196f3', '#96a2b4', '#4caf50', '#9c27b0'],
@@ -246,11 +253,109 @@ export class HomeComponent {
         enabled: false,
       },
       labels: [
-        'Por Cobrar',
+        'Saldo de servicios',
         'Saldo Disponible',
         'Total Pagado',
         'Total Adquisiciones',
-        'Saldo revertido'
+        'Saldo balance'
+      ],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            dataLabels: {
+              enabled: true,
+              formatter: function (val) {
+                return val + "%"
+              },
+              plotOptions: {
+                pie: {
+                  expandOnClick: false
+                }
+              }
+            }
+          },
+        },
+      ],
+    };
+  }
+
+  private initChartModel1A() {
+    this.pieChartOptionsModel1A = {
+      series: [
+        this.balanceInformationModel1A.serviceBalance,
+        this.balanceInformationModel1A.availableBalance,
+        this.balanceInformationModel1A.totalCommissionsPaid,
+        this.balanceInformationModel1A.totalAcquisitions,
+        this.balanceInformationModel1A.reverseBalance
+      ],
+
+      colors: ['#f44336', '#2196f3', '#96a2b4', '#4caf50', '#9c27b0'],
+      chart: {
+        type: 'donut',
+        width: 200,
+      },
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      labels: [
+        'Saldo de servicios',
+        'Saldo Disponible',
+        'Total Pagado',
+        'Total Adquisiciones',
+        'Saldo balance'
+      ],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            dataLabels: {
+              enabled: true,
+              formatter: function (val) {
+                return val + "%"
+              },
+              plotOptions: {
+                pie: {
+                  expandOnClick: false
+                }
+              }
+            }
+          },
+        },
+      ],
+    };
+  }
+
+  private initChartModel1B() {
+    this.pieChartOptionsModel1B = {
+      series: [
+        this.balanceInformationModel1B.serviceBalance,
+        this.balanceInformationModel1B.availableBalance,
+        this.balanceInformationModel1B.totalCommissionsPaid,
+        this.balanceInformationModel1B.totalAcquisitions,
+        this.balanceInformationModel1B.reverseBalance
+      ],
+
+      colors: ['#f44336', '#2196f3', '#96a2b4', '#4caf50', '#9c27b0'],
+      chart: {
+        type: 'donut',
+        width: 200,
+      },
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      labels: [
+        'Saldo de servicios',
+        'Saldo Disponible',
+        'Total Pagado',
+        'Total Adquisiciones',
+        'Saldo balance'
       ],
       responsive: [
         {
@@ -309,4 +414,27 @@ export class HomeComponent {
     return monthlyData;
   }
 
+  getBalanceInformationModel1A(id: number) {
+    this.walletModel1AService.getBalanceInformationByAffiliateId(id).subscribe({
+      next: (value: BalanceInformationModel1A) => {
+        this.balanceInformationModel1A = value;
+        this.initChartModel1A();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  getBalanceInformationModel1B(id: number) {
+    this.walletModel1BService.getBalanceInformationByAffiliateId(id).subscribe({
+      next: (value: BalanceInformationModel1B) => {
+        this.balanceInformationModel1B = value;
+        this.initChartModel1B();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 }

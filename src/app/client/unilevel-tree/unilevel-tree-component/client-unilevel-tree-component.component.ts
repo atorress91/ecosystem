@@ -23,7 +23,7 @@ export class ClientUnilevelTreeComponentComponent {
   @Input() hasParent = false;
   @Input('nodeTemplate') nodeTemplate!: TemplateRef<any>;
   @Output('loadFamilyTree') loadFamilyTree: EventEmitter<number> = new EventEmitter();
-  zoomOut = false;
+  zoomOut = true;
 
   constructor() { }
 
@@ -37,5 +37,9 @@ export class ClientUnilevelTreeComponentComponent {
     if (this.data && this.data.onClick) {
       this.data.onClick();
     }
+  }
+
+  public toggleZoom() {
+    this.zoomOut = !this.zoomOut;
   }
 }

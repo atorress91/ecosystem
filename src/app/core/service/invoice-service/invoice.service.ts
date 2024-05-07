@@ -1,3 +1,4 @@
+import { ModelBalancesInvoices } from './../../models/invoice-model/model-balances-invoices';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -80,5 +81,51 @@ export class InvoiceService {
           return response;
         })
       );
+  }
+
+  getAllInvoicesForModelOneAndTwo() {
+    return this.http
+      .get<Response>(this.urlApi.concat('/invoice/GetAllInvoicesForModelOneAndTwo'), httpOptions)
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
+
+  processAndReturnBalancesForModels1A1B2(request: ModelBalancesInvoices) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/invoice/ProcessAndReturnBalancesForModels1A1B2'), request, httpOptions)
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
+
+  createInvoice(invoiceId: number): Observable<Blob> {
+    const options = {
+      responseType: 'blob' as 'json',
+      params: new HttpParams().set('invoiceId', invoiceId.toString()),
+      headers: new HttpHeaders({
+        'Authorization': environment.tokens.walletService.toString()
+
+      })
+    };
+
+    return this.http.get<Blob>(`${this.urlApi}/invoice/create_invoice`, options);
+  }
+
+  createInvoiceByReference(reference: string): Observable<Blob> {
+    const options = {
+      responseType: 'blob' as 'json',
+      params: new HttpParams().set('reference', reference.toString()),
+      headers: new HttpHeaders({
+        'Authorization': environment.tokens.walletService.toString()
+
+      })
+    };
+
+    return this.http.get<Blob>(`${this.urlApi}/invoice/create_invoice_by_reference`, options);
   }
 }

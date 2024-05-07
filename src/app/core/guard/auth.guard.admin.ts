@@ -12,7 +12,7 @@ import { AuthService } from '../service/authentication-service/auth.service';
   providedIn: 'root',
 })
 export class AuthGuardAdmin implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.currentUserAdminValue) {

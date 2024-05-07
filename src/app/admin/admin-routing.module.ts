@@ -1,5 +1,4 @@
-import { WalletRefillComponent } from './wallet-refill/wallet-refill.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AffiliatesListComponent } from './affiliates-list/affiliates-list.component';
@@ -39,7 +38,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { AttributesListComponent } from './attributes-list/attributes-list.component';
 import { PassivePackComponent } from './passive-pack/passive-pack.component';
 import { ProductsServicesConfigurationsComponent } from './products-services-configurations/products-services-configurations.component';
-import { BalanceOfWalletComponent } from './balance-of-wallet/balance-of-wallet.component';
+import { BalanceOfWalletComponent } from './Balance-of-wallet/balance-of-wallet.component';
 import { WalletRemovalComponent } from './wallet-removal/wallet-removal.component';
 import { TransactionsCommissionComponent } from './transactions-commission/transactions-commission.component';
 import { WalletParametersComponent } from './wallet-parameters/wallet-parameters.component';
@@ -48,6 +47,10 @@ import { AuthorizeReturnsComponent } from './authorize-returns/authorize-returns
 import { WalkwaysBenchesComponent } from './walkways-benches/walkways-benches.component';
 import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
 import { EducationalProgramsControlComponent } from './educational-programs-control/educational-programs-control.component';
+import { ChangeModelComponent } from './change-model/change-model.component';
+import { WalletRefillComponent } from './wallet-refill/wallet-refill.component';
+import { AuthGuardAdmin } from '@app/core/guard/auth.guard.admin';
+import { MaintenanceGuard } from '@app/core/guard/maintenance.guard';
 
 const routes: Routes = [
   {
@@ -58,190 +61,242 @@ const routes: Routes = [
   {
     path: 'home-admin',
     component: HomeAdminComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'affiliates-list',
     component: AffiliatesListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'calculate-commissions',
     component: CalculateCommissionsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'compensations-plans-configuration',
     component: CompensationPlansComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'general-reports',
     component: GeneralReportsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'virtual-wallet',
     component: VirtualWalletComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'import',
     component: ImportComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'news-admin',
     component: NewsAdminComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'products-and-services',
     component: ProductsAndServicesComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'purchases-list',
     component: PurchasesListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'tickets-admin',
     component: TicketsAdminComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'users-list',
     component: UsersListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'rol-list',
     component: RolListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'authorize-affiliates',
     component: AuthorizeAffiliatesComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'purchase-order-list',
     component: PurchaseOrderListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'authorize-purchases',
     component: AuthorizePurchasesComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'closure-concepts',
     component: ClosureConceptsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'period-closing',
     component: PeriodClosingComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'calculated-commissions',
     component: CalculatedCommissionsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'accredited-commissions',
     component: AccreditedCommissionsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'commissions-paid',
     component: CommissionsPaidComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'incentives-delivered',
     component: IncentivesDeliveredComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'incentives-for-delivering',
     component: IncentivesForDeliveringComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'my-profile',
     component: MyProfileComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'unilevel-tree/:id',
     component: PageUnilevelTreeComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'force-genealogical-tree',
     component: PageForceGenealogicalTreeComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'binary-genealogical-tree/:id',
     component: PageBinaryGenealogicalTreeComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'arrays-configurations',
     component: ArraysConfigurationsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'concept-list',
     component: ConceptListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'califications-list',
     component: CalificationsListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'incentives-list',
     component: IncentivesListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'calculation-groups',
     component: CalculationGroupsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'categories',
     component: CategoriesComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'attributes',
     component: AttributesListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'passive-pack',
     component: PassivePackComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'products-services-configuration',
     component: ProductsServicesConfigurationsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'balance-of-wallet',
     component: BalanceOfWalletComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'wallet-refill',
     component: WalletRefillComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'wallet-removal',
     component: WalletRemovalComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'transactions-commission',
     component: TransactionsCommissionComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'wallet-parameters',
     component: WalletParametersComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'results-ecopool',
-    component: ResultsEcopoolComponent
+    component: ResultsEcopoolComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'authorize-returns',
-    component: AuthorizeReturnsComponent
+    component: AuthorizeReturnsComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'walkways-benches',
-    component: WalkwaysBenchesComponent
+    component: WalkwaysBenchesComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'wire-transfer-list',
-    component: WireTransferListComponent
+    component: WireTransferListComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
     path: 'educational-programs-control',
-    component: EducationalProgramsControlComponent
+    component: EducationalProgramsControlComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
+  },
+  {
+    path: 'change-model',
+    component: ChangeModelComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
   }
 ];
 @NgModule({

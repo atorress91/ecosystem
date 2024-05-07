@@ -9,7 +9,6 @@
       <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
     </li>
     <li class="breadcrumb-item">
-
     </li>
   </ul>
 
@@ -59,9 +58,7 @@
           <div class="row mt-4">
             <div class="col-md-12">
               <div class="section-title">Resumen del pedido</div>
-              <div id="new-orders" class="media-list position-relative"
-                style="position: relative; max-height: 600px !important" [perfectScrollbar]>
-
+              <div id="new-orders" class="media-list position-relative custom-div" [perfectScrollbar]>
                 <div class="table-responsive">
                   <table class="table table-md">
                     <thead>
@@ -85,7 +82,7 @@
                         <td>{{ i + 1 }}</td>
                         <td>{{ item.name }}</td>
                         <td>
-                          <img style="width: 120px" src="{{ item.image }}" alt="" />
+                          <img class="custom-img-size" src="{{ item.image }}" alt="" />
                         </td>
                         <td>{{ item.description }}</td>
                         <td>{{ item.valuePoints }}</td>
@@ -96,8 +93,7 @@
                         <td>{{ item.quantity }}</td>
                         <td>${{ item.baseAmount*item.quantity }}</td>
                         <td>
-                          <button style="background-color: red;" (click)="removeItem(item)"
-                            class="btn btn-danger btn-icon">
+                          <button class="btn-danger" (click)="removeItem(item)" title="Remove Item">
                             <i class="fas fa-times"></i>
                           </button>
                         </td>
@@ -122,11 +118,11 @@
                     <div class="invoice-detail-name">Total descuento</div>
                     <div class="invoice-detail-value">${{totalDiscount}}</div>
                   </div>
-
                   <hr class="mt-2 mb-2">
                   <div class="invoice-detail-item">
                     <div class="invoice-detail-name">Total</div>
-                    <div class="invoice-detail-value invoice-detail-value-lg">$ {{total ?? 0 | truncateDecimals:2}}</div>
+                    <div class="invoice-detail-value invoice-detail-value-lg">$ {{total ?? 0 | truncateDecimals:2}}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -134,31 +130,30 @@
           </div>
         </div>
         <hr>
-        <div class="btn-right">
-          <div class="d-flex align-items-center justify-content-end flex-wrap mb-lg-0 mb-3">
+        <div class="row">
+          <div class="container my-3">
+            <div class="d-flex flex-wrap justify-content-end">
+              <div class="d-flex flex-column align-items-end mb-2 me-4">
+                <input (click)="createPagaditoTransaction()" type="image" src="assets/images/cards/visa-mast.webp"
+                  alt="Pago con tarjeta de credito y debito" class="img-fluid mb-2">
+                <!-- <input (click)="showCoinPaymentConfirmation()" type="image"
+                  src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
+                  class="img-fluid mb-2"> -->
+                <button (click)="paymentByBankTransfer()" class="btn btn-primary mb-2">Pago por transferencia</button>
+                <button (click)="handleBuyMore()" class="btn btn-primary mb-2">Comprar Más</button>
+              </div>
 
-            <!-- <div class="image-container">
-              <img src="/assets/img/coinpay.jpeg" alt="Descripción de la Imagen"
-                class="img-fluid image-button rounded-border  w-55" (click)="showCoinPayConfirmation()">
-            </div> -->
-
-            <input (click)="showCoinPaymentConfirmation()" type="image"
-              src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
-              class="m-2">
-
-            <button *ngIf="!showReversePaymentOnly && !balancePaymentNotAvailable" (click)=" showBalanceConfirmation(0)"
-              class="btn btn-primary btn-icon icon-left m-2"><i class="fas fa-credit-card"></i> Pago con
-              saldo disponible</button>
-            <button (click)="paymentByBankTransfer()" class="btn btn-primary btn-icon icon-left m-2"><i
-                class="fas fa-credit-card"></i> Pago por
-              transferencia</button>
-            <button (click)="showBalanceConfirmation(1)" class="btn btn-primary btn-icon icon-left m-2"
-              *ngIf="withdrawalConfiguration.activate_invoice_cancellation"><i class="fas fa-credit-card"></i> Pago con
-              saldo revertido</button>
-            <button routerLink="/app/billing-purchase" class="btn btn-primary btn-icon icon-left m-2"><i
-                class="bi bi-cart-plus"></i> {{ 'CART-PAGE.BTN-SHOP-MORE.TEXT' | translate }}</button>
-            <button (click)="emptycart()" class="btn btn-danger btn-icon icon-left m-2"><i class="fas fa-times"></i>
-              {{ 'CART-PAGE.BTN-EMPTY-CART.TEXT' | translate }}</button>
+              <div class="btn-group-vertical mb-2 ms-2">
+                <button (click)="handleServiceBalancePayment()" *ngIf="!serviceBalanceNotAvailable"
+                  class="btn btn-primary mb-2">Pago con saldo de servicios {{model}}</button>
+                <button *ngIf="!showReversePaymentOnly && !balancePaymentNotAvailable" (click)="payWithMyBalance()"
+                  class="btn btn-primary mb-2">Pago con saldo disponible</button>
+                <button (click)="handleBalancePayment()"
+                  *ngIf="reverseBalanceNotAvailable"
+                  class="btn btn-primary mb-2">Pago con solicitud modelo {{model}}</button>
+                <button (click)="emptycart()" class="btn btn-danger mb-2">Vaciar Carrito</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

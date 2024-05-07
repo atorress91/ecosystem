@@ -1,5 +1,3 @@
-import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -29,6 +27,12 @@ import { FundingAccountsComponent } from './funding-accounts/funding-accounts.co
 import { NetworkDetailsComponent } from './network-details/network-details.component';
 import { TicketViewComponent } from './tickets/ticket-view/ticket-view.component';
 import { EducationalCoursesComponent } from './educational-courses/educational-courses.component';
+import { SavingsPlansComponent } from './savings-plans/savings-plans.component';
+import { SavingsPlansOneBComponent } from './savings-plans-one-b/savings-plans-one-b.component';
+import { ServicesAndProductsComponent } from './services-and-products/services-and-products.component';
+import { PurchaseConfirmationComponent } from './purchase-confirmation/purchase-confirmation.component';
+import { MaintenanceGuard } from '@app/core/guard/maintenance.guard';
+
 
 const routes: Routes = [
   {
@@ -39,132 +43,150 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'addresses',
     component: AddressesComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'billing-orders',
     component: BillingOrdersComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'billing-purchase',
     component: BillingPurchaseComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'billing-purchases',
     component: BillingPurchasesComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'commissions',
     component: CommissionsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'commissions-balance',
     component: CommissionsBalanceComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'inducements',
     component: InducementsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'network',
     component: NetworkComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'news',
     component: NewsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'procurement-ecopool',
     component: ProcurementEcopoolComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'requests',
     component: RequestsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'my-profile',
     component: MyProfileComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'edit-user',
     component: EditUserComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'tickets',
     component: TicketsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'tickets/:id',
     component: TicketViewComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'wallet',
     component: WalletComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'request-wallet',
     component: RequestWalletComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'cart',
     component: CartComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'products',
     component: ProductsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'trees',
     component: ViewUnilevelTreeComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'academy',
     component: AcademyComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'funding-account',
     component: FundingAccountsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'network-details',
     component: NetworkDetailsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'educational-courses',
     component: EducationalCoursesComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
     path: 'services-and-products',
     component: ServicesAndProductsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, MaintenanceGuard],
+  },
+  {
+    path: 'savings-plans',
+    component: SavingsPlansComponent,
+    canActivate: [AuthGuard, MaintenanceGuard],
+  },
+  {
+    path: 'savings-plans-one-b',
+    component: SavingsPlansOneBComponent,
+    canActivate: [AuthGuard, MaintenanceGuard],
+  },
+  {
+    path: 'purchase-confirmation',
+    children: [
+      { path: 'parametro1/:parametro1/parametro2/:parametro2', component: PurchaseConfirmationComponent },
+      { path: ':parametro1/:parametro2', component: PurchaseConfirmationComponent }
+    ],
+    canActivate: [AuthGuard],
   }
 ];
 @NgModule({

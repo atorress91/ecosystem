@@ -1,74 +1,74 @@
-<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-  <div class="container">
-    <div class="card login-card mb-0">
-      <div class="row no-gutters">
-        <div class="col-12">
-          <div class="login-body background-image">
-            <div id="particles-js" class="particles-container"></div>
-            <div class="form-card-container">
-              <form class="validate-form" [formGroup]="authLogin" (ngSubmit)="loginSubmitted()">
-                <div class="row justify-content-center">
-                  <div class="col-md-12">
-
-                    <div class="form-group position-relative">
-                      <label for="email" class="auth-labels">{{username}} <span class="text-danger">*</span></label>
-                      <input id="email" type="email" class="form-control" formControlName="email"
-                        placeholder="{{username}}" required="required"
-                        [ngClass]="{'is-invalid': submitted && Email.errors}" />
-                      <div class="form-text text-danger fw-bold"
-                        *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">
-                        {{userNameErrorMessage}}
-                      </div>
-                      <div class="form-text text-danger fw-bold"
-                        *ngIf="Email.errors?.['required'] && (Email.dirty || Email.touched)">
-                        {{userNameIsRequerid}}
-                      </div>
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0"
+  style="background: url('../../../assets/images/pageee.png'); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-position: bottom; background-size: cover;">
+  <div id="particles-js" class="particles-container"></div>
+  <div class="container ">
+    <div class="card text-center login-card" style="
+    padding: 50px 0 50px 0px;
+    background-color:transparent;
+">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12">
+          <div class="card-body p-4">
+            <div class="text-center w-75 m-auto">
+              <h2 class="text-dark-50 text-center mt-0 font-weight-bold" style="color: white; margin-bottom: 40px;">
+                Iniciar sesión</h2>
+            </div>
+            <form class="validate-form" [formGroup]="authLogin" (ngSubmit)="loginSubmitted()">
+              <div class="row justify-content-center">
+                <div class="col-md-12">
+                  <div class="form-group position-relative" style="text-align: left;">
+                    <label for="email" class="auth-labels" style="font-size: 14px;">{{username}} <span
+                        class="text-danger">*</span></label>
+                    <i-feather name="user" class="login-icons" style="top: 45px !important;"></i-feather>
+                    <input id="email" type="email" class="form-control psl-5" formControlName="email"
+                      placeholder="{{username}}" required="required"
+                      [ngClass]="{'is-invalid': submitted && Email.errors}" />
+                    <div class="form-text text-danger fw-bold"
+                      *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">
+                      {{userNameErrorMessage}}
                     </div>
-
-                    <div class="form-group position-relative">
-                      <label for="pwd" class="auth-labels">{{password}} <span class="text-danger">*</span></label>
-                      <input id="pwd" type="password" class="form-control" formControlName="pwd"
-                        placeholder="{{password}}" required="required"
-                        [ngClass]="{'is-invalid': submitted && Pwd.errors}" />
-                      <div class="form-text text-danger mb-3 msl-3 fw-bold"
-                        *ngIf="Pwd.errors?.['minlength'] || Pwd.errors?.['maxlength'] && (Pwd.dirty || Pwd.touched)">
-                        {{passwordErrorMessage}}
-                      </div>
-                      <div class="form-text text-danger fw-bold"
-                        *ngIf="Pwd.errors?.['required'] && (Pwd.dirty || Pwd.touched)">
-                        {{passwordIsRequerid}}
-                      </div>
+                    <div class="form-text text-danger fw-bold"
+                      *ngIf="Email.errors?.['required'] && (Email.dirty || Email.touched)">
+                      {{userNameIsRequerid}}
                     </div>
-
-                    <div class="d-flex justify-content-between">
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="customCheck1" formControlName="remeber">
-                          <label class="form-check-label auth-labels" for="customCheck1">
-                            {{remember}}
-                          </label>
-                        </div>
-                      </div>
+                  </div>
+                  <div class="form-group position-relative" style="text-align: left;">
+                    <label for="pwd" class="auth-labels" style="font-size: 14px;">{{password}} <span
+                        class="text-danger">*</span></label>
+                    <i-feather name="key" class="login-icons" style="top: 45px !important;"></i-feather>
+                    <input id="pwd" type="password" class="form-control psl-5" formControlName="pwd"
+                      placeholder="{{password}}" required="required"
+                      [ngClass]="{'is-invalid': submitted && Pwd.errors}" />
+                    <div class="form-text text-danger mb-3 msl-3 fw-bold"
+                      *ngIf="Pwd.errors?.['minlength'] || Pwd.errors?.['maxlength'] && (Pwd.dirty || Pwd.touched)">
+                      {{passwordErrorMessage}}
+                    </div>
+                    <div class="form-text text-danger fw-bold"
+                      *ngIf="Pwd.errors?.['required'] && (Pwd.dirty || Pwd.touched)">
+                      {{passwordIsRequerid}}
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="form-group">
                       <p class="forgot-pass auth-labels mb-0"><a routerLink="/forgot"
                           class="form-check-label fw-bold auth-labels">{{forgot}}?</a></p>
                     </div>
+                  </div>
+                  <div *ngIf="error !== ''" class="alert alert-danger">
+                    {{ error }}
+                  </div>
 
-                    <div *ngIf="error !== ''" class="alert alert-danger">
-                      {{ error }}
-                    </div>
-
-                    <div class="text-center">
-                      <button class="btn btn-primary auth-form-btn" type="submit" [disabled]="loading">
-                        <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
-                          <span class="sr-only">Loading...</span>
-                        </div>
-                        {{signin}}
-                      </button>
-                    </div>
+                  <div class="text-center">
+                    <button class="btn btn-primary auth-form-btn" type="submit" [disabled]="loading">
+                      <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      {{signin}}
+                    </button>
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

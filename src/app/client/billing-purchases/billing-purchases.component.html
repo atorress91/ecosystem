@@ -34,12 +34,11 @@
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <i-feather name="search" style="color: #96a2b4"></i-feather>
+                              <i-feather name="search" class="default-color"></i-feather>
                             </div>
                           </div>
-                          <input style="background-color: white" type="text" class="form-control"
-                            id="inlineFormInputGroup" (keyup)="updateFilter($event)" aria-label="Search box"
-                            placeholder="{{
+                          <input type="text" class="form-control search-background-color" id="inlineFormInputGroup"
+                            (keyup)="updateFilter($event)" aria-label="Search box" placeholder="{{
                                 'BILLING-PURCHASES-PAGE.SEARCH.TEXT' | translate
                               }}" />
                         </div>
@@ -109,6 +108,43 @@
                     </ng-template>
 
                   </ngx-datatable-column>
+                  <ngx-datatable-column name="Modelo">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      <ng-container *ngIf="row.invoiceDetail && row.invoiceDetail.length > 0; else noInvoiceDetail">
+                        <ng-container *ngFor="let detail of row.invoiceDetail">
+                          <div *ngIf="detail.paymentGroupId == 8" class="badge-outline col-blue">
+                            Modelo 1B
+                          </div>
+                          <div *ngIf="detail.paymentGroupId == 7" class="badge-outline col-blue">
+                            Modelo 1A
+                          </div>
+                          <div *ngIf="detail.paymentGroupId == 2" class="badge-outline col-blue">
+                            Modelo 2
+                          </div>
+                          <div *ngIf="detail.paymentGroupId == 6" class="badge-outline col-blue">
+                            Academia trading
+                          </div>
+                          <div *ngIf="detail.paymentGroupId == 5" class="badge-outline col-blue">
+                            Cuentas de fondeo
+                          </div>
+                          <div *ngIf="detail.paymentGroupId == 5" class="badge-outline col-blue">
+                            Cuentas de fondeo
+                          </div>
+                          <div *ngIf="detail.paymentGroupId == 1" class="badge-outline col-blue">
+                            Membresía
+                          </div>
+                          <div *ngIf="detail.paymentGroupId == 9" class="badge-outline col-blue">
+                            Salud Alternativa
+                          </div>
+                        </ng-container>
+                      </ng-container>
+                      <ng-template #noInvoiceDetail>
+                        <div class="badge-outline col-blue">
+                          Modelo recurrente
+                        </div>
+                      </ng-template>
+                    </ng-template>
+                  </ngx-datatable-column>
                   <ngx-datatable-column name="Monto total">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div class="col-red">
@@ -132,17 +168,17 @@
                           )
                         ">
                             <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px">{{
+                            <span class="ms-2">{{
                               'BILLING-PURCHASES-PAGE.BTN-SEE-DETAILS.TEXT'
                               | translate
                               }}</span>
                           </a>
-<!--                          <a ngbDropdownItem id="btn-invoice"-->
-<!--                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation && isEligibleForCancellation(row)"-->
-<!--                            (click)="showConfirmationRequest(row)">-->
-<!--                            <i class="bi bi-folder-symlink-fill"></i>-->
-<!--                            <span style="margin-left: 10px">Solicitar anulación de factura</span>-->
-<!--                          </a>-->
+                          <!--                          <a ngbDropdownItem id="btn-invoice"-->
+                          <!--                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation && isEligibleForCancellation(row)"-->
+                          <!--                            (click)="showConfirmationRequest(row)">-->
+                          <!--                            <i class="bi bi-folder-symlink-fill"></i>-->
+                          <!--                            <span style="margin-left: 10px">Solicitar anulación de factura</span>-->
+                          <!--                          </a>-->
                         </div>
                       </div>
                     </ng-template>

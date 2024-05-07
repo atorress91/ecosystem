@@ -1,11 +1,12 @@
+import { CreatePagaditoTransactionRequest } from '@app/core/models/pagadito-model/create-pagadito-transaction-request.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/service/cart.service/cart.service';
 import { Router } from '@angular/router';
 import QRCode from 'qrcode';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 import { ProductsRequests, WalletRequest } from '@app/core/models/wallet-model/wallet-request.model';
-import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
 import { CoinpaymentService } from '@app/core/service/coinpayment-service/coinpayment.service';
 import { CreatePayment, ProductRequest } from '@app/core/models/coinpayment-model/create-payment.model';
 import { WalletService } from "@app/core/service/wallet-service/wallet.service";
@@ -19,6 +20,11 @@ import { ConfigurationService } from '@app/core/service/configuration-service/co
 import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
 import { PaymentTransaction } from '@app/core/models/payment-transaction-model/payment-transaction-request.model';
 import { PaymentTransactionService } from '@app/core/service/payment-transaction-service/payment-transaction.service';
+import { WalletModel1BService } from '@app/core/service/wallet-model-1b-service/wallet-model-1b.service';
+import { WalletModel1AService } from '@app/core/service/wallet-model-1a-service/wallet-model-1a.service';
+import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
+import { PagaditoService } from '@app/core/service/pagadito-service/pagadito.service';
+import { PagaditoTransactionDetailRequest } from '@app/core/models/pagadito-model/pagadito-transaction-detail-request.model';
 
 @Component({
   selector: 'app-cart',
@@ -40,6 +46,13 @@ export class CartComponent implements OnInit, OnDestroy {
   coinPayTransactionResponse = new CreateTransactionResponse();
   withdrawalConfiguration = new WalletWithdrawalsConfiguration();
   balancePaymentNotAvailable: boolean = false;
+  reverseBalanceNotAvailable: boolean = false;
+  excludedPaymentGroups = [2, 3, 7, 8, 9, 10];
+  reverseBalanceExcludedPaymentGroups = [2, 7, 8];
+  serviceBalanceExcludedPaymentGroups = [7, 8];
+  serviceBalanceNotAvailable: boolean = false;
+  model: string = ''
+  pagaditoRequest = new CreatePagaditoTransactionRequest();
 
   constructor(
     private cartService: CartService,
@@ -50,7 +63,11 @@ export class CartComponent implements OnInit, OnDestroy {
     private walletService: WalletService,
     private coinpayService: CoinpayService,
     private configurationService: ConfigurationService,
-    private paymentTransactionService: PaymentTransactionService
+    private paymentTransactionService: PaymentTransactionService,
+    private walletModel1AService: WalletModel1AService,
+    private walletModel1BService: WalletModel1BService,
+    private affiliateService: AffiliateService,
+    private pagaditoService: PagaditoService
   ) { }
 
   ngOnInit(): void {
@@ -61,8 +78,9 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.getProducts()
       .subscribe(res => {
         this.products = res;
+        this.setValuesToPaid();
       })
-    this.setValuesToPaid();
+
     this.verificateUrl();
     this.checkExistenceOfAffiliateForReversePayment();
     this.loadWithdrawalConfiguration();
@@ -82,7 +100,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   verificateUrl() {
     if (this.products.length === 0) {
-      this.router.navigate(['app/billing-purchase']);
+      this.router.navigate(['app/home']);
     }
   }
 
@@ -104,10 +122,35 @@ export class CartComponent implements OnInit, OnDestroy {
     let subTotal = 0;
     let grandTotal = 0;
 
+    if (this.products.length > 0) {
+      const firstProduct = this.products[0];
+      switch (firstProduct.paymentGroup) {
+        case 2:
+          this.model = '2';
+          break;
+        case 7:
+          this.model = '1A';
+          break;
+        case 8:
+          this.model = '1B';
+          break;
+        default:
+          break;
+      }
+    }
+
     this.products.forEach(item => {
-      if (item.paymentGroup != 2) {
+      if (!this.excludedPaymentGroups.includes(item.paymentGroup)) {
         this.balancePaymentNotAvailable = true;
       }
+
+      if (this.reverseBalanceExcludedPaymentGroups.includes(item.paymentGroup)) {
+        this.reverseBalanceNotAvailable = true;
+      }
+
+      this.serviceBalanceNotAvailable = !this.products.some(item =>
+        this.serviceBalanceExcludedPaymentGroups.includes(item.paymentGroup));
+
       grandTotal += item.quantity * item.baseAmount;
       totalTax += parseFloat((item.tax).toFixed(0));
       subTotal += parseFloat(item.total.toFixed(2));
@@ -118,20 +161,28 @@ export class CartComponent implements OnInit, OnDestroy {
     this.total = grandTotal;
   }
 
-  showBalanceConfirmation(option: number) {
-    Swal.fire({
-      title: '¿Está seguro que desea realizar el pago?',
+  showBalanceConfirmation(): Promise<boolean> {
+    return Swal.fire({
+      title: '¿Al realizar la compra estás aceptando los términos y condiciones, está seguro que desea realizar el pago?',
       text: 'Esta acción no se puede deshacer.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Sí',
+      confirmButtonText: 'Sí, quiero realizar el pago',
       cancelButtonText: 'No',
+      html: `Por favor, asegúrese de haber leído y aceptado los <a href="https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf" target="_blank">términos y condiciones</a>.`,
+      preConfirm: () => {
+
+      }
     }).then((result) => {
       if (result.isConfirmed) {
-        this.handleBalancePayment(option);
+        this.acceptTerms();
+        return true;
+      } else {
+        return false;
       }
     }).catch(error => {
-
+      console.error("Error en showBalanceConfirmation:", error);
+      return false;
     });
   }
 
@@ -161,53 +212,59 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleBalancePayment(option: number) {
-    if (option === 1) {
-
-      this.checkExistenceOfAffiliateForReversePayment().then(userExists => {
-        if (userExists) {
-
-          option = 2;
-        }
-        this.processBalancePayment(option);
-      });
-    } else {
-      this.processBalancePayment(option);
+  handleBalancePayment() {
+    switch (this.model) {
+      case '2':
+        this.payWithMyBalanceModel2();
+        break;
+      case '1A':
+        this.payWithMyBalanceModel1A();
+        break;
+      case '1B':
+        this.payWithMyBalanceModel1B();
+        break;
+      default:
+        break;
     }
   }
 
-  processBalancePayment(option: number) {
+  handleServiceBalancePayment() {
+    switch (this.model) {
+      case '1A':
+        console.log('Entrando al 1a');
+        this.payWithMyServiceBalanceModel1A();
+        break;
+      case '1B':
+        console.log('Entrando al 1b');
+        this.payWithMyServiceBalanceModel1B();
+        break;
+      default:
+        break;
+    }
+  }
+
+  createBalanceRequest(): WalletRequest {
     this.walletRequest.affiliateId = this.user.id;
     this.walletRequest.affiliateUserName = this.user.user_name;
-    this.walletRequest.paymentMethod = option;
+    this.walletRequest.paymentMethod = 1;
 
-    if (option === 2 && this.userReceivesPurchase) {
-      this.walletRequest.purchaseFor = this.userReceivesPurchase.id;
-    } else {
-      this.walletRequest.purchaseFor = 0;
-    }
-
-    let useAlternativePaymentMethod = false;
     this.products.forEach(item => {
       const productRequest = new ProductsRequests();
       productRequest.idProduct = item.id;
       productRequest.count = item.quantity;
       this.walletRequest.productsList.push(productRequest);
-
-      if (item.paymentGroup !== 2) {
-        useAlternativePaymentMethod = true;
-      }
     });
 
-    if (useAlternativePaymentMethod) {
-      this.payWithMyBalanceCourses(this.walletRequest)
-    } else {
-      this.payWithMyBalanceEcoPools(this.walletRequest);
-    }
+    return this.walletRequest;
   }
 
-  payWithMyBalanceEcoPools(walletRequest) {
-    this.walletService.payWithMyBalance(walletRequest).subscribe({
+  async payWithMyBalance() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletService.payWithMyBalance(this.createBalanceRequest()).subscribe({
       next: (value) => {
         if (value.success == true) {
           this.showSuccess('Pago realizado correctamente');
@@ -223,8 +280,13 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  payWithMyBalanceCourses(walletRequest) {
-    this.walletService.payWithMyBalanceCourses(walletRequest).subscribe({
+  async payWithMyBalanceModel2() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletService.payWithMyBalanceModel2(this.createBalanceRequest()).subscribe({
       next: (value) => {
         if (value.success == true) {
           this.showSuccess('Pago realizado correctamente');
@@ -407,6 +469,169 @@ export class CartComponent implements OnInit, OnDestroy {
             },
           })
         }
+      }
+    });
+  }
+
+  async payWithMyBalanceModel1A() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletModel1AService.payWithMyBalance(this.createBalanceRequest()).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (err) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      },
+    });
+  }
+
+  async payWithMyBalanceModel1B() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletModel1BService.payWithMyBalance(this.createBalanceRequest()).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (err) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      },
+    });
+  }
+
+  handleBuyMore() {
+    switch (this.model) {
+      case '2':
+        this.router.navigate(['app/billing-purchase']);
+        break;
+      case '1A':
+        this.router.navigate(['app/savings-plans']);
+        break;
+      case '1B':
+        this.router.navigate(['app/savings-plans-one-b']);
+        break;
+      default:
+        this.router.navigate(['app/educational-courses']);
+        break;
+    }
+  }
+
+  async payWithMyServiceBalanceModel1A() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletModel1AService.payWithServiceBalance(this.createBalanceRequest()).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (error) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      }
+    })
+  }
+
+  async payWithMyServiceBalanceModel1B() {
+    const confirm = await this.showBalanceConfirmation();
+
+    if (!confirm)
+      return;
+
+    this.walletModel1BService.payWithMyServiceBalance(this.createBalanceRequest()).subscribe({
+      next: (value) => {
+        if (value.success == true) {
+          this.showSuccess('Pago realizado correctamente');
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        } else {
+          this.showError('Error: No se pudo realizar el pago.');
+        }
+      },
+      error: (err) => {
+        this.showError('Error: No se pudo realizar el pago.');
+      },
+    })
+  }
+
+  acceptTerms() {
+    if (this.user.termsConditions != true) {
+      this.affiliateService.updateAffiliate(this.user).subscribe({
+        next: (value) => {
+          this.showSuccess('Términos y condiciones actualizados correctamente');
+          this.auth.setUserAffiliateValue(this.user);
+        },
+        error: (err) => {
+          this.showError('Error');
+        },
+      })
+    }
+  }
+
+  createPagaditoTransaction() {
+    let totalExclusiveOfTax = (this.total * 1.10).toFixed(2);
+    this.pagaditoRequest.amount = parseFloat(totalExclusiveOfTax);
+    this.pagaditoRequest.affiliate_id = this.user.id;
+
+    this.products.forEach(item => {
+
+      let detail = new PagaditoTransactionDetailRequest();
+      detail.quantity = item.quantity;
+      detail.description = item.name;
+      let individualPriceExclusiveOfTax = (item.salePrice * 1.10).toFixed(2);
+      detail.price = parseFloat(individualPriceExclusiveOfTax);
+      detail.url_product = item.id.toString();
+
+      this.pagaditoRequest.details.push(detail);
+    });
+
+    Swal.fire({
+      title: 'Confirmación de pago',
+      text: 'Se aplicará una comisión por uso de tarjeta. Una vez realizado el pago, la transacción no será reembolsable. ¿Desea continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, realizar pago'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pagaditoService.createTransaction(this.pagaditoRequest).subscribe({
+          next: (response) => {
+            if (response.success) {
+              window.open(response.data);
+              this.router.navigate(['app/home']);
+              this.emptycart();
+            }
+          },
+          error: (err) => {
+            console.log(err)
+          },
+        });
       }
     });
   }

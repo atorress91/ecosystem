@@ -1,4 +1,5 @@
 
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -50,7 +51,7 @@ import { PassivePackModule } from './passive-pack/passive-pack.module';
 import { AttributesListModule } from './attributes-list/attributes-list.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ProductsAndServicesModule } from './products-and-services/products-and-services.module';
-import { BalanceOfWalletComponent } from './balance-of-wallet/balance-of-wallet.component';
+import { BalanceOfWalletComponent } from './Balance-of-wallet/balance-of-wallet.component';
 import { WalletRefillComponent } from './wallet-refill/wallet-refill.component';
 import { WalletRemovalComponent } from './wallet-removal/wallet-removal.component';
 import { TransactionsCommissionComponent } from './transactions-commission/transactions-commission.component';
@@ -64,79 +65,83 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { SettingsComponent } from './settings/settings.component';
 import { WireTransferListComponent } from './wire-transfer-list/wire-transfer-list.component';
 import { EducationalProgramsControlComponent } from './educational-programs-control/educational-programs-control.component';
+import { ChangeModelModule } from './change-model/change-model.module';
+import { SharedModule } from "../shared/shared.module";
 const icons = {
   Search,
 };
 
 @NgModule({
-  declarations: [
-    VirtualWalletComponent,
-    HomeAdminComponent,
-    CompensationPlansComponent,
-    GeneralReportsComponent,
-    CalculateCommissionsComponent,
-    ImportComponent,
-    NewsAdminComponent,
-    PurchasesListComponent,
-    TicketsAdminComponent,
-    PurchaseOrderListComponent,
-    AuthorizePurchasesComponent,
-    ClosureConceptsComponent,
-    PeriodClosingComponent,
-    CalculatedCommissionsComponent,
-    AccreditedCommissionsComponent,
-    CommissionsPaidComponent,
-    IncentivesDeliveredComponent,
-    IncentivesForDeliveringComponent,
-    ArraysConfigurationsComponent,
-    BalanceOfWalletComponent,
-    WalletRefillComponent,
-    WalletRemovalComponent,
-    TransactionsCommissionComponent,
-    WalletParametersComponent,
-    ResultsEcopoolComponent,
-    AuthorizeReturnsComponent,
-    WalkwaysBenchesComponent,
-    SettingsComponent,
-    WireTransferListComponent,
-    EducationalProgramsControlComponent
-  ],
-  imports: [
-    CommonModule,
-    UserListModule,
-    RolListModule,
-    AffiliatesListModule,
-    ClipboardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    AdminRoutingModule,
-    TranslateModule,
-    MyProfileModule,
-    UnilevelTreeModule,
-    ForceGenealogicalTreeModule,
-    BinaryGenealogicalTreeModule,
-    ConceptListModule,
-    AuthorizeAffiliatesModule,
-    CalculationGroupsModule,
-    CalificationsListModule,
-    IncentivesListModule,
-    ProductsAndServicesModule,
-    CategoriesModule,
-    AttributesListModule,
-    PassivePackModule,
-    ProductsServicesConfigurationsModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-    FeatherModule.pick(icons),
-    NgxDatatableModule,
-    PerfectScrollbarModule,
-    NgApexchartsModule,
-    NgxGaugeModule,
-    NgxDropzoneModule,
-    CKEditorModule,
-  ],
-  exports: [],
+    declarations: [
+        VirtualWalletComponent,
+        HomeAdminComponent,
+        CompensationPlansComponent,
+        GeneralReportsComponent,
+        CalculateCommissionsComponent,
+        ImportComponent,
+        NewsAdminComponent,
+        PurchasesListComponent,
+        TicketsAdminComponent,
+        PurchaseOrderListComponent,
+        AuthorizePurchasesComponent,
+        ClosureConceptsComponent,
+        PeriodClosingComponent,
+        CalculatedCommissionsComponent,
+        AccreditedCommissionsComponent,
+        CommissionsPaidComponent,
+        IncentivesDeliveredComponent,
+        IncentivesForDeliveringComponent,
+        ArraysConfigurationsComponent,
+        BalanceOfWalletComponent,
+        WalletRefillComponent,
+        WalletRemovalComponent,
+        TransactionsCommissionComponent,
+        WalletParametersComponent,
+        ResultsEcopoolComponent,
+        AuthorizeReturnsComponent,
+        WalkwaysBenchesComponent,
+        SettingsComponent,
+        WireTransferListComponent,
+        EducationalProgramsControlComponent
+    ],
+    exports: [],
+    imports: [
+        CommonModule,
+        UserListModule,
+        RolListModule,
+        AffiliatesListModule,
+        ClipboardModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule,
+        AdminRoutingModule,
+        TranslateModule,
+        MyProfileModule,
+        UnilevelTreeModule,
+        ForceGenealogicalTreeModule,
+        BinaryGenealogicalTreeModule,
+        ConceptListModule,
+        AuthorizeAffiliatesModule,
+        CalculationGroupsModule,
+        CalificationsListModule,
+        IncentivesListModule,
+        ProductsAndServicesModule,
+        CategoriesModule,
+        AttributesListModule,
+        PassivePackModule,
+        ProductsServicesConfigurationsModule,
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts'),
+        }),
+        FeatherModule.pick(icons),
+        NgxDatatableModule,
+        PerfectScrollbarModule,
+        NgApexchartsModule,
+        NgxGaugeModule,
+        NgxDropzoneModule,
+        CKEditorModule,
+        ChangeModelModule,
+        SharedModule
+    ]
 })
 export class AdminModule { }

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-
 import { Response } from '@app/core/models/response-model/response.model';
 import { environment } from '@environments/environment';
 import { Wallet } from '@app/core/models/wallet-model/wallet.model';
@@ -81,9 +80,41 @@ export class WalletService {
       );
   }
 
+  getStatisticsInformationByAffiliateId(id: number) {
+    return this.http
+      .get<Response>(
+        `${this.urlApi}/userStatistics/${id}`, httpOptions
+      )
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
+
   payWithMyBalance(model: WalletRequest) {
     return this.http
       .post<Response>(this.urlApi.concat('/wallet/payWithMyBalance'), model, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  payWithMyBalanceModel2(model: WalletRequest) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/wallet/payWithMyBalanceModel2'), model, httpOptions)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  payMembershipWithMyBalance(model: WalletRequest) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/wallet/payMembershipWithMyBalance'), model, httpOptions)
       .pipe(
         map((response) => {
           return response;
@@ -110,7 +141,6 @@ export class WalletService {
         })
       );
   }
-
 
   transferBalanceForMembership(model: TransferBalance) {
     return this.http

@@ -28,7 +28,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MainOptionsComponent } from './main-options/main-options.component';
 import { ConpaymentConfirmationComponent } from './conpayment-confirmation/conpayment-confirmation.component';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { MaintenancePageComponent } from './maintenance-page/maintenance-page.component';
 
 const icons = {
   Facebook,
@@ -52,6 +52,7 @@ const icons = {
     ResetComponent,
     EmailConfirmationComponent,
     MainOptionsComponent,
+    MaintenancePageComponent,
     ConpaymentConfirmationComponent],
   imports: [
     CommonModule,

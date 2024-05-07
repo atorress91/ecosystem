@@ -43,7 +43,6 @@ export class TicketsComponent implements OnInit, AfterViewInit {
     this.ticketService.getAllTicketsByAffiliateId(this.user.id).subscribe({
       next: (value) => {
         this.tickets = value;
-        console.log(this.tickets);
       },
       error: (err) => {
         console.log(err);
