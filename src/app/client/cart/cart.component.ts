@@ -611,7 +611,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
     Swal.fire({
       title: 'Confirmación de pago',
-      text: 'Se aplicará una comisión por uso de tarjeta y por transacción en USDT. Una vez realizado el pago, la transacción no será reembolsable. ¿Desea continuar?',
+      text: 'Se aplicará una comisión por uso de tarjeta. Una vez realizado el pago, la transacción no será reembolsable. ¿Desea continuar?',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
