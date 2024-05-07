@@ -1,13 +1,13 @@
 export class PagaditoTransactionDetailRequest {
-  quantity: string;
+  quantity: number;
   description: string;
-  price: string;
+  price: number;
   url_product: string;
 
   constructor() {
-    this.quantity = '';
+    this.quantity = 0;
     this.description = '';
-    this.price = '';
+    this.price = 0;
     this.url_product = '';
   }
 }
