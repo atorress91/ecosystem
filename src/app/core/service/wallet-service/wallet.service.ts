@@ -80,6 +80,18 @@ export class WalletService {
       );
   }
 
+  getStatisticsInformationByAffiliateId(id: number) {
+    return this.http
+      .get<Response>(
+        `${this.urlApi}/userStatistics/${id}`, httpOptions
+      )
+      .pipe(
+        map((response) => {
+          return response.data;
+        })
+      );
+  }
+
   payWithMyBalance(model: WalletRequest) {
     return this.http
       .post<Response>(this.urlApi.concat('/wallet/payWithMyBalance'), model, httpOptions)
