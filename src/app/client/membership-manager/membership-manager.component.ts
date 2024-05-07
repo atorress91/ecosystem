@@ -186,20 +186,20 @@ export class MembershipManagerComponent implements OnInit, OnDestroy {
   }
 
   createPagaditoTransaction() {
-    this.pagaditoRequest.amount = 10;
+    this.pagaditoRequest.amount = this.currentMembership.salePrice * 1.10;
     this.pagaditoRequest.affiliate_id = this.user.id;
 
     let detail = new PagaditoTransactionDetailRequest();
-    detail.quantity = '1';
-    detail.description = 'Membresía Ecosystem';
-    detail.price = '10';
+    detail.quantity = 1;
+    detail.description = this.currentMembership.description;
+    detail.price = this.currentMembership.salePrice * 1.10;
     detail.url_product = this.currentMembership.id.toString();
 
     this.pagaditoRequest.details.push(detail);
 
     Swal.fire({
       title: 'Confirmación de pago',
-      text: 'Una vez realizado el pago la transacción no será reembolsable. ¿Desea continuar?',
+      text: 'Se aplicará una comisión por uso de tarjeta. Una vez realizado el pago la transacción no será reembolsable. ¿Desea continuar?',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
