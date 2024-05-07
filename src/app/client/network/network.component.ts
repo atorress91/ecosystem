@@ -25,6 +25,7 @@ import { PagaditoTransactionDetailRequest } from '@app/core/models/pagadito-mode
 import { CreatePagaditoTransactionRequest } from '@app/core/models/pagadito-model/create-pagadito-transaction-request.model';
 import { PagaditoService } from '@app/core/service/pagadito-service/pagadito.service';
 import { Product } from '@app/core/models/product-model/product.model';
+import { ProductService } from '@app/core/service/product-service/product.service';
 
 @Component({
   selector: 'app-network',
@@ -65,13 +66,14 @@ export class NetworkComponent implements OnInit {
     private translateService: TranslateService,
     private configurationService: ConfigurationService,
     private truncatedDecimals: TruncateDecimalsPipe,
-    private pagaditoService: PagaditoService
+    private pagaditoService: PagaditoService,
+    private productService: ProductService,
   ) {
   }
 
   ngOnInit() {
     this.loadingIndicatorGlobal = false;
-
+    this.loadAllMemberships()
     this.authService.currentUserAffiliate.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       if (user.id) {
         this.user = user;
@@ -114,6 +116,15 @@ export class NetworkComponent implements OnInit {
         this.showError("Error");
       },
     })
+  }
+
+  loadAllMemberships() {
+    this.productService.getAllMembership().subscribe({
+      next: (resp) => {
+        this.currentMembership = resp[0];
+      },
+      error: (err) => { },
+    });
   }
 
   @HostListener('window:resize', ['$event'])
