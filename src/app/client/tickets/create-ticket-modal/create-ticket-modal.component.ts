@@ -10,6 +10,8 @@ import { AuthService } from '@app/core/service/authentication-service/auth.servi
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { TicketService } from '@app/core/service/ticket-service/ticket.service';
 import { ToastrService } from 'ngx-toastr';
+import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
+import { Ticket } from '@app/core/models/ticket-model/ticket.model';
 @Component({
   selector: 'app-create-ticket-modal',
   templateUrl: './create-ticket-modal.component.html',
@@ -32,13 +34,15 @@ export class CreateTicketModalComponent implements OnInit {
     private storage: Storage,
     private authService: AuthService,
     private ticketService: TicketService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private ticketHubService: TicketHubService
   ) { }
 
   ngOnInit() {
     this.user = this.authService.currentUserAffiliateValue;
     this.initCreateTicketForm();
     this.getAllTicketCategories()
+    this.ticketHubService.startConnection();
   }
 
   initCreateTicketForm() {
@@ -82,15 +86,13 @@ export class CreateTicketModalComponent implements OnInit {
     this.ticket.description = this.createTicketForm.get('description').value;
     this.ticket.categoryId = parseInt(this.createTicketForm.get('category').value);
 
-    if (this.files && this.files.length > 0) {
-      this.startTicketImageUpload();
-    } else {
-      this.saveTicket();
-    }
+    this.startTicketImageUpload();
+    this.saveTicket(this.ticket);
   }
 
   onFileSelected(event: any): void {
     const files: File[] = Array.from(event.addedFiles);
+    console.log(files.length)
 
     if (this.files.length + files.length <= 1) {
       this.files.push(...files);
@@ -118,25 +120,46 @@ export class CreateTicketModalComponent implements OnInit {
     getDownloadURL(this.uploadTask.snapshot.ref)
       .then(downloadURL => {
         this.ticket.image = downloadURL;
-        this.saveTicket();
+        this.saveTicket(this.ticket);
       })
       .catch(err => {
         this.toast.error('Error al obtener la URL de la imagen.');
       });
   }
 
-  private saveTicket(): void {
-    this.ticketService.createTicket(this.ticket).subscribe({
-      next: (value) => {
-        this.toast.success('Ticket creado correctamente!.');
+  private saveTicket(ticket: TicketRequest): void {
+    this.showLoadingIndicator(true);
+    this.ticketHubService.createTicket(ticket)
+      .then(() => {
+        this.toast.success('Ticket creado correctamente!');
         this.reloadRequested.emit();
+      })
+      .catch(error => {
+        this.toast.error('Error al crear el ticket: ' + error);
+      })
+      .finally(() => {
         this.modalService.dismissAll();
-      },
-      error: (err) => {
-        this.toast.error('Error al crear el ticket.');
-      }
-    });
+        this.showLoadingIndicator(false);
+      });
   }
+
+  private showLoadingIndicator(show: boolean): void {
+    // Implementar la lógica para mostrar/ocultar un indicador de carga en la UI
+    console.log('Loading: ' + (show ? 'YES' : 'NO'));
+  }
+
+  // private saveTicket(): void {
+  //   this.ticketService.createTicket(this.ticket).subscribe({
+  //     next: (value) => {
+  //       this.toast.success('Ticket creado correctamente!.');
+  //       this.reloadRequested.emit();
+  //       this.modalService.dismissAll();
+  //     },
+  //     error: (err) => {
+  //       this.toast.error('Error al crear el ticket.');
+  //     }
+  //   });
+  // }
 
   deleteFile(index: number) {
     this.files.splice(index, 1);

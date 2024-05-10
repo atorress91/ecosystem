@@ -1,8 +1,10 @@
-import { TicketMessageRequest } from './../../models/ticket-model/ticket-message-request.model';
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
+import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model';
+import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
+import { Ticket } from '@app/core/models/ticket-model/ticket.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +12,13 @@ export class TicketHubService {
   private hubConnection: signalR.HubConnection;
   public messageReceived = new Subject<{ user: string, content: string }>();
   connectionError: any;
+  public ticketCreated = new Subject<Ticket>();
+  public ticketsReceived = new Subject<Ticket[]>();
+  public connectionEstablished = new BehaviorSubject<boolean>(false);
+
+  constructor() {
+    this.startConnection();
+  }
 
   public async startConnection(): Promise<void> {
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -20,8 +29,10 @@ export class TicketHubService {
     try {
       await this.hubConnection.start();
       this.addMessageListener();
+      this.connectionEstablished.next(true);
     } catch (error) {
       console.error(`Error al iniciar la conexión: ${error}`);
+      this.connectionEstablished.next(false);
       this.connectionError.next(`Error al iniciar la conexión: ${error}`);
       throw error;
     }
@@ -32,6 +43,13 @@ export class TicketHubService {
       this.messageReceived.next({ user, content });
     });
 
+    this.hubConnection.on('TicketCreated', (ticket: Ticket) => {
+      this.ticketCreated.next(ticket);
+    });
+
+    this.hubConnection.on('ReceiveTickets', (tickets: Ticket[]) => {
+      this.ticketsReceived.next(tickets);
+    });
   }
 
   public async joinRoom(ticketId: number): Promise<boolean> {
@@ -61,5 +79,28 @@ export class TicketHubService {
   public stopConnection(): void {
     this.hubConnection.stop()
       .catch(error => console.error(`Error al detener la conexión: ${error}`));
+  }
+
+  public createTicket(ticketRequest: TicketRequest): Promise<void> {
+    if (!this.hubConnection) {
+      return Promise.reject("Hub connection is not established.");
+    }
+
+    return new Promise((resolve, reject) => {
+      this.hubConnection.invoke('CreateTicket', ticketRequest)
+        .then(response => resolve(response))
+        .catch(error => {
+          console.error(`Error al crear el ticket: ${error}`);
+          reject(error);
+        });
+    });
+  }
+
+  public getAllTicketsByAffiliateId(affiliateId: number): Subject<Ticket[]> {
+    this.hubConnection.invoke('GetAllTicketsByAffiliateId', affiliateId)
+      .catch(error => {
+        console.error(`Error retrieving tickets: ${error}`);
+      });
+    return this.ticketsReceived;
   }
 }

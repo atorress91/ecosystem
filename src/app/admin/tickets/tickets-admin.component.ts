@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-tickets-admin',
   templateUrl: './tickets-admin.component.html',
 })
-export class TicketsAdminComponent {}
+export class TicketsAdminComponent {
+tickets: any;
+}

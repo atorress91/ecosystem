@@ -114,7 +114,7 @@ const routes: Routes = [
     canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
-    path: 'tickets-admin',
+    path: 'tickets-for-admin',
     component: TicketsAdminComponent,
     canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
