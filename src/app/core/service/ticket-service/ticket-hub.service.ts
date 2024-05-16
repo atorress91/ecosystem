@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model';
 import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
@@ -12,12 +12,20 @@ export class TicketHubService {
   private hubConnection: signalR.HubConnection;
   public messageReceived = new Subject<{ user: string, content: string }>();
   connectionError: any;
-  public ticketCreated = new Subject<Ticket>();
+  public ticketCreated = new BehaviorSubject<Ticket | null>(null);
   public ticketsReceived = new Subject<Ticket[]>();
   public connectionEstablished = new BehaviorSubject<boolean>(false);
 
   constructor() {
     this.startConnection();
+  }
+
+  public setTicket(ticket: Ticket) {
+    this.ticketCreated.next(ticket);
+  }
+
+  public getTicket(): Observable<Ticket | null> {
+    return this.ticketCreated.asObservable();
   }
 
   public async startConnection(): Promise<void> {

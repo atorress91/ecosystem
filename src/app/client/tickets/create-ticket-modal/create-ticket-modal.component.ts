@@ -8,10 +8,9 @@ import { TicketCategories } from '@app/core/models/ticket-categories-model/ticke
 import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model'
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import { TicketService } from '@app/core/service/ticket-service/ticket.service';
 import { ToastrService } from 'ngx-toastr';
 import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
+
 @Component({
   selector: 'app-create-ticket-modal',
   templateUrl: './create-ticket-modal.component.html',
@@ -33,7 +32,6 @@ export class CreateTicketModalComponent implements OnInit {
     private ticketCategoriesService: TicketCategoriesService,
     private storage: Storage,
     private authService: AuthService,
-    private ticketService: TicketService,
     private toast: ToastrService,
     private ticketHubService: TicketHubService
   ) { }
@@ -67,7 +65,7 @@ export class CreateTicketModalComponent implements OnInit {
         this.categories = value;
       },
       error: (err) => {
-
+        this.toast.error('Error al cargar las categorías.');
       },
     })
   }
@@ -86,23 +84,16 @@ export class CreateTicketModalComponent implements OnInit {
     this.ticket.description = this.createTicketForm.get('description').value;
     this.ticket.categoryId = parseInt(this.createTicketForm.get('category').value);
 
-    this.startTicketImageUpload();
-    this.saveTicket(this.ticket);
-  }
-
-  onFileSelected(event: any): void {
-    const files: File[] = Array.from(event.addedFiles);
-    console.log(files.length)
-
-    if (this.files.length + files.length <= 1) {
-      this.files.push(...files);
+    if (this.files.length > 0) {
+      this.startTicketImageUpload();
+    } else {
+      this.saveTicket(this.ticket);
     }
-
-    const filePath = 'tickets/' + `${this.user.user_name}/` + `${this.user.id}`;
-    this.fileRef = ref(this.storage, filePath);
   }
 
   private startTicketImageUpload(): void {
+    const filePath = 'tickets/' + `${this.user.user_name}/` + `${this.user.id}`;
+    this.fileRef = ref(this.storage, filePath);
     this.uploadTask = uploadBytesResumable(this.fileRef, this.files[0]);
 
     this.uploadTask.on('state_changed',
@@ -110,10 +101,6 @@ export class CreateTicketModalComponent implements OnInit {
       error => this.handleTicketUploadError(error),
       () => this.handleTicketUploadComplete()
     );
-  }
-
-  private handleTicketUploadError(error): void {
-    this.toast.error('Error al cargar la imagen.');
   }
 
   private handleTicketUploadComplete(): void {
@@ -124,44 +111,36 @@ export class CreateTicketModalComponent implements OnInit {
       })
       .catch(err => {
         this.toast.error('Error al obtener la URL de la imagen.');
+        this.saveTicket(this.ticket);
       });
   }
 
+  onFileSelected(event: any): void {
+    const files: File[] = event.addedFiles;  // Cambio aquí para adaptarlo a ngx-dropzone
+    if (files && files.length > 0) {
+      this.files = files;  // Asegúrate de que solo tomas archivos si realmente hay algunos
+    }
+  }
+
+  deleteFile(index: number) {
+    this.files.splice(index, 1);
+  }
+
+  private handleTicketUploadError(error): void {
+    this.toast.error('Error al cargar la imagen.');
+  }
+
   private saveTicket(ticket: TicketRequest): void {
-    this.showLoadingIndicator(true);
     this.ticketHubService.createTicket(ticket)
       .then(() => {
         this.toast.success('Ticket creado correctamente!');
         this.reloadRequested.emit();
       })
       .catch(error => {
-        this.toast.error('Error al crear el ticket: ' + error);
+        this.toast.error('Error al crear el ticket.');
       })
       .finally(() => {
         this.modalService.dismissAll();
-        this.showLoadingIndicator(false);
       });
-  }
-
-  private showLoadingIndicator(show: boolean): void {
-    // Implementar la lógica para mostrar/ocultar un indicador de carga en la UI
-    console.log('Loading: ' + (show ? 'YES' : 'NO'));
-  }
-
-  // private saveTicket(): void {
-  //   this.ticketService.createTicket(this.ticket).subscribe({
-  //     next: (value) => {
-  //       this.toast.success('Ticket creado correctamente!.');
-  //       this.reloadRequested.emit();
-  //       this.modalService.dismissAll();
-  //     },
-  //     error: (err) => {
-  //       this.toast.error('Error al crear el ticket.');
-  //     }
-  //   });
-  // }
-
-  deleteFile(index: number) {
-    this.files.splice(index, 1);
   }
 }

@@ -101,6 +101,18 @@
                     </td>
                     <td class="text-end"> {{item.createdAt}}
                     </td>
+                    <td>
+                      <div *ngIf="item.image; else noImage">
+                        <img [src]="item.image" (click)="openViewer(item.image)" alt="Click to view"
+                          style="cursor: pointer; width: 100px; height: auto;">
+                      </div>
+                      <ng-template #noImage>
+                        <div
+                          style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0;">
+                          <span>No Image</span>
+                        </div>
+                      </ng-template>
+                    </td>
                 </tbody>
               </table>
             </div>

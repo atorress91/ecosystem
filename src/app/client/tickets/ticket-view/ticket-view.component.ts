@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
+import { Ticket } from '@app/core/models/ticket-model/ticket.model';
 
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
@@ -25,27 +26,12 @@ export class TicketViewComponent {
     private ticketHubService: TicketHubService,
     private ticketService: TicketService,
     private router: Router) {
+
   }
 
   ngOnInit(): void {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras.state) {
-      this.ticket = navigation.extras.state.ticket;
-      console.log(this.ticket);
-    }
-
     this.user = this.authService.currentUserAffiliateValue;
-
-    if (this.ticket.id != null || this.ticket.id != 0) {
-      this.startConnection(this.ticket.id);
-    }
-
-    this.ticketHubService.messageReceived.subscribe({
-      next: (message) => this.messages.push(message),
-      error: (err) => {
-        console.error('error recibiendo mensajes: ' + err);
-      },
-    });
+    this.getTicket();
   }
 
   ngOnDestroy(): void {
@@ -58,6 +44,29 @@ export class TicketViewComponent {
       () => this.ticketHubService.joinRoom(ticketId),
       error => console.error('Error al conectar o unirse a la sala:', error)
     );
+  }
+
+  getTicket(): void {
+    this.ticketHubService.getTicket().subscribe({
+      next: (ticket: Ticket) => {
+        this.ticket = ticket;
+        console.log('Ticket recibido:', ticket);
+        this.startConnection(ticket.id);
+        this.receivedMessage();
+      },
+      error: (err) => {
+        console.error('Error recibiendo ticket:', err);
+      },
+    });
+  }
+
+  receivedMessage(): void {
+    this.ticketHubService.messageReceived.subscribe({
+      next: (message) => this.messages.push(message),
+      error: (err) => {
+        console.error('error recibiendo mensajes: ' + err);
+      },
+    });
   }
 
   sendMessage(): void {

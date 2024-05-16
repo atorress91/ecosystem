@@ -7,7 +7,7 @@
       <a routerLink="/dashboard/main">
         <i class="fas fa-home font-17"></i></a>
     </li>
-    <li class="breadcrumb-item">Ticket #{{ticket.id}}</li>
+    <li class="breadcrumb-item">Ticket #{{ticket?.id}}</li>
   </ul>
   <div class="section-body">
     <div class="row">
@@ -17,7 +17,7 @@
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
           <div *ngIf="ticket" class="col-12">
-            Descripción del problema: <div class="col-red">{{ticket.description ?? 'No hay descripción'}}</div>
+            Descripción del problema: <div class="col-red">{{ticket?.description ?? 'No hay descripción'}}</div>
           </div>
           <div class="chat">
             <div class="chat-header clearfix">

@@ -8,6 +8,9 @@ import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-
 import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Ticket } from '@app/core/models/ticket-model/ticket.model';
+import Swal from 'sweetalert2';
+declare var Viewer: any;
 
 @Component({
   selector: 'app-tickets',
@@ -103,9 +106,51 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.currentTime = new Date();
   }
 
-  openTicketDetails({ id }: { id: any }) {
-    this.router.navigate(['/app/tickets', id], {
-      state: { ticket: { id } }
+  openTicketDetails(ticket: Ticket) {
+    this.ticketHubService.setTicket(ticket);
+    console.log('Ticket:', ticket);
+    this.router.navigate(['app/tickets/message']);
+  }
+
+  showImage(imageUrl: string) {
+    const image = new Image();
+    image.src = imageUrl;
+    const viewer = new Viewer(image, {
+      inline: false,
+      button: true,
+      navbar: true,
+      toolbar: {
+        zoomIn: 1,
+        zoomOut: 1,
+        oneToOne: 1,
+        reset: 1,
+        prev: 1,
+        play: {
+          show: 1,
+          size: 'large',
+        },
+        next: 1,
+        rotateLeft: 1,
+        rotateRight: 1,
+        flipHorizontal: 1,
+        flipVertical: 1,
+      },
+      tooltip: true,
+      movable: true,
+      zoomable: true,
+      rotatable: true,
+      scalable: true,
+      transition: true,
+      fullscreen: true,
+      viewed() {
+        viewer.zoomTo(1);
+      }
     });
+
+    viewer.show();
+  }
+
+  openViewer(imageUrl: string) {
+    this.showImage(imageUrl);
   }
 }
