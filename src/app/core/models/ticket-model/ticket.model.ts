@@ -1,3 +1,5 @@
+import {TicketImagesRequest} from "@app/core/models/ticket-model/ticket-images-request.model";
+
 export class Ticket {
   id: number;
   affiliateId: number;
@@ -5,7 +7,7 @@ export class Ticket {
   subject: string;
   status: boolean;
   isRead: boolean;
-  image: string;
+  images: TicketImagesRequest[];
   createdAt: Date
   updatedAt: Date
   deletedAt: Date
@@ -17,7 +19,7 @@ export class Ticket {
     this.subject = '';
     this.status = false;
     this.isRead = false;
-    this.image = '';
+    this.images = [];
     this.createdAt = new Date();
     this.updatedAt = new Date();
   }

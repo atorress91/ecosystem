@@ -18,7 +18,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   user: UserAffiliate = new UserAffiliate();
   public messages: Array<any> = [];
-  tickets = [];
+  tickets: Ticket[] = [];
   categories = [];
   selectedTicket: any = {};
 
@@ -115,9 +115,10 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openModal(content: any, ticket: Ticket) {
-    console.log(ticket.image);
-    this.selectedTicket.images = ticket.image ? [ticket.image] : [];
+    console.log(ticket.images);
+    this.selectedTicket.images = ticket.images || [];
     console.log(this.selectedTicket.images);
-    this.modalService.open(content, {size: 'xs'});
+    this.modalService.open(content, {size: 'lg', centered: true}).result.then(() => {
+    });
   }
 }
