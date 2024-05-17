@@ -1,16 +1,15 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '@app/core/service/authentication-service/auth.service';
-import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import { TicketService } from '@app/core/service/ticket-service/ticket.service';
-import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
-import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-modal.component';
-import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
-import Swal from 'sweetalert2';
-declare var Viewer: any;
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+
+import {TicketCategoriesService} from '@app/core/service/ticket-categories-service/ticket-categories.service';
+import {CreateTicketModalComponent} from './create-ticket-modal/create-ticket-modal.component';
+import {TicketHubService} from '@app/core/service/ticket-service/ticket-hub.service';
+import {AuthService} from '@app/core/service/authentication-service/auth.service';
+import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import {Ticket} from '@app/core/models/ticket-model/ticket.model';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-tickets',
@@ -19,9 +18,9 @@ declare var Viewer: any;
 export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   user: UserAffiliate = new UserAffiliate();
   public messages: Array<any> = [];
-  currentTime: Date = new Date();
   tickets = [];
   categories = [];
+  selectedTicket: any = {};
 
   @ViewChild(CreateTicketModalComponent) private createTicketModal: CreateTicketModalComponent;
   @ViewChild('messageInput') messageInputRef: ElementRef;
@@ -32,11 +31,17 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
     private authService: AuthService,
     private ticketHubService: TicketHubService,
     private ticketCategoryService: TicketCategoriesService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private modalService: NgbModal
+  ) {
+  }
 
-  ngOnInit() {
-    this.ticketHubService.startConnection();
+  async ngOnInit() {
+    try {
+      await this.ticketHubService.startConnection();
+    } catch (error) {
+      console.error('Error starting connection:', error);
+    }
     this.user = this.authService.currentUserAffiliateValue;
     this.initSignalRConnection();
     this.loadTicketCategories();
@@ -70,14 +75,15 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   loadAllTickets() {
     this.ticketHubService.getAllTicketsByAffiliateId(this.user.id).pipe(
       takeUntil(this.unsubscribe$)
-    ).subscribe(
-      (tickets) => {
+    ).subscribe({
+      next: (tickets) => {
         this.tickets = tickets;
+        console.log(this.tickets);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error retrieving tickets:', error);
       }
-    );
+    });
   }
 
   loadTicketCategories() {
@@ -102,55 +108,16 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
     return category ? category.categoryName : 'Categoría no encontrada';
   }
 
-  updateCurrentTime(): void {
-    this.currentTime = new Date();
-  }
-
   openTicketDetails(ticket: Ticket) {
     this.ticketHubService.setTicket(ticket);
     console.log('Ticket:', ticket);
-    this.router.navigate(['app/tickets/message']);
+    this.router.navigate(['app/tickets/message']).then();
   }
 
-  showImage(imageUrl: string) {
-    const image = new Image();
-    image.src = imageUrl;
-    const viewer = new Viewer(image, {
-      inline: false,
-      button: true,
-      navbar: true,
-      toolbar: {
-        zoomIn: 1,
-        zoomOut: 1,
-        oneToOne: 1,
-        reset: 1,
-        prev: 1,
-        play: {
-          show: 1,
-          size: 'large',
-        },
-        next: 1,
-        rotateLeft: 1,
-        rotateRight: 1,
-        flipHorizontal: 1,
-        flipVertical: 1,
-      },
-      tooltip: true,
-      movable: true,
-      zoomable: true,
-      rotatable: true,
-      scalable: true,
-      transition: true,
-      fullscreen: true,
-      viewed() {
-        viewer.zoomTo(1);
-      }
-    });
-
-    viewer.show();
-  }
-
-  openViewer(imageUrl: string) {
-    this.showImage(imageUrl);
+  openModal(content: any, ticket: Ticket) {
+    console.log(ticket.image);
+    this.selectedTicket.images = ticket.image ? [ticket.image] : [];
+    console.log(this.selectedTicket.images);
+    this.modalService.open(content, {size: 'xs'});
   }
 }
