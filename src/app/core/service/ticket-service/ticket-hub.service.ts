@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {HubConnectionState} from "@microsoft/signalr";
 
-import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model';
-import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
+import {TicketRequest} from '@app/core/models/ticket-model/ticketRequest.model';
+import {TicketMessageRequest} from '@app/core/models/ticket-model/ticket-message-request.model';
+import {Ticket} from '@app/core/models/ticket-model/ticket.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,11 +19,13 @@ export class TicketHubService {
   public connectionEstablished = new BehaviorSubject<boolean>(false);
 
   constructor() {
-    this.startConnection();
+    const savedTicket = localStorage.getItem('ticket');
+    this.ticketCreated = new BehaviorSubject<Ticket | null>(savedTicket ? JSON.parse(savedTicket) : null);
   }
 
   public setTicket(ticket: Ticket) {
     this.ticketCreated.next(ticket);
+    localStorage.setItem('ticket', JSON.stringify(ticket));
   }
 
   public getTicket(): Observable<Ticket | null> {
@@ -48,7 +52,7 @@ export class TicketHubService {
 
   private addMessageListener(): void {
     this.hubConnection.on('ReceiveMessage', (user, content) => {
-      this.messageReceived.next({ user, content });
+      this.messageReceived.next({user, content});
     });
 
     this.hubConnection.on('TicketCreated', (ticket: Ticket) => {
@@ -105,10 +109,14 @@ export class TicketHubService {
   }
 
   public getAllTicketsByAffiliateId(affiliateId: number): Subject<Ticket[]> {
-    this.hubConnection.invoke('GetAllTicketsByAffiliateId', affiliateId)
-      .catch(error => {
-        console.error(`Error retrieving tickets: ${error}`);
-      });
+    if (this.hubConnection.state === HubConnectionState.Connected) {
+      this.hubConnection.invoke('GetAllTicketsByAffiliateId', affiliateId)
+        .catch(error => {
+          console.error(`Error retrieving tickets: ${error}`);
+        });
+    } else {
+      console.error('Cannot send data if the connection is not in the \'Connected\' State.');
+    }
     return this.ticketsReceived;
   }
 }

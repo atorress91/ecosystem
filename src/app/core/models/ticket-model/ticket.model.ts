@@ -8,6 +8,7 @@ export class Ticket {
   status: boolean;
   isRead: boolean;
   images: TicketImagesRequest[];
+  description: string;
   createdAt: Date
   updatedAt: Date
   deletedAt: Date
@@ -20,6 +21,7 @@ export class Ticket {
     this.status = false;
     this.isRead = false;
     this.images = [];
+    this.description = '';
     this.createdAt = new Date();
     this.updatedAt = new Date();
   }

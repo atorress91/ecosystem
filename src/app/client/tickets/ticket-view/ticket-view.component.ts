@@ -1,32 +1,33 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {TicketMessageRequest} from '@app/core/models/ticket-model/ticket-message-request.model';
+import {Ticket} from '@app/core/models/ticket-model/ticket.model';
 
-import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import { AuthService } from '@app/core/service/authentication-service/auth.service';
-import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
-import { TicketService } from '@app/core/service/ticket-service/ticket.service';
+import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import {AuthService} from '@app/core/service/authentication-service/auth.service';
+import {TicketHubService} from '@app/core/service/ticket-service/ticket-hub.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-ticket-view',
   templateUrl: './ticket-view.component.html',
-  styleUrls: ['./ticket-view.component.sass']
+  styleUrls: ['./ticket-view.component.scss']
 })
-export class TicketViewComponent {
+export class TicketViewComponent implements OnInit, OnDestroy {
   ticket: any;
+  config = {
+    wheelSpeed: 0.5,
+    swipeEasing: true,
+    minScrollbarLength: 20,
+    maxScrollbarLength: 50,
+  };
   user: UserAffiliate;
   newMessage: string;
   ticketMessage: TicketMessageRequest = new TicketMessageRequest();
   messages: any = [];
 
   constructor(
-    private route: ActivatedRoute,
     private authService: AuthService,
-    private ticketHubService: TicketHubService,
-    private ticketService: TicketService,
-    private router: Router) {
-
+    private ticketHubService: TicketHubService) {
   }
 
   ngOnInit(): void {
@@ -60,6 +61,15 @@ export class TicketViewComponent {
     });
   }
 
+  showTicketDetails() {
+    Swal.fire({
+      title: 'Detalles del Ticket',
+      text: this.ticket.description,
+      icon: 'info',
+      confirmButtonText: 'Cerrar'
+    });
+  }
+
   receivedMessage(): void {
     this.ticketHubService.messageReceived.subscribe({
       next: (message) => this.messages.push(message),
@@ -76,7 +86,7 @@ export class TicketViewComponent {
       this.ticketMessage.messageContent = this.newMessage;
 
       this.ticketHubService.sendMessage(this.ticketMessage);
-      this.messages.push({ user: this.user.name, content: this.newMessage });
+      this.messages.push({user: this.user.name, content: this.newMessage});
       this.newMessage = '';
     }
   }

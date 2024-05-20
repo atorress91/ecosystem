@@ -11,25 +11,20 @@
   </ul>
   <div class="section-body">
     <div class="row">
-
-    </div>
-    <div class="row">
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
-          <div *ngIf="ticket" class="col-12">
-            Descripción del problema: <div class="col-red">{{ticket?.description ?? 'No hay descripción'}}</div>
-          </div>
           <div class="chat">
             <div class="chat-header clearfix">
               <img [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
                 alt="avatar">
               <div class="chat-about">
                 <div class="chat-with">{{user.name}} {{user.last_name}}</div>
+                <button class="btn btn-info" (click)="showTicketDetails()">Detalles</button>
               </div>
             </div>
           </div>
           <div class="chat-box">
-            <div class="card-body chat-content" style="position: relative; max-height: 400px;" [perfectScrollbar]>
+            <div class="card-body chat-content" style="position: relative; max-height: 400px;" [perfectScrollbar]="config">
               <div *ngFor="let message of messages" class="chat-item chat-left">
                 <img [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
                   alt="avatar">

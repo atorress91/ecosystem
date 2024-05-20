@@ -58,6 +58,7 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+    this.ticketHubService.stopConnection();
   }
 
   initSignalRConnection() {
