@@ -62,6 +62,10 @@ export class TicketHubService {
     this.hubConnection.on('ReceiveTickets', (tickets: Ticket[]) => {
       this.ticketsReceived.next(tickets);
     });
+
+    this.hubConnection.on('ReceiveTicketsForAdmin', (tickets: Ticket[]) => {
+      this.ticketsReceived.next(tickets);
+    });
   }
 
   public async joinRoom(ticketId: number): Promise<boolean> {
@@ -111,6 +115,18 @@ export class TicketHubService {
   public getAllTicketsByAffiliateId(affiliateId: number): Subject<Ticket[]> {
     if (this.hubConnection.state === HubConnectionState.Connected) {
       this.hubConnection.invoke('GetAllTicketsByAffiliateId', affiliateId)
+        .catch(error => {
+          console.error(`Error retrieving tickets: ${error}`);
+        });
+    } else {
+      console.error('Cannot send data if the connection is not in the \'Connected\' State.');
+    }
+    return this.ticketsReceived;
+  }
+
+  public getAllTickets(): Subject<Ticket[]> {
+    if (this.hubConnection.state === HubConnectionState.Connected) {
+      this.hubConnection.invoke('GetAllTickets')
         .catch(error => {
           console.error(`Error retrieving tickets: ${error}`);
         });
