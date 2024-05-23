@@ -85,11 +85,11 @@
                       <span class="form-check-sign"></span>
                     </label>
                   </td>
-                  <td class="hidden-xs" *ngIf="item.status == 0 || item.status == 1">
+                  <td class="hidden-xs" *ngIf="item.status == false || item.status == true">
                     <button class="btn"
-                            [ngClass]="{'badge-outline col-green': item.status == 1, 'badge-outline col-red': item.status == 0}"
+                            [ngClass]="{'badge-outline col-green': item.status == true, 'badge-outline col-red': item.status == false}"
                             [disabled]="true">
-                      {{ item.status == 0 ? 'Cerrado' : 'Abierto' }}
+                      {{ item.status == false ? 'Cerrado' : 'Abierto' }}
                     </button>
                   </td>
                   <td class="hidden-xs" (click)="openTicketDetails(item)">
@@ -111,7 +111,7 @@
                     </div>
                     <ng-template #noImage>
                       <div
-                        style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0;">
+                        style="max-width: 80%; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0;">
                         <span>No Image</span>
                       </div>
                     </ng-template>
@@ -125,7 +125,7 @@
                     <div class="modal-body">
                       <ngb-carousel *ngIf="selectedTicket.images && selectedTicket.images.length">
                         <ng-template ngbSlide *ngFor="let img of selectedTicket.images">
-                          <img [src]="img.imagePath" alt="Slide image" style="width: 100%;">
+                          <img [src]="img.imagePath" alt="Slide image" class="img-fluid">
                         </ng-template>
                       </ngb-carousel>
                     </div>

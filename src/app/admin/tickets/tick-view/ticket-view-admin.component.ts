@@ -1,19 +1,18 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TicketMessageRequest} from '@app/core/models/ticket-model/ticket-message-request.model';
-import {Ticket} from '@app/core/models/ticket-model/ticket.model';
-
-import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import {AuthService} from '@app/core/service/authentication-service/auth.service';
-import {TicketHubService} from '@app/core/service/ticket-service/ticket-hub.service';
+import {Component, OnInit} from '@angular/core';
+import {TicketMessageRequest} from "@app/core/models/ticket-model/ticket-message-request.model";
+import {Ticket} from "@app/core/models/ticket-model/ticket.model";
 import Swal from "sweetalert2";
+import {TicketHubService} from "@app/core/service/ticket-service/ticket-hub.service";
+import {AuthService} from "@app/core/service/authentication-service/auth.service";
 import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-ticket-view',
-  templateUrl: './ticket-view.component.html',
-  styleUrls: ['./ticket-view.component.scss']
+  selector: 'app-tick-view',
+  templateUrl: './ticket-view-admin.component.html',
+  styleUrls: ['./ticket-view-admin.component.sass']
 })
-export class TicketViewComponent implements OnInit, OnDestroy {
+export class TicketViewAdminComponent implements OnInit {
+  user: any;
   ticket: Ticket;
   config = {
     wheelSpeed: 0.5,
@@ -21,24 +20,17 @@ export class TicketViewComponent implements OnInit, OnDestroy {
     minScrollbarLength: 20,
     maxScrollbarLength: 50,
   };
-  user: UserAffiliate;
   newMessage: string;
   ticketMessage: TicketMessageRequest = new TicketMessageRequest();
   messages: any = [];
 
-  constructor(
-    private authService: AuthService,
-    private ticketHubService: TicketHubService) {
+  constructor(private ticketHubService: TicketHubService, private authService: AuthService) {
   }
 
-  ngOnInit(): void {
-    this.user = this.authService.currentUserAffiliateValue;
+  ngOnInit() {
+    this.user = this.authService.currentUserAdminValue;
+    console.log(this.user);
     this.getTicket();
-  }
-
-  ngOnDestroy(): void {
-    this.ticketHubService.leaveRoom(this.ticket.id);
-    this.ticketHubService.messageReceived.unsubscribe();
   }
 
   startConnection(ticketId: number) {
@@ -46,6 +38,15 @@ export class TicketViewComponent implements OnInit, OnDestroy {
       () => this.ticketHubService.joinRoom(ticketId),
       error => console.error('Error al conectar o unirse a la sala:', error)
     );
+  }
+
+  showTicketDetails() {
+    Swal.fire({
+      title: 'Detalles del Ticket',
+      text: this.ticket.description,
+      icon: 'info',
+      confirmButtonText: 'Cerrar'
+    }).then();
   }
 
   getTicket(): void {
@@ -60,15 +61,6 @@ export class TicketViewComponent implements OnInit, OnDestroy {
         console.error('Error recibiendo ticket:', err);
       },
     });
-  }
-
-  showTicketDetails() {
-    Swal.fire({
-      title: 'Detalles del Ticket',
-      text: this.ticket.description,
-      icon: 'info',
-      confirmButtonText: 'Cerrar'
-    }).then();
   }
 
   receivedMessage(): Subscription {

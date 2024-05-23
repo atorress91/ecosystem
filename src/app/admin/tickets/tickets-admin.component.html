@@ -85,14 +85,14 @@
                       <span class="form-check-sign"></span>
                     </label>
                   </td>
-                  <td class="hidden-xs" *ngIf="item.status == 0 || item.status == 1">
+                  <td class="hidden-xs" *ngIf="item.status == false || item.status == true">
                     <button class="btn"
-                            [ngClass]="{'badge-outline col-green': item.status == 1, 'badge-outline col-red': item.status == 0}"
+                            [ngClass]="{'badge-outline col-green': item.status == true, 'badge-outline col-red': item.status == false}"
                             [disabled]="true">
-                      {{ item.status == 0 ? 'Cerrado' : 'Abierto' }}
+                      {{ item.status == false ? 'Cerrado' : 'Abierto' }}
                     </button>
                   </td>
-                  <td class="hidden-xs">
+                  <td class="hidden-xs" (click)="openTicketMessage(item)">
                     <a class="text-decoration-none" role="button">{{ item.subject }}</a>
                   </td>
                   <td class="max-texts">

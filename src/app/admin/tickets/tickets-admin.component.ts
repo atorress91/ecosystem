@@ -6,6 +6,7 @@ import {TicketHubService} from "@app/core/service/ticket-service/ticket-hub.serv
 import {Ticket} from "@app/core/models/ticket-model/ticket.model";
 import {TicketCategoriesService} from "@app/core/service/ticket-categories-service/ticket-categories.service";
 import {TicketCategories} from "@app/core/models/ticket-categories-model/ticket-categories.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tickets-admin',
@@ -15,8 +16,11 @@ export class TicketsAdminComponent implements OnInit {
   tickets: Ticket[] = [];
   private unsubscribe$ = new Subject<void>();
   categories: TicketCategories[] = [];
+  user: any;
 
-  constructor(private ticketHubService: TicketHubService, private ticketCategoryService: TicketCategoriesService) {
+  constructor(private ticketHubService: TicketHubService,
+              private ticketCategoryService: TicketCategoriesService,
+              private router: Router) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -26,7 +30,8 @@ export class TicketsAdminComponent implements OnInit {
       console.error('Error starting connection:', error);
     }
     this.loadTicketCategories();
-    ;this.getAllTickets();
+    this.getAllTickets();
+    console.log(this.user);
   }
 
   loadTicketCategories() {
@@ -59,5 +64,11 @@ export class TicketsAdminComponent implements OnInit {
         console.error('Error retrieving tickets:', error);
       }
     });
+  }
+
+  openTicketMessage(ticket: Ticket) {
+    this.ticketHubService.setTicket(ticket);
+    console.log('Ticket:', ticket);
+    this.router.navigate(['admin/ticket-for-admin/message']).then();
   }
 }

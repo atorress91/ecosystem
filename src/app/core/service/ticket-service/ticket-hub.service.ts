@@ -12,9 +12,9 @@ import {Ticket} from '@app/core/models/ticket-model/ticket.model';
 })
 export class TicketHubService {
   private hubConnection: signalR.HubConnection;
-  public messageReceived = new Subject<{ user: string, content: string }>();
+  public messageReceived = new Subject<{ user: number, content: string }>();
   connectionError: any;
-  public ticketCreated = new BehaviorSubject<Ticket | null>(null);
+  public ticketCreated: BehaviorSubject<Ticket | null>;
   public ticketsReceived = new Subject<Ticket[]>();
   public connectionEstablished = new BehaviorSubject<boolean>(false);
 
@@ -51,7 +51,7 @@ export class TicketHubService {
   }
 
   private addMessageListener(): void {
-    this.hubConnection.on('ReceiveMessage', (user, content) => {
+    this.hubConnection.on('ReceiveMessage', (user: number, content: string) => {
       this.messageReceived.next({user, content});
     });
 
@@ -66,6 +66,10 @@ export class TicketHubService {
     this.hubConnection.on('ReceiveTicketsForAdmin', (tickets: Ticket[]) => {
       this.ticketsReceived.next(tickets);
     });
+
+    this.hubConnection.on('DeleteTicket', (ticket: Ticket) => {
+      this.ticketCreated.next(ticket);
+    })
   }
 
   public async joinRoom(ticketId: number): Promise<boolean> {
@@ -134,5 +138,16 @@ export class TicketHubService {
       console.error('Cannot send data if the connection is not in the \'Connected\' State.');
     }
     return this.ticketsReceived;
+  }
+
+  public deleteTicket(ticketId: number): Promise<Ticket | null> {
+    return this.hubConnection.invoke<Ticket | null>('DeleteTicket', ticketId)
+      .then(ticket => {
+        return ticket;
+      })
+      .catch(error => {
+        console.error(`Error deleting ticket: ${error}`);
+        throw new Error(`Error deleting ticket: ${error}`);
+      });
   }
 }
