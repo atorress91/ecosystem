@@ -1,12 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TicketMessageRequest} from '@app/core/models/ticket-model/ticket-message-request.model';
-import {Ticket} from '@app/core/models/ticket-model/ticket.model';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {takeUntil} from "rxjs/operators";
+import Swal from "sweetalert2";
+import {Subject, Subscription} from "rxjs";
 
 import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import {AuthService} from '@app/core/service/authentication-service/auth.service';
 import {TicketHubService} from '@app/core/service/ticket-service/ticket-hub.service';
-import Swal from "sweetalert2";
-import {Subscription} from "rxjs";
+import {TicketMessage} from "@app/core/models/ticket-model/ticket-message.model";
+import {TicketMessageRequest} from '@app/core/models/ticket-model/ticket-message-request.model';
+import {Ticket} from '@app/core/models/ticket-model/ticket.model';
 
 @Component({
   selector: 'app-ticket-view',
@@ -14,6 +16,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./ticket-view.component.scss']
 })
 export class TicketViewComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
   ticket: Ticket;
   config = {
     wheelSpeed: 0.5,
@@ -28,81 +31,96 @@ export class TicketViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private ticketHubService: TicketHubService) {
+    private ticketHubService: TicketHubService,
+    private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
     this.user = this.authService.currentUserAffiliateValue;
-    this.getTicket();
+    this.ticketHubService.getTicket().subscribe(ticketId => {
+      this.startConnection(ticketId);
+    });
   }
 
   ngOnDestroy(): void {
     this.ticketHubService.leaveRoom(this.ticket.id);
-    this.ticketHubService.messageReceived.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   startConnection(ticketId: number) {
-    this.ticketHubService.startConnection().then(
-      () => this.ticketHubService.joinRoom(ticketId),
+    this.ticketHubService.startConnection().then(() => {
+        this.ticketHubService.joinRoom(ticketId).then();
+        this.getTicketById(ticketId);
+        this.receivedMessage();
+      },
       error => console.error('Error al conectar o unirse a la sala:', error)
     );
   }
 
-  getTicket(): void {
-    this.ticketHubService.getTicket().subscribe({
-      next: (ticketId: number) => {
-        this.ticket.id = ticketId;
-        this.startConnection(ticketId);
-        this.receivedMessage();
-      },
-      error: (err) => {
-        console.error('Error recibiendo ticket:', err);
-      },
-    });
-  }
-
   showTicketDetails() {
     Swal.fire({
-      title: 'Detalles del Ticket',
+      title: `Detalles del Ticket ${this.ticket.id}`,
       text: this.ticket.description,
       icon: 'info',
       confirmButtonText: 'Cerrar'
     }).then();
   }
 
-  receivedMessage(): Subscription {
-    return this.ticketHubService.messageReceived.subscribe({
-      next: (message) => {
-        const isMyMessage = message.user === this.user.id;
-        const formattedMessage = {
-          ...message,
-          sentByMe: isMyMessage
-        };
-
-        if (!this.messages.some(m => m.id === message.user)) {
-          this.messages.push(formattedMessage);
+  getTicketById(ticketId: number) {
+    this.ticketHubService.getTicketById(ticketId);
+    this.ticketHubService.ticketCreated.subscribe({
+      next: (ticket: Ticket | null) => {
+        if (ticket) {
+          this.ticket = ticket;
+          if (ticket.messages && ticket.messages.length > 0) {
+            ticket.messages.forEach(message => this.processMessageSender(message));
+          } else {
+            console.log('Ticket received without messages');
+          }
+        } else {
+          console.log('No ticket received or connection not established');
         }
       },
       error: (err) => {
-        console.error('error recibiendo mensajes: ' + err);
-      },
+        console.error('Error recibiendo ticket:', err);
+      }
+    });
+  }
+
+  receivedMessage(): Subscription {
+    return this.ticketHubService.messageReceived.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (message: TicketMessage) => this.processMessageSender(message),
+      error: (err) => console.error('Error recibiendo mensajes:', err)
     });
   }
 
   sendMessage(): void {
-    if (this.newMessage.trim()) {
+    if (this.newMessage.trim() && this.ticketHubService.connectionEstablished.value) {
       this.ticketMessage.ticketId = this.ticket.id;
       this.ticketMessage.userId = this.user.id;
       this.ticketMessage.messageContent = this.newMessage;
 
-      const myMessage = {
-        user: this.user.id,
-        content: this.newMessage,
-        sentByMe: true
-      };
-
       this.ticketHubService.sendMessage(this.ticketMessage);
       this.newMessage = '';
+    } else {
+      console.error('Intento de enviar mensaje con la conexión no establecida.');
+    }
+  }
+
+  processMessageSender(message: TicketMessage) {
+    console.log('Procesando mensaje', message);
+    const isMyMessage = message.userId === this.user.id;
+    const formattedMessage = {
+      ...message,
+      sentByMe: isMyMessage
+    };
+
+    if (!this.messages.some((m: TicketMessage) => m.id === message.id)) {
+      this.messages.push(formattedMessage);
+      // this.cdr.detectChanges();
     }
   }
 }

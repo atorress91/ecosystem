@@ -1,17 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {TicketMessageRequest} from "@app/core/models/ticket-model/ticket-message-request.model";
-import {Ticket} from "@app/core/models/ticket-model/ticket.model";
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {takeUntil} from "rxjs/operators";
 import Swal from "sweetalert2";
+import {Subject, Subscription} from "rxjs";
+
 import {TicketHubService} from "@app/core/service/ticket-service/ticket-hub.service";
 import {AuthService} from "@app/core/service/authentication-service/auth.service";
-import {Subscription} from "rxjs";
+import {TicketMessage} from "@app/core/models/ticket-model/ticket-message.model";
+import {TicketMessageRequest} from "@app/core/models/ticket-model/ticket-message-request.model";
+import {Ticket} from "@app/core/models/ticket-model/ticket.model";
 
 @Component({
   selector: 'app-tick-view',
   templateUrl: './ticket-view-admin.component.html',
   styleUrls: ['./ticket-view-admin.component.sass']
 })
-export class TicketViewAdminComponent implements OnInit {
+export class TicketViewAdminComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
   user: any;
   ticket: Ticket;
   config = {
@@ -24,16 +28,21 @@ export class TicketViewAdminComponent implements OnInit {
   ticketMessage: TicketMessageRequest = new TicketMessageRequest();
   messages: any = [];
 
-  constructor(private ticketHubService: TicketHubService, private authService: AuthService) {
+  constructor(private ticketHubService: TicketHubService, private authService: AuthService, private cdr: ChangeDetectorRef) {
 
   }
 
   ngOnInit() {
     this.user = this.authService.currentUserAdminValue;
-    console.log(this.user);
     this.ticketHubService.getTicket().subscribe(ticketId => {
       this.startConnection(ticketId);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ticketHubService.leaveRoom(this.ticket.id);
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   startConnection(ticketId: number) {
@@ -48,7 +57,7 @@ export class TicketViewAdminComponent implements OnInit {
 
   showTicketDetails() {
     Swal.fire({
-      title: 'Detalles del Ticket',
+      title: `Detalles del Ticket ${this.ticket.id}`,
       text: this.ticket.description,
       icon: 'info',
       confirmButtonText: 'Cerrar'
@@ -61,7 +70,11 @@ export class TicketViewAdminComponent implements OnInit {
       next: (ticket: Ticket | null) => {
         if (ticket) {
           this.ticket = ticket;
-          ticket.messages.forEach(message => this.processMessageSender(message));
+          if (ticket.messages && ticket.messages.length > 0) {
+            ticket.messages.forEach(message => this.processMessageSender(message));
+          } else {
+            console.log('Ticket received without messages');
+          }
         } else {
           console.log('No ticket received or connection not established');
         }
@@ -73,32 +86,28 @@ export class TicketViewAdminComponent implements OnInit {
   }
 
   receivedMessage(): Subscription {
-    return this.ticketHubService.messageReceived.subscribe({
-      next: (message) => {
-        this.processMessageSender(message);
-      },
-      error: (err) => console.error('Error recibiendo mensajes:', err),
+    return this.ticketHubService.messageReceived.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (message: TicketMessage) => this.processMessageSender(message),
+      error: (err) => console.error('Error recibiendo mensajes:', err)
     });
   }
 
   sendMessage(): void {
-    if (this.newMessage.trim()) {
+    if (this.newMessage.trim() && this.ticketHubService.connectionEstablished.value) {
       this.ticketMessage.ticketId = this.ticket.id;
       this.ticketMessage.userId = this.user.id;
       this.ticketMessage.messageContent = this.newMessage;
 
-      const myMessage = {
-        user: this.user.id,
-        content: this.newMessage,
-        sentByMe: true
-      };
-
       this.ticketHubService.sendMessage(this.ticketMessage);
       this.newMessage = '';
+    } else {
+      console.error('Intento de enviar mensaje con la conexión no establecida.');
     }
   }
 
-  processMessageSender(message: any) {
+  processMessageSender(message: TicketMessage) {
     console.log('Procesando mensaje', message);
     const isMyMessage = message.userId === this.user.id;
     const formattedMessage = {
@@ -106,8 +115,9 @@ export class TicketViewAdminComponent implements OnInit {
       sentByMe: isMyMessage
     };
 
-    if (!this.messages.some(m => m.id === message.id)) {
+    if (!this.messages.some((m: TicketMessage) => m.id === message.id)) {
       this.messages.push(formattedMessage);
+      // this.cdr.detectChanges();
     }
   }
 }

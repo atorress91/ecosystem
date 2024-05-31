@@ -6,14 +6,15 @@ import {HubConnectionState} from "@microsoft/signalr";
 import {TicketRequest} from '@app/core/models/ticket-model/ticketRequest.model';
 import {TicketMessageRequest} from '@app/core/models/ticket-model/ticket-message-request.model';
 import {Ticket} from '@app/core/models/ticket-model/ticket.model';
+import {TicketMessage} from '@app/core/models/ticket-model/ticket-message.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketHubService {
   private hubConnection: signalR.HubConnection;
-  public messageReceived = new Subject<{ user: number, content: string }>();
-  connectionError: any;
+  public messageReceived = new Subject<TicketMessage>();
+  public connectionError: Subject<string> = new Subject<string>();
   public ticketCreated: BehaviorSubject<Ticket | null> = new BehaviorSubject<Ticket | null>(null);
   public ticketSave: BehaviorSubject<number | null>;
   public ticketsReceived = new Subject<Ticket[]>();
@@ -52,9 +53,9 @@ export class TicketHubService {
   }
 
   private addMessageListener(): void {
-    this.hubConnection.on('ReceiveMessage', (user: number, content: string) => {
-      this.messageReceived.next({user, content});
-    });
+      this.hubConnection.on('ReceiveMessage', (message: TicketMessage) => {
+        this.messageReceived.next(message);
+      });
 
     this.hubConnection.on('TicketCreated', (ticket: Ticket) => {
       this.ticketCreated.next(ticket);
