@@ -50,10 +50,9 @@ export class TicketViewComponent implements OnInit, OnDestroy {
 
   getTicket(): void {
     this.ticketHubService.getTicket().subscribe({
-      next: (ticket: Ticket) => {
-        this.ticket = ticket;
-        console.log('Ticket recibido:', ticket);
-        this.startConnection(ticket.id);
+      next: (ticketId: number) => {
+        this.ticket.id = ticketId;
+        this.startConnection(ticketId);
         this.receivedMessage();
       },
       error: (err) => {

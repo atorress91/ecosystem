@@ -110,8 +110,7 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openTicketDetails(ticket: Ticket) {
-    this.ticketHubService.setTicket(ticket);
-    console.log('Ticket:', ticket);
+    this.ticketHubService.setTicket(ticket.id);
     this.router.navigate(['app/tickets/message']).then();
   }
 

@@ -25,17 +25,23 @@ export class TicketViewAdminComponent implements OnInit {
   messages: any = [];
 
   constructor(private ticketHubService: TicketHubService, private authService: AuthService) {
+
   }
 
   ngOnInit() {
     this.user = this.authService.currentUserAdminValue;
     console.log(this.user);
-    this.getTicket();
+    this.ticketHubService.getTicket().subscribe(ticketId => {
+      this.startConnection(ticketId);
+    });
   }
 
   startConnection(ticketId: number) {
-    this.ticketHubService.startConnection().then(
-      () => this.ticketHubService.joinRoom(ticketId),
+    this.ticketHubService.startConnection().then(() => {
+        this.ticketHubService.joinRoom(ticketId).then();
+        this.getTicketById(ticketId);
+        this.receivedMessage();
+      },
       error => console.error('Error al conectar o unirse a la sala:', error)
     );
   }
@@ -49,36 +55,29 @@ export class TicketViewAdminComponent implements OnInit {
     }).then();
   }
 
-  getTicket(): void {
-    this.ticketHubService.getTicket().subscribe({
-      next: (ticket: Ticket) => {
-        this.ticket = ticket;
-        console.log('Ticket recibido:', ticket);
-        this.startConnection(ticket.id);
-        this.receivedMessage();
+  getTicketById(ticketId: number) {
+    this.ticketHubService.getTicketById(ticketId);
+    this.ticketHubService.ticketCreated.subscribe({
+      next: (ticket: Ticket | null) => {
+        if (ticket) {
+          this.ticket = ticket;
+          ticket.messages.forEach(message => this.processMessageSender(message));
+        } else {
+          console.log('No ticket received or connection not established');
+        }
       },
       error: (err) => {
         console.error('Error recibiendo ticket:', err);
-      },
+      }
     });
   }
 
   receivedMessage(): Subscription {
     return this.ticketHubService.messageReceived.subscribe({
       next: (message) => {
-        const isMyMessage = message.user === this.user.id;
-        const formattedMessage = {
-          ...message,
-          sentByMe: isMyMessage
-        };
-
-        if (!this.messages.some(m => m.id === message.user)) {
-          this.messages.push(formattedMessage);
-        }
+        this.processMessageSender(message);
       },
-      error: (err) => {
-        console.error('error recibiendo mensajes: ' + err);
-      },
+      error: (err) => console.error('Error recibiendo mensajes:', err),
     });
   }
 
@@ -96,6 +95,19 @@ export class TicketViewAdminComponent implements OnInit {
 
       this.ticketHubService.sendMessage(this.ticketMessage);
       this.newMessage = '';
+    }
+  }
+
+  processMessageSender(message: any) {
+    console.log('Procesando mensaje', message);
+    const isMyMessage = message.userId === this.user.id;
+    const formattedMessage = {
+      ...message,
+      sentByMe: isMyMessage
+    };
+
+    if (!this.messages.some(m => m.id === message.id)) {
+      this.messages.push(formattedMessage);
     }
   }
 }

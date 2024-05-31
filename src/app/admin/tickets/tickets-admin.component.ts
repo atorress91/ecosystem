@@ -25,13 +25,14 @@ export class TicketsAdminComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     try {
-      await this.ticketHubService.startConnection();
+      await this.ticketHubService.startConnection().then(() => {
+        this.loadTicketCategories();
+        this.getAllTickets();
+        console.log(this.user);
+      });
     } catch (error) {
       console.error('Error starting connection:', error);
     }
-    this.loadTicketCategories();
-    this.getAllTickets();
-    console.log(this.user);
   }
 
   loadTicketCategories() {
@@ -67,8 +68,7 @@ export class TicketsAdminComponent implements OnInit {
   }
 
   openTicketMessage(ticket: Ticket) {
-    this.ticketHubService.setTicket(ticket);
-    console.log('Ticket:', ticket);
+    this.ticketHubService.setTicket(ticket.id);
     this.router.navigate(['admin/ticket-for-admin/message']).then();
   }
 }

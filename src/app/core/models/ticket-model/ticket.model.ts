@@ -1,4 +1,5 @@
 import {TicketImagesRequest} from "@app/core/models/ticket-model/ticket-images-request.model";
+import {TicketMessage} from "@app/core/models/ticket-model/ticket-message.model";
 
 export class Ticket {
   id: number;
@@ -12,6 +13,7 @@ export class Ticket {
   createdAt: Date
   updatedAt: Date
   deletedAt: Date
+  messages: TicketMessage[];
 
   constructor() {
     this.id = 0;
@@ -24,5 +26,6 @@ export class Ticket {
     this.description = '';
     this.createdAt = new Date();
     this.updatedAt = new Date();
+    this.messages = [];
   }
 }

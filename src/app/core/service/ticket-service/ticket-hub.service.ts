@@ -14,22 +14,23 @@ export class TicketHubService {
   private hubConnection: signalR.HubConnection;
   public messageReceived = new Subject<{ user: number, content: string }>();
   connectionError: any;
-  public ticketCreated: BehaviorSubject<Ticket | null>;
+  public ticketCreated: BehaviorSubject<Ticket | null> = new BehaviorSubject<Ticket | null>(null);
+  public ticketSave: BehaviorSubject<number | null>;
   public ticketsReceived = new Subject<Ticket[]>();
   public connectionEstablished = new BehaviorSubject<boolean>(false);
 
   constructor() {
     const savedTicket = localStorage.getItem('ticket');
-    this.ticketCreated = new BehaviorSubject<Ticket | null>(savedTicket ? JSON.parse(savedTicket) : null);
+    this.ticketSave = new BehaviorSubject<number | null>(savedTicket ? JSON.parse(savedTicket) : null);
   }
 
-  public setTicket(ticket: Ticket) {
-    this.ticketCreated.next(ticket);
-    localStorage.setItem('ticket', JSON.stringify(ticket));
+  public setTicket(ticketId: number) {
+    this.ticketSave.next(ticketId);
+    localStorage.setItem('ticket', JSON.stringify(ticketId));
   }
 
-  public getTicket(): Observable<Ticket | null> {
-    return this.ticketCreated.asObservable();
+  public getTicket(): Observable<number | null> {
+    return this.ticketSave.asObservable();
   }
 
   public async startConnection(): Promise<void> {
@@ -68,6 +69,10 @@ export class TicketHubService {
     });
 
     this.hubConnection.on('DeleteTicket', (ticket: Ticket) => {
+      this.ticketCreated.next(ticket);
+    })
+
+    this.hubConnection.on('GetTicketById', (ticket: Ticket) => {
       this.ticketCreated.next(ticket);
     })
   }
@@ -140,14 +145,39 @@ export class TicketHubService {
     return this.ticketsReceived;
   }
 
-  public deleteTicket(ticketId: number): Promise<Ticket | null> {
-    return this.hubConnection.invoke<Ticket | null>('DeleteTicket', ticketId)
-      .then(ticket => {
-        return ticket;
-      })
-      .catch(error => {
-        console.error(`Error deleting ticket: ${error}`);
-        throw new Error(`Error deleting ticket: ${error}`);
-      });
+  public async deleteTicket(ticketId: number): Promise<Ticket | null> {
+    if (this.hubConnection.state === HubConnectionState.Connected) {
+      return this.hubConnection.invoke<Ticket | null>('DeleteTicket', ticketId)
+        .then(ticket => {
+          return ticket;
+        })
+        .catch(error => {
+          console.error(`Error deleting ticket: ${error}`);
+          throw new Error(`Error deleting ticket: ${error}`);
+        });
+    } else {
+      console.error('Cannot delete if the connection is not in the \'Connected\' State.');
+      return null;
+    }
+  }
+
+  public getTicketById(ticketId: number): void {
+    if (this.hubConnection.state === HubConnectionState.Connected) {
+      this.hubConnection.invoke<Ticket>('GetTicketById', ticketId)
+        .then(ticket => {
+          if (ticket) {
+            this.ticketCreated.next(ticket);
+          } else {
+            console.error('No ticket received');
+            this.ticketCreated.next(null);
+          }
+        })
+        .catch(error => {
+          console.error(`Error retrieving ticket: ${error}`);
+          this.ticketCreated.next(null);
+        });
+    } else {
+      console.error('Connection is not in the \'Connected\' State.');
+    }
   }
 }
