@@ -27,7 +27,8 @@
             <div class="card-body chat-content" style="position: relative; max-height: 400px;"
                  [perfectScrollbar]="config">
               <div *ngFor="let message of messages" class="chat-item" [ngClass]="{'chat-left': !message.sentByMe, 'chat-right': message.sentByMe}">
-                <img [src]="message.sentByMe ? 'assets/images/users/user-1.png' : 'assets/images/users/user-1.png'" alt="avatar">
+                <img [src]="isAdmin(message.userId) ? 'assets/images/logo.png' : user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
+                     alt="avatar">
                 <div class="chat-details">
                   <div class="chat-text">{{ message.messageContent }}</div>
                   <div class="chat-time">{{ message.createdAt | date: 'shortTime' }}</div>

@@ -7,6 +7,7 @@ import {Ticket} from "@app/core/models/ticket-model/ticket.model";
 import {TicketCategoriesService} from "@app/core/service/ticket-categories-service/ticket-categories.service";
 import {TicketCategories} from "@app/core/models/ticket-categories-model/ticket-categories.model";
 import {Router} from "@angular/router";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-tickets-admin',
@@ -17,10 +18,12 @@ export class TicketsAdminComponent implements OnInit {
   private unsubscribe$ = new Subject<void>();
   categories: TicketCategories[] = [];
   user: any;
+  selectedTicket: any = {};
 
   constructor(private ticketHubService: TicketHubService,
               private ticketCategoryService: TicketCategoriesService,
-              private router: Router) {
+              private router: Router,
+              private modalService: NgbModal) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -70,5 +73,13 @@ export class TicketsAdminComponent implements OnInit {
   openTicketMessage(ticket: Ticket) {
     this.ticketHubService.setTicket(ticket.id);
     this.router.navigate(['admin/ticket-for-admin/message']).then();
+  }
+
+  openModal(content: any, ticket: Ticket) {
+    console.log(ticket.images);
+    this.selectedTicket.images = ticket.images || [];
+    console.log(this.selectedTicket.images);
+    this.modalService.open(content, {size: 'lg', centered: true}).result.then(() => {
+    });
   }
 }

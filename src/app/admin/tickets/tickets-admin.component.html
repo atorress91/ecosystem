@@ -102,6 +102,32 @@
                   </td>
                   <td class="text-end"> {{ item.createdAt }}
                   </td>
+                  <td>
+                    <div *ngIf="item.images.length > 0; else noImage">
+                      <img [src]="item.images[0].imagePath" alt="Click to view" class="thumbnail"
+                           (click)="openModal(content, item)"
+                           style="cursor: pointer; width: 100px; height: auto;">
+                    </div>
+                    <ng-template #noImage>
+                      <div
+                        style="max-width: 80%; display: flex; align-items: center; justify-content: center; background-color: #f0f0f0;">
+                        <span>No Image</span>
+                      </div>
+                    </ng-template>
+                  </td>
+                  <ng-template #content let-modal="close">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Imágenes</h4>
+                      <button type="button" class="close" (click)="modal()">×</button>
+                    </div>
+                    <div class="modal-body">
+                      <ngb-carousel *ngIf="selectedTicket.images && selectedTicket.images.length">
+                        <ng-template ngbSlide *ngFor="let img of selectedTicket.images">
+                          <img [src]="img.imagePath" alt="Slide image" class="img-fluid">
+                        </ng-template>
+                      </ngb-carousel>
+                    </div>
+                  </ng-template>
                 </tbody>
               </table>
             </div>

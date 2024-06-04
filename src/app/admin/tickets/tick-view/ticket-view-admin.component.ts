@@ -120,4 +120,8 @@ export class TicketViewAdminComponent implements OnInit, OnDestroy {
       // this.cdr.detectChanges();
     }
   }
+
+  isAdmin(userId: number): boolean {
+    return userId == this.user.id;
+  }
 }
