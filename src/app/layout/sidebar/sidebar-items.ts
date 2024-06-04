@@ -192,29 +192,29 @@ export const ROUTES: RouteInfo[] = [
   //   badgeClass: '',
   //   submenu: [],
   // },
-  {
-    path: '',
-    title: 'MENUITEMS.TOOLS.TEXT',
-    iconType: 'feather',
-    icon: 'tag',
-    class: 'menu-toggle',
-    groupTitle: false,
-    badge: '',
-    badgeClass: '',
-    submenu: [
-      {
-        path: '/app/tickets',
-        title: 'MENUITEMS.MY-TICKETS.TEXT',
-        iconType: 'feather',
-        icon: 'book-open',
-        class: '',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        submenu: [],
-      }
-      ]
-  },
+  // {
+  //   path: '',
+  //   title: 'MENUITEMS.TOOLS.TEXT',
+  //   iconType: 'feather',
+  //   icon: 'tag',
+  //   class: 'menu-toggle',
+  //   groupTitle: false,
+  //   badge: '',
+  //   badgeClass: '',
+  //   submenu: [
+  //     {
+  //       path: '/app/tickets',
+  //       title: 'MENUITEMS.MY-TICKETS.TEXT',
+  //       iconType: 'feather',
+  //       icon: 'book-open',
+  //       class: '',
+  //       groupTitle: false,
+  //       badge: '',
+  //       badgeClass: '',
+  //       submenu: [],
+  //     }
+  //     ]
+  // },
   //     {
   //       path: '/app/news',
   //       title: 'MENUITEMS.NEWS.TEXT',
