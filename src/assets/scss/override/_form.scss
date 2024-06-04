@@ -16,6 +16,7 @@ select.form-control:not([size]):not([multiple]),
   padding: 10px 15px;
   height: 42px;
 }
+
 .input-group-text {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -23,6 +24,10 @@ select.form-control:not([size]):not([multiple]),
 
 textarea.form-control {
   height: 64px !important;
+}
+
+textarea.custom-control {
+  height: 183px !important;
 }
 
 .custom-control {
@@ -78,7 +83,7 @@ select.form-control:not([size]):not([multiple]) {
   margin-bottom: 25px;
 
   .control-label,
-  > label {
+  >label {
     font-weight: 600;
     color: color(fontdark);
     font-size: 12px;
@@ -119,7 +124,7 @@ select.form-control:not([size]):not([multiple]) {
       border-radius: 3px;
       padding-left: 40px;
 
-      + .form-control {
+      +.form-control {
         border-radius: 0 3px 3px 0;
         padding-left: 15px;
       }
@@ -136,13 +141,12 @@ select.form-control:not([size]):not([multiple]) {
   line-height: 22px;
 }
 
-.custom-radio .custom-control-input:checked ~ .custom-control-label::before,
-.custom-control-input:checked ~ .custom-control-label::before {
+.custom-radio .custom-control-input:checked~.custom-control-label::before,
+.custom-control-input:checked~.custom-control-label::before {
   background-color: color(primary) !important;
 }
 
-.custom-checkbox-table {
-}
+.custom-checkbox-table {}
 
 .custom-file-label {
   line-height: 2.2;
@@ -162,7 +166,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .custom-file-input {
   &:focus {
-    + .custom-file-label {
+    +.custom-file-label {
       box-shadow: none;
       border-color: color(primary);
 
@@ -184,7 +188,7 @@ select.form-control:not([size]):not([multiple]) {
   flex-grow: 1;
   position: relative;
 
-  + .selectgroup-item {
+  +.selectgroup-item {
     margin-left: -1px;
   }
 
@@ -245,8 +249,9 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .selectgroup-input-radio {
-  &:focus + .selectgroup-button,
-  &:checked + .selectgroup-button {
+
+  &:focus+.selectgroup-button,
+  &:checked+.selectgroup-button {
     background-color: color(primary);
     color: #fff;
     z-index: 1;
@@ -267,7 +272,7 @@ select.form-control:not([size]):not([multiple]) {
     border-radius: 50px !important;
   }
 
-  input:checked + span {
+  input:checked+span {
     background-color: #96a2b4;
     border-radius: 50px !important;
     color: #fff;
@@ -330,7 +335,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .custom-switch-input {
-  &:checked ~ .custom-switch-indicator {
+  &:checked~.custom-switch-indicator {
     background: color(primary);
 
     &:before {
@@ -338,7 +343,7 @@ select.form-control:not([size]):not([multiple]) {
     }
   }
 
-  &:focus ~ .custom-switch-indicator {
+  &:focus~.custom-switch-indicator {
     border-color: color(primary);
   }
 }
@@ -349,7 +354,7 @@ select.form-control:not([size]):not([multiple]) {
   transition: 0.3s color;
 }
 
-.custom-switch-input:checked ~ .custom-switch-description {
+.custom-switch-input:checked~.custom-switch-description {
   color: #495057;
 }
 
@@ -374,11 +379,11 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .imagecheck-input {
-  &:focus ~ .imagecheck-figure {
+  &:focus~.imagecheck-figure {
     border-color: color(primary);
   }
 
-  &:checked ~ .imagecheck-figure {
+  &:checked~.imagecheck-figure {
     border-color: rgba(0, 40, 100, 0.24);
   }
 }
@@ -395,9 +400,7 @@ select.form-control:not([size]):not([multiple]) {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background: color(primary)
-    url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E")
-    no-repeat center (center / 50%) 50%;
+  background: color(primary) url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E") no-repeat center (center / 50%) 50%;
   color: #fff;
   z-index: 1;
   border-radius: 3px;
@@ -405,7 +408,7 @@ select.form-control:not([size]):not([multiple]) {
   transition: 0.3s opacity;
 }
 
-.imagecheck-input:checked ~ .imagecheck-figure:before {
+.imagecheck-input:checked~.imagecheck-figure:before {
   opacity: 1;
 }
 
@@ -430,8 +433,9 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .imagecheck-input {
-  &:focus ~ .imagecheck-figure .imagecheck-image,
-  &:checked ~ .imagecheck-figure .imagecheck-image {
+
+  &:focus~.imagecheck-figure .imagecheck-image,
+  &:checked~.imagecheck-figure .imagecheck-image {
     opacity: 1;
   }
 }
@@ -449,8 +453,9 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .imagecheck-input {
-  &:focus ~ .imagecheck-figure .imagecheck-caption,
-  &:checked ~ .imagecheck-figure .imagecheck-caption {
+
+  &:focus~.imagecheck-figure .imagecheck-caption,
+  &:checked~.imagecheck-figure .imagecheck-caption {
     color: #495057;
   }
 }
@@ -487,13 +492,12 @@ select.form-control:not([size]):not([multiple]) {
     height: 1.25rem;
     width: 1.25rem;
     transition: 0.3s opacity;
-    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E")
-      no-repeat center (center / 50%) 50%;
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E") no-repeat center (center / 50%) 50%;
   }
 }
 
 .colorinput-input {
-  &:checked ~ .colorinput-color:before {
+  &:checked~.colorinput-color:before {
     opacity: 1;
   }
 }
@@ -502,31 +506,40 @@ select.form-control:not([size]):not([multiple]) {
   &.form-control-bold {
     font-weight: 600;
   }
+
   &.form-control-capitalize {
     text-transform: capitalize;
   }
+
   &.form-control-uppercase {
     text-transform: uppercase;
   }
+
   &.form-control-lowercase {
     text-transform: lowercase;
   }
+
   &.form-control-variant {
     font-variant: small-caps;
   }
+
   &.form-control-left {
     text-align: left;
   }
+
   &.form-control-center {
     text-align: center;
   }
+
   &.form-control-right {
     text-align: right;
   }
+
   &.form-control-rtl {
     direction: rtl;
   }
 }
+
 .input-icons {
   position: absolute;
   top: 41px;
@@ -534,6 +547,7 @@ select.form-control:not([size]):not([multiple]) {
   color: #161c2d;
   font-size: 16px !important;
 }
+
 .form-inline {
   display: flex;
   flex-flow: row wrap;

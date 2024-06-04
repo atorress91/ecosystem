@@ -1,59 +1,107 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
-import { ChatBotService } from '@app/core/service/chat-service/chat-bot.service';
-import { AuthService } from '@app/core/service/authentication-service/auth.service';
-import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import { TicketService } from '@app/core/service/ticket-service/ticket.service';
-import { Tick } from '@amcharts/amcharts4/.internal/charts/elements/Tick';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
-import { TicketCategories } from '@app/core/models/ticket-categories-model/ticket-categories.model';
-import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
+import {TicketCategoriesService} from '@app/core/service/ticket-categories-service/ticket-categories.service';
+import {CreateTicketModalComponent} from './create-ticket-modal/create-ticket-modal.component';
+import {TicketHubService} from '@app/core/service/ticket-service/ticket-hub.service';
+import {AuthService} from '@app/core/service/authentication-service/auth.service';
+import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import {Ticket} from '@app/core/models/ticket-model/ticket.model';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html'
 })
-export class TicketsComponent implements OnInit {
+export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   user: UserAffiliate = new UserAffiliate();
   public messages: Array<any> = [];
-  currentTime: Date = new Date();
-  tickets = [];
+  tickets: Ticket[] = [];
   categories = [];
+  selectedTicket: any = {};
+
+  @ViewChild(CreateTicketModalComponent) private createTicketModal: CreateTicketModalComponent;
   @ViewChild('messageInput') messageInputRef: ElementRef;
 
-  constructor(
-    private chatBotService: ChatBotService,
-    private authService: AuthService,
-    private ticketService: TicketService,
-    private ticketCategoryService: TicketCategoriesService
-  ) { }
+  private unsubscribe$ = new Subject<void>();
 
-  ngOnInit() {
+  constructor(
+    private authService: AuthService,
+    private ticketHubService: TicketHubService,
+    private ticketCategoryService: TicketCategoriesService,
+    private router: Router,
+    private modalService: NgbModal
+  ) {
+  }
+
+  async ngOnInit() {
+    try {
+      await this.ticketHubService.startConnection();
+    } catch (error) {
+      console.error('Error starting connection:', error);
+    }
     this.user = this.authService.currentUserAffiliateValue;
-    this.loadTickets();
+    this.initSignalRConnection();
     this.loadTicketCategories();
   }
 
-  loadTickets() {
-    this.ticketService.getAllTicketsByAffiliateId(this.user.id).subscribe({
-      next: (value) => {
-        this.tickets = value;
+  ngAfterViewInit(): void {
+    this.createTicketModal.reloadRequested.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.loadAllTickets();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+    this.ticketHubService.stopConnection();
+  }
+
+  initSignalRConnection() {
+    this.ticketHubService.connectionEstablished.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe((isConnected) => {
+      if (isConnected) {
+        this.loadAllTickets();
+      } else {
+        console.error('Failed to establish connection');
+      }
+    });
+  }
+
+  loadAllTickets() {
+    this.ticketHubService.getAllTicketsByAffiliateId(this.user.id).pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe({
+      next: (tickets) => {
+        this.tickets = tickets;
+        console.log(this.tickets);
       },
-      error: (err) => {
-        console.log(err);
-      },
-    })
+      error: (error) => {
+        console.error('Error retrieving tickets:', error);
+      }
+    });
   }
 
   loadTicketCategories() {
-    this.ticketCategoryService.getAll().subscribe({
+    this.ticketCategoryService.getAll().pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe({
       next: (value) => {
         this.categories = value;
       },
       error: (err) => {
         console.log(err);
       },
-    })
+    });
+  }
+
+  openCreateTicketModal() {
+    this.createTicketModal.openModal();
   }
 
   getCategoryName(categoryId: number): string {
@@ -61,18 +109,16 @@ export class TicketsComponent implements OnInit {
     return category ? category.categoryName : 'Categoría no encontrada';
   }
 
-  updateCurrentTime(): void {
-    this.currentTime = new Date();
+  openTicketDetails(ticket: Ticket) {
+    this.ticketHubService.setTicket(ticket.id);
+    this.router.navigate(['app/tickets/message']).then();
   }
 
-  sendMessage(messageContent: string): void {
-    this.updateCurrentTime();
-    this.messages.push({ content: messageContent, isUser: true, time: this.currentTime });
-
-    this.chatBotService.getDataFromOpenAI(messageContent).subscribe(response => {
-      this.updateCurrentTime();
-      this.messages.push({ content: response, isUser: false, time: this.currentTime });
+  openModal(content: any, ticket: Ticket) {
+    console.log(ticket.images);
+    this.selectedTicket.images = ticket.images || [];
+    console.log(this.selectedTicket.images);
+    this.modalService.open(content, {size: 'lg', centered: true}).result.then(() => {
     });
-    this.messageInputRef.nativeElement.value = '';
   }
 }

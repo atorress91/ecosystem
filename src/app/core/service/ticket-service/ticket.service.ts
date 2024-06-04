@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { Response } from '@app/core/models/response-model/response.model';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
-import { map } from 'rxjs';
+import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model';
+import { BehaviorSubject, map } from 'rxjs';
 
 const httpOptions = {
 
@@ -15,12 +15,13 @@ const httpOptions = {
 })
 export class TicketService {
   urlApi: string;
+  private currentTicket = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) {
     this.urlApi = environment.apis.accountService;
   }
 
-  createTicket(ticket: Ticket) {
+  createTicket(ticket: TicketRequest) {
     return this.http
       .post<Response>(
         this.urlApi.concat('/ticket'),
@@ -42,5 +43,13 @@ export class TicketService {
           return response.data;
         })
       );
+  }
+
+  setTicket(ticket: any) {
+    this.currentTicket.next(ticket);
+  }
+
+  getTicket() {
+    return this.currentTicket.asObservable();
   }
 }

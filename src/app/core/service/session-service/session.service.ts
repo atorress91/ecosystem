@@ -33,7 +33,7 @@ export class SessionService {
       clearTimeout(this.idleTimer);
       this.idleTimer = setTimeout(() => {
 
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/signin']).then();
       }, this.idleTimeout);
     });
   }

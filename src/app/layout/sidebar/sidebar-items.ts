@@ -179,7 +179,7 @@ export const ROUTES: RouteInfo[] = [
       //   submenu: [],
       // },
     ],
-  }
+  },
 
   // {
   //   path: '/app/addresses',
@@ -212,7 +212,9 @@ export const ROUTES: RouteInfo[] = [
   //       badge: '',
   //       badgeClass: '',
   //       submenu: [],
-  //     },
+  //     }
+  //     ]
+  // },
   //     {
   //       path: '/app/news',
   //       title: 'MENUITEMS.NEWS.TEXT',
