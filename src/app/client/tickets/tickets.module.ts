@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Search } from 'angular-feather/icons';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
@@ -30,26 +30,27 @@ const icons = {
     TicketsComponent,
     TicketViewComponent
   ],
-  imports: [
-    CommonModule,
-    NgbModule,
-    FormsModule,
-    ClipboardModule,
-    ReactiveFormsModule,
-    NgbModule,
-    TranslateModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-    ToastrModule.forRoot(),
-    FeatherModule.pick(icons),
-    NgxDatatableModule,
-    PerfectScrollbarModule,
-    NgApexchartsModule,
-    NgxGaugeModule,
-    CKEditorModule,
-    NgxDropzoneModule,
-    ClientRoutingModule,
-  ]
+    imports: [
+        CommonModule,
+        NgbModule,
+        FormsModule,
+        ClipboardModule,
+        ReactiveFormsModule,
+        NgbModule,
+        TranslateModule,
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts'),
+        }),
+        ToastrModule.forRoot(),
+        FeatherModule.pick(icons),
+        NgxDatatableModule,
+        PerfectScrollbarModule,
+        NgApexchartsModule,
+        NgxGaugeModule,
+        CKEditorModule,
+        NgxDropzoneModule,
+        ClientRoutingModule,
+        NgOptimizedImage,
+    ]
 })
 export class TicketsModule { }

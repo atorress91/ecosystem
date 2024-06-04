@@ -518,7 +518,7 @@ export const ROUTESADMIN: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: '',
+    path: '/admin/tickets-for-admin',
     title: 'ADMIN-ITEMS.TICKETS.TEXT',
     iconType: 'feather',
     icon: 'tag',

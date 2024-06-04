@@ -51,6 +51,7 @@ import { ChangeModelComponent } from './change-model/change-model.component';
 import { WalletRefillComponent } from './wallet-refill/wallet-refill.component';
 import { AuthGuardAdmin } from '@app/core/guard/auth.guard.admin';
 import { MaintenanceGuard } from '@app/core/guard/maintenance.guard';
+import {TicketViewAdminComponent} from '@app/admin//tickets/tick-view/ticket-view-admin.component';
 
 const routes: Routes = [
   {
@@ -114,7 +115,7 @@ const routes: Routes = [
     canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
   {
-    path: 'tickets-admin',
+    path: 'tickets-for-admin',
     component: TicketsAdminComponent,
     canActivate: [AuthGuardAdmin, MaintenanceGuard],
   },
@@ -296,6 +297,11 @@ const routes: Routes = [
   {
     path: 'change-model',
     component: ChangeModelComponent,
+    canActivate: [AuthGuardAdmin, MaintenanceGuard],
+  },
+  {
+    path: 'ticket-for-admin/message',
+    component:TicketViewAdminComponent,
     canActivate: [AuthGuardAdmin, MaintenanceGuard],
   }
 ];
