@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {HubConnectionState} from "@microsoft/signalr";
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { HubConnectionState } from "@microsoft/signalr";
 
-import {TicketRequest} from '@app/core/models/ticket-model/ticketRequest.model';
-import {TicketMessageRequest} from '@app/core/models/ticket-model/ticket-message-request.model';
-import {Ticket} from '@app/core/models/ticket-model/ticket.model';
-import {TicketMessage} from '@app/core/models/ticket-model/ticket-message.model';
+import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model';
+import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
+import { Ticket } from '@app/core/models/ticket-model/ticket.model';
+import { TicketMessage } from '@app/core/models/ticket-model/ticket-message.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class TicketHubService {
 
   public async startConnection(): Promise<void> {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5200/ticketHub')
+      .withUrl('https://account.ecosystemfx.net/ticketHub', { withCredentials: true })
       .withAutomaticReconnect()
       .build();
 
@@ -53,9 +53,9 @@ export class TicketHubService {
   }
 
   private addMessageListener(): void {
-      this.hubConnection.on('ReceiveMessage', (message: TicketMessage) => {
-        this.messageReceived.next(message);
-      });
+    this.hubConnection.on('ReceiveMessage', (message: TicketMessage) => {
+      this.messageReceived.next(message);
+    });
 
     this.hubConnection.on('TicketCreated', (ticket: Ticket) => {
       this.ticketCreated.next(ticket);
