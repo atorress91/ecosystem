@@ -1,15 +1,19 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ToastrService } from 'ngx-toastr';
 
-import {TicketCategoriesService} from '@app/core/service/ticket-categories-service/ticket-categories.service';
-import {CreateTicketModalComponent} from './create-ticket-modal/create-ticket-modal.component';
-import {TicketHubService} from '@app/core/service/ticket-service/ticket-hub.service';
-import {AuthService} from '@app/core/service/authentication-service/auth.service';
-import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import {Ticket} from '@app/core/models/ticket-model/ticket.model';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
+import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-modal.component';
+import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
+import { AuthService } from '@app/core/service/authentication-service/auth.service';
+import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import { Ticket } from '@app/core/models/ticket-model/ticket.model';
+import { DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-tickets',
@@ -21,9 +25,14 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   tickets: Ticket[] = [];
   categories = [];
   selectedTicket: any = {};
-
   @ViewChild(CreateTicketModalComponent) private createTicketModal: CreateTicketModalComponent;
   @ViewChild('messageInput') messageInputRef: ElementRef;
+  selectedTickets: Ticket[] = [];
+  loadingIndicator = true;
+  reorderable = true;
+  scrollBarHorizontal = window.innerWidth < 1200;
+  SelectionType = SelectionType;
+  @ViewChild(DatatableComponent) table: DatatableComponent;
 
   private unsubscribe$ = new Subject<void>();
 
@@ -32,7 +41,8 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
     private ticketHubService: TicketHubService,
     private ticketCategoryService: TicketCategoriesService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toast: ToastrService
   ) {
   }
 
@@ -53,12 +63,21 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
     ).subscribe(() => {
       this.loadAllTickets();
     });
+    this.showOnboardingTour();
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
     this.ticketHubService.stopConnection();
+  }
+
+  showSuccess(message: string) {
+    this.toast.success(message);
+  }
+
+  showError(message: string) {
+    this.toast.error(message);
   }
 
   initSignalRConnection() {
@@ -80,6 +99,7 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
       next: (tickets) => {
         this.tickets = tickets;
         console.log(this.tickets);
+        this.loadingIndicator = false;
       },
       error: (error) => {
         console.error('Error retrieving tickets:', error);
@@ -118,7 +138,99 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log(ticket.images);
     this.selectedTicket.images = ticket.images || [];
     console.log(this.selectedTicket.images);
-    this.modalService.open(content, {size: 'lg', centered: true}).result.then(() => {
+    this.modalService.open(content, { size: 'lg', centered: true }).result.then(() => {
     });
+  }
+
+  onSelectTicket(ticket: Ticket, selected: boolean) {
+    if (selected) {
+      this.selectedTickets.push(ticket);
+    } else {
+      const index = this.selectedTickets.findIndex(t => t.id === ticket.id);
+      if (index !== -1) {
+        this.selectedTickets.splice(index, 1);
+      }
+    }
+  }
+
+  isTicketSelected(ticket: Ticket): boolean {
+    return this.selectedTickets.some(t => t.id === ticket.id);
+  }
+
+  onDeleteTickets(): void {
+    if (this.selectedTickets.length > 0 && this.ticketHubService.connectionEstablished) {
+      const idsToDelete = this.selectedTickets.map(ticket => ticket.id);
+
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Los tickets seleccionados serán eliminados.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.ticketHubService.deleteTickets(idsToDelete).then(() => {
+            this.tickets = this.tickets.filter(ticket => !idsToDelete.includes(ticket.id));
+            this.selectedTickets = [];
+            this.showSuccess('Tickets eliminados exitosamente');
+          }).catch(() => {
+            this.showError('Error eliminando tickets');
+          });
+        }
+      });
+    } else {
+      this.showError('No ha seleccionado tickets.');
+    }
+  }
+
+  async showOnboardingTour(): Promise<void> {
+    const steps = [
+      {
+        title: 'Bienvenido al sistema de tickets',
+        text: 'Este tour te guiará a través de las principales características del sistema de tickets.',
+        confirmButtonText: 'Siguiente &rarr;',
+      },
+      {
+        title: 'Crear Ticket',
+        text: 'Para registrar un nuevo ticket, haz clic en el botón "Crear Ticket."',
+        confirmButtonText: 'Siguiente &rarr;',
+      },
+      {
+        title: 'Gestión de Tickets',
+        text: 'Después de crear un ticket, podrás verlo listado en esta sección.',
+        confirmButtonText: 'Siguiente &rarr;',
+      },
+      {
+        title: 'Iniciar un chat',
+        text: 'Para iniciar un chat, haz clic en el ticket deseado o sobre el mensaje. Esto abrirá una nueva vista donde podrás enviar y recibir mensajes relacionados con el ticket.',
+        confirmButtonText: 'Finalizar',
+      }
+    ];
+
+
+    for (const step of steps) {
+      await Swal.fire({
+        ...step,
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true,
+      });
+    }
+
+    await Swal.fire({
+      title: 'Tour completado!',
+      text: 'Ahora estás más familiarizado con el sistema.',
+      icon: 'success',
+      confirmButtonText: '¡Listo!'
+    });
+  }
+
+  onActivateEvent(event: any) {
+    if (event.type === 'click' && event.event.target.type !== 'checkbox') {
+      this.openTicketDetails(event.row);
+    }
   }
 }

@@ -1,113 +1,78 @@
 <section class="main-content">
   <ul class="breadcrumb breadcrumb-style ">
     <li class="breadcrumb-item">
-      <h5 class="page-title m-b-0">Mis Tickets</h5>
+      <h5 class="page-title m-b-0">Tickets</h5>
     </li>
     <li class="breadcrumb-item bcrumb-1">
-      <a routerLink="/dashboard/main">
+      <a routerLink="/admin/home-admin">
         <i class="fas fa-home font-17"></i></a>
     </li>
-    <li class="breadcrumb-item">Tickets</li>
+
+    <li class="breadcrumb-item">Mis tickets</li>
   </ul>
   <div class="section-body">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
+          <div class="inbox-header">
+            <div class="mail-option">
+              <div class="email-btn-group m-l-15">
+                <button type="button" (click)="openCreateTicketModal()" class="btn btn-danger waves-effect m-r-20">Crear
+                  Ticket</button>
+                <a onClick="return false;" (click)="onDeleteTickets()" class="col-dark-gray waves-effect m-r-20"
+                  title="Delete" data-toggle="tooltip">
+                  <i class="material-icons">delete</i>
+                </a>
+              </div>
+            </div>
+          </div>
           <div class="boxs mail_listing">
             <div class="inbox-center table-responsive">
-              <table class="table table-hover">
-                <thead>
-                <tr>
-                  <th class="text-center">
+              <ngx-datatable #table class="material" [rows]="tickets" [loadingIndicator]="loadingIndicator"
+                columnMode="force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [selected]="selectedTickets"
+                [limit]="10" [selectionType]="SelectionType.checkbox" [scrollbarH]="scrollBarHorizontal"
+                [reorderable]="reorderable" (activate)="onActivateEvent($event)">
+                <ngx-datatable-column name="Seleccionar">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
                     <label class="form-check-label">
-                      <input type="checkbox">
+                      <input type="checkbox" [checked]="isTicketSelected(row)"
+                        (change)="onSelectTicket(row, $event.target.checked)" (click)="$event.stopPropagation()">
                       <span class="form-check-sign"></span>
                     </label>
-                  </th>
-                  <th colspan="3">
-                    <div class="inbox-header">
-                      <div class="mail-option">
-                        <div class="email-btn-group m-l-15">
-                          <button type="button" class="btn btn-danger waves-effect m-r-20"
-                                  (click)="openCreateTicketModal()">Crear
-                            Ticket
-                          </button>
-                          <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="back"
-                             data-toggle="tooltip">
-                            <i class="material-icons">keyboard_return</i>
-                          </a>
-                          <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Archive"
-                             data-toggle="tooltip">
-                            <i class="material-icons">archive</i>
-                          </a>
-                          <div class="p-r-20">|</div>
-                          <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Error"
-                             data-toggle="tooltip">
-                            <i class="material-icons">error</i>
-                          </a>
-                          <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Delete"
-                             data-toggle="tooltip">
-                            <i class="material-icons">delete</i>
-                          </a>
-                          <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Folders"
-                             data-toggle="tooltip">
-                            <i class="material-icons">folder</i>
-                          </a>
-                          <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="Tag"
-                             data-toggle="tooltip">
-                            <i class="material-icons">local_offer</i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </th>
-                  <th class="hidden-xs" colspan="2">
-                    <div class="float-end">
-                      <div class="email-btn-group m-l-15">
-                        <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="previous"
-                           data-toggle="tooltip">
-                          <i class="material-icons">navigate_before</i>
-                        </a>
-                        <a onClick="return false;" class="col-dark-gray waves-effect m-r-20" title="next"
-                           data-toggle="tooltip">
-                          <i class="material-icons">navigate_next</i>
-                        </a>
-                      </div>
-                    </div>
-                  </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="unread" *ngFor="let item of tickets; let i = index">
-                  <td class="tbl-checkbox">
-                    <label class="form-check-label">
-                      <input type="checkbox">
-                      <span class="form-check-sign"></span>
-                    </label>
-                  </td>
-                  <td class="hidden-xs" *ngIf="item.status == false || item.status == true">
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Estado">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
                     <button class="btn"
-                            [ngClass]="{'badge-outline col-green': item.status == true, 'badge-outline col-red': item.status == false}"
-                            [disabled]="true">
-                      {{ item.status == false ? 'Cerrado' : 'Abierto' }}
+                      [ngClass]="{'badge-outline col-green': row.status == true, 'badge-outline col-red': row.status == false}"
+                      [disabled]="true">
+                      {{ row.status == false ? 'Cerrado' : 'Abierto' }}
                     </button>
-                  </td>
-                  <td class="hidden-xs" (click)="openTicketDetails(item)">
-                    <a class="text-decoration-none" role="button">{{ item.subject }}</a>
-                  </td>
-                  <td class="max-texts">
-                    <a routerLink="/email/read-mail">
-                      <span class="badge badge-primary">{{ getCategoryName(item.categoryId) }}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Mensaje">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a class="text-decoration-none" role="button" (click)="openTicketDetails(row)">{{ row.subject }}</a>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Categoría">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a>
+                      <span class="badge badge-primary">{{ getCategoryName(row.categoryId) }}</span>
                     </a>
-                  </td>
-                  <td class="text-end"> {{ item.createdAt }}
-                  </td>
-
-                  <td>
-                    <div *ngIf="item.images.length > 0; else noImage">
-                      <img [src]="item.images[0].imagePath" alt="Click to view" class="thumbnail"
-                           (click)="openModal(content, item)"
-                           style="cursor: pointer; width: 100px; height: auto;">
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Fecha">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.createdAt }}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Imagen">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div *ngIf="row.images.length > 0; else noImage">
+                      <img [src]="row.images[0].imagePath" alt="Click to view" class="thumbnail"
+                        (click)="openModal(content, row)" (click)="$event.stopPropagation()"
+                        style="cursor: pointer; width: 100px; height: auto;">
                     </div>
                     <ng-template #noImage>
                       <div
@@ -115,24 +80,22 @@
                         <span>No Image</span>
                       </div>
                     </ng-template>
-                  </td>
-
-                  <ng-template #content let-modal="close">
-                    <div class="modal-header">
-                      <h4 class="modal-title">Imágenes</h4>
-                      <button type="button" class="close" (click)="modal()">×</button>
-                    </div>
-                    <div class="modal-body">
-                      <ngb-carousel *ngIf="selectedTicket.images && selectedTicket.images.length">
-                        <ng-template ngbSlide *ngFor="let img of selectedTicket.images">
-                          <img [src]="img.imagePath" alt="Slide image" class="img-fluid">
-                        </ng-template>
-                      </ngb-carousel>
-                    </div>
                   </ng-template>
-
-                </tbody>
-              </table>
+                </ngx-datatable-column>
+              </ngx-datatable>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title">Imágenes</h4>
+                  <button type="button" class="close" (click)="modal.dismiss('Cross click')">×</button>
+                </div>
+                <div class="modal-body">
+                  <ngb-carousel *ngIf="selectedTicket.images && selectedTicket.images.length">
+                    <ng-template ngbSlide *ngFor="let img of selectedTicket.images">
+                      <img [src]="img.imagePath" alt="Slide image" class="img-fluid">
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+              </ng-template>
             </div>
             <div class="row">
               <div class="col-sm-7 ">
