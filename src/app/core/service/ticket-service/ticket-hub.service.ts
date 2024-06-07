@@ -81,7 +81,6 @@ export class TicketHubService {
   public async joinRoom(ticketId: number): Promise<boolean> {
     try {
       await this.hubConnection.invoke('JoinTicketRoom', ticketId);
-      console.log(`Unido exitosamente a la sala con ticketId: ${ticketId}`);
 
       return true;
     } catch (error) {
@@ -146,15 +145,15 @@ export class TicketHubService {
     return this.ticketsReceived;
   }
 
-  public async deleteTicket(ticketId: number): Promise<Ticket | null> {
+  public async deleteTickets(ticketIds: number[]): Promise<Ticket[] | null> {
     if (this.hubConnection.state === HubConnectionState.Connected) {
-      return this.hubConnection.invoke<Ticket | null>('DeleteTicket', ticketId)
-        .then(ticket => {
-          return ticket;
+      return this.hubConnection.invoke<Ticket[] | null>('DeleteTickets', ticketIds)
+        .then(tickets => {
+          return tickets;
         })
         .catch(error => {
-          console.error(`Error deleting ticket: ${error}`);
-          throw new Error(`Error deleting ticket: ${error}`);
+          console.error(`Error deleting tickets: ${error}`);
+          throw new Error(`Error deleting tickets: ${error}`);
         });
     } else {
       console.error('Cannot delete if the connection is not in the \'Connected\' State.');

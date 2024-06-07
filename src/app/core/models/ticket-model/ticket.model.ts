@@ -1,5 +1,5 @@
-import {TicketImagesRequest} from "@app/core/models/ticket-model/ticket-images-request.model";
-import {TicketMessage} from "@app/core/models/ticket-model/ticket-message.model";
+import { TicketImagesRequest } from "@app/core/models/ticket-model/ticket-images-request.model";
+import { TicketMessage } from "@app/core/models/ticket-model/ticket-message.model";
 
 export class Ticket {
   id: number;

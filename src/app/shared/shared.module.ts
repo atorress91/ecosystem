@@ -1,3 +1,4 @@
+import { AdminRespondedPipe } from './admin-responded.pipe';
 import { BootstrapModule } from './bootstrap.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,8 +7,9 @@ import { RouterModule } from '@angular/router';
 import { IconsModule } from './feather-icons.module';
 import { TruncateDecimalsPipe } from './truncate-decimals.pipe';
 
+
 @NgModule({
-  declarations: [TruncateDecimalsPipe],
+  declarations: [TruncateDecimalsPipe, AdminRespondedPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,10 +26,11 @@ import { TruncateDecimalsPipe } from './truncate-decimals.pipe';
     RouterModule,
     IconsModule,
     BootstrapModule,
-    TruncateDecimalsPipe
+    TruncateDecimalsPipe,
+    AdminRespondedPipe
   ],
-  providers:[
+  providers: [
     TruncateDecimalsPipe
   ]
 })
-export class SharedModule {}
+export class SharedModule { }

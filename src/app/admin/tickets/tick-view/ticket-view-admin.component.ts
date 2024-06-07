@@ -1,13 +1,13 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {takeUntil} from "rxjs/operators";
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { takeUntil } from "rxjs/operators";
 import Swal from "sweetalert2";
-import {Subject, Subscription} from "rxjs";
+import { Subject, Subscription } from "rxjs";
 
-import {TicketHubService} from "@app/core/service/ticket-service/ticket-hub.service";
-import {AuthService} from "@app/core/service/authentication-service/auth.service";
-import {TicketMessage} from "@app/core/models/ticket-model/ticket-message.model";
-import {TicketMessageRequest} from "@app/core/models/ticket-model/ticket-message-request.model";
-import {Ticket} from "@app/core/models/ticket-model/ticket.model";
+import { TicketHubService } from "@app/core/service/ticket-service/ticket-hub.service";
+import { AuthService } from "@app/core/service/authentication-service/auth.service";
+import { TicketMessage } from "@app/core/models/ticket-model/ticket-message.model";
+import { TicketMessageRequest } from "@app/core/models/ticket-model/ticket-message-request.model";
+import { Ticket } from "@app/core/models/ticket-model/ticket.model";
 
 @Component({
   selector: 'app-tick-view',
@@ -16,6 +16,7 @@ import {Ticket} from "@app/core/models/ticket-model/ticket.model";
 })
 export class TicketViewAdminComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   user: any;
   ticket: Ticket;
   config = {
@@ -47,10 +48,10 @@ export class TicketViewAdminComponent implements OnInit, OnDestroy {
 
   startConnection(ticketId: number) {
     this.ticketHubService.startConnection().then(() => {
-        this.ticketHubService.joinRoom(ticketId).then();
-        this.getTicketById(ticketId);
-        this.receivedMessage();
-      },
+      this.ticketHubService.joinRoom(ticketId).then();
+      this.getTicketById(ticketId);
+      this.receivedMessage();
+    },
       error => console.error('Error al conectar o unirse a la sala:', error)
     );
   }
@@ -117,11 +118,21 @@ export class TicketViewAdminComponent implements OnInit, OnDestroy {
 
     if (!this.messages.some((m: TicketMessage) => m.id === message.id)) {
       this.messages.push(formattedMessage);
-      // this.cdr.detectChanges();
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 100);
     }
   }
 
   isAdmin(userId: number): boolean {
     return userId == this.user.id;
+  }
+
+  private scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error('Could not automatically scroll to the bottom', err);
+    }
   }
 }

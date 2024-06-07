@@ -1,13 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
+import { Router } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ToastrService } from 'ngx-toastr';
+import { DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 
-import {TicketHubService} from "@app/core/service/ticket-service/ticket-hub.service";
-import {Ticket} from "@app/core/models/ticket-model/ticket.model";
-import {TicketCategoriesService} from "@app/core/service/ticket-categories-service/ticket-categories.service";
-import {TicketCategories} from "@app/core/models/ticket-categories-model/ticket-categories.model";
-import {Router} from "@angular/router";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { TicketHubService } from "@app/core/service/ticket-service/ticket-hub.service";
+import { Ticket } from "@app/core/models/ticket-model/ticket.model";
+import { TicketCategoriesService } from "@app/core/service/ticket-categories-service/ticket-categories.service";
+import { TicketCategories } from "@app/core/models/ticket-categories-model/ticket-categories.model";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tickets-admin',
@@ -17,13 +20,22 @@ export class TicketsAdminComponent implements OnInit {
   tickets: Ticket[] = [];
   private unsubscribe$ = new Subject<void>();
   categories: TicketCategories[] = [];
-  user: any;
   selectedTicket: any = {};
+  idsToDelete: number[] = [];
+  ticketsWithoutResponse = [];
+  adminIds: number[] = [];
+  selectedTickets: Ticket[] = [];
+  loadingIndicator = true;
+  reorderable = true;
+  scrollBarHorizontal = window.innerWidth < 1200;
+  SelectionType = SelectionType;
+  @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(private ticketHubService: TicketHubService,
-              private ticketCategoryService: TicketCategoriesService,
-              private router: Router,
-              private modalService: NgbModal) {
+    private ticketCategoryService: TicketCategoriesService,
+    private router: Router,
+    private modalService: NgbModal,
+    private toast: ToastrService) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -31,11 +43,18 @@ export class TicketsAdminComponent implements OnInit {
       await this.ticketHubService.startConnection().then(() => {
         this.loadTicketCategories();
         this.getAllTickets();
-        console.log(this.user);
       });
     } catch (error) {
       console.error('Error starting connection:', error);
     }
+  }
+
+  showSuccess(message: string) {
+    this.toast.success(message);
+  }
+
+  showError(message: string) {
+    this.toast.error(message);
   }
 
   loadTicketCategories() {
@@ -46,7 +65,7 @@ export class TicketsAdminComponent implements OnInit {
         this.categories = value;
       },
       error: (err) => {
-        console.log(err);
+        this.showError('Error al cargar las categorías')
       },
     });
   }
@@ -62,10 +81,10 @@ export class TicketsAdminComponent implements OnInit {
     ).subscribe({
       next: (tickets) => {
         this.tickets = tickets;
-        console.log(this.tickets);
+        this.loadingIndicator = false;
       },
       error: (error) => {
-        console.error('Error retrieving tickets:', error);
+        this.showError('Error al cargar los tickets');
       }
     });
   }
@@ -76,10 +95,55 @@ export class TicketsAdminComponent implements OnInit {
   }
 
   openModal(content: any, ticket: Ticket) {
-    console.log(ticket.images);
     this.selectedTicket.images = ticket.images || [];
-    console.log(this.selectedTicket.images);
-    this.modalService.open(content, {size: 'lg', centered: true}).result.then(() => {
+
+    this.modalService.open(content, { size: 'lg', centered: true }).result.then(() => {
     });
   }
+
+  onSelectTicket(ticket: Ticket, selected: boolean) {
+    if (selected) {
+      this.selectedTickets.push(ticket);
+    } else {
+      const index = this.selectedTickets.findIndex(t => t.id === ticket.id);
+      if (index !== -1) {
+        this.selectedTickets.splice(index, 1);
+      }
+    }
+  }
+
+  isTicketSelected(ticket: Ticket): boolean {
+    return this.selectedTickets.some(t => t.id === ticket.id);
+  }
+
+  onDeleteTickets(): void {
+    if (this.selectedTickets.length > 0 && this.ticketHubService.connectionEstablished) {
+      const idsToDelete = this.selectedTickets.map(ticket => ticket.id);
+
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Los tickets seleccionados serán eliminados.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.ticketHubService.deleteTickets(idsToDelete).then(() => {
+            this.tickets = this.tickets.filter(ticket => !idsToDelete.includes(ticket.id));
+            this.selectedTickets = [];
+            this.showSuccess('Tickets eliminados exitosamente');
+          }).catch(() => {
+            this.showError('Error eliminando tickets');
+          });
+        }
+      });
+    } else {
+      this.showError('No ha seleccionado tickets.');
+    }
+  }
 }
+
+

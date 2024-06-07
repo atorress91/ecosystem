@@ -4,7 +4,7 @@
       <h5 class="page-title m-b-0">Mis Tickets</h5>
     </li>
     <li class="breadcrumb-item bcrumb-1">
-      <a routerLink="/dashboard/main">
+      <a routerLink="/admin/tickets-for-admin">
         <i class="fas fa-home font-17"></i></a>
     </li>
     <li class="breadcrumb-item">Ticket #{{ ticket?.id }}</li>
@@ -16,7 +16,7 @@
           <div class="chat">
             <div class="chat-header clearfix">
               <img [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
-                   alt="avatar">
+                alt="avatar">
               <div class="chat-about">
                 <div class="chat-with">{{ user.name }} {{ user.last_name }}</div>
                 <button class="btn btn-info" (click)="showTicketDetails()">Detalles</button>
@@ -24,11 +24,13 @@
             </div>
           </div>
           <div class="chat-box">
-            <div class="card-body chat-content" style="position: relative; max-height: 400px;"
-                 [perfectScrollbar]="config">
-              <div *ngFor="let message of messages" class="chat-item" [ngClass]="{'chat-left': !message.sentByMe, 'chat-right': message.sentByMe}">
-                <img [src]="isAdmin(message.userId) ? 'assets/images/logo.png' : user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
-                     alt="avatar">
+            <div class="card-body chat-content" style="position: relative; max-height: 400px;" #scrollMe
+              [perfectScrollbar]="config">
+              <div *ngFor="let message of messages" class="chat-item"
+                [ngClass]="{'chat-left': !message.sentByMe, 'chat-right': message.sentByMe}">
+                <img
+                  [src]="isAdmin(message.userId) ? 'assets/images/logo.png' : user.image_profile_url ? user.image_profile_url : 'assets/images/users/user-1.png'"
+                  alt="avatar">
                 <div class="chat-details">
                   <div class="chat-text">{{ message.messageContent }}</div>
                   <div class="chat-time">{{ message.createdAt | date: 'shortTime' }}</div>
@@ -39,7 +41,7 @@
             <div class="card-footer chat-form">
               <form id="chat-form">
                 <input [(ngModel)]="newMessage" name="message" type="text" class="form-control"
-                       placeholder="Type a message">
+                  placeholder="Type a message">
                 <button (click)="sendMessage()" class="btn btn-primary">
                   <i class="far fa-paper-plane"></i>
                 </button>
