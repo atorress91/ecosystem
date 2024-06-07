@@ -19,10 +19,10 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
             <div class="form-line"
-                 [ngClass]="{'error': createTicketForm.get('subject_ticket').invalid && (createTicketForm.get('subject_ticket').touched || submitted)}">
+              [ngClass]="{'error': createTicketForm.get('subject_ticket').invalid && (createTicketForm.get('subject_ticket').touched || submitted)}">
               <label for="subject_ticket">Asunto</label>
               <input type="text" id="subject_ticket" class="form-control" placeholder="Asunto"
-                     formControlName="subject_ticket">
+                formControlName="subject_ticket">
             </div>
             <div
               *ngIf="createTicketForm.get('subject_ticket').invalid && (createTicketForm.get('subject_ticket').touched || submitted)">
@@ -33,7 +33,7 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
             <div class="form-line"
-                 [ngClass]="{'error': createTicketForm.get('category').invalid && (createTicketForm.get('category').touched || submitted)}">
+              [ngClass]="{'error': createTicketForm.get('category').invalid && (createTicketForm.get('category').touched || submitted)}">
               <label for="category_ticket">Categoría</label>
               <select id="category_ticket" class="form-control" formControlName="category">
                 <option value="">Seleccione una opción</option>
@@ -50,25 +50,11 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
-            <label for="ticket_image">
-              Imagen
-              <span class="text-danger">*</span>
-            </label>
-            <ngx-dropzone (change)="onFileSelected($event)" [accept]="'image/*'" [multiple]="true">
-              <ngx-dropzone-label>Drop it!</ngx-dropzone-label>
-              <ngx-dropzone-preview *ngFor="let f of files let i = index;" [removable]="true" (removed)="deleteFile(i)">
-                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-              </ngx-dropzone-preview>
-            </ngx-dropzone>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
-          <div class="form-group">
             <div class="form-line"
-                 [ngClass]="{'error': createTicketForm.get('description').invalid && (createTicketForm.get('description').touched || submitted)}">
-              <label for="description">Descripción</label>
-              <textarea type="text" id="description" class="form-control custom-control" placeholder="Descripción"
-                        formControlName="description"></textarea>
+              [ngClass]="{'error': createTicketForm.get('description').invalid && (createTicketForm.get('description').touched || submitted)}">
+              <label for="description">Explicación</label>
+              <textarea type="text" id="description" class="form-control custom-control" placeholder="Explicación"
+                formControlName="description"></textarea>
             </div>
             <div
               *ngIf="createTicketForm.get('description').invalid && (createTicketForm.get('description').touched || submitted)">
@@ -79,11 +65,25 @@
             </div>
           </div>
         </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+          <div class="form-group">
+            <label for="ticket_image">
+              Agregar Imagen
+              <span class="text-danger">*</span>
+            </label>
+            <ngx-dropzone (change)="onFileSelected($event)" [accept]="'image/*'" [multiple]="true">
+              <ngx-dropzone-label>Drop it!</ngx-dropzone-label>
+              <ngx-dropzone-preview *ngFor="let f of files let i = index;" [removable]="true" (removed)="deleteFile(i)">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </ngx-dropzone>
+          </div>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary">
-        Crear
+        Enviar
       </button>
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">
         Descartar
