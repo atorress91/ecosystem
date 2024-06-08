@@ -1,14 +1,14 @@
 import { FirebaseOptions } from '@firebase/app-types';
 
 export const environment = {
-  production: true,
+  production: false,
   apis: {
-    apiUrl: 'https://ecosystemfx.net/',
-    accountService: 'http://localhost:5200/api/v1',
+    apiUrl: 'http://ec2-52-87-171-214.compute-1.amazonaws.com/',
+    accountService: 'http://accountserviceapi-902719179.us-east-1.elb.amazonaws.com/api/v1',
     accountServiceSignalR: 'http://localhost:5200/',
-    systemConfigurationService: 'https://configuration.ecosystemfx.net/api/v1',
-    inventoryService: 'https://inventory.ecosystemfx.net/api/v1',
-    walletService: 'https://wallet.ecosystemfx.net/api/v1',
+    systemConfigurationService: 'http://systemconfigurationservicesapi-976242165.us-east-1.elb.amazonaws.com/api/v1',
+    inventoryService: 'http://inventoryserviceapi-1517761922.us-east-1.elb.amazonaws.com/api/v1',
+    walletService: 'http://walletserviceapi-210446736.us-east-1.elb.amazonaws.com/api/v1',
     coinPayment: 'https://www.coinpayments.net/index.php'
   },
   openAI: {
@@ -16,10 +16,10 @@ export const environment = {
   },
   tokens: {
     coinPayment: 'bfd40db8f711397a6c5b7653175afc38',
-    accountService: 'eco-keygJ-MrM8y9jUD/b1dN24=neYjxeUA=N-f?9sHuDCcJ0JWfx-ajo7yjVn441',
-    systemConfigurationService: 'eco-key8ZgMhRytu-Jrv1FU1rZSw2jM-FaBP!ou!sJNBITT3tA63GBrrQiVe3zvS',
-    inventoryService: 'eco-keyLd5DU5faBWLfLrE1ATUK0c1qpvSci1x5TvFkDVw3FEM7JO30Jm!zXyB4w',
-    walletService: 'eco-keypFvQnUOko=r4/G!chia5Fe2-6OU?2YNYqAPWlaiN!uYrZIdwoUNv9P4d7',
+    accountService: 'WCHAqlP0D61f=3EZZE!Hm2P=0Y0lJ3MMH!g-lA6!1t=ssBXndUsO7vi/N3ScwV-h',
+    systemConfigurationService: 'WCHS-ZKmsuqhtdJfVz1ri4hGy7T4v?aLeTAZhA6UpD!t!efsvKt?9aVT1i7!7sNH',
+    inventoryService: 'WCHICt9S4war/L1J7OAIFwW1=XMN2pCXJeOdiE?n-YMyalBMAb1/6KtW3?Qd3lb/',
+    walletService: 'WCHWvDtdJEV1xr6h0uWjYG=U7WdCja/P04cX4x7FVXHWdbzLzpHL2qPzCFZOeCDA',
   },
   coinPaymentConfiguration: {
     publicApiKey: '2a4ae9a2a58b59f4cf3cecf76e89f04155ccdcca4dc0c76b8665cf852cc127c2',
@@ -27,9 +27,9 @@ export const environment = {
     currency: 'USDC.TRC20',
     reset: '1',
     cmd: '_pay_simple',
-    success_url: 'https://ecosystemfx.net/#/conpayment-confirmation',
+    success_url: 'http://ec2-52-87-171-214.compute-1.amazonaws.com/#/conpayment-confirmation',
     format: 'json'
-  }
+  },
 };
 
 export const firebaseConfig: FirebaseOptions = {
