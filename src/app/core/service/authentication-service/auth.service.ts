@@ -34,7 +34,7 @@ export class AuthService {
     private http: HttpClient,
     private toastr: ToastrService,
     private cartService: CartService,
-  
+
   ) {
     this.currentUserAffiliateSubject = new BehaviorSubject<UserAffiliate>(
       JSON.parse(localStorage.getItem('currentUserAffiliate'))
@@ -129,7 +129,7 @@ export class AuthService {
       )
       .pipe(
         map((response) => {
-          console.log(response);
+
           return response.data;
         })
       );

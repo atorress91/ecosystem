@@ -231,11 +231,9 @@ export class CartComponent implements OnInit, OnDestroy {
   handleServiceBalancePayment() {
     switch (this.model) {
       case '1A':
-        console.log('Entrando al 1a');
         this.payWithMyServiceBalanceModel1A();
         break;
       case '1B':
-        console.log('Entrando al 1b');
         this.payWithMyServiceBalanceModel1B();
         break;
       default:

@@ -21,9 +21,6 @@ export class TicketsAdminComponent implements OnInit {
   private unsubscribe$ = new Subject<void>();
   categories: TicketCategories[] = [];
   selectedTicket: any = {};
-  idsToDelete: number[] = [];
-  ticketsWithoutResponse = [];
-  adminIds: number[] = [];
   selectedTickets: Ticket[] = [];
   loadingIndicator = true;
   reorderable = true;
@@ -64,7 +61,7 @@ export class TicketsAdminComponent implements OnInit {
       next: (value) => {
         this.categories = value;
       },
-      error: (err) => {
+      error: () => {
         this.showError('Error al cargar las categorías')
       },
     });
@@ -83,7 +80,7 @@ export class TicketsAdminComponent implements OnInit {
         this.tickets = tickets;
         this.loadingIndicator = false;
       },
-      error: (error) => {
+      error: () => {
         this.showError('Error al cargar los tickets');
       }
     });

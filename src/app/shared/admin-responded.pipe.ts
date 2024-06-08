@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { map, Observable, of } from 'rxjs';
+
 import { Ticket } from '../core/models/ticket-model/ticket.model';
 import { UserService } from './../core/service/user-service/user.service';
-import { map, Observable, of } from 'rxjs';
 
 @Pipe({
   name: 'adminResponded'
