@@ -7,20 +7,23 @@ import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model
 import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
 import { Ticket } from '@app/core/models/ticket-model/ticket.model';
 import { TicketMessage } from '@app/core/models/ticket-model/ticket-message.model';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketHubService {
   private hubConnection: signalR.HubConnection;
-  public messageReceived = new Subject<TicketMessage>();
+  public messageReceived = new Subject<TicketMessageRequest>();
   public connectionError: Subject<string> = new Subject<string>();
   public ticketCreated: BehaviorSubject<Ticket | null> = new BehaviorSubject<Ticket | null>(null);
   public ticketSave: BehaviorSubject<number | null>;
   public ticketsReceived = new Subject<Ticket[]>();
   public connectionEstablished = new BehaviorSubject<boolean>(false);
+  private urlApi: string;
 
   constructor() {
+    this.urlApi = environment.apis.accountServiceSignalR;
     const savedTicket = localStorage.getItem('ticket');
     this.ticketSave = new BehaviorSubject<number | null>(savedTicket ? JSON.parse(savedTicket) : null);
   }
@@ -36,7 +39,7 @@ export class TicketHubService {
 
   public async startConnection(): Promise<void> {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://account.ecosystemfx.net/ticketHub', { withCredentials: true })
+      .withUrl(`${this.urlApi}ticketHub`, { withCredentials: true })
       .withAutomaticReconnect()
       .build();
 
@@ -53,7 +56,7 @@ export class TicketHubService {
   }
 
   private addMessageListener(): void {
-    this.hubConnection.on('ReceiveMessage', (message: TicketMessage) => {
+    this.hubConnection.on('ReceiveMessage', (message: TicketMessageRequest) => {
       this.messageReceived.next(message);
     });
 

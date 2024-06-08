@@ -1,14 +1,13 @@
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { takeUntil } from "rxjs/operators";
+import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {takeUntil} from "rxjs/operators";
 import Swal from "sweetalert2";
-import { Subject, Subscription } from "rxjs";
+import {Subject, Subscription} from "rxjs";
 
-import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import { AuthService } from '@app/core/service/authentication-service/auth.service';
-import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
-import { TicketMessage } from "@app/core/models/ticket-model/ticket-message.model";
-import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
-import { Ticket } from '@app/core/models/ticket-model/ticket.model';
+import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import {AuthService} from '@app/core/service/authentication-service/auth.service';
+import {TicketHubService} from '@app/core/service/ticket-service/ticket-hub.service';
+import {TicketMessageRequest} from '@app/core/models/ticket-model/ticket-message-request.model';
+import {Ticket} from '@app/core/models/ticket-model/ticket.model';
 
 @Component({
   selector: 'app-ticket-view',
@@ -28,7 +27,7 @@ export class TicketViewComponent implements OnInit, OnDestroy {
   user: UserAffiliate;
   newMessage: string;
   ticketMessage: TicketMessageRequest = new TicketMessageRequest();
-  messages: any = [];
+  messages: Set<TicketMessageRequest> = new Set();
 
   constructor(
     private authService: AuthService,
@@ -74,6 +73,7 @@ export class TicketViewComponent implements OnInit, OnDestroy {
       next: (ticket: Ticket | null) => {
         if (ticket) {
           this.ticket = ticket;
+
           if (ticket.messages && ticket.messages.length > 0) {
             ticket.messages.forEach(message => this.processMessageSender(message));
           } else {
@@ -93,16 +93,19 @@ export class TicketViewComponent implements OnInit, OnDestroy {
     return this.ticketHubService.messageReceived.pipe(
       takeUntil(this.destroy$)
     ).subscribe({
-      next: (message: TicketMessage) => this.processMessageSender(message),
+      next: (message: TicketMessageRequest) => this.processMessageSender(message),
       error: (err) => console.error('Error recibiendo mensajes:', err)
     });
   }
 
   sendMessage(): void {
     if (this.newMessage.trim() && this.ticketHubService.connectionEstablished.value) {
+      this.ticketMessage.id = this.user.id;
       this.ticketMessage.ticketId = this.ticket.id;
       this.ticketMessage.userId = this.user.id;
       this.ticketMessage.messageContent = this.newMessage;
+      this.ticketMessage.userName = this.user.user_name;
+      this.ticketMessage.imageProfileUrl = this.user.image_profile_url;
 
       this.ticketHubService.sendMessage(this.ticketMessage);
       this.newMessage = '';
@@ -111,20 +114,14 @@ export class TicketViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  processMessageSender(message: TicketMessage) {
-    console.log('Procesando mensaje', message);
-    const isMyMessage = message.userId === this.user.id;
-    const formattedMessage = {
-      ...message,
-      sentByMe: isMyMessage
-    };
+  processMessageSender(message: TicketMessageRequest) {
+    message.createdAt = new Date();
 
-    if (!this.messages.some((m: TicketMessage) => m.id === message.id)) {
-      this.messages.push(formattedMessage);
-      setTimeout(() => {
-        this.scrollToBottom();
-      }, 100);
-    }
+    this.messages.add(message);
+    this.cdr.detectChanges();
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 100);
   }
 
   isAdmin(userId: number): boolean {
