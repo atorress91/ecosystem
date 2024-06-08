@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+import { DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 
 import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
 import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-modal.component';
@@ -11,8 +13,7 @@ import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.se
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { Ticket } from '@app/core/models/ticket-model/ticket.model';
-import { DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
-import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -63,7 +64,7 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
     ).subscribe(() => {
       this.loadAllTickets();
     });
-    this.showOnboardingTour();
+    this.showOnboardingTour().then();
   }
 
   ngOnDestroy(): void {
@@ -97,12 +98,12 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
       takeUntil(this.unsubscribe$)
     ).subscribe({
       next: (tickets) => {
+
         this.tickets = tickets;
-        console.log(this.tickets);
         this.loadingIndicator = false;
       },
-      error: (error) => {
-        console.error('Error retrieving tickets:', error);
+      error: () => {
+        this.showError('Error al cargar tickets.');
       }
     });
   }
@@ -114,8 +115,8 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
       next: (value) => {
         this.categories = value;
       },
-      error: (err) => {
-        console.log(err);
+      error: () => {
+         this.showError('Error al cargar las categorías.');
       },
     });
   }
@@ -135,9 +136,8 @@ export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openModal(content: any, ticket: Ticket) {
-    console.log(ticket.images);
     this.selectedTicket.images = ticket.images || [];
-    console.log(this.selectedTicket.images);
+
     this.modalService.open(content, { size: 'lg', centered: true }).result.then(() => {
     });
   }

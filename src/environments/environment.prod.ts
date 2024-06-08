@@ -5,6 +5,7 @@ export const environment = {
   apis: {
     apiUrl: 'https://ecosystemfx.net/',
     accountService: 'https://account.ecosystemfx.net/api/v1',
+    accountServiceSignalR: 'http://localhost:5200/',
     systemConfigurationService: 'https://configuration.ecosystemfx.net/api/v1',
     inventoryService: 'https://inventory.ecosystemfx.net/api/v1',
     walletService: 'https://wallet.ecosystemfx.net/api/v1',

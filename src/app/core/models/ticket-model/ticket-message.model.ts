@@ -7,6 +7,8 @@ export class TicketMessage {
   updatedAt: Date;
   deletedAt: Date;
   isRead: boolean;
+  userName:string;
+  imageProfileUrl: string;
 
   constructor() {
     this.id = 0;
@@ -17,5 +19,7 @@ export class TicketMessage {
     this.createdAt = new Date;
     this.updatedAt = new Date;
     this.deletedAt = null;
+    this.userName = '';
+    this.imageProfileUrl = '';
   }
 }
