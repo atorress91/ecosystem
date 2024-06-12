@@ -43,6 +43,7 @@ export class TicketViewAdminComponent implements OnInit, OnDestroy {
     this.ticketHubService.leaveRoom(this.ticket.id);
     this.destroy$.next();
     this.destroy$.complete();
+    this.messages.clear();
   }
 
   startConnection(ticketId: number) {
