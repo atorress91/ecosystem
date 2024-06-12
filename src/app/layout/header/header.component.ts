@@ -1,6 +1,6 @@
-import { RightSidebarService } from 'src/app/core/service/rightsidebar-service/rightsidebar.service';
-import { AuthService } from 'src/app/core/service/authentication-service/auth.service';
-import { DOCUMENT } from '@angular/common';
+import {RightSidebarService} from 'src/app/core/service/rightsidebar-service/rightsidebar.service';
+import {AuthService} from 'src/app/core/service/authentication-service/auth.service';
+import {DOCUMENT} from '@angular/common';
 import {
   Component,
   Inject,
@@ -9,15 +9,16 @@ import {
   Renderer2,
   AfterViewInit, OnDestroy,
 } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfigService } from 'src/app/config/config.service';
-import { LanguageService } from 'src/app/core/service/language-service/language.service';
+import {Router} from '@angular/router';
+import {ConfigService} from 'src/app/config/config.service';
+import {LanguageService} from 'src/app/core/service/language-service/language.service';
 
-import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import { Subscription } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
-import { ConfigureWalletService } from '@app/core/service/configure-wallet-service/configure-wallet.service';
-import { CartService } from '@app/core/service/cart.service/cart.service';
+import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import {Subscription} from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
+import {ConfigureWalletService} from '@app/core/service/configure-wallet-service/configure-wallet.service';
+import {CartService} from '@app/core/service/cart.service/cart.service';
+
 const document: any = window.document;
 
 @Component({
@@ -53,8 +54,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   listLang = [
-    { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
-    { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' },
+    {text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en'},
+    {text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es'},
   ];
 
   ngOnInit() {
@@ -146,6 +147,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
   }
+
   public toggleRightSidebar(): void {
     this.rightSidebarService.sidebarState.subscribe((isRunning) => {
       this.isOpenSidebar = isRunning;
@@ -155,10 +157,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       (this.isOpenSidebar = !this.isOpenSidebar)
     );
   }
+
   logout() {
     this.authService.logoutUser().subscribe((res) => {
       if (!res.success) {
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/signin']).then();
       }
     });
   }

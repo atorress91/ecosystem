@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { User } from '@app/core/models/user-model/user.model';
 import { environment } from '@environments/environment';
 import { Response } from '@app/core/models/response-model/response.model';
+import { UpdateImageProfile } from '@app/core/models/user-affiliate-model/update-image-profile.model';
 
 const httpOptions = {
 
@@ -105,5 +106,23 @@ export class UserService {
         return data;
       })
     );
+  }
+
+  updateImageProfile(id: number, imgProfile: UpdateImageProfile) {
+    return this.http
+      .put<Response>(
+        `${this.urlApi}/user/update_image_profile_url/${id}`,
+        imgProfile,
+        httpOptions
+      )
+      .pipe(
+        map((response) => {
+          if (response.success) return response.data;
+          else {
+            console.error('ERROR: ' + response);
+            return null;
+          }
+        })
+      );
   }
 }

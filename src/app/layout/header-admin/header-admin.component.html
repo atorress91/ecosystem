@@ -127,7 +127,7 @@
         </div>
         <div class="dropdown-footer text-center">
           <a href="#" onClick="return false;"
-            >View All <i class="fas fa-chevron-right"></i
+          >View All <i class="fas fa-chevron-right"></i
           ></a>
         </div>
       </div>
@@ -140,10 +140,10 @@
       >
         <img
           alt="image"
-          src="assets/images/user.png"
-          class="user-img-radious-style collapse-btn" />
+          [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/user.png'"
+          class="user-img-radious-style collapse-btn"/>
         <span class="d-sm-none d-lg-inline-block"></span
-      ></a>
+        ></a>
       <div
         ngbDropdownMenu
         class="dropdown-menu dropdown-menu-right header-dropdown pullDown"
