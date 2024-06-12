@@ -1,6 +1,6 @@
-import { RightSidebarService } from 'src/app/core/service/rightsidebar-service/rightsidebar.service';
-import { AuthService } from 'src/app/core/service/authentication-service/auth.service';
-import { DOCUMENT } from '@angular/common';
+import {RightSidebarService} from 'src/app/core/service/rightsidebar-service/rightsidebar.service';
+import {AuthService} from 'src/app/core/service/authentication-service/auth.service';
+import {DOCUMENT} from '@angular/common';
 import {
   Component,
   Inject,
@@ -9,10 +9,11 @@ import {
   Renderer2,
   AfterViewInit,
 } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfigService } from 'src/app/config/config.service';
-import { LanguageService } from 'src/app/core/service/language-service/language.service';
-import { User } from '@app/core/models/user-model/user.model';
+import {Router} from '@angular/router';
+import {ConfigService} from 'src/app/config/config.service';
+import {LanguageService} from 'src/app/core/service/language-service/language.service';
+import {User} from '@app/core/models/user-model/user.model';
+
 const document: any = window.document;
 
 @Component({
@@ -21,7 +22,7 @@ const document: any = window.document;
   styleUrls: ['./header-admin.component.sass'],
 })
 export class HeaderAdminComponent implements OnInit, AfterViewInit {
-  public user: User;
+  public user: User = new User();
   public config: any = {};
   isNavbarCollapsed = true;
   flagvalue;
@@ -29,6 +30,7 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
   langStoreValue: string;
   defaultFlag: string;
   isOpenSidebar: boolean;
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -38,11 +40,12 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
     private authService: AuthService,
     private router: Router,
     public languageService: LanguageService
-  ) {}
+  ) {
+  }
 
   listLang = [
-    { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
-    { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' },
+    {text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en'},
+    {text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es'},
   ];
 
   ngOnInit() {
@@ -61,6 +64,7 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
 
     this.getCurrentUser();
   }
+
   ngAfterViewInit() {
     // set theme on startup
     if (localStorage.getItem('theme')) {
@@ -104,6 +108,7 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
     this.langStoreValue = lang;
     this.languageService.setLanguage(lang);
   }
+
   mobileMenuSidebarOpen(event: any, className: string) {
     if (window.innerWidth < 1025) {
       const hasClass = event.target.classList.contains(className);
@@ -125,6 +130,7 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
       }
     }
   }
+
   public toggleRightSidebar(): void {
     this.rightSidebarService.sidebarState.subscribe((isRunning) => {
       this.isOpenSidebar = isRunning;
@@ -134,10 +140,11 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
       (this.isOpenSidebar = !this.isOpenSidebar)
     );
   }
+
   logout() {
     this.authService.logoutUser().subscribe((res) => {
       if (!res.success) {
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/signin']).then();
       }
     });
   }

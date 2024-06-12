@@ -7,6 +7,8 @@ import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affili
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
 import { UpdateImageProfile } from '@app/core/models/user-affiliate-model/update-image-profile.model';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '@app/core/models/user-model/user.model';
+import { UserService } from '@app/core/service/user-service/user.service';
 
 
 @Component({
@@ -19,17 +21,23 @@ export class ImgProfileComponent implements OnInit {
   file: File | null = null;
   fileRef: any;
   user: UserAffiliate = new UserAffiliate();
+  userAdmin: User = new User();
 
   constructor(private modalService: NgbModal,
     private storage: Storage,
     private authService: AuthService,
     private affiliateService: AffiliateService,
     private toastr: ToastrService,
-    private imageProfileService: ImageProfileService) {
+    private imageProfileService: ImageProfileService,
+    private userService: UserService
+  ) {
   }
 
   ngOnInit(): void {
     this.user = this.authService.currentUserAffiliateValue;
+    console.log(this.user)
+    this.userAdmin = this.authService.currentUserAdminValue;
+    console.log(this.userAdmin)
   }
 
   showSuccess(message) {
@@ -37,7 +45,7 @@ export class ImgProfileComponent implements OnInit {
   }
 
   showError(message) {
-    this.showError(message);
+    this.toastr.error(message);
   }
 
   openProfileImgModal() {
@@ -49,36 +57,49 @@ export class ImgProfileComponent implements OnInit {
   }
 
   onFileSelected(event: any): void {
-
     this.file = event.addedFiles[0];
+    const isUserAffiliate = this.user && this.user.id;
+    const filePath = isUserAffiliate
+      ? 'affiliates/profile/' + `${this.user.user_name}/` + `${this.user.id}`
+      : 'admins/profile/' + `${this.userAdmin.user_name}/` + `${this.userAdmin.id}`;
 
-    const filePath = 'affiliates/profile/' + `${this.user.user_name}/` + `${this.user.id}`;
     this.fileRef = ref(this.storage, filePath);
     const uploadTask = uploadBytesResumable(this.fileRef, this.file);
 
     uploadTask.on('state_changed',
-      (snapshot) => {
-      },
+      (snapshot) => { },
       (error) => {
         console.log(error);
+        this.showError('Error al subir la imagen');
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-
           let updateImage = new UpdateImageProfile();
           updateImage.image_profile_url = downloadURL;
-          this.affiliateService.updateImageProfile(this.user.id, updateImage).subscribe({
-            next: (value: UserAffiliate) => {
-              if (value) {
+
+          if (isUserAffiliate) {
+            this.affiliateService.updateImageProfile(this.user.id, updateImage).subscribe({
+              next: (value) => {
                 this.authService.setUserAffiliateValue(value);
-                this.user.image_profile_url = value.image_profile_url;
+                this.user.image_profile_url = downloadURL;
                 this.showSuccess('Imagen actualizada correctamente');
+              },
+              error: () => {
+                this.showError('No se pudo actualizar la imagen de perfil.');
               }
-            },
-            error: () => {
-              this.showError('No se pudo actualizar la imagen de perfil');
-            },
-          })
+            });
+          } else {
+            this.userService.updateImageProfile(this.userAdmin.id, updateImage).subscribe({
+              next: (value) => {
+                this.authService.setUserAdminValue(value);
+                this.userAdmin.image_profile_url = downloadURL;
+                this.showSuccess('Imagen actualizada correctamente');
+              },
+              error: () => {
+                this.showError('No se pudo actualizar la imagen de perfil.');
+              }
+            });
+          }
         });
       }
     );
@@ -87,20 +108,32 @@ export class ImgProfileComponent implements OnInit {
   removeImage(): void {
     let updateImage = new UpdateImageProfile();
     updateImage.image_profile_url = '';
-    this.user.image_profile_url = null;
-    this.file = null;
+    const isUserAffiliate = this.user && this.user.id;
 
-    this.affiliateService.updateImageProfile(this.user.id, updateImage).subscribe({
-      next: (value) => {
-        if (value) {
-          this.showSuccess('Imagen eliminada correctamente');
+    if (isUserAffiliate) {
+      this.affiliateService.updateImageProfile(this.user.id, updateImage).subscribe({
+        next: (value) => {
           this.authService.setUserAffiliateValue(value);
+          this.user.image_profile_url = null;
+          this.file = null;
+          this.showSuccess('Imagen eliminada correctamente');
+        },
+        error: () => {
+          this.showError('No se pudo eliminar la imagen de perfil del afiliado.');
         }
-      },
-      error: () => {
-        this.showError('La imagen no se ha eliminado');
-      },
-    })
+      });
+    } else {
+      this.userService.updateImageProfile(this.userAdmin.id, updateImage).subscribe({
+        next: (value) => {
+          this.authService.setUserAdminValue(value);
+          this.userAdmin.image_profile_url = null;
+          this.file = null;
+          this.showSuccess('Imagen de admin eliminada correctamente');
+        },
+        error: () => {
+          this.showError('No se pudo eliminar la imagen de perfil del admin.');
+        }
+      });
+    }
   }
-
 }
