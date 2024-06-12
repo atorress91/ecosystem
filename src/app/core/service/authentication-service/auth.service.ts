@@ -116,7 +116,7 @@ export class AuthService {
     this.currentUserAffiliateSubject.next(user);
   }
 
-  private setUserAdminValue(user: User) {
+  public setUserAdminValue(user: User) {
     localStorage.setItem('currentUserAdmin', JSON.stringify(user));
     this.currentUserAdminSubject.next(user);
   }
