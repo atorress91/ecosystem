@@ -17,9 +17,9 @@
           <div class="inbox-header">
             <div class="mail-option">
               <div class="email-btn-group m-l-15">
-                <button type="button" class="btn btn-danger waves-effect m-r-20">Crear Ticket</button>
+                <button type="button" class="btn btn-danger waves-effect m-r-20" (click)="openCreateTicketModal()">Crear Ticket</button>
                 <a onClick="return false;" (click)="onDeleteTickets()" class="col-dark-gray waves-effect m-r-20"
-                  title="Delete" data-toggle="tooltip">
+                   title="Delete" data-toggle="tooltip">
                   <i class="material-icons">delete</i>
                 </a>
               </div>
@@ -28,14 +28,15 @@
           <div class="boxs mail_listing">
             <div class="inbox-center table-responsive">
               <ngx-datatable #table class="material" [rows]="tickets" [loadingIndicator]="loadingIndicator"
-                columnMode="force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [selected]="selectedTickets"
-                [limit]="10" [selectionType]="SelectionType.checkbox" [scrollbarH]="scrollBarHorizontal"
-                [reorderable]="reorderable">
+                             columnMode="force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"
+                             [selected]="selectedTickets"
+                             [limit]="10" [selectionType]="SelectionType.checkbox" [scrollbarH]="scrollBarHorizontal"
+                             [reorderable]="reorderable">
                 <ngx-datatable-column name="Seleccionar">
                   <ng-template let-row="row" ngx-datatable-cell-template>
                     <label class="form-check-label">
                       <input type="checkbox" [checked]="isTicketSelected(row)"
-                        (change)="onSelectTicket(row, $event.target.checked)">
+                             (change)="onSelectTicket(row, $event.target.checked)">
                       <span class="form-check-sign"></span>
                     </label>
                   </ng-template>
@@ -43,8 +44,8 @@
                 <ngx-datatable-column name="Estado">
                   <ng-template let-row="row" ngx-datatable-cell-template>
                     <button class="btn"
-                      [ngClass]="{'badge-outline col-green': row.status == true, 'badge-outline col-red': row.status == false}"
-                      [disabled]="true">
+                            [ngClass]="{'badge-outline col-green': row.status == true, 'badge-outline col-red': row.status == false}"
+                            [disabled]="true">
                       {{ row.status == false ? 'Cerrado' : 'Abierto' }}
                     </button>
                   </ng-template>
@@ -64,8 +65,8 @@
                 <ngx-datatable-column name="Respuesta">
                   <ng-template let-row="row" ngx-datatable-cell-template>
                     <button class="btn"
-                      [ngClass]="{'badge-outline col-green': (row | adminResponded | async), 'badge-outline col-red': !(row | adminResponded | async)}"
-                      [disabled]="true">
+                            [ngClass]="{'badge-outline col-green': (row | adminResponded | async), 'badge-outline col-red': !(row | adminResponded | async)}"
+                            [disabled]="true">
                       <i *ngIf="(row | adminResponded | async)" class="bi bi-check"></i>
                       <i *ngIf="!(row | adminResponded | async)" class="bi bi-x"></i>
                     </button>
@@ -80,7 +81,7 @@
                   <ng-template let-row="row" ngx-datatable-cell-template>
                     <div *ngIf="row.images.length > 0; else noImage">
                       <img [src]="row.images[0].imagePath" alt="Click to view" class="thumbnail"
-                        (click)="openModal(content, row)" style="cursor: pointer; width: 100px; height: auto;">
+                           (click)="openModal(content, row)" style="cursor: pointer; width: 100px; height: auto;">
                     </div>
                     <ng-template #noImage>
                       <div
@@ -116,3 +117,4 @@
     </div>
   </div>
 </section>
+<app-create-admin-modal></app-create-admin-modal>
