@@ -1,16 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
-import { Router } from "@angular/router";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ToastrService } from 'ngx-toastr';
-import { DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs";
+import {Router} from "@angular/router";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ToastrService} from 'ngx-toastr';
+import {DatatableComponent, SelectionType} from '@swimlane/ngx-datatable';
 
-import { TicketHubService } from "@app/core/service/ticket-service/ticket-hub.service";
-import { Ticket } from "@app/core/models/ticket-model/ticket.model";
-import { TicketCategoriesService } from "@app/core/service/ticket-categories-service/ticket-categories.service";
-import { TicketCategories } from "@app/core/models/ticket-categories-model/ticket-categories.model";
+import {TicketHubService} from "@app/core/service/ticket-service/ticket-hub.service";
+import {Ticket} from "@app/core/models/ticket-model/ticket.model";
+import {TicketCategoriesService} from "@app/core/service/ticket-categories-service/ticket-categories.service";
+import {TicketCategories} from "@app/core/models/ticket-categories-model/ticket-categories.model";
 import Swal from 'sweetalert2';
+import {CreateTicketModalComponent} from "@app/client/tickets/create-ticket-modal/create-ticket-modal.component";
+import {CreateAdminModalComponent} from "@app/admin/tickets/create-admin-modal/create-admin-modal.component";
 
 @Component({
   selector: 'app-tickets-admin',
@@ -27,12 +29,13 @@ export class TicketsAdminComponent implements OnInit {
   scrollBarHorizontal = window.innerWidth < 1200;
   SelectionType = SelectionType;
   @ViewChild(DatatableComponent) table: DatatableComponent;
+  @ViewChild(CreateAdminModalComponent) private createTicketModal: CreateAdminModalComponent;
 
   constructor(private ticketHubService: TicketHubService,
-    private ticketCategoryService: TicketCategoriesService,
-    private router: Router,
-    private modalService: NgbModal,
-    private toast: ToastrService) {
+              private ticketCategoryService: TicketCategoriesService,
+              private router: Router,
+              private modalService: NgbModal,
+              private toast: ToastrService) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -94,7 +97,7 @@ export class TicketsAdminComponent implements OnInit {
   openModal(content: any, ticket: Ticket) {
     this.selectedTicket.images = ticket.images || [];
 
-    this.modalService.open(content, { size: 'lg', centered: true }).result.then(() => {
+    this.modalService.open(content, {size: 'lg', centered: true}).result.then(() => {
     });
   }
 
@@ -140,6 +143,10 @@ export class TicketsAdminComponent implements OnInit {
     } else {
       this.showError('No ha seleccionado tickets.');
     }
+  }
+
+  openCreateTicketModal() {
+    this.createTicketModal.openModal();
   }
 }
 

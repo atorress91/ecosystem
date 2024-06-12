@@ -70,6 +70,7 @@ import {
 import {ChangeModelModule} from './change-model/change-model.module';
 import {SharedModule} from "../shared/shared.module";
 import {TicketViewAdminComponent} from './tickets/tick-view/ticket-view-admin.component';
+import { CreateAdminModalComponent } from './tickets/create-admin-modal/create-admin-modal.component';
 
 const icons = {
   Search,
@@ -107,7 +108,8 @@ const icons = {
     SettingsComponent,
     WireTransferListComponent,
     EducationalProgramsControlComponent,
-    TicketViewAdminComponent
+    TicketViewAdminComponent,
+    CreateAdminModalComponent
   ],
   exports: [],
   imports: [
