@@ -24,6 +24,7 @@ export class TicketHubService {
 
   constructor() {
     this.urlApi = environment.apis.accountServiceSignalR;
+    this.startConnection().then();
     const savedTicket = localStorage.getItem('ticket');
     this.ticketSave = new BehaviorSubject<number | null>(savedTicket ? JSON.parse(savedTicket) : null);
   }

@@ -11,7 +11,6 @@ import {Ticket} from "@app/core/models/ticket-model/ticket.model";
 import {TicketCategoriesService} from "@app/core/service/ticket-categories-service/ticket-categories.service";
 import {TicketCategories} from "@app/core/models/ticket-categories-model/ticket-categories.model";
 import Swal from 'sweetalert2';
-import {CreateTicketModalComponent} from "@app/client/tickets/create-ticket-modal/create-ticket-modal.component";
 import {CreateAdminModalComponent} from "@app/admin/tickets/create-admin-modal/create-admin-modal.component";
 
 @Component({
@@ -39,14 +38,15 @@ export class TicketsAdminComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    try {
-      await this.ticketHubService.startConnection().then(() => {
+    this.ticketHubService.connectionEstablished.subscribe(connected => {
+      if (connected) {
         this.loadTicketCategories();
         this.getAllTickets();
-      });
-    } catch (error) {
-      console.error('Error starting connection:', error);
-    }
+      } else {
+        console.error('Connection is not established.');
+        this.showError('No se pudo establecer la conexión con el servidor');
+      }
+    });
   }
 
   showSuccess(message: string) {
