@@ -39,7 +39,7 @@ export class TicketHubService {
 
   public async startConnection(): Promise<void> {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(`${this.urlApi}ticketHub`, { withCredentials: true })
+      .withUrl(`https://account.ecosystemfx.net/ticketHub`, { withCredentials: true })
       .withAutomaticReconnect()
       .build();
 
