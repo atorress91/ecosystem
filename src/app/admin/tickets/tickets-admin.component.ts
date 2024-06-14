@@ -44,7 +44,6 @@ export class TicketsAdminComponent implements OnInit {
         this.getAllTickets();
       } else {
         console.error('Connection is not established.');
-        this.showError('No se pudo establecer la conexión con el servidor');
       }
     });
   }
