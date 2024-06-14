@@ -17,7 +17,9 @@
           <div class="inbox-header">
             <div class="mail-option">
               <div class="email-btn-group m-l-15">
-                <button type="button" class="btn btn-danger waves-effect m-r-20" (click)="openCreateTicketModal()">Crear Ticket</button>
+                <button type="button" class="btn btn-danger waves-effect m-r-20" (click)="openCreateTicketModal()">Crear
+                  Ticket
+                </button>
                 <a onClick="return false;" (click)="onDeleteTickets()" class="col-dark-gray waves-effect m-r-20"
                    title="Delete" data-toggle="tooltip">
                   <i class="material-icons">delete</i>
@@ -48,6 +50,11 @@
                             [disabled]="true">
                       {{ row.status == false ? 'Cerrado' : 'Abierto' }}
                     </button>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Usuario">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a class="text-decoration-none">{{ row.userName }}</a>
                   </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column name="Mensaje">

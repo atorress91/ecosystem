@@ -24,6 +24,7 @@ export class TicketHubService {
 
   constructor() {
     this.urlApi = environment.apis.accountServiceSignalR;
+    this.startConnection().then();
     const savedTicket = localStorage.getItem('ticket');
     this.ticketSave = new BehaviorSubject<number | null>(savedTicket ? JSON.parse(savedTicket) : null);
   }
@@ -39,7 +40,7 @@ export class TicketHubService {
 
   public async startConnection(): Promise<void> {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(`${this.urlApi}ticketHub`, { withCredentials: true })
+      .withUrl(`https://account.ecosystemfx.net/ticketHub`, { withCredentials: true })
       .withAutomaticReconnect()
       .build();
 
