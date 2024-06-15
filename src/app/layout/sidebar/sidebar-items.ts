@@ -193,26 +193,26 @@ export const ROUTES: RouteInfo[] = [
   //   submenu: [],
   // },
   {
-    path: '',
+    path: '/app/tickets',
     title: 'MENUITEMS.TOOLS.TEXT',
     iconType: 'feather',
     icon: 'tag',
-    class: 'menu-toggle',
+    class: '',
     groupTitle: false,
     badge: '',
     badgeClass: '',
     submenu: [
-      {
-        path: '/app/tickets',
-        title: 'MENUITEMS.MY-TICKETS.TEXT',
-        iconType: 'feather',
-        icon: 'book-open',
-        class: '',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        submenu: [],
-      }
+      // {
+      //   path: '/app/tickets',
+      //   title: 'MENUITEMS.MY-TICKETS.TEXT',
+      //   iconType: 'feather',
+      //   icon: 'book-open',
+      //   class: '',
+      //   groupTitle: false,
+      //   badge: '',
+      //   badgeClass: '',
+      //   submenu: [],
+      // }
       ]
   },
   //     {
