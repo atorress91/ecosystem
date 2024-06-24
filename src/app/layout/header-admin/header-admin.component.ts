@@ -13,6 +13,9 @@ import {Router} from '@angular/router';
 import {ConfigService} from 'src/app/config/config.service';
 import {LanguageService} from 'src/app/core/service/language-service/language.service';
 import {User} from '@app/core/models/user-model/user.model';
+import {TicketHubService} from "@app/core/service/ticket-service/ticket-hub.service";
+import {map, Observable} from "rxjs";
+import {TicketSummary} from "@app/core/models/ticket-model/ticket-summary.model";
 
 const document: any = window.document;
 
@@ -30,6 +33,8 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
   langStoreValue: string;
   defaultFlag: string;
   isOpenSidebar: boolean;
+  ticketSummaries$: Observable<TicketSummary[]>;
+  public unreadCount$: Observable<number>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -39,8 +44,20 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
     private configService: ConfigService,
     private authService: AuthService,
     private router: Router,
-    public languageService: LanguageService
+    public languageService: LanguageService,
+    private ticketHubService: TicketHubService,
   ) {
+    this.ticketHubService.connectionEstablished.subscribe((isConnected) => {
+      if (isConnected) {
+        this.ticketSummaries$ = this.ticketHubService.ticketSummaries.asObservable();
+        this.unreadCount$ = this.ticketSummaries$.pipe(
+          map(summaries => summaries.reduce((acc, summary) => acc + summary.unreadMessagesCount, 0))
+        );
+        this.onLoadAllTickets();
+      } else {
+        console.error('Waiting for connection to be established...');
+      }
+    });
   }
 
   listLang = [
@@ -151,5 +168,25 @@ export class HeaderAdminComponent implements OnInit, AfterViewInit {
 
   getCurrentUser() {
     this.user = this.authService.currentUserAdminValue;
+  }
+
+  onTicketClick(ticketId: number) {
+    this.ticketHubService.connectionEstablished.subscribe({
+      next: (e) => {
+        this.ticketHubService.markTicketMessagesAsRead(ticketId)
+          .then(() => {
+            this.ticketHubService.setTicket(ticketId);
+            this.router.navigate(['admin/ticket-for-admin/message']).then();
+          })
+          .catch(error => console.error('Error al marcar mensajes:', error));
+      }, error: () => {
+
+      }
+    })
+  }
+
+  onLoadAllTickets() {
+    this.ticketHubService.getAllTicketSummaries()
+      .catch(error => console.error('Error al cargar tickets:', error));
   }
 }
