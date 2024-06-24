@@ -6,8 +6,8 @@ import { HubConnectionState } from "@microsoft/signalr";
 import { TicketRequest } from '@app/core/models/ticket-model/ticketRequest.model';
 import { TicketMessageRequest } from '@app/core/models/ticket-model/ticket-message-request.model';
 import { Ticket } from '@app/core/models/ticket-model/ticket.model';
-import { TicketMessage } from '@app/core/models/ticket-model/ticket-message.model';
 import { environment } from '@environments/environment';
+import { TicketSummary } from '@app/core/models/ticket-model/ticket-summary.model'
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,8 @@ export class TicketHubService {
   public ticketsReceived = new Subject<Ticket[]>();
   public connectionEstablished = new BehaviorSubject<boolean>(false);
   private urlApi: string;
+  public ticketSummaries = new BehaviorSubject<TicketSummary[]>([]);
+
 
   constructor() {
     this.urlApi = environment.apis.accountServiceSignalR;
@@ -79,6 +81,10 @@ export class TicketHubService {
 
     this.hubConnection.on('GetTicketById', (ticket: Ticket) => {
       this.ticketCreated.next(ticket);
+    })
+
+    this.hubConnection.on('ReceiveTicketSummaries', (ticketSummaries: TicketSummary[]) => {
+      this.ticketSummaries.next(ticketSummaries);
     })
   }
 
@@ -180,6 +186,33 @@ export class TicketHubService {
           console.error(`Error retrieving ticket: ${error}`);
           this.ticketCreated.next(null);
         });
+    } else {
+      console.error('Connection is not in the \'Connected\' State.');
+    }
+  }
+
+  public async getTicketSummariesByAffiliateId(affiliateId: number): Promise<void> {
+    if (this.hubConnection.state === HubConnectionState.Connected) {
+      this.hubConnection.invoke('GetTicketSummariesByAffiliateId', affiliateId)
+        .catch(error => console.error(`Error al obtener tickets: ${error}`));
+    } else {
+      console.error('Connection is not in the \'Connected\' State.');
+    }
+  }
+
+  public async markTicketMessagesAsRead(ticketId: number): Promise<void> {
+    if (this.hubConnection.state === HubConnectionState.Connected) {
+      this.hubConnection.invoke('MarkTicketMessagesAsRead', ticketId)
+        .catch(error => console.error(`Error al marcar mensajes como leidos: ${error}`));
+    } else {
+      console.error('Connection is not in the \'Connected\' State.');
+    }
+  }
+
+  public async getAllTicketSummaries(): Promise<void> {
+    if (this.hubConnection.state === HubConnectionState.Connected) {
+      this.hubConnection.invoke('GetAllTicketSummaries')
+        .catch(error => console.error(`Error al obtener tickets: ${error}`));
     } else {
       console.error('Connection is not in the \'Connected\' State.');
     }

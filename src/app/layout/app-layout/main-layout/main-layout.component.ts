@@ -7,6 +7,7 @@ import { TermsConditionsService } from '@app/core/service/terms-conditions-servi
 import Swal from 'sweetalert2';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
 import { ToastrService } from 'ngx-toastr';
+import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
 
 
 @Component({
@@ -22,7 +23,9 @@ export class MainLayoutComponent implements OnInit {
     private authService: AuthService,
     private membershipManagerService: MembershipManagerService,
     private affiliateService: AffiliateService,
-    private toast: ToastrService) { }
+    private toast: ToastrService,
+    private ticketHubService: TicketHubService,
+  ) { }
 
   ngOnInit() {
     this.user = this.authService.currentUserAffiliateValue;
