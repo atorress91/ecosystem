@@ -12,62 +12,7 @@
       <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4>Información Modelo (1A)</h4>
-          </div>
-          <div class="card-body">
-            <div id="chart1">
-              <apx-chart [series]="pieChartOptionsModel1A.series" [chart]="pieChartOptionsModel1A.chart"
-                [labels]="pieChartOptionsModel1A.labels" [responsive]="pieChartOptionsModel1A.responsive"
-                [dataLabels]="pieChartOptionsModel1A.dataLabels" [legend]="pieChartOptionsModel1A.legend"
-                [colors]="pieChartOptionsModel1A.colors" class="apex-pie-center">
-              </apx-chart>
-            </div>
-            <div class="table m-t-5">
-              <table class="table align-items-center table-row-border">
-                <tbody>
-                  <tr>
-                    <td class="col-red">
-                      <i class="fa fa-circle col-red msr-2"></i> Saldo de servicios
-                    </td>
-                    <td class="col-red">USD {{balanceInformationModel1A.serviceBalance | truncateDecimals:2}}</td>
-                  </tr>
-                  <tr>
-                    <td class="col-blue">
-                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo Disponible
-                    </td>
-                    <td class="col-blue">USD {{balanceInformationModel1A.availableBalance | truncateDecimals:2}}</td>
-                  </tr>
-                  <tr>
-                    <td class="col-emerald">
-                      <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
-                    </td>
-                    <td class="col-emerald">USD {{balanceInformationModel1A.totalCommissionsPaid | truncateDecimals:2}}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="col-green">
-                      <i class="fa fa-circle col-green msr-2 col-green"></i>Total
-                      Adquisiciones
-                    </td>
-                    <td class="col-green">USD {{balanceInformationModel1A.totalAcquisitions | truncateDecimals:2}}</td>
-                  </tr>
-                  <tr>
-                    <td class="col-purple">
-                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Solicitud de modelo
-
-                    </td>
-                    <td class="col-purple">USD {{balanceInformationModel1A.reverseBalance | truncateDecimals:2}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h4>Información Modelo (1B)</h4>
+            <h4>Información Modelo R</h4>
           </div>
           <div class="card-body">
             <div id="chart1">
@@ -119,6 +64,62 @@
           </div>
         </div>
       </div>
+      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Información Modelo 1</h4>
+          </div>
+          <div class="card-body">
+            <div id="chart1">
+              <apx-chart [series]="pieChartOptionsModel1A.series" [chart]="pieChartOptionsModel1A.chart"
+                [labels]="pieChartOptionsModel1A.labels" [responsive]="pieChartOptionsModel1A.responsive"
+                [dataLabels]="pieChartOptionsModel1A.dataLabels" [legend]="pieChartOptionsModel1A.legend"
+                [colors]="pieChartOptionsModel1A.colors" class="apex-pie-center">
+              </apx-chart>
+            </div>
+            <div class="table m-t-5">
+              <table class="table align-items-center table-row-border">
+                <tbody>
+                  <tr>
+                    <td class="col-red">
+                      <i class="fa fa-circle col-red msr-2"></i> Saldo de servicios
+                    </td>
+                    <td class="col-red">USD {{balanceInformationModel1A.serviceBalance | truncateDecimals:2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="col-blue">
+                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo Disponible
+                    </td>
+                    <td class="col-blue">USD {{balanceInformationModel1A.availableBalance | truncateDecimals:2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="col-emerald">
+                      <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
+                    </td>
+                    <td class="col-emerald">USD {{balanceInformationModel1A.totalCommissionsPaid | truncateDecimals:2}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-green">
+                      <i class="fa fa-circle col-green msr-2 col-green"></i>Total
+                      Adquisiciones
+                    </td>
+                    <td class="col-green">USD {{balanceInformationModel1A.totalAcquisitions | truncateDecimals:2}}</td>
+                  </tr>
+                  <tr>
+                    <td class="col-purple">
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Solicitud de modelo
+
+                    </td>
+                    <td class="col-purple">USD {{balanceInformationModel1A.reverseBalance | truncateDecimals:2}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">

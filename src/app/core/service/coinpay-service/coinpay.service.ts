@@ -1,9 +1,12 @@
-import { RequestPayment } from './../../models/coinpay-model/request-payment.model';
+import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '@environments/environment';
 
+import { CoinPayWithdrawal } from '@app/core/models/coinpay-model/coinpay-withdrawal.model';
+import { environment } from '@environments/environment';
+import { RequestPayment } from '@app/core/models/coinpay-model/request-payment.model';
+import { Response } from '@app/core/models/response-model/response.model';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.walletService.toString() }),
 };
@@ -21,5 +24,10 @@ export class CoinpayService {
   createCoinPayTransaction(requestPayment: RequestPayment) {
     return this.http
       .post(this.urlApi.concat('/coinpay/createTransaction'), requestPayment, httpOptions);
+  }
+
+  sendFunds(withdrawalRequest: CoinPayWithdrawal[]): Observable<Response> {
+    return this.http.post<Response>(this.urlApi.concat('/coinpay/sendFunds'), withdrawalRequest, httpOptions)
+      .pipe(map(data => data));
   }
 }
