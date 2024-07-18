@@ -8,7 +8,7 @@ export const environment = {
     accountServiceSignalR: 'https://account.ecosystemfx.net/',
     systemConfigurationService: 'https://configuration.ecosystemfx.net/api/v1',
     inventoryService: 'https://inventory.ecosystemfx.net/api/v1',
-    walletService: 'http://localhost:5235/api/v1',
+    walletService: 'https://wallet.ecosystemfx.net/api/v1',
     coinPayment: 'https://www.coinpayments.net/index.php'
   },
   openAI: {

@@ -56,7 +56,7 @@ export class WalletRemovalComponent implements OnInit {
       walletConfig: this.configurationService.getWithdrawalsWalletConfiguration()
     }).subscribe({
       next: ({ walletRequests, walletConfig }) => {
-        console.log(walletRequests)
+
         this.walletWithdrawalConfig = walletConfig;
         this.updateTable(walletRequests);
       },
@@ -333,20 +333,31 @@ export class WalletRemovalComponent implements OnInit {
   }
 
   confirmOption() {
-    Swal.fire({
-      title: 'Está seguro de realizar la operación!',
-      text: 'Una vez realizada no se puede revertir',
-      showCancelButton: true,
-      icon: 'warning',
-      confirmButtonColor: '#8963ff',
-      cancelButtonColor: '#fb7823',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Sí, estoy seguro.',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.onProccessOption();
-      }
-    });
+    if (this.selectedRows.length === 0 || this.proccessOptionValue === 0) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Debe seleccionar una opción y un retiro antes de continuar.',
+        icon: 'error',
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'OK'
+      });
+    } else {
+
+      Swal.fire({
+        title: 'Está seguro de realizar la operación!',
+        text: 'Una vez realizada no se puede revertir',
+        showCancelButton: true,
+        icon: 'warning',
+        confirmButtonColor: '#8963ff',
+        cancelButtonColor: '#fb7823',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Sí, estoy seguro.'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.onProccessOption();
+        }
+      });
+    }
   }
 
   resetWalletRequest() {
