@@ -94,6 +94,7 @@ export class SplitBalancesModalComponent implements OnInit {
         });
 
         this.reloadRequested.emit();
+        this.selectedInvoices = [];
         this.modalService.dismissAll();
       },
       error: (error) => {
