@@ -202,18 +202,18 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [
-      // {
-      //   path: '/app/tickets',
-      //   title: 'MENUITEMS.MY-TICKETS.TEXT',
-      //   iconType: 'feather',
-      //   icon: 'book-open',
-      //   class: '',
-      //   groupTitle: false,
-      //   badge: '',
-      //   badgeClass: '',
-      //   submenu: [],
-      // }
-      ]
+      {
+        path: '/app/tickets',
+        title: 'MENUITEMS.MY-TICKETS.TEXT',
+        iconType: 'feather',
+        icon: 'book-open',
+        class: '',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+      }
+    ]
   },
   //     {
   //       path: '/app/news',
