@@ -10,11 +10,13 @@ export class ImageProfileService {
   imageURL$ = this.imageURLSubject.asObservable();
 
   constructor(private authService: AuthService) {
-    this.setImageURL(this.authService.currentUserAffiliateValue.image_profile_url);
+    const imageUrl = (this.authService.currentUserAffiliateValue ? this.authService.currentUserAffiliateValue.image_profile_url : null) ||
+      (this.authService.currentUserAdminValue ? this.authService.currentUserAdminValue.image_profile_url : null);
+
+    this.setImageURL(imageUrl);
   }
 
   setImageURL(url: string | null) {
     this.imageURLSubject.next(url);
   }
-
 }

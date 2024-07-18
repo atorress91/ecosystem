@@ -75,11 +75,11 @@
                       {{ getNameGrading(row.external_grading_before_id) }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-EMAIL.TEXT' | translate }}">
+                  <!-- <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-EMAIL.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{ row.email }}
                     </ng-template>
-                  </ngx-datatable-column>
+                  </ngx-datatable-column> -->
                   <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-DETAIL.TEXT' | translate }}" sortable="false">
                     <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                       <div ngbDropdown container="body">
@@ -89,15 +89,22 @@
                           }}
                         </button>
                         <div ngbDropdownMenu>
-                          <a ngbDropdownItem id="btn-deleteGlobal" *ngIf="isNewUser">
+                          <a ngbDropdownItem id="btn-deleteGlobal" *ngIf="isNewUser"
+                            (click)="showConfirmationTransferBalanceForMembership(row)">
                             <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px"
-                              (click)="showConfirmationTransferBalanceForMembership(row)">Activar membresía del
-                              afiliado</span>
+                            <span style="margin-left: 10px">Activar membresía del
+                              afiliado con saldo disponible</span>
                           </a>
-                          <a ngbDropdownItem id="btn-detailGlobal" *ngIf="row.activation_date != null">
+                          <a ngbDropdownItem *ngIf="isNewUser" (click)="createPagaditoTransaction(row)">
+                            <i class="bi bi-credit-card"></i>
+                            <span style="margin-left: 10px">Activar membresía
+                              del
+                              afiliado con tarjeta</span>
+                          </a>
+                          <a ngbDropdownItem id="btn-detailGlobal" *ngIf="row.activation_date != null"
+                            (click)="showConfirmationTransferBalance(row)">
                             <i class="bi bi-currency-exchange"></i>
-                            <span style="margin-left: 10px" (click)="showConfirmationTransferBalance(row)">Transferir
+                            <span style="margin-left: 10px">Transferir
                               saldo</span>
                           </a>
                           <!-- <a ngbDropdownItem id="btn-purchase"
@@ -197,11 +204,11 @@
                       {{ getNameGrading(row.externalGradingIdBefore) }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-EMAIL.TEXT' | translate }}">
+                  <!-- <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-EMAIL.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{ row.email }}
                     </ng-template>
-                  </ngx-datatable-column>
+                  </ngx-datatable-column> -->
                   <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-DETAIL.TEXT' | translate }}" sortable="false">
                     <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                       <div ngbDropdown container="body">
@@ -217,16 +224,24 @@
                               (click)=" showConfirmationTransferBalanceForMembership(row)">Transferir
                               saldo para membresia</span>
                           </a> -->
-                          <a ngbDropdownItem id="btn-detail" *ngIf="row.activationDate != null">
+                          <a ngbDropdownItem id="btn-detail" *ngIf="row.activationDate != null"
+                            (click)="showConfirmationTransferBalance(row)">
                             <i class="bi bi-currency-exchange"></i>
-                            <span style="margin-left: 10px" (click)="showConfirmationTransferBalance(row)">Transferir
+                            <span style="margin-left: 10px">Transferir
                               saldo</span>
                           </a>
-                          <a ngbDropdownItem id="btn-deleteGlobal" *ngIf="row.activationDate == null">
+                          <a ngbDropdownItem id="btn-deleteGlobal" *ngIf="row.activationDate == null"
+                            (click)="showConfirmationTransferBalanceForMembership(row)">
                             <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px"
-                              (click)="showConfirmationTransferBalanceForMembership(row)">Activar membresía del
-                              afiliado</span>
+                            <span style="margin-left: 10px">Activar membresía del
+                              afiliado con saldo disponible</span>
+                          </a>
+                          <a ngbDropdownItem *ngIf="row.activationDate == null"
+                            (click)="createPagaditoTransaction(row)">
+                            <i class="bi bi-credit-card"></i>
+                            <span style="margin-left: 10px">Activar membresía
+                              del
+                              afiliado con tarjeta</span>
                           </a>
                           <!-- <a ngbDropdownItem id="btn-purchase"
                             *ngIf="withdrawalConfiguration.activate_invoice_cancellation">

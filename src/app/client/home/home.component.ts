@@ -5,7 +5,7 @@ import { Component, ViewChild } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
-import am5themes_Animated from '@amcharts/amcharts4/themes/Animated';
+import am5themes_Animated from '@amcharts/amcharts4/themes/animated';
 import { Subject, takeUntil } from 'rxjs';
 import { ChartComponent } from 'ng-apexcharts';
 
@@ -417,7 +417,6 @@ export class HomeComponent {
   getBalanceInformationModel1A(id: number) {
     this.walletModel1AService.getBalanceInformationByAffiliateId(id).subscribe({
       next: (value: BalanceInformationModel1A) => {
-        console.log(value);
         this.balanceInformationModel1A = value;
         this.initChartModel1A();
       },
@@ -430,7 +429,6 @@ export class HomeComponent {
   getBalanceInformationModel1B(id: number) {
     this.walletModel1BService.getBalanceInformationByAffiliateId(id).subscribe({
       next: (value: BalanceInformationModel1B) => {
-        console.log(value);
         this.balanceInformationModel1B = value;
         this.initChartModel1B();
       },

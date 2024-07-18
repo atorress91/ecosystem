@@ -13,7 +13,7 @@
       <span aria-hidden="true"><i class="material-icons">close</i></span>
     </button>
   </div>
-  <form class="register-form" [formGroup]="createTicketForm" [autocomplete]="off" (ngSubmit)="createTicket()">
+  <form class="register-form" [formGroup]="createTicketForm" (ngSubmit)="createTicket()">
     <div class="modal-body">
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
@@ -38,7 +38,7 @@
               <select id="category_ticket" class="form-control" formControlName="category">
                 <option value="">Seleccione una opción</option>
                 <option *ngFor="let item of categories" [value]="item.id">
-                  {{item.categoryName}}
+                  {{ item.categoryName }}
                 </option>
               </select>
             </div>
@@ -48,13 +48,30 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-1">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+          <div class="form-group">
+            <div class="form-line"
+              [ngClass]="{'error': createTicketForm.get('description').invalid && (createTicketForm.get('description').touched || submitted)}">
+              <label for="description">Explicación</label>
+              <textarea type="text" id="description" class="form-control custom-control" placeholder="Explicación"
+                formControlName="description"></textarea>
+            </div>
+            <div
+              *ngIf="createTicketForm.get('description').invalid && (createTicketForm.get('description').touched || submitted)">
+              <small class="text-danger" *ngIf="createTicketForm.get('description').errors?.required">La descripción es
+                requerida.</small>
+              <small class="text-danger" *ngIf="createTicketForm.get('description').errors?.maxlength">La descripción no
+                puede exceder los 255 caracteres.</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
           <div class="form-group">
             <label for="ticket_image">
-              Imagen
+              Agregar Imagen
               <span class="text-danger">*</span>
             </label>
-            <ngx-dropzone (change)="onFileSelected($event)" [accept]="'image/*'" [multiple]="false">
+            <ngx-dropzone (change)="onFileSelected($event)" [accept]="'image/*'" [multiple]="true">
               <ngx-dropzone-label>Drop it!</ngx-dropzone-label>
               <ngx-dropzone-preview *ngFor="let f of files let i = index;" [removable]="true" (removed)="deleteFile(i)">
                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
@@ -66,7 +83,7 @@
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary">
-        Crear
+        Enviar
       </button>
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">
         Descartar

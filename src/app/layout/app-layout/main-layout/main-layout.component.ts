@@ -7,6 +7,7 @@ import { TermsConditionsService } from '@app/core/service/terms-conditions-servi
 import Swal from 'sweetalert2';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
 import { ToastrService } from 'ngx-toastr';
+import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
 
 
 @Component({
@@ -22,7 +23,9 @@ export class MainLayoutComponent implements OnInit {
     private authService: AuthService,
     private membershipManagerService: MembershipManagerService,
     private affiliateService: AffiliateService,
-    private toast: ToastrService) { }
+    private toast: ToastrService,
+    private ticketHubService: TicketHubService,
+  ) { }
 
   ngOnInit() {
     this.user = this.authService.currentUserAffiliateValue;
@@ -32,9 +35,9 @@ export class MainLayoutComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    if (!this.user.termsConditions) {
-      this.showTermsConditionsModal();
-    }
+    // if (!this.user.termsConditions) {
+    //   this.showTermsConditionsModal();
+    // }
 
     if (this.user.activation_date == null) {
       this.showMembershipManager();
@@ -64,11 +67,11 @@ export class MainLayoutComponent implements OnInit {
   // showAlert() {
   //   Swal.fire({
   //     icon: "info",
-  //     title: 'Celebración Especial de Ecosystem',
+  //     title: 'Habilitación de Retiros de Saldo disponible a su billetera',
   //     html: `
   //           <p>Querida familia de Ecosystem,</p>
-  //           <p>En este día tan especial, queremos celebrar la maravilla de conectar, compartir y crecer juntos. Que este día sea un recordatorio de que la verdadera riqueza se encuentra en los lazos que tejemos.</p>
-  //           <p>Brindemos por el amor, la amistad y el éxito compartido!</p>
+  //           <p>Nos complace anunciar que el próximo martes, 23 de abril, estaremos habilitando los retiros de saldo. Esta es una oportunidad para que todos nuestros miembros puedan gestionar sus recursos de manera más efectiva dentro de nuestra plataforma.</p>
+  //           <p>¡Agradecemos su paciencia y confianza en nosotros! Prepárense para realizar sus retiros.</p>
   //       `,
   //     confirmButtonText: 'OK',
   //     confirmButtonColor: '#3085d6',
@@ -79,6 +82,7 @@ export class MainLayoutComponent implements OnInit {
   //     }
   //   });
   // }
+
 
   showSuccess(message: string) {
     this.toast.success(message);

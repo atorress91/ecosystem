@@ -91,7 +91,7 @@
   },
   "MENUITEMS": {
     "TOOLS": {
-      "TEXT": "Tools"
+      "TEXT": "Customer service"
     },
     "USER": {
       "POST": "DEVELOPER"
@@ -700,18 +700,18 @@
   },
   "SAVINGS-PLANS-PAGE": {
     "TITLE": {
-      "TEXT": "Model (1A)"
+      "TEXT": "Model 1"
     },
     "SUBTITLE": {
-      "TEXT": "Model (1A)"
+      "TEXT": "Model 1"
     }
   },
   "SAVINGS-PLANS-ONEB-PAGE": {
     "TITLE": {
-      "TEXT": "Model (1B)"
+      "TEXT": "Model R"
     },
     "SUBTITLE": {
-      "TEXT": "Model (1B) "
+      "TEXT": "Model R"
     }
   },
   "CART-PAGE": {

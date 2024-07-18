@@ -1,61 +1,128 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+import { DatatableComponent, SelectionType } from '@swimlane/ngx-datatable';
 
-import { ChatBotService } from '@app/core/service/chat-service/chat-bot.service';
+import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
+import { CreateTicketModalComponent } from './create-ticket-modal/create-ticket-modal.component';
+import { TicketHubService } from '@app/core/service/ticket-service/ticket-hub.service';
 import { AuthService } from '@app/core/service/authentication-service/auth.service';
 import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import { TicketService } from '@app/core/service/ticket-service/ticket.service';
-import { Tick } from '@amcharts/amcharts4/.internal/charts/elements/Tick';
 import { Ticket } from '@app/core/models/ticket-model/ticket.model';
-import { TicketCategories } from '@app/core/models/ticket-categories-model/ticket-categories.model';
-import { TicketCategoriesService } from '@app/core/service/ticket-categories-service/ticket-categories.service';
+
+
 
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html'
 })
-export class TicketsComponent implements OnInit {
+export class TicketsComponent implements OnInit, AfterViewInit, OnDestroy {
   user: UserAffiliate = new UserAffiliate();
   public messages: Array<any> = [];
-  currentTime: Date = new Date();
-  tickets = [];
+  tickets: Ticket[] = [];
   categories = [];
+  selectedTicket: any = {};
+  @ViewChild(CreateTicketModalComponent) private createTicketModal: CreateTicketModalComponent;
   @ViewChild('messageInput') messageInputRef: ElementRef;
+  selectedTickets: Ticket[] = [];
+  loadingIndicator = true;
+  reorderable = true;
+  scrollBarHorizontal = window.innerWidth < 1200;
+  SelectionType = SelectionType;
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
-    private chatBotService: ChatBotService,
     private authService: AuthService,
-    private ticketService: TicketService,
-    private ticketCategoryService: TicketCategoriesService
-  ) { }
+    private ticketHubService: TicketHubService,
+    private ticketCategoryService: TicketCategoriesService,
+    private router: Router,
+    private modalService: NgbModal,
+    private toast: ToastrService
+  ) {
+  }
 
-  ngOnInit() {
+  async ngOnInit() {
+    try {
+      await this.ticketHubService.startConnection();
+    } catch (error) {
+      console.error('Error starting connection:', error);
+    }
     this.user = this.authService.currentUserAffiliateValue;
-    this.loadTickets();
+    this.initSignalRConnection();
     this.loadTicketCategories();
   }
 
-  loadTickets() {
-    this.ticketService.getAllTicketsByAffiliateId(this.user.id).subscribe({
-      next: (value) => {
-        this.tickets = value;
-        console.log(this.tickets);
+  ngAfterViewInit(): void {
+    this.createTicketModal.reloadRequested.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.loadAllTickets();
+    });
+    this.showOnboardingTour().then();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+    this.ticketHubService.stopConnection();
+  }
+
+  showSuccess(message: string) {
+    this.toast.success(message);
+  }
+
+  showError(message: string) {
+    this.toast.error(message);
+  }
+
+  initSignalRConnection() {
+    this.ticketHubService.connectionEstablished.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe((isConnected) => {
+      if (isConnected) {
+        this.loadAllTickets();
+      } else {
+        console.error('Failed to establish connection');
+      }
+    });
+  }
+
+  loadAllTickets() {
+    this.ticketHubService.getAllTicketsByAffiliateId(this.user.id).pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe({
+      next: (tickets) => {
+
+        this.tickets = tickets;
+        this.loadingIndicator = false;
       },
-      error: (err) => {
-        console.log(err);
-      },
-    })
+      error: () => {
+        this.showError('Error al cargar tickets.');
+      }
+    });
   }
 
   loadTicketCategories() {
-    this.ticketCategoryService.getAll().subscribe({
+    this.ticketCategoryService.getAll().pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe({
       next: (value) => {
         this.categories = value;
-        console.log(this.categories);
       },
-      error: (err) => {
-        console.log(err);
+      error: () => {
+         this.showError('Error al cargar las categorías.');
       },
-    })
+    });
+  }
+
+  openCreateTicketModal() {
+    this.createTicketModal.openModal();
   }
 
   getCategoryName(categoryId: number): string {
@@ -63,18 +130,107 @@ export class TicketsComponent implements OnInit {
     return category ? category.categoryName : 'Categoría no encontrada';
   }
 
-  updateCurrentTime(): void {
-    this.currentTime = new Date();
+  openTicketDetails(ticket: Ticket) {
+    this.ticketHubService.setTicket(ticket.id);
+    this.router.navigate(['app/tickets/message']).then();
   }
 
-  sendMessage(messageContent: string): void {
-    this.updateCurrentTime();
-    this.messages.push({ content: messageContent, isUser: true, time: this.currentTime });
+  openModal(content: any, ticket: Ticket) {
+    this.selectedTicket.images = ticket.images || [];
 
-    this.chatBotService.getDataFromOpenAI(messageContent).subscribe(response => {
-      this.updateCurrentTime();
-      this.messages.push({ content: response, isUser: false, time: this.currentTime });
+    this.modalService.open(content, { size: 'lg', centered: true }).result.then(() => {
     });
-    this.messageInputRef.nativeElement.value = '';
+  }
+
+  onSelectTicket(ticket: Ticket, selected: boolean) {
+    if (selected) {
+      this.selectedTickets.push(ticket);
+    } else {
+      const index = this.selectedTickets.findIndex(t => t.id === ticket.id);
+      if (index !== -1) {
+        this.selectedTickets.splice(index, 1);
+      }
+    }
+  }
+
+  isTicketSelected(ticket: Ticket): boolean {
+    return this.selectedTickets.some(t => t.id === ticket.id);
+  }
+
+  onDeleteTickets(): void {
+    if (this.selectedTickets.length > 0 && this.ticketHubService.connectionEstablished) {
+      const idsToDelete = this.selectedTickets.map(ticket => ticket.id);
+
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Los tickets seleccionados serán eliminados.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.ticketHubService.deleteTickets(idsToDelete).then(() => {
+            this.tickets = this.tickets.filter(ticket => !idsToDelete.includes(ticket.id));
+            this.selectedTickets = [];
+            this.showSuccess('Tickets eliminados exitosamente');
+          }).catch(() => {
+            this.showError('Error eliminando tickets');
+          });
+        }
+      });
+    } else {
+      this.showError('No ha seleccionado tickets.');
+    }
+  }
+
+  async showOnboardingTour(): Promise<void> {
+    const steps = [
+      {
+        title: 'Bienvenido al sistema de tickets',
+        text: 'Este tour te guiará a través de las principales características del sistema de tickets.',
+        confirmButtonText: 'Siguiente &rarr;',
+      },
+      {
+        title: 'Crear Ticket',
+        text: 'Para registrar un nuevo ticket, haz clic en el botón "Crear Ticket."',
+        confirmButtonText: 'Siguiente &rarr;',
+      },
+      {
+        title: 'Gestión de Tickets',
+        text: 'Después de crear un ticket, podrás verlo listado en esta sección.',
+        confirmButtonText: 'Siguiente &rarr;',
+      },
+      {
+        title: 'Iniciar un chat',
+        text: 'Para iniciar un chat, haz clic en el ticket deseado o sobre el mensaje. Esto abrirá una nueva vista donde podrás enviar y recibir mensajes relacionados con el ticket.',
+        confirmButtonText: 'Finalizar',
+      }
+    ];
+
+
+    for (const step of steps) {
+      await Swal.fire({
+        ...step,
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true,
+      });
+    }
+
+    await Swal.fire({
+      title: 'Tour completado!',
+      text: 'Ahora estás más familiarizado con el sistema.',
+      icon: 'success',
+      confirmButtonText: '¡Listo!'
+    });
+  }
+
+  onActivateEvent(event: any) {
+    if (event.type === 'click' && event.event.target.type !== 'checkbox') {
+      this.openTicketDetails(event.row);
+    }
   }
 }

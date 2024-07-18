@@ -116,7 +116,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, MaintenanceGuard],
   },
   {
-    path: 'tickets/:id',
+    path: 'tickets/message',
     component: TicketViewComponent,
     canActivate: [AuthGuard, MaintenanceGuard],
   },

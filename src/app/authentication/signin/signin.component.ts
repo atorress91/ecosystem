@@ -10,11 +10,12 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Signin } from '@app/core/models/signin-model/signin.model';
 import { LogoService } from '@app/core/service/logo-service/logo.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
   submitted = false;
@@ -30,7 +31,8 @@ export class SigninComponent implements OnInit {
   signin: string = 'Iniciar sesión';
   passwordIsRequerid = 'La contraseña es requerida.';
   userNameIsRequerid = 'El usuario es requerido.';
-  passwordErrorMessage = 'La contraseña debe tener al menos 6 y un máximo de 15 caracteres';
+  passwordErrorMessage =
+    'La contraseña debe tener al menos 6 y un máximo de 15 caracteres';
   userNameErrorMessage = 'El nombre de usuario no es válido';
 
   constructor(
@@ -38,14 +40,18 @@ export class SigninComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
     private logoService: LogoService,
-    private translate: TranslateService) {
-  }
+    private translate: TranslateService,
+    private deviceService: DeviceDetectorService
+  ) {}
 
   ngOnInit() {
     this.getTheme();
     this.authService.logoutUser();
-    particlesJS.load('particles-js', 'assets/particles/particles.json', function () {
-    });
+    particlesJS.load(
+      'particles-js',
+      'assets/particles/particles.json',
+      function () {}
+    );
     this.setLabels();
     this.setErrorMessages();
   }
@@ -72,10 +78,18 @@ export class SigninComponent implements OnInit {
 
   setErrorMessages() {
     if (this.translate.currentLang != undefined) {
-      this.passwordIsRequerid = this.translate.instant('SIGNIN.PASS-IS-REQUIRED.TEXT');
-      this.userNameIsRequerid = this.translate.instant('SIGNIN.USER-NAME-IS-REQUIRED.TEXT');
-      this.passwordErrorMessage = this.translate.instant('SIGNIN.PASS-MESSAGE-ERROR.TEXT');
-      this.userNameErrorMessage = this.translate.instant('SIGNIN.USER-NAME-MESSAGE-ERROR.TEXT');
+      this.passwordIsRequerid = this.translate.instant(
+        'SIGNIN.PASS-IS-REQUIRED.TEXT'
+      );
+      this.userNameIsRequerid = this.translate.instant(
+        'SIGNIN.USER-NAME-IS-REQUIRED.TEXT'
+      );
+      this.passwordErrorMessage = this.translate.instant(
+        'SIGNIN.PASS-MESSAGE-ERROR.TEXT'
+      );
+      this.userNameErrorMessage = this.translate.instant(
+        'SIGNIN.USER-NAME-MESSAGE-ERROR.TEXT'
+      );
     }
   }
 
@@ -85,24 +99,32 @@ export class SigninComponent implements OnInit {
     this.error = '';
     signin.userName = this.authLogin.value.email;
     signin.password = this.authLogin.value.pwd;
-
-    if(signin.userName === '' || signin.password === ''){
-      return;
-    }
-    this.loading = true;
-    this.authService.loginUser(signin).subscribe((response: Response) => {
-      if (response.success) {
-        if (response.data.is_affiliate) {
-          this.router.navigate(['/app/home']);
-        } else {
-          this.router.navigate(['admin/home-admin']);
-        }
-      } else {
-        this.showError(response.message);
+  
+    signin.browserInfo = this.deviceService.getDeviceInfo().browser;
+    signin.operatingSystem = this.deviceService.getDeviceInfo().os;
+  
+    this.authService.fetchIpAddress().subscribe((ip) => {
+      signin.ipAddress = ip;
+      console.log(signin);
+  
+      if (signin.userName === '' || signin.password === '') {
+        return;
       }
-      this.loading = false;
+      this.loading = true;
+  
+      this.authService.loginUser(signin).subscribe((response: Response) => {
+        if (response.success) {
+          if (response.data.is_affiliate) {
+            this.router.navigate(['/app/home']);
+          } else {
+            this.router.navigate(['admin/home-admin']);
+          }
+        } else {
+          this.showError(response.message);
+        }
+        this.loading = false;
+      });
     });
-
   }
 
   showSuccess(message) {

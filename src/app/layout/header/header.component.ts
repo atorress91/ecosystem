@@ -1,6 +1,6 @@
-import { RightSidebarService } from 'src/app/core/service/rightsidebar-service/rightsidebar.service';
-import { AuthService } from 'src/app/core/service/authentication-service/auth.service';
-import { DOCUMENT } from '@angular/common';
+import {RightSidebarService} from 'src/app/core/service/rightsidebar-service/rightsidebar.service';
+import {AuthService} from 'src/app/core/service/authentication-service/auth.service';
+import {DOCUMENT} from '@angular/common';
 import {
   Component,
   Inject,
@@ -9,15 +9,17 @@ import {
   Renderer2,
   AfterViewInit, OnDestroy,
 } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfigService } from 'src/app/config/config.service';
-import { LanguageService } from 'src/app/core/service/language-service/language.service';
+import {Router} from '@angular/router';
+import {ConfigService} from 'src/app/config/config.service';
+import {LanguageService} from 'src/app/core/service/language-service/language.service';
+import {map, Observable, Subscription} from 'rxjs';
 
-import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
-import { Subscription } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
-import { ConfigureWalletService } from '@app/core/service/configure-wallet-service/configure-wallet.service';
-import { CartService } from '@app/core/service/cart.service/cart.service';
+import {UserAffiliate} from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import {ConfigureWalletService} from '@app/core/service/configure-wallet-service/configure-wallet.service';
+import {CartService} from '@app/core/service/cart.service/cart.service';
+import {TicketHubService} from '@app/core/service/ticket-service/ticket-hub.service';
+import {TicketSummary} from '@app/core/models/ticket-model/ticket-summary.model';
+
 const document: any = window.document;
 
 @Component({
@@ -36,6 +38,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   defaultFlag: string;
   isOpenSidebar: boolean;
   totalItem: number = 0;
+  ticketSummaries$: Observable<TicketSummary[]>;
+  public unreadCount$: Observable<number>;
+
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -46,15 +51,26 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     public languageService: LanguageService,
-    private toastr: ToastrService,
     private configureWalletService: ConfigureWalletService,
-    private cartService: CartService
+    private cartService: CartService,
+    private ticketHubService: TicketHubService,
   ) {
+    this.ticketHubService.connectionEstablished.subscribe((isConnected) => {
+      if (isConnected) {
+        this.ticketSummaries$ = this.ticketHubService.ticketSummaries.asObservable();
+        this.unreadCount$ = this.ticketSummaries$.pipe(
+          map(summaries => summaries.reduce((acc, summary) => acc + summary.unreadMessagesCount, 0))
+        );
+        this.onLoadTickets(this.authService.currentUserAffiliateValue.id);
+      } else {
+        console.error('Waiting for connection to be established...');
+      }
+    });
   }
 
   listLang = [
-    { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
-    { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' },
+    {text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en'},
+    {text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es'},
   ];
 
   ngOnInit() {
@@ -146,6 +162,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
   }
+
   public toggleRightSidebar(): void {
     this.rightSidebarService.sidebarState.subscribe((isRunning) => {
       this.isOpenSidebar = isRunning;
@@ -155,16 +172,37 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       (this.isOpenSidebar = !this.isOpenSidebar)
     );
   }
+
   logout() {
     this.authService.logoutUser().subscribe((res) => {
       if (!res.success) {
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/signin']).then();
       }
     });
   }
 
   openConfigureWalletModal() {
     this.configureWalletService.openConfigureWalletModal();
+  }
+
+  onTicketClick(ticketId: number) {
+    this.ticketHubService.connectionEstablished.subscribe({
+      next: (e) => {
+        this.ticketHubService.markTicketMessagesAsRead(ticketId)
+          .then(() => {
+            this.ticketHubService.setTicket(ticketId);
+            this.router.navigate(['app/tickets/message']).then();
+          })
+          .catch(error => console.error('Error al marcar mensajes:', error));
+      },error:()=>{
+
+      }
+    })
+  }
+
+  onLoadTickets(affiliateId: number) {
+    this.ticketHubService.getTicketSummariesByAffiliateId(affiliateId)
+      .catch(error => console.error('Error al cargar tickets:', error));
   }
 }
 

@@ -144,7 +144,6 @@ export class AffiliatesListEditModalComponent implements OnInit {
     this.affiliate.legal_authorized_second = this.editAffiliateForm.value.legal_authorize_second;
     this.affiliateService.updateAffiliate(this.affiliate).subscribe((response: UserAffiliate) => {
       if (response !== null) {
-        console.log(response)
         this.showSuccess('The credentials is valid!');
         this.setValues(response);
       }

@@ -232,11 +232,9 @@ export class CartComponent implements OnInit, OnDestroy {
   handleServiceBalancePayment() {
     switch (this.model) {
       case '1A':
-        console.log('Entrando al 1a');
         this.payWithMyServiceBalanceModel1A();
         break;
       case '1B':
-        console.log('Entrando al 1b');
         this.payWithMyServiceBalanceModel1B();
         break;
       default:
@@ -414,7 +412,6 @@ export class CartComponent implements OnInit, OnDestroy {
     this.configurationService.getWithdrawalsWalletConfiguration().subscribe({
       next: (value) => {
         this.withdrawalConfiguration.activate_invoice_cancellation = value.activate_invoice_cancellation;
-        console.log('Configuración de retiros:', this.withdrawalConfiguration);
       },
       error: (err) => {
         this.showError('Error');
@@ -589,23 +586,25 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   createPagaditoTransaction() {
-    this.pagaditoRequest.amount = this.total;
+    let totalExclusiveOfTax = (this.total * 1.10).toFixed(2);
+    this.pagaditoRequest.amount = parseFloat(totalExclusiveOfTax);
     this.pagaditoRequest.affiliate_id = this.user.id;
 
     this.products.forEach(item => {
+
       let detail = new PagaditoTransactionDetailRequest();
-      detail.quantity = item.quantity.toString();
+      detail.quantity = item.quantity;
       detail.description = item.name;
-      detail.price = item.salePrice.toString();
+      let individualPriceExclusiveOfTax = (item.salePrice * 1.10).toFixed(2);
+      detail.price = parseFloat(individualPriceExclusiveOfTax);
       detail.url_product = item.id.toString();
 
       this.pagaditoRequest.details.push(detail);
     });
-    console.log(this.pagaditoRequest);
 
     Swal.fire({
       title: 'Confirmación de pago',
-      text: 'Una vez realizado el pago la transacción no será reembolsable. ¿Desea continuar?',
+      text: 'Se aplicará una comisión por uso de tarjeta. Una vez realizado el pago, la transacción no será reembolsable. ¿Desea continuar?',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',

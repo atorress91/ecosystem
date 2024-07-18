@@ -55,83 +55,45 @@
     </li>
 
     <li ngbDropdown class="dropdown dropdown-list-toggle">
-      <a
-        ngbDropdownToggle
-        data-toggle="dropdown"
-        class="nav-link nav-link-lg message-toggle remove-caret"
-      >
+      <a ngbDropdownToggle data-toggle="dropdown" class="nav-link nav-link-lg message-toggle remove-caret">
         <i-feather name="bell" class="bell collapse-btn"></i-feather>
+
+        <span *ngIf="(unreadCount$ | async) as unreadCount" class="badge badge-danger"
+              [class.d-none]="unreadCount === 0">
+          {{ unreadCount }}
+        </span>
       </a>
-      <div
-        ngbDropdownMenu
-        class="dropdown-menu dropdown-menu-right dropdown-list header-dropdown pullDown"
-      >
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right dropdown-list header-dropdown pullDown">
         <div class="dropdown-header">
           Messages
-          <div class="float-end">
-            <a href="#" onClick="return false;">Mark All As Read</a>
+        </div>
+        <div class="dropdown-list-content dropdown-list-icons"
+             style="position: relative; max-width: 600px; max-height: 250px" [perfectScrollbar]>
+          <ng-container *ngIf="ticketSummaries$ | async as ticketSummaries">
+            <a *ngFor="let summary of ticketSummaries" href="#"
+               (click)="$event.preventDefault(); onTicketClick(summary.ticketId)" class="dropdown-item"
+               [ngClass]="{'dropdown-item-unread': !summary.isRead}">
+              <span class="dropdown-item-icon l-bg-orange text-white">
+                <i class="far fa-envelope"></i>
+
+                <span class="badge badge-info">{{ summary.unreadMessagesCount }}</span>
+              </span>
+              <span class="dropdown-item-desc">
+                {{ summary.title }}
+                <span class="time">{{ summary.lastUpdated | date:'short' }}</span>
+              </span>
+            </a>
+          </ng-container>
+          <div *ngIf="(ticketSummaries$ | async)?.length === 0" class="text-center p-3">
+            <span>No unread messages</span>
           </div>
         </div>
-        <div
-          class="dropdown-list-content dropdown-list-icons"
-          style="position: relative; max-width: 600px; max-height: 250px"
-          [perfectScrollbar]
-        >
-          <a
-            href="#"
-            onClick="return false;"
-            class="dropdown-item dropdown-item-unread"
-          >
-            <span class="dropdown-item-icon l-bg-orange text-white">
-              <i class="far fa-envelope"></i>
-            </span>
-            <span class="dropdown-item-desc">
-              You got new mail, please check.
-              <span class="time">2 Min Ago</span>
-            </span>
-          </a>
-          <a href="#" onClick="return false;" class="dropdown-item">
-            <span class="dropdown-item-icon l-bg-purple text-white">
-              <i class="fas fa-bell"></i>
-            </span>
-            <span class="dropdown-item-desc">
-              Meeting with <b>John Deo</b> and <b>Sarah Smith </b> at 10:30 am
-              <span class="time">10 Hours Ago</span>
-            </span>
-          </a>
-          <a href="#" onClick="return false;" class="dropdown-item">
-            <span class="dropdown-item-icon l-bg-green text-white">
-              <i class="far fa-check-circle"></i>
-            </span>
-            <span class="dropdown-item-desc">
-              Sidebar Bug is fixed by Kevin
-              <span class="time">12 Hours Ago</span>
-            </span>
-          </a>
-          <a href="#" onClick="return false;" class="dropdown-item">
-            <span class="dropdown-item-icon bg-danger text-white">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
-            <span class="dropdown-item-desc">
-              Low disk space error!!!. <span class="time">17 Hours Ago</span>
-            </span>
-          </a>
-          <a href="#" onClick="return false;" class="dropdown-item">
-            <span class="dropdown-item-icon bg-info text-white">
-              <i class="fas fa-bell"></i>
-            </span>
-            <span class="dropdown-item-desc">
-              Welcome to Oreva template! <span class="time">Yesterday</span>
-            </span>
-          </a>
-        </div>
-        <div class="dropdown-footer text-center">
-          <a href="#" onClick="return false;"
-            >View All <i class="fas fa-chevron-right"></i
-          ></a>
-        </div>
+<!--        <div class="dropdown-footer text-center">-->
+<!--          <a href="#" (click)="$event.preventDefault();">View All <i class="fas fa-chevron-right"></i></a>-->
+<!--        </div>-->
       </div>
     </li>
+
     <li ngbDropdown>
       <a
         ngbDropdownToggle
@@ -140,10 +102,10 @@
       >
         <img
           alt="image"
-          src="assets/images/user.png"
-          class="user-img-radious-style collapse-btn" />
+          [src]="user.image_profile_url ? user.image_profile_url : 'assets/images/user.png'"
+          class="user-img-radious-style collapse-btn"/>
         <span class="d-sm-none d-lg-inline-block"></span
-      ></a>
+        ></a>
       <div
         ngbDropdownMenu
         class="dropdown-menu dropdown-menu-right header-dropdown pullDown"

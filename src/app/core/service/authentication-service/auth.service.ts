@@ -10,11 +10,14 @@ import { environment } from '@environments/environment';
 import { Response } from '@app/core/models/response-model/response.model';
 import { ToastrService } from 'ngx-toastr';
 
+
 import { CartService } from '../cart.service/cart.service';
 
 const httpOptions = {
-
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.accountService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: environment.tokens.accountService.toString(),
+  }),
 };
 @Injectable({
   providedIn: 'root',
@@ -27,7 +30,12 @@ export class AuthService {
   public currentUserAdmin: Observable<User>;
   private urlApi: string;
 
-  constructor(private http: HttpClient, private toastr: ToastrService, private cartService: CartService) {
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private cartService: CartService,
+
+  ) {
     this.currentUserAffiliateSubject = new BehaviorSubject<UserAffiliate>(
       JSON.parse(localStorage.getItem('currentUserAffiliate'))
     );
@@ -42,7 +50,6 @@ export class AuthService {
   public get currentUserAffiliateValue(): UserAffiliate {
     return this.currentUserAffiliateSubject.value;
   }
-
 
   public get currentUserAdminValue(): User {
     return this.currentUserAdminSubject.value;
@@ -78,7 +85,9 @@ export class AuthService {
     console.log(httpOptions);
     return this.http
       .put(
-        this.urlApi.concat('/useraffiliateinfo/email_confirmation/', userName), {}, httpOptions
+        this.urlApi.concat('/useraffiliateinfo/email_confirmation/', userName),
+        {},
+        httpOptions
       )
       .pipe(
         map((data) => {
@@ -107,8 +116,28 @@ export class AuthService {
     this.currentUserAffiliateSubject.next(user);
   }
 
-  private setUserAdminValue(user: User) {
+  public setUserAdminValue(user: User) {
     localStorage.setItem('currentUserAdmin', JSON.stringify(user));
     this.currentUserAdminSubject.next(user);
+  }
+
+  getLoginMovementsByAffiliatedId(affiliateId: number) {
+    return this.http
+      .get<Response>(
+        `${this.urlApi}/auth/login_movements/${affiliateId}`,
+        httpOptions
+      )
+      .pipe(
+        map((response) => {
+
+          return response.data;
+        })
+      );
+  }
+
+  fetchIpAddress(): Observable<string> {
+    return this.http
+      .get<{ ip: string }>('https://api.ipify.org?format=json')
+      .pipe(map((data) => data.ip));
   }
 }

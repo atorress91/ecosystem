@@ -12,6 +12,8 @@ import { CoinpaymentService } from '@app/core/service/coinpayment-service/coinpa
 import { ConfigurationService } from '@app/core/service/configuration-service/configuration.service';
 import { WalletRequestService } from '@app/core/service/wallet-request/wallet-request.service';
 import { CoinPaymentWithdrawalResponse } from '@app/core/models/coinpayment-model/coinpayment-withdrawal-response.model'
+import { CoinpayService } from '@app/core/service/coinpay-service/coinpay.service';
+import { CoinPayWithdrawal } from '@app/core/models/coinpay-model/coinpay-withdrawal.model';
 
 @Component({
   selector: 'app-wallet-removal',
@@ -21,7 +23,7 @@ export class WalletRemovalComponent implements OnInit {
   rows = [];
   temp = [];
   proccessOptionValue: number = 0;
-  selectedRows: WalletRequestRequest[] = [];
+  selectedRows: any[] = [];
   selectAll: boolean;
   loadingIndicator = true;
   reorderable = true;
@@ -33,7 +35,8 @@ export class WalletRemovalComponent implements OnInit {
     private walletRequestService: WalletRequestService,
     private toastr: ToastrService,
     private configurationService: ConfigurationService,
-    private coinPaymentService: CoinpaymentService
+    private coinPaymentService: CoinpaymentService,
+    private coinpayService: CoinpayService
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +56,7 @@ export class WalletRemovalComponent implements OnInit {
       walletConfig: this.configurationService.getWithdrawalsWalletConfiguration()
     }).subscribe({
       next: ({ walletRequests, walletConfig }) => {
+
         this.walletWithdrawalConfig = walletConfig;
         this.updateTable(walletRequests);
       },
@@ -272,8 +276,47 @@ export class WalletRemovalComponent implements OnInit {
     });
   }
 
-  handleCoinPayCr(rows: WalletRequestRequest[]) {
+  handleCoinPayCr(rows: any[]) {
+    const filteredRows: CoinPayWithdrawal[] = rows.map(row => {
+      const coinPayWithdrawal = new CoinPayWithdrawal();
+      coinPayWithdrawal.id = row.id;
+      coinPayWithdrawal.affiliateId = row.affiliateId;
+      coinPayWithdrawal.amount = row.amount;
+      return coinPayWithdrawal;
+    });
 
+    this.coinpayService.sendFunds(filteredRows).subscribe({
+      next: (response) => {
+        if (response.success) {
+
+          let detailsHtml = '<ul>';
+          response.data.successfulResponses.forEach(sr => {
+            detailsHtml += `<li>Exitosos: Transaction ID ${sr.transactionId} - ${sr.message}</li>`;
+          });
+          response.data.failedResponses.forEach(fr => {
+            detailsHtml += `<li>Fallidos: ${fr.message}</li>`;
+          });
+          detailsHtml += '</ul>';
+
+          Swal.fire({
+            title: 'Resultados del retiro',
+            icon: 'info',
+            html: detailsHtml,
+            confirmButtonText: 'Close'
+          });
+        }
+      },
+      error: (err) => {
+
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to process the request.',
+          icon: 'error',
+          confirmButtonText: 'Close'
+        });
+        console.error('Error occurred:', err);
+      },
+    });
   }
 
   handlePayItAll(rows: WalletRequestRequest[]) {
@@ -290,20 +333,31 @@ export class WalletRemovalComponent implements OnInit {
   }
 
   confirmOption() {
-    Swal.fire({
-      title: 'Está seguro de realizar la operación!',
-      text: 'Una vez realizada no se puede revertir',
-      showCancelButton: true,
-      icon: 'warning',
-      confirmButtonColor: '#8963ff',
-      cancelButtonColor: '#fb7823',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Sí, estoy seguro.',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.onProccessOption();
-      }
-    });
+    if (this.selectedRows.length === 0 || this.proccessOptionValue === 0) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Debe seleccionar una opción y un retiro antes de continuar.',
+        icon: 'error',
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'OK'
+      });
+    } else {
+
+      Swal.fire({
+        title: 'Está seguro de realizar la operación!',
+        text: 'Una vez realizada no se puede revertir',
+        showCancelButton: true,
+        icon: 'warning',
+        confirmButtonColor: '#8963ff',
+        cancelButtonColor: '#fb7823',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Sí, estoy seguro.'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.onProccessOption();
+        }
+      });
+    }
   }
 
   resetWalletRequest() {
