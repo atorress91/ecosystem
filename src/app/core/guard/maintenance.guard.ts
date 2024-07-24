@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { environment } from '@environments/environment';
-import { MaintenanceService } from '../service/maintenance-service/maintenance.service';
 import { Observable, map } from 'rxjs';
+import { ConfigurationService } from '../service/configuration-service/configuration.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +9,14 @@ import { Observable, map } from 'rxjs';
 export class MaintenanceGuard implements CanActivate {
   isUnderMaintenance: boolean = false;
 
-  constructor(private router: Router, private maintenanceService: MaintenanceService) {
-    this.maintenanceService.checkMaintenance().subscribe((maintenance) => {
+  constructor(private router: Router, private configurationService: ConfigurationService) {
+    this.configurationService.checkMaintenance().subscribe((maintenance) => {
       this.isUnderMaintenance = maintenance;
     });
   }
 
   canActivate(): Observable<boolean> {
-    return this.maintenanceService.checkMaintenance().pipe(
+    return this.configurationService.checkMaintenance().pipe(
       map((isUnderMaintenance) => {
         if (isUnderMaintenance) {
           this.router.navigate(['/maintenance']);

@@ -20,16 +20,4 @@ export class MaintenanceService {
   constructor(private router: Router, private http: HttpClient) {
     this.urlApi = environment.apis.systemConfigurationService;
   }
-
-  checkMaintenance(): Observable<boolean> {
-    return this.http.get<Response>(this.urlApi.concat('/configuration/is_under_maintenance'), httpOptions).pipe(
-      map((response) => {
-        if (response.success) return response.data;
-        else {
-          console.error('ERROR: ' + response);
-          return null;
-        }
-      })
-    );
-  }
 }

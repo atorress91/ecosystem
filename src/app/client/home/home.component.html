@@ -9,7 +9,7 @@
   </ul>
   <div class="section-body">
     <div class="row">
-      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+      <div *ngIf="canSeePaymentModels" class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
             <h4>Información Modelo R</h4>
@@ -64,7 +64,8 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+      <div [ngClass]="{'col-xl-4': canSeePaymentModels, 'col-xl-6': !canSeePaymentModels}"
+        class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
             <h4>Información Modelo 1</h4>
@@ -119,8 +120,8 @@
           </div>
         </div>
       </div>
-
-      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+      <div [ngClass]="{'col-xl-4': canSeePaymentModels, 'col-xl-6': !canSeePaymentModels}"
+        class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
             <h4>{{ 'HOME-PAGE-CLIENT.INFORMATION.TEXT' | translate }} Modelo 2</h4>
@@ -241,7 +242,7 @@
                   (click)="shareModalComponent.openShareModal('https://ecosystemfx.net/')"><i
                     class="bi bi-share-fill ms-2"></i>Compartir link</button>
               </p>
-              <p class="clearfix">
+              <!-- <p class="clearfix">
                 <span class="float-start">
                   Presentación Estrategia de Negocio EcosystemFx
                 </span>
@@ -250,7 +251,7 @@
                     href="https://drive.google.com/file/d/1J7y3WjCpk60b5t6VEGUpmz88wCsg21Lw/view?usp=sharing"
                     target="_blank">https://drive.google.com/file/d/1J7y3WjCpk60b5t6VEGUpmz88wCsg21Lw/view?usp=sharing</a>
                 </span>
-              </p>
+              </p> -->
               <p class="clearfix">
                 <span class="float-start">
                   Sitio web
@@ -259,7 +260,7 @@
                   <a rel="noopener" href="https://ecosystemfx.com" target="_blank">https://ecosystemfx.com</a>
                 </span>
               </p>
-              <p class="clearfix">
+              <!-- <p class="clearfix">
                 <span class="float-start">
                   Términos y condiciones
                 </span>
@@ -267,7 +268,7 @@
                   <a rel="noopener" href="https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf"
                     target="_blank">https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf</a>
                 </span>
-              </p>
+              </p> -->
             </div>
           </div>
         </div>

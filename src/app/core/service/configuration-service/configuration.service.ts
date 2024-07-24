@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { environment } from '@environments/environment';
 import { MatrixConfiguration } from '@app/core/models/matrix-configuration-model/matrix.configuration.model';
@@ -10,7 +11,7 @@ import { ProductConfiguration } from '@app/core/models/product-configuration-mod
 import { CompensationPlansConfiguration } from '@app/core/models/compensation-plans-configuration-model/compensation-plans-configuration.model';
 import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
 import { AdditionalParametersConfiguration } from '@app/core/models/additional-parameters-configuration-model/additional-parameters-configuration.model';
-import { HtmlParser } from '@angular/compiler';
+import { GeneralConfiguration } from '@app/core/models/general-configuration/general-configuration.model'
 
 const httpOptions = {
 
@@ -219,5 +220,27 @@ export class ConfigurationService {
           }
         })
       );
+  }
+
+  checkMaintenance(): Observable<boolean> {
+    return this.http.get<Response>(this.urlApi.concat('/configuration/is_under_maintenance'), httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR: ' + response);
+          return null;
+        }
+      })
+    );
+  }
+
+  setGeneralConfiguration(generalConfiguration: GeneralConfiguration) {
+    return this.http.post<Response>(this.urlApi.concat('/configuration/set_general_configuration'), generalConfiguration, httpOptions)
+      .pipe(map(data => data));
+  }
+
+  getGeneralConfiguration() {
+    return this.http.get<Response>(this.urlApi.concat('/configuration/get_general_configuration'), httpOptions)
+      .pipe(map(data => data));
   }
 }
