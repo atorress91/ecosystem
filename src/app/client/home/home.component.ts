@@ -1,3 +1,4 @@
+import { ModelsVisibilityService } from './../../core/service/models-visibility-service/models-visibility.service';
 import { BalanceInformationModel1A } from './../../core/models/wallet-model-1a/balance-information-1a.model';
 import { BalanceInformationModel1B } from './../../core/models/wallet-model-1b/balance-information-1b.model';
 
@@ -43,6 +44,7 @@ export class HomeComponent {
   currentYear: number;
   previousYear: number;
   @ViewChild('chart') chart1: ChartComponent;
+  canSeePaymentModels: boolean = false;
 
   private chart: am4maps.MapChart;
   public pieChartOptions: any;
@@ -55,7 +57,8 @@ export class HomeComponent {
     private toastr: ToastrService,
     private affiliateService: AffiliateService,
     private walletModel1AService: WalletModel1AService,
-    private walletModel1BService: WalletModel1BService
+    private walletModel1BService: WalletModel1BService,
+    private modelsVisibilityService: ModelsVisibilityService
   ) {
     this.pieChartOptions = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
     this.pieChartOptionsModel1A = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
@@ -67,6 +70,15 @@ export class HomeComponent {
   }
 
   OnInitMethod() {
+    this.modelsVisibilityService.canUserSeePaymentModels().subscribe(
+      canSee => {
+        this.canSeePaymentModels = canSee;
+        console.log('Can user see payment models:', canSee);
+      },
+      error => {
+        console.error('Error checking visibility:', error);
+      }
+    );
     this.authService.currentUserAffiliate.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       if (user && user.id) {
         this.user = user;

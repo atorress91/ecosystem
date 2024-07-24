@@ -59,10 +59,14 @@ import { WalletModel1BService } from './service/wallet-model-1b-service/wallet-m
 import { WalletModel1AService } from './service/wallet-model-1a-service/wallet-model-1a.service';
 import { PagaditoService } from './service/pagadito-service/pagadito.service';
 import { MaintenanceService } from './service/maintenance-service/maintenance.service';
+import { ModelsVisibilityService } from './service/models-visibility-service/models-visibility.service'
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [CommonModule, HttpClientModule],
+  exports: [
+  ],
   providers: [
     RightSidebarService,
     AuthGuard,
@@ -119,7 +123,8 @@ import { MaintenanceService } from './service/maintenance-service/maintenance.se
     WalletModel1BService,
     PagaditoService,
     MaintenanceService,
-    MaintenanceGuard
+    MaintenanceGuard,
+    ModelsVisibilityService
   ],
 })
 export class CoreModule {
