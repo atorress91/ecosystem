@@ -26,6 +26,16 @@ export class CoinpayService {
       .post(this.urlApi.concat('/coinpay/createTransaction'), requestPayment, httpOptions);
   }
 
+  createChannel(request: RequestPayment) {
+    return this.http
+      .post<Response>(this.urlApi.concat('/coinpay/createChannel'), request, httpOptions)
+      .pipe(
+        map((response) => {
+          console.log('response', response);
+          return response;
+        }));
+  }
+
   sendFunds(withdrawalRequest: CoinPayWithdrawal[]): Observable<Response> {
     return this.http.post<Response>(this.urlApi.concat('/coinpay/sendFunds'), withdrawalRequest, httpOptions)
       .pipe(map(data => data));
