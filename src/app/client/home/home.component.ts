@@ -1,12 +1,9 @@
-import { BalanceInformationModel1A } from './../../core/models/wallet-model-1a/balance-information-1a.model';
-import { BalanceInformationModel1B } from './../../core/models/wallet-model-1b/balance-information-1b.model';
-
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am5themes_Animated from '@amcharts/amcharts4/themes/animated';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { ChartComponent } from 'ng-apexcharts';
 
 import { BalanceInformation } from '@app/core/models/wallet-model/balance-information.model';
@@ -19,7 +16,9 @@ import { EChartsOption } from 'echarts';
 import { PurchasePerMonthDto } from '@app/core/models/wallet-model/network-purchases.model';
 import { WalletModel1AService } from '@app/core/service/wallet-model-1a-service/wallet-model-1a.service';
 import { WalletModel1BService } from '@app/core/service/wallet-model-1b-service/wallet-model-1b.service';
-
+import { ModelsVisibilityService } from '@app/core/service/models-visibility-service/models-visibility.service';
+import { BalanceInformationModel1A } from '@app/core/models/wallet-model-1a/balance-information-1a.model';
+import { BalanceInformationModel1B } from '@app/core/models/wallet-model-1b/balance-information-1b.model';
 am4core.useTheme(am5themes_Animated);
 
 @Component({
@@ -43,6 +42,7 @@ export class HomeComponent {
   currentYear: number;
   previousYear: number;
   @ViewChild('chart') chart1: ChartComponent;
+  canSeePaymentModels: boolean = false;
 
   private chart: am4maps.MapChart;
   public pieChartOptions: any;
@@ -55,7 +55,10 @@ export class HomeComponent {
     private toastr: ToastrService,
     private affiliateService: AffiliateService,
     private walletModel1AService: WalletModel1AService,
-    private walletModel1BService: WalletModel1BService
+    private walletModel1BService: WalletModel1BService,
+    private modelsVisibilityService: ModelsVisibilityService,
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef
   ) {
     this.pieChartOptions = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
     this.pieChartOptionsModel1A = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
@@ -67,19 +70,43 @@ export class HomeComponent {
   }
 
   OnInitMethod() {
-    this.authService.currentUserAffiliate.pipe(takeUntil(this.destroy$)).subscribe((user) => {
+    this.modelsVisibilityService.canUserSeePaymentModels().pipe(
+      takeUntil(this.destroy$),
+      switchMap(canSee => {
+        this.canSeePaymentModels = canSee;
+        return this.authService.currentUserAffiliate;
+      })
+    ).subscribe((user) => {
       if (user && user.id) {
         this.user = user;
-        this.getPurchasesInMyNetwork();
-        this.getBalanceInformationModel1A(user.id);
-        this.getBalanceInformationModel1B(user.id);
-        this.walletService.getBalanceInformationByAffiliateId(user.id).pipe(takeUntil(this.destroy$)).subscribe(balanceInformation => {
-          this.balanceInformation = balanceInformation;
-          this.initChartReport3();
-        });
+        this.loadUserData(user.id);
       }
     });
+
     this.loadLocations();
+  }
+
+  loadUserData(userId: number) {
+    Promise.all([
+      this.getPurchasesInMyNetwork(),
+      this.getBalanceInformationModel2(userId),
+      this.getBalanceInformationModel1A(userId),
+      this.canSeePaymentModels ? this.getBalanceInformationModel1B(userId) : Promise.resolve()
+    ]).then(() => {
+      this.ngZone.run(() => {
+        this.initializeAllCharts();
+        this.cdr.detectChanges();
+      });
+    });
+  }
+
+  initializeAllCharts() {
+    this.initChartModel2();
+    this.initChartModel1A();
+    if (this.canSeePaymentModels) {
+      this.initChartModel1B();
+    }
+    this.initializeAreaLineChart();
   }
 
   get registerUrl() {
@@ -231,7 +258,7 @@ export class HomeComponent {
     }
   };
 
-  private initChartReport3() {
+  private initChartModel2() {
     this.pieChartOptions = {
       series: [
         this.balanceInformation.serviceBalance,
@@ -414,27 +441,50 @@ export class HomeComponent {
     return monthlyData;
   }
 
-  getBalanceInformationModel1A(id: number) {
-    this.walletModel1AService.getBalanceInformationByAffiliateId(id).subscribe({
-      next: (value: BalanceInformationModel1A) => {
-        this.balanceInformationModel1A = value;
-        this.initChartModel1A();
-      },
-      error: (err) => {
-        console.log(err);
-      }
+  getBalanceInformationModel2(id: number): Promise<void> {
+    return new Promise((resolve) => {
+      this.walletService.getBalanceInformationByAffiliateId(id).subscribe({
+        next: (value: BalanceInformation) => {
+          this.balanceInformation = value;
+          resolve();
+        },
+        error: (err) => {
+          console.log(err);
+          resolve();
+        }
+      });
     });
   }
 
-  getBalanceInformationModel1B(id: number) {
-    this.walletModel1BService.getBalanceInformationByAffiliateId(id).subscribe({
-      next: (value: BalanceInformationModel1B) => {
-        this.balanceInformationModel1B = value;
-        this.initChartModel1B();
-      },
-      error: (err) => {
-        console.log(err);
-      }
+  getBalanceInformationModel1A(id: number): Promise<void> {
+    return new Promise((resolve) => {
+      this.walletModel1AService.getBalanceInformationByAffiliateId(id).subscribe({
+        next: (value: BalanceInformationModel1A) => {
+          this.balanceInformationModel1A = value;
+          resolve();
+        },
+        error: (err) => {
+          console.log(err);
+          resolve();
+        }
+      });
+    });
+  }
+
+  getBalanceInformationModel1B(id: number): Promise<void> {
+    if (!this.canSeePaymentModels) return;
+
+    return new Promise((resolve) => {
+      this.walletModel1BService.getBalanceInformationByAffiliateId(id).subscribe({
+        next: (value: BalanceInformationModel1B) => {
+          this.balanceInformationModel1B = value;
+          resolve();
+        },
+        error: (err) => {
+          console.log(err);
+          resolve();
+        }
+      });
     });
   }
 }
