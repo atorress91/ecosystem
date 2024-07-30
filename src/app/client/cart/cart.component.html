@@ -136,6 +136,9 @@
               <div class="d-flex flex-column align-items-end mb-2 me-4">
                 <input (click)="createPagaditoTransaction()" type="image" src="assets/images/cards/visa-mast.webp"
                   alt="Pago con tarjeta de credito y debito" class="img-fluid mb-2">
+
+                <input (click)="showCoinPayConfirmation()" type="image" src="assets/images/cards/coinpay.png"
+                  alt="Pago con Coinpay CR" class="img-fluid mb-2 btn-coinpay">
                 <!-- <input (click)="showCoinPaymentConfirmation()" type="image"
                   src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
                   class="img-fluid mb-2"> -->
@@ -148,8 +151,7 @@
                   class="btn btn-primary mb-2">Pago con saldo de servicios {{model}}</button>
                 <button *ngIf="!showReversePaymentOnly && !balancePaymentNotAvailable" (click)="payWithMyBalance()"
                   class="btn btn-primary mb-2">Pago con saldo disponible</button>
-                <button (click)="handleBalancePayment()"
-                  *ngIf="reverseBalanceNotAvailable"
+                <button (click)="handleBalancePayment()" *ngIf="reverseBalanceNotAvailable"
                   class="btn btn-primary mb-2">Pago con solicitud modelo {{model}}</button>
                 <button (click)="emptycart()" class="btn btn-danger mb-2">Vaciar Carrito</button>
               </div>
