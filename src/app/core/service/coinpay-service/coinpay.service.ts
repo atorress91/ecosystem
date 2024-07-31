@@ -1,5 +1,5 @@
 import { map, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -38,6 +38,12 @@ export class CoinpayService {
 
   sendFunds(withdrawalRequest: CoinPayWithdrawal[]): Observable<Response> {
     return this.http.post<Response>(this.urlApi.concat('/coinpay/sendFunds'), withdrawalRequest, httpOptions)
+      .pipe(map(data => data));
+  }
+
+  getTransactionByReference(reference: string): Observable<Response> {
+    const params = new HttpParams().set('reference', reference);
+    return this.http.get<Response>(this.urlApi.concat('/coinpay/getTransactionByReference'), { params, ...httpOptions })
       .pipe(map(data => data));
   }
 }
