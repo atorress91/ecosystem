@@ -26,6 +26,7 @@ import { WalletModel1AService } from '@app/core/service/wallet-model-1a-service/
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
 import { PagaditoService } from '@app/core/service/pagadito-service/pagadito.service';
 import { PagaditoTransactionDetailRequest } from '@app/core/models/pagadito-model/pagadito-transaction-detail-request.model';
+import { Subscription, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -54,6 +55,9 @@ export class CartComponent implements OnInit, OnDestroy {
   serviceBalanceNotAvailable: boolean = false;
   model: string = ''
   pagaditoRequest = new CreatePagaditoTransactionRequest();
+  referenceTransaction: string = '';
+  private pollingSubscription: Subscription;
+  private pollingInterval = 5000;
 
   constructor(
     private cartService: CartService,
@@ -89,6 +93,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.cartService.clearPurchaseFromThirdParty();
+    this.stopTransactionStatusPolling();
   }
 
   showSuccess(message) {
@@ -336,26 +341,32 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   async showCoinpayAlert(coinPayTransaction: CreateChannelResponse) {
-
     const qrCanvas = document.createElement('canvas');
     await QRCode.toCanvas(qrCanvas, coinPayTransaction.data.address);
+    this.referenceTransaction = coinPayTransaction.data.idExternalIdentification.toString();
 
     Swal.fire({
       title: 'Realiza tu pago, escanea el código QR o ingresa la dirección de billetera',
       html: `
         <div>
-        <div>Dirección Billetera: <strong> ${coinPayTransaction.data.address} </strong></div>
+          <div>Dirección Billetera: <strong> ${coinPayTransaction.data.address} </strong></div>
           <div>Id Transacción: <strong> ${coinPayTransaction.data.id} </strong> </div>
           <div>Monto: <strong> $${this.total} </strong> </div>
           <br>
         </div>
+        <div id="loadingStatus" style="color: green;">Esperando confirmación...</div>
       `,
       imageUrl: qrCanvas.toDataURL(),
       imageWidth: 200,
       imageHeight: 200,
       imageAlt: 'Código QR',
+      showConfirmButton: false,
+      allowOutsideClick: false
     });
+
+    this.startTransactionStatusPolling(this.referenceTransaction);
   }
+
 
   createCoinPayTransaction() {
     let request = new RequestPayment();
@@ -366,7 +377,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
     this.coinpayService.createChannel(request).subscribe({
       next: (response) => {
-        console.log(response);
+
         if (response.success) {
           this.showCoinpayAlert(response.data);
         } else {
@@ -418,6 +429,7 @@ export class CartComponent implements OnInit, OnDestroy {
       },
     })
   }
+
 
   paymentByBankTransfer() {
     Swal.fire({
@@ -627,5 +639,43 @@ export class CartComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  startTransactionStatusPolling(reference: string) {
+    this.pollingSubscription = timer(0, this.pollingInterval).pipe(
+      switchMap(() => this.coinpayService.getTransactionByReference(reference))
+    ).subscribe({
+      next: (response) => {
+        if (response.data == true) {
+
+          Swal.update({
+            title: "Pago confirmado",
+            html: "Tu pago ha sido procesado exitosamente.",
+            icon: "success",
+            showConfirmButton: true
+          });
+          this.stopTransactionStatusPolling();
+          this.router.navigate(['app/home']);
+          this.emptycart();
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener el estado de la transacción:', error);
+        Swal.update({
+          title: "Error",
+          html: "Hubo un problema al procesar tu pago.",
+          icon: "error",
+          showConfirmButton: true
+        });
+        this.stopTransactionStatusPolling();
+      }
+    });
+  }
+
+
+  stopTransactionStatusPolling() {
+    if (this.pollingSubscription) {
+      this.pollingSubscription.unsubscribe();
+    }
   }
 }
