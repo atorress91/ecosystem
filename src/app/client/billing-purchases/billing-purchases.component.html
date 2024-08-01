@@ -9,7 +9,6 @@
       <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
     </li>
     <li class="breadcrumb-item">
-
     </li>
   </ul>
   <div class="section-body">
@@ -18,10 +17,7 @@
         <div class="card">
           <div class="card-header">
             <h4>
-              {{
-              'BILLING-PURCHASES-PAGE.BILLING-PURCHASES-TITLE.TEXT'
-              | translate
-              }}
+              {{ 'BILLING-PURCHASES-PAGE.BILLING-PURCHASES-TITLE.TEXT' | translate }}
             </h4>
           </div>
           <div class="card-body">
@@ -50,14 +46,14 @@
                       <li class="nav-item m-2" (click)="copyTableData()">
                         <button type="button" class="btn btn-primary">
                           <i class="bi bi-clipboard-check"></i>
-                          Copiar
+                          {{ 'BILLING-PURCHASES-PAGE.COPY.TEXT' | translate }}
                         </button>
                       </li>
 
                       <li class="nav-item m-2" (click)="downloadPDF()">
                         <button type="button" class="btn btn-primary">
                           <i class="bi bi-printer"></i>
-                          PDF
+                          {{ 'BILLING-PURCHASES-PAGE.PDF.TEXT' | translate }}
                         </button>
                       </li>
                     </ul>
@@ -73,7 +69,6 @@
                       <div class="col-blue cursor-pointer" (click)="onPrintInvoice(row)">
                         {{ row.id }}
                       </div>
-
                     </ng-template>
                   </ngx-datatable-column>
                   <ngx-datatable-column name="{{
@@ -88,10 +83,10 @@
                     }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div *ngIf="row.status == true" class="badge-outline col-green">
-                        Activa
+                        {{ 'BILLING-PURCHASES-PAGE.ROW-ACTIVE.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.status == false" class="badge-outline col-red">
-                        Cancelada
+                        {{ 'BILLING-PURCHASES-PAGE.ROW-CANCELLED.TEXT' | translate }}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
@@ -100,65 +95,60 @@
                     }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div *ngIf="row.state == true" class="badge-outline col-green">
-                        Pagado
+                        {{ 'BILLING-PURCHASES-PAGE.ROW-PAID.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.state == false" class="badge-outline col-red">
-                        No pagado
+                        {{ 'BILLING-PURCHASES-PAGE.ROW-NOT-PAID.TEXT' | translate }}
                       </div>
                     </ng-template>
-
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="Modelo">
+                  <ngx-datatable-column name="{{ 'BILLING-PURCHASES-PAGE.ROW-MODEL.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <ng-container *ngIf="row.invoiceDetail && row.invoiceDetail.length > 0; else noInvoiceDetail">
                         <ng-container *ngFor="let detail of row.invoiceDetail">
                           <div *ngIf="detail.paymentGroupId == 8" class="badge-outline col-blue">
-                            Modelo 1B
+                            {{ 'BILLING-PURCHASES-PAGE.MODEL-1B.TEXT' | translate }}
                           </div>
                           <div *ngIf="detail.paymentGroupId == 7" class="badge-outline col-blue">
-                            Modelo 1A
+                            {{ 'BILLING-PURCHASES-PAGE.MODEL-1A.TEXT' | translate }}
                           </div>
                           <div *ngIf="detail.paymentGroupId == 2" class="badge-outline col-blue">
-                            Modelo 2
+                            {{ 'BILLING-PURCHASES-PAGE.MODEL-2.TEXT' | translate }}
                           </div>
                           <div *ngIf="detail.paymentGroupId == 6" class="badge-outline col-blue">
-                            Academia trading
+                            {{ 'BILLING-PURCHASES-PAGE.TRADING-ACADEMY.TEXT' | translate }}
                           </div>
                           <div *ngIf="detail.paymentGroupId == 5" class="badge-outline col-blue">
-                            Cuentas de fondeo
-                          </div>
-                          <div *ngIf="detail.paymentGroupId == 5" class="badge-outline col-blue">
-                            Cuentas de fondeo
+                            {{ 'BILLING-PURCHASES-PAGE.FUNDING-ACCOUNTS.TEXT' | translate }}
                           </div>
                           <div *ngIf="detail.paymentGroupId == 1" class="badge-outline col-blue">
-                            Membresía
+                            {{ 'BILLING-PURCHASES-PAGE.MEMBERSHIP.TEXT' | translate }}
                           </div>
                           <div *ngIf="detail.paymentGroupId == 9" class="badge-outline col-blue">
-                            Salud Alternativa
+                            {{ 'BILLING-PURCHASES-PAGE.ALTERNATIVE-HEALTH.TEXT' | translate }}
                           </div>
                         </ng-container>
                       </ng-container>
                       <ng-template #noInvoiceDetail>
                         <div class="badge-outline col-blue">
-                          Modelo recurrente
+                          {{ 'BILLING-PURCHASES-PAGE.RECURRING-MODEL.TEXT' | translate }}
                         </div>
                       </ng-template>
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="Monto total">
+                  <ngx-datatable-column name="{{ 'BILLING-PURCHASES-PAGE.TOTAL-AMOUNT.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div class="col-red">
                         {{row.totalInvoice}}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{
-                      'BILLING-PURCHASES-PAGE.ROW-DETAIL.TEXT' | translate
-                    }}" sortable="false">
+                  <ngx-datatable-column name="{{ 'BILLING-PURCHASES-PAGE.ROW-DETAIL.TEXT' | translate }}"
+                    sortable="false">
                     <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                       <div ngbDropdown container="body">
                         <button type="button" class="btn btn-outline-primary btn-sm" ngbDropdownToggle>
-                          Acciones
+                          {{ 'BILLING-PURCHASES-PAGE.ACTIONS.TEXT' | translate }}
                         </button>
                         <div ngbDropdownMenu>
                           <a ngbDropdownItem id="btn-delete" (click)="
@@ -168,17 +158,8 @@
                           )
                         ">
                             <i class="bi bi-person-badge"></i>
-                            <span class="ms-2">{{
-                              'BILLING-PURCHASES-PAGE.BTN-SEE-DETAILS.TEXT'
-                              | translate
-                              }}</span>
+                            <span class="ms-2">{{ 'BILLING-PURCHASES-PAGE.BTN-SEE-DETAILS.TEXT' | translate }}</span>
                           </a>
-                          <!--                          <a ngbDropdownItem id="btn-invoice"-->
-                          <!--                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation && isEligibleForCancellation(row)"-->
-                          <!--                            (click)="showConfirmationRequest(row)">-->
-                          <!--                            <i class="bi bi-folder-symlink-fill"></i>-->
-                          <!--                            <span style="margin-left: 10px">Solicitar anulación de factura</span>-->
-                          <!--                          </a>-->
                         </div>
                       </div>
                     </ng-template>

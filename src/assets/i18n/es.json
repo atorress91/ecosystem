@@ -106,19 +106,19 @@
       "TEXT": "Inicio"
     },
     "EDUCATIONAL-COURSES": {
-      "TEXT": "Tienda cursos educativos"
+      "TEXT": "Cursos Educativos"
     },
     "FUNDING-ACCOUNTS": {
       "TEXT": "Capital de apoyo"
     },
     "SERVICES-AND-PRODUCTS": {
-      "TEXT": "Productos"
+      "TEXT": "Servicios y Productos"
     },
     "BILLING-PURCHASE": {
       "TEXT": "Tienda medio ambiente"
     },
     "BILLING-MY-PURCHASES": {
-      "TEXT": "Revisar mis facturas"
+      "TEXT": "Facturación Mis Compras"
     },
     "BILLING-MY-ORDERS": {
       "TEXT": "Mis Ordenes"
@@ -161,59 +161,25 @@
     },
     "NEWS": {
       "TEXT": "Noticias"
+    }
+  },
+  "EDUCATIONAL-COURSES": {
+    "ACADEMY-TRADING": {
+      "TEXT": "Academia de Trading"
+    }
+  },
+  "SERVICES-AND-PRODUCTS": {
+    "NEWS": {
+      "TEXT": "Novedades"
     },
-    "APPS": {
-      "TEXT": "-- Aplicaciones"
+    "MECANICLICK": {
+      "TEXT": "MecaniClick"
     },
-    "CALENDAR": {
-      "TEXT": "Calendario"
+    "ALTERNATIVE-HEALTH-AMERICA": {
+      "TEXT": "Salud Alternativa América"
     },
-    "EMAIL": {
-      "TEXT": "Email",
-      "LIST": {
-        "INBOX": "Bandeja de entrada",
-        "COMPOSE": "Componer",
-        "READ": "Leer el correo electrónico"
-      }
-    },
-    "MORE-APPS": {
-      "TEXT": "Más aplicaciones",
-      "LIST": {
-        "CHAT": "Charla",
-        "BLOG": "Blog",
-        "DRAG-DROP": "Arrastrar y soltar",
-        "CONTACT-GRID": "Cuadrícula de contacto"
-      }
-    },
-    "COMPONENTS": {
-      "TEXT": "-- Componentes"
-    },
-    "WIDGETS": {
-      "TEXT": "Widgets",
-      "LIST": {
-        "CHART-WIDGET": "Widget de gráfico",
-        "DATA-WIDGET": "Widget de datos"
-      }
-    },
-    "FORMS": {
-      "TEXT": "Formularios",
-      "LIST": {
-        "BASIC": "Forma básica",
-        "ADVANCE": "Control avanzado",
-        "EXAMPLE": "Ejemplos de formularios",
-        "VALIDATION": "Validación de formulario",
-        "WIZARD": "Mago",
-        "INPUT-MASK": "Máscara de entrada",
-        "SELECT-ITEM": "Seleccione un artículo",
-        "EDITORS": "Editoras"
-      }
-    },
-    "TABLES": {
-      "TEXT": "Tabellen",
-      "LIST": {
-        "BASIC": "Tablas básicas",
-        "ADVANCE": "Tablas avanzadas"
-      }
+    "ALTERNATIVE-HEALTH-EUROPE": {
+      "TEXT": "Salud Alternativa Europa"
     }
   },
   "REQUESTS-WALLET": {
@@ -344,6 +310,48 @@
     },
     "CLOSE-BTN": {
       "TEXT": "Cerrar"
+    },
+    "REQUEST-TYPE": {
+      "TEXT": "Tipo de solicitud"
+    },
+    "ADMIN-ANSWER.NOT-ATTENDED": {
+      "TEXT": "No Atendido"
+    },
+    "ADMIN-ANSWER.ATTENDED": {
+      "TEXT": "Atendido"
+    },
+    "ADMIN-ANSWER.CANCELLED": {
+      "TEXT": "Cancelado"
+    },
+    "STATE.PENDING": {
+      "TEXT": "Pendiente"
+    },
+    "STATE.APPROVED": {
+      "TEXT": "Aprobado"
+    },
+    "STATE.CANCELLED": {
+      "TEXT": "Cancelado"
+    },
+    "TYPE.WITHDRAWAL": {
+      "TEXT": "Retiro de Saldo"
+    },
+    "REQUEST-TYPE.REVERT-INVOICE": {
+      "TEXT": "Devolución de Factura"
+    },
+    "AMOUNT-REQUESTED-ERROR": {
+      "TEXT": "Ingrese un monto igual o menor al balance disponible."
+    },
+    "ACCESS-KEY-ERROR": {
+      "TEXT": "La contraseña es requerida."
+    },
+    "OBSERVATION-ERROR": {
+      "TEXT": "La observación es requerida."
+    },
+    "CONFIRM-CODE-ERROR": {
+      "TEXT": "El código de seguridad es requerido."
+    },
+    "GENERATE-CODE-BTN": {
+      "TEXT": "Generar Código"
     }
   },
   "WALLET-PAGE": {
@@ -394,6 +402,20 @@
     },
     "SUBMENU-TITLE": {
       "TEXT": "Billetera"
+    },
+    "COPY-BTN": {
+      "TEXT": "Copiar"
+    },
+    "PDF-BTN": {
+      "TEXT": "PDF"
+    },
+    "STATE": {
+      "ATTENDED": {
+        "TEXT": "Atendido"
+      },
+      "NOT-ATTENDED": {
+        "TEXT": "No Atendido"
+      }
     }
   },
   "ECOPOOL-PAGE": {
@@ -431,30 +453,112 @@
       "TEXT": "Ver Detalles"
     }
   },
-  "HOME-PAGE-CLIENT": {
-    "MAP": {
-      "TEXT": "Mapa"
+  "TICKETS-PAGE": {
+    "TICKETS": {
+      "TEXT": "Tickets"
     },
-    "INFORMATION": {
-      "TEXT": "Información"
+    "MY-TICKETS": {
+      "TEXT": "Mis tickets"
+    },
+    "CREATE-TICKET-BTN": {
+      "TEXT": "Crear Ticket"
+    },
+    "DELETE-BTN": {
+      "TITLE": "Eliminar"
+    },
+    "SELECT-COLUMN": {
+      "TEXT": "Seleccionar"
+    },
+    "STATUS-COLUMN": {
+      "TEXT": "Estado"
+    },
+    "STATUS-CLOSED": {
+      "TEXT": "Cerrado"
+    },
+    "STATUS-OPEN": {
+      "TEXT": "Abierto"
+    },
+    "MESSAGE-COLUMN": {
+      "TEXT": "Mensaje"
+    },
+    "CATEGORY-COLUMN": {
+      "TEXT": "Categoría"
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Fecha"
+    },
+    "IMAGE-COLUMN": {
+      "TEXT": "Imagen"
+    },
+    "IMAGE-ALT": {
+      "TEXT": "Click para ver"
+    },
+    "NO-IMAGE": {
+      "TEXT": "Sin Imagen"
+    },
+    "IMAGE-MODAL": {
+      "TITLE": "Imágenes"
+    },
+    "SLIDE-IMAGE-ALT": {
+      "TEXT": "Imagen de diapositiva"
+    },
+    "SHOWING": {
+      "TEXT": "Mostrando"
+    },
+    "CREATE-TICKET": {
+      "TITLE": "Crear Ticket"
+    },
+    "SUBJECT": {
+      "LABEL": "Asunto",
+      "PLACEHOLDER": "Asunto",
+      "REQUIRED-ERROR": "El asunto es obligatorio."
+    },
+    "CATEGORY": {
+      "LABEL": "Categoría",
+      "DEFAULT-OPTION": "Seleccione una opción",
+      "REQUIRED-ERROR": "Debe seleccionar una categoría."
+    },
+    "DESCRIPTION": {
+      "LABEL": "Explicación",
+      "PLACEHOLDER": "Explicación",
+      "REQUIRED-ERROR": "La descripción es requerida.",
+      "MAXLENGTH-ERROR": "La descripción no puede exceder los 255 caracteres."
+    },
+    "ADD-IMAGE": {
+      "LABEL": "Agregar Imagen",
+      "DROPZONE": "¡Suelta aquí!"
+    },
+    "SUBMIT-BTN": {
+      "TEXT": "Enviar"
+    },
+    "DISCARD-BTN": {
+      "TEXT": "Descartar"
+    }
+  },
+  "HOME-PAGE-CLIENT": {
+    "INFORMATION-R": {
+      "TEXT": "Información Modelo R"
+    },
+    "INFORMATION-1": {
+      "TEXT": "Información Modelo 1"
+    },
+    "INFORMATION-2": {
+      "TEXT": "Información Modelo 2"
+    },
+    "SERVICE-BALANCE": {
+      "TEXT": "Saldo de servicios"
     },
     "AVAILABLE-BALANCE": {
       "TEXT": "Saldo Disponible"
     },
+    "TOTAL-PAID": {
+      "TEXT": "Total Pagado"
+    },
     "TOTAL-ACQUISITIONS": {
       "TEXT": "Total Adquisiciones"
     },
-    "QUALIFICATION": {
-      "TEXT": "Calificación"
-    },
-    "COMMISSIONS-CALCULATED": {
-      "TEXT": "Comisiones Calculadas"
-    },
-    "RECEIVABLE": {
-      "TEXT": "Por Cobrar"
-    },
-    "TOTAL-PAID": {
-      "TEXT": "Total Pagado"
+    "MODEL-REQUEST": {
+      "TEXT": "Solicitud de modelo"
     },
     "TITTLE-FIRST-CHART": {
       "TEXT": "Afiliados registrados"
@@ -462,58 +566,91 @@
     "TITTLE-SECOND-CHART": {
       "TEXT": "Compras realizadas en mi red"
     },
-    "CHART-DIRECTS": {
-      "TEXT": "Directos"
-    },
-    "CHART-DEPTH": {
-      "TEXT": "Profundidad"
-    },
-    "CHART-COMMISSIONABLE": {
-      "TEXT": "Comisionable"
-    },
-    "CHART-PURCHASES": {
-      "TEXT": "Compras"
-    },
     "TITTLE-BANNERS": {
-      "TEXT": "Pancartas"
+      "TEXT": "Banners"
     },
-    "URL": {
-      "TEXT": "Enlace"
+    "REGISTER": {
+      "TEXT": "Registro"
+    },
+    "SHARE-LINK": {
+      "TEXT": "Compartir enlace"
+    },
+    "WEBSITE": {
+      "TEXT": "Sitio web"
     },
     "PUBLIC-STORE": {
-      "TEXT": "Tienda publica"
-    },
-    "LIMIT-COINPAYMENTS": {
-      "TEXT": "Tope de Coinpayments"
-    },
-    "DESCRIPTION-COINPAYMENTS": {
-      "TEXT": "(Si su tope de adquisicion de Ecopool es mayor a 10k comunicarse a través de un ticket para su autorización.)"
+      "TEXT": "Tienda Pública"
     }
   },
   "BILLING-PURCHASES-PAGE": {
     "BILLING-PURCHASES-TITLE": {
-      "TEXT": "Lista de Compras"
+      "TEXT": "Facturación"
     },
     "SEARCH": {
-      "TEXT": "Búsqueda"
+      "TEXT": "Buscar"
+    },
+    "COPY": {
+      "TEXT": "Copiar"
+    },
+    "PDF": {
+      "TEXT": "PDF"
     },
     "ROW-NO-BILL": {
-      "TEXT": "No. Factura"
+      "TEXT": "No. de Factura"
     },
     "ROW-DATE": {
       "TEXT": "Fecha"
     },
     "ROW-BILL-STATE": {
-      "TEXT": "Estado Factura"
+      "TEXT": "Estado de Factura"
     },
     "ROW-PAID": {
       "TEXT": "Pagado"
     },
-    "ROW-DETAIL": {
-      "TEXT": "Detalles"
+    "ROW-NOT-PAID": {
+      "TEXT": "No Pagado"
     },
-    "BTN-INVOICE-STATE": {
+    "ROW-ACTIVE": {
       "TEXT": "Activa"
+    },
+    "ROW-CANCELLED": {
+      "TEXT": "Cancelada"
+    },
+    "ROW-MODEL": {
+      "TEXT": "Modelo"
+    },
+    "MODEL-1B": {
+      "TEXT": "Modelo 1B"
+    },
+    "MODEL-1A": {
+      "TEXT": "Modelo 1A"
+    },
+    "MODEL-2": {
+      "TEXT": "Modelo 2"
+    },
+    "TRADING-ACADEMY": {
+      "TEXT": "Academia de Trading"
+    },
+    "FUNDING-ACCOUNTS": {
+      "TEXT": "Cuentas de Fondeo"
+    },
+    "MEMBERSHIP": {
+      "TEXT": "Membresía"
+    },
+    "ALTERNATIVE-HEALTH": {
+      "TEXT": "Salud Alternativa"
+    },
+    "RECURRING-MODEL": {
+      "TEXT": "Modelo Recurrente"
+    },
+    "TOTAL-AMOUNT": {
+      "TEXT": "Monto Total"
+    },
+    "ROW-DETAIL": {
+      "TEXT": "Detalle"
+    },
+    "ACTIONS": {
+      "TEXT": "Acciones"
     },
     "BTN-SEE-DETAILS": {
       "TEXT": "Ver Detalles"
@@ -552,14 +689,11 @@
     }
   },
   "NETWORK-PAGE": {
-    "NETWORK-TITLE": {
-      "TEXT": "Buscar mis clientes"
-    },
     "NETWORK-ALL-CUSTOMERS": {
-      "TEXT": "Buscar todos los clientes"
+      "TEXT": "Red de Todos los Clientes"
     },
-    "NETWORK-SUBTITLE": {
-      "TEXT": "Afiliados Directos"
+    "SEARCH": {
+      "TEXT": "Buscar"
     },
     "ROW-USER": {
       "TEXT": "Usuario"
@@ -570,17 +704,61 @@
     "ROW-QUALIFICATION": {
       "TEXT": "Calificación"
     },
-    "ROW-EMAIL": {
-      "TEXT": "Correo"
-    },
     "ROW-DETAIL": {
       "TEXT": "Detalle"
     },
     "BTN-ACTIONS": {
       "TEXT": "Acciones"
     },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
+    "ACTIVATE-MEMBERSHIP.BALANCE": {
+      "TEXT": "Activar membresía del afiliado con saldo disponible"
+    },
+    "ACTIVATE-MEMBERSHIP.CARD": {
+      "TEXT": "Activar membresía del afiliado con tarjeta"
+    },
+    "TRANSFER-BALANCE": {
+      "TEXT": "Transferir saldo"
+    },
+    "ACTIVE": {
+      "TEXT": "Activo"
+    },
+    "INACTIVE": {
+      "TEXT": "Inactivo"
+    },
+    "NETWORK-TITLE": {
+      "TEXT": "Mi Red"
+    },
+    "VIEW-NETWORK": {
+      "TEXT": "Ver Mi Red"
+    },
+    "COPY": {
+      "TEXT": "Copiar"
+    },
+    "PDF": {
+      "TEXT": "PDF"
+    }
+  },
+  "MY-NETWORK-PAGE": {
+    "TITLE": {
+      "TEXT": "Mi Red"
+    },
+    "NETWORK-TREES": {
+      "TEXT": "Árboles de mi Red"
+    },
+    "UNILEVEL-MODEL": {
+      "TEXT": "Modelo 1, 2, 3 (Unilevel)"
+    },
+    "BINARY-MODEL": {
+      "TEXT": "Modelo 4 (Binario)"
+    },
+    "MATRIX-MODEL-5": {
+      "TEXT": "Modelo 5 (Matriz)"
+    },
+    "MATRIX-MODEL-6": {
+      "TEXT": "Modelo 6 (Matriz)"
+    },
+    "BACK": {
+      "TEXT": "Volver"
     }
   },
   "COMMISSIONS-PAGE": {

@@ -18,10 +18,7 @@
         <div class="card">
           <div class="card-header">
             <h4>
-              {{
-              'REQUESTS-PAGE.TITTLE-PAGE.TEXT'
-              | translate
-              }}
+              {{ 'REQUESTS-PAGE.TITTLE-PAGE.TEXT' | translate }}
             </h4>
           </div>
           <div class="card-body">
@@ -30,27 +27,18 @@
                 <ngb-alert [dismissible]="false" class="alert-has-icon" type="info">
                   <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
                   <div class="alert-body">
-                    <div class="alert-title"> {{
-                      'REQUESTS-PAGE.TITTLE-MSJ-INFO.TEXT'
-                      | translate
-                      }} </div>
+                    <div class="alert-title">
+                      {{ 'REQUESTS-PAGE.TITTLE-MSJ-INFO.TEXT' | translate }}
+                    </div>
                     <li>
-                      {{
-                      'REQUESTS-PAGE.FIST-MSJ-INFO.TEXT'
-                      | translate
+                      {{ 'REQUESTS-PAGE.FIST-MSJ-INFO.TEXT' | translate }}
+                    </li>
+                    <li>
+                      {{ 'REQUESTS-PAGE.SECOND-MSJ-INFO.TEXT' | translate }} {{ walletWithdrawalsConfig.minimum_amount
                       }}
                     </li>
-                    <li>
-                      {{
-                      'REQUESTS-PAGE.SECOND-MSJ-INFO.TEXT'
-                      | translate
-                      }} {{walletWithdrawalsConfig.minimum_amount}}
-                    </li>
                     <li *ngIf="walletWithdrawalsConfig.maximum_amount != 0">
-                      {{
-                      'REQUESTS-PAGE.THIRD-MSJ-INFO.TEXT'
-                      | translate
-                      }} {{walletWithdrawalsConfig.maximum_amount}}
+                      {{ 'REQUESTS-PAGE.THIRD-MSJ-INFO.TEXT' | translate }} {{ walletWithdrawalsConfig.maximum_amount }}
                     </li>
                   </div>
                 </ngb-alert>
@@ -60,11 +48,10 @@
               <div class="col-sm-12">
                 <ngb-alert [dismissible]="false" class="alert-title" type="light">
                   <div class="alert-body">
-                    <div class="alert-title"> {{
-                      'REQUESTS-PAGE.AVAILABLE-BALANCE-WALLET.TEXT'
-                      | translate
-                      }}</div>
-                    <h4> $ {{balanceInfo.availableBalance ?? 0 | truncateDecimals:2}}</h4>
+                    <div class="alert-title">
+                      {{ 'REQUESTS-PAGE.AVAILABLE-BALANCE-WALLET.TEXT' | translate }}
+                    </div>
+                    <h4> $ {{ balanceInfo.availableBalance ?? 0 | truncateDecimals:2 }}</h4>
                   </div>
                 </ngb-alert>
               </div>
@@ -84,7 +71,7 @@
                             </div>
                             <input style="background-color: white;" type="text" class="form-control"
                               id="inlineFormInputGroup" (keyup)='updateFilter($event)' aria-label="Search box"
-                              placeholder="{{'REQUESTS-PAGE.SEARCH.TEXT' | translate}}">
+                              placeholder="{{ 'REQUESTS-PAGE.SEARCH.TEXT' | translate }}">
                           </div>
                         </div>
                       </div>
@@ -103,66 +90,55 @@
                 </div>
                 <div class="row">
                   <h6>
-                    {{
-                    'REQUESTS-PAGE.TITTLE-TABLE.TEXT'
-                    | translate
-                    }}
+                    {{ 'REQUESTS-PAGE.TITTLE-TABLE.TEXT' | translate }}
                   </h6>
                 </div>
                 <ngx-datatable #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator"
                   columnMode="force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10"
                   [scrollbarH]="scrollBarHorizontal" [reorderable]="reorderable">
-                  <ngx-datatable-column name="{{
-                      'REQUESTS-PAGE.AMOUNT-WITHDRAW-COLUMN.TEXT' | translate
-                    }}">
+                  <ngx-datatable-column name="{{ 'REQUESTS-PAGE.AMOUNT-WITHDRAW-COLUMN.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       $ {{ row.amount }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{
-                    'REQUESTS-PAGE.OBSERVATION-COLUMN.TEXT' | translate
-                  }}">
+                  <ngx-datatable-column name="{{ 'REQUESTS-PAGE.OBSERVATION-COLUMN.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{ row.concept }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{
-                    'REQUESTS-PAGE.ADMIN-ANSWER-COLUMN.TEXT' | translate
-                    }}">
+                  <ngx-datatable-column name="{{ 'REQUESTS-PAGE.ADMIN-ANSWER-COLUMN.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div *ngIf="row.status == 0" class="badge-outline col-yellow">
-                        No atendido
+                        {{ 'REQUESTS-PAGE.ADMIN-ANSWER.NOT-ATTENDED.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.status == 1" class="badge-outline col-green">
-                        Atendido
+                        {{ 'REQUESTS-PAGE.ADMIN-ANSWER.ATTENDED.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.status == 2" class="badge-outline col-red">
-                        Cancelado
+                        {{ 'REQUESTS-PAGE.ADMIN-ANSWER.CANCELLED.TEXT' | translate }}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="{{
-                    'REQUESTS-PAGE.STATE-COLUMN.TEXT' | translate
-                    }}">
+                  <ngx-datatable-column name="{{ 'REQUESTS-PAGE.STATE-COLUMN.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div *ngIf="row.status == 0" class="badge-outline col-yellow">
-                        Pendiente
+                        {{ 'REQUESTS-PAGE.STATE.PENDING.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.status == 1" class="badge-outline col-green">
-                        Aprobado
+                        {{ 'REQUESTS-PAGE.STATE.APPROVED.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.status == 2" class="badge-outline col-red">
-                        Cancelado
+                        {{ 'REQUESTS-PAGE.STATE.CANCELLED.TEXT' | translate }}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="Tipo de solicitud">
+                  <ngx-datatable-column name="{{ 'REQUESTS-PAGE.REQUEST-TYPE.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div *ngIf="row.type == 'withdrawal_request'" class="badge-outline col-blue">
-                        Retiro de saldo
+                        {{ 'REQUESTS-PAGE.TYPE.WITHDRAWAL.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.type == 'revert_invoice_request'" class="badge-outline col-orange">
-                        Devolución de factura
+                        {{ 'REQUESTS-PAGE.REQUEST-TYPE.REVERT-INVOICE.TEXT' | translate }}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>

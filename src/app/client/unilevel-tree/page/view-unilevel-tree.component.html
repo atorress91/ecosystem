@@ -2,14 +2,14 @@
   <ul class="breadcrumb breadcrumb-style">
     <li class="breadcrumb-item">
       <h5 class="page-title m-b-0">
-        Mi red
+        {{ 'MY-NETWORK-PAGE.TITLE.TEXT' | translate }}
       </h5>
     </li>
     <li class="breadcrumb-item bcrumb-1">
-      <a> <i class="fas fa-home font-17"></i></a>
+      <a><i class="fas fa-home font-17"></i></a>
     </li>
     <li class="breadcrumb-item">
-      Arboles de mi red
+      {{ 'MY-NETWORK-PAGE.NETWORK-TREES.TEXT' | translate }}
     </li>
   </ul>
   <div class="section-body">
@@ -19,15 +19,15 @@
           <div class="padding-20">
             <ul ngbNav #nav="ngbNav" [activeId]="active" (activeIdChange)="onTabChange($event)" class="nav-tabs">
               <li [ngbNavItem]="1">
-                <a ngbNavLink>MODELO 1, 2, 3 (UniLevel)</a>
+                <a ngbNavLink>{{ 'MY-NETWORK-PAGE.UNILEVEL-MODEL.TEXT' | translate }}</a>
                 <ng-template ngbNavContent>
                   <div class="tab-pane">
                     <div class="card-body">
                       <div class="row mt-2">
                         <div class="col-2">
-                          <button type="button" (click)="onloadFamilyTree(userId)"  class="btn btn-primary">
+                          <button type="button" (click)="onloadFamilyTree(userId)" class="btn btn-primary">
                             <i class="bi bi-backspace"></i>
-                            Volver
+                            {{ 'MY-NETWORK-PAGE.BACK.TEXT' | translate }}
                           </button>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12">
@@ -40,14 +40,15 @@
 
                               <ng-template #nodeTemplate let-node>
                                 <div class="chart-node">
-                                  <img [ngSrc]="node.image" fill style="height: 50% !important; width: 50% !important; margin: 5px 0px 0px 5px !important;" />
+                                  <img [ngSrc]="node.image" fill
+                                    style="height: 50% !important; width: 50% !important; margin: 5px 0px 0px 5px !important;" />
                                   <div class="name" style="margin-top: 1.25em !important;">
                                     <span style="font-size: 9px;">
                                       {{ node.userName || node.user_name }}
                                     </span>
                                   </div>
-                                  <div *ngIf="node.children.length" style="margin: 5px 5px 0px 0px !important" (click)="node.hideChildren = !node.hideChildren"
-                                    class="tree-fold-btn">
+                                  <div *ngIf="node.children.length" style="margin: 5px 5px 0px 0px !important"
+                                    (click)="node.hideChildren = !node.hideChildren" class="tree-fold-btn">
                                     {{ node.hideChildren ? '+' : '-' }}
                                   </div>
                                 </div>
@@ -61,14 +62,14 @@
                 </ng-template>
               </li>
               <li [ngbNavItem]="2" *ngIf="user.external_grading_before_id !== null  && user.external_grading_before_id >= 16">
-                <a ngbNavLink> MODELO 4 (Binario)</a>
+                <a ngbNavLink>{{ 'MY-NETWORK-PAGE.BINARY-MODEL.TEXT' | translate }}</a>
                 <ng-template ngbNavContent>
                   <div class="card-body">
                     <div class="row mt-2">
                       <div class="col-2">
                         <button type="button" (click)="onloadFamilyTree(userId)" class="btn btn-primary">
                           <i class="bi bi-backspace"></i>
-                          Volver
+                          {{ 'MY-NETWORK-PAGE.BACK.TEXT' | translate }}
                         </button>
                       </div>
                       <div class="col-12 col-md-12 col-lg-12">
@@ -81,14 +82,15 @@
 
                             <ng-template #nodeTemplate let-node>
                               <div class="chart-node">
-                                <img [ngSrc]="node.image" fill style="height: 50% !important; width: 50% !important; margin: 5px 0px 0px 5px !important;" />
+                                <img [ngSrc]="node.image" fill
+                                  style="height: 50% !important; width: 50% !important; margin: 5px 0px 0px 5px !important;" />
                                 <div class="name" style="margin-top: 1.25em !important;">
                                   <span style="font-size: 9px;">
                                     {{ node.userName || node.user_name }}
                                   </span>
                                 </div>
-                                <div *ngIf="node.children.length" style="margin: 5px 5px 0px 0px !important" (click)="node.hideChildren = !node.hideChildren"
-                                class="tree-fold-btn">
+                                <div *ngIf="node.children.length" style="margin: 5px 5px 0px 0px !important"
+                                  (click)="node.hideChildren = !node.hideChildren" class="tree-fold-btn">
                                   {{ node.hideChildren ? '+' : '-' }}
                                 </div>
                               </div>
@@ -101,34 +103,35 @@
                 </ng-template>
               </li>
               <li [ngbNavItem]="3" *ngIf="user.external_grading_before_id !== null  && user.external_grading_before_id >= 19">
-                <a ngbNavLink>MODELO 5 (Matriz)</a>
+                <a ngbNavLink>{{ 'MY-NETWORK-PAGE.MATRIX-MODEL-5.TEXT' | translate }}</a>
                 <ng-template ngbNavContent>
                   <div class="card-body">
                     <div class="row mt-2">
                       <div class="col-2">
                         <button type="button" (click)="onloadFamilyTree(userId)" class="btn btn-primary">
                           <i class="bi bi-backspace"></i>
-                          Volver
+                          {{ 'MY-NETWORK-PAGE.BACK.TEXT' | translate }}
                         </button>
                       </div>
                       <div class="col-12 col-md-12 col-lg-12">
                         <div class="card-body media-list position-relative"
-                             style="position: relative; max-width: 100% !important" [perfectScrollbar]>
+                          style="position: relative; max-width: 100% !important" [perfectScrollbar]>
                           <div *ngIf="showDiv">
                             <app-client-unilevel-tree-component [nodeTemplate]="nodeTemplate" [data]="tree"
-                                                                #exampleChart="orgChart" (loadFamilyTree)="onloadFamilyTree($event)">
+                              #exampleChart="orgChart" (loadFamilyTree)="onloadFamilyTree($event)">
                             </app-client-unilevel-tree-component>
 
                             <ng-template #nodeTemplate let-node>
                               <div class="chart-node">
-                                <img [ngSrc]="node.image" fill style="height: 50% !important; width: 50% !important; margin: 5px 0px 0px 5px !important;" />
+                                <img [ngSrc]="node.image" fill
+                                  style="height: 50% !important; width: 50% !important; margin: 5px 0px 0px 5px !important;" />
                                 <div class="name" style="margin-top: 1.25em !important;">
                                   <span style="font-size: 9px;">
                                     {{ node.userName || node.user_name }}
                                   </span>
                                 </div>
-                                <div *ngIf="node.children.length" style="margin: 5px 5px 0px 0px !important" (click)="node.hideChildren = !node.hideChildren"
-                                     class="tree-fold-btn">
+                                <div *ngIf="node.children.length" style="margin: 5px 5px 0px 0px !important"
+                                  (click)="node.hideChildren = !node.hideChildren" class="tree-fold-btn">
                                   {{ node.hideChildren ? '+' : '-' }}
                                 </div>
                               </div>
@@ -141,7 +144,7 @@
                 </ng-template>
               </li>
               <li [ngbNavItem]="4" *ngIf="user.external_grading_before_id !== null  && user.external_grading_before_id >= 20">
-                <a ngbNavLink>MODELO 6 (Matriz)</a>
+                <a ngbNavLink>{{ 'MY-NETWORK-PAGE.MATRIX-MODEL-6.TEXT' | translate }}</a>
                 <ng-template ngbNavContent>
                   <div class="tab-pane">
                     <div class="card-body">
@@ -149,7 +152,7 @@
                         <div class="col-2">
                           <button type="button" (click)="onloadFamilyTree(userId)" class="btn btn-primary">
                             <i class="bi bi-backspace"></i>
-                            Volver
+                            {{ 'MY-NETWORK-PAGE.BACK.TEXT' | translate }}
                           </button>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12">
