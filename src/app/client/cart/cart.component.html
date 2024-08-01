@@ -25,7 +25,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <address>
-                    <strong>Facturado a:</strong><br>
+                    <strong>{{ 'CART-PAGE.BILLED-TO.TEXT' | translate }}:</strong><br>
                     {{user.name +' '+ user.last_name}}<br>
                     {{user.user_name}}<br>
                     {{user.phone}}<br>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-6 invoice-right-align">
                   <address>
-                    <strong>Dirección:</strong><br>
+                    <strong>{{ 'CART-PAGE.ADDRESS.TEXT' | translate }}:</strong><br>
                     {{user.city}}<br>
                     {{user.address}}<br>
                   </address>
@@ -42,13 +42,13 @@
               <div class="row">
                 <div class="col-md-6">
                   <address>
-                    <strong>Correo eléctronico:</strong><br>
+                    <strong>{{ 'CART-PAGE.EMAIL.TEXT' | translate }}:</strong><br>
                     {{user.email}}
                   </address>
                 </div>
                 <div class="col-md-6 invoice-right-align">
                   <address>
-                    <strong>Fecha orden:</strong><br>
+                    <strong>{{ 'CART-PAGE.ORDER-DATE.TEXT' | translate }}:</strong><br>
                     {{ today | date:'hh:mm:ss a' }}<br><br>
                   </address>
                 </div>
@@ -57,7 +57,7 @@
           </div>
           <div class="row mt-4">
             <div class="col-md-12">
-              <div class="section-title">Resumen del pedido</div>
+              <div class="section-title">{{ 'CART-PAGE.ORDER-SUMMARY.TEXT' | translate }}</div>
               <div id="new-orders" class="media-list position-relative custom-div" [perfectScrollbar]>
                 <div class="table-responsive">
                   <table class="table table-md">
@@ -67,11 +67,11 @@
                         <th>{{ 'CART-PAGE.COL-NAME.TEXT' | translate }}</th>
                         <th>{{ 'CART-PAGE.COL-IMG.TEXT' | translate }}</th>
                         <th>{{ 'CART-PAGE.COL-DESCRIPTION.TEXT' | translate }}</th>
-                        <th>Puntos Calif</th>
-                        <th>Puntos Binarios</th>
-                        <th>Comisionable</th>
+                        <th>{{ 'CART-PAGE.POINTS-CALIF.TEXT' | translate }}</th>
+                        <th>{{ 'CART-PAGE.POINTS-BINARY.TEXT' | translate }}</th>
+                        <th>{{ 'CART-PAGE.COMMISSIONABLE.TEXT' | translate }}</th>
                         <th>{{ 'CART-PAGE.COL-PRICE.TEXT' | translate }}</th>
-                        <th>Descuento</th>
+                        <th>{{ 'CART-PAGE.DISCOUNT.TEXT' | translate }}</th>
                         <th>{{ 'CART-PAGE.COL-QUANTITY.TEXT' | translate }}</th>
                         <th>{{ 'CART-PAGE.COL-TOTAL.TEXT' | translate }}</th>
                         <th>{{ 'CART-PAGE.COL-ACTION.TEXT' | translate }}</th>
@@ -91,9 +91,10 @@
                         <td>${{ item.baseAmount }}</td>
                         <td>$0</td>
                         <td>{{ item.quantity }}</td>
-                        <td>${{ item.baseAmount*item.quantity }}</td>
+                        <td>${{ item.baseAmount * item.quantity }}</td>
                         <td>
-                          <button class="btn-danger" (click)="removeItem(item)" title="Remove Item">
+                          <button class="btn-danger" (click)="removeItem(item)"
+                            title="{{ 'CART-PAGE.REMOVE-ITEM.TEXT' | translate }}">
                             <i class="fas fa-times"></i>
                           </button>
                         </td>
@@ -107,20 +108,20 @@
                 </div>
                 <div class="col-lg-4 invoice-right-align">
                   <div class="invoice-detail-item">
-                    <div class="invoice-detail-name">Subtotal</div>
+                    <div class="invoice-detail-name">{{ 'CART-PAGE.SUBTOTAL.TEXT' | translate }}</div>
                     <div class="invoice-detail-value">${{subTotal}}</div>
                   </div>
                   <div class="invoice-detail-item">
-                    <div class="invoice-detail-name">I.V.A</div>
-                    <div class="invoice-detail-value">incluido</div>
+                    <div class="invoice-detail-name">{{ 'CART-PAGE.VAT.TEXT' | translate }}</div>
+                    <div class="invoice-detail-value">{{ 'CART-PAGE.INCLUDED.TEXT' | translate }}</div>
                   </div>
                   <div class="invoice-detail-item">
-                    <div class="invoice-detail-name">Total descuento</div>
+                    <div class="invoice-detail-name">{{ 'CART-PAGE.TOTAL-DISCOUNT.TEXT' | translate }}</div>
                     <div class="invoice-detail-value">${{totalDiscount}}</div>
                   </div>
                   <hr class="mt-2 mb-2">
                   <div class="invoice-detail-item">
-                    <div class="invoice-detail-name">Total</div>
+                    <div class="invoice-detail-name">{{ 'CART-PAGE.TOTAL.TEXT' | translate }}</div>
                     <div class="invoice-detail-value invoice-detail-value-lg">$ {{total ?? 0 | truncateDecimals:2}}
                     </div>
                   </div>
@@ -135,25 +136,25 @@
             <div class="d-flex flex-wrap justify-content-end">
               <div class="d-flex flex-column align-items-end mb-2 me-4">
                 <input (click)="createPagaditoTransaction()" type="image" src="assets/images/cards/visa-mast.webp"
-                  alt="Pago con tarjeta de credito y debito" class="img-fluid mb-2">
+                  alt="{{ 'CART-PAGE.CREDIT-DEBIT-PAYMENT.TEXT' | translate }}" class="img-fluid mb-2">
 
                 <input (click)="showCoinPayConfirmation()" type="image" src="assets/images/cards/coinpay.png"
-                  alt="Pago con Coinpay CR" class="img-fluid mb-2 btn-coinpay">
-                <!-- <input (click)="showCoinPaymentConfirmation()" type="image"
-                  src="https://www.coinpayments.net/images/pub/buynow-grey.png" alt="Buy Now with CoinPayments.net"
-                  class="img-fluid mb-2"> -->
-                <!-- <button (click)="paymentByBankTransfer()" class="btn btn-primary mb-2">Pago por transferencia</button> -->
-                <button (click)="handleBuyMore()" class="btn btn-primary mb-2">Comprar Más</button>
+                  alt="{{ 'CART-PAGE.COINPAY-PAYMENT.TEXT' | translate }}" class="img-fluid mb-2 btn-coinpay">
+                <button (click)="handleBuyMore()" class="btn btn-primary mb-2">{{ 'CART-PAGE.BUY-MORE.TEXT' | translate
+                  }}</button>
               </div>
 
               <div class="btn-group-vertical mb-2 ms-2">
                 <button (click)="handleServiceBalancePayment()" *ngIf="!serviceBalanceNotAvailable"
-                  class="btn btn-primary mb-2">Pago con saldo de servicios {{model}}</button>
+                  class="btn btn-primary mb-2">{{ 'CART-PAGE.SERVICE-BALANCE-PAYMENT.TEXT' | translate }}
+                  {{model}}</button>
                 <button *ngIf="!showReversePaymentOnly && !balancePaymentNotAvailable" (click)="payWithMyBalance()"
-                  class="btn btn-primary mb-2">Pago con saldo disponible</button>
+                  class="btn btn-primary mb-2">{{ 'CART-PAGE.BALANCE-PAYMENT.TEXT' | translate }}</button>
                 <button (click)="handleBalancePayment()" *ngIf="reverseBalanceNotAvailable"
-                  class="btn btn-primary mb-2">Pago con solicitud modelo {{model}}</button>
-                <button (click)="emptycart()" class="btn btn-danger mb-2">Vaciar Carrito</button>
+                  class="btn btn-primary mb-2">{{ 'CART-PAGE.MODEL-BALANCE-PAYMENT.TEXT' | translate }}
+                  {{model}}</button>
+                <button (click)="emptycart()" class="btn btn-danger mb-2">{{ 'CART-PAGE.EMPTY-CART.TEXT' | translate
+                  }}</button>
               </div>
             </div>
           </div>
