@@ -3,7 +3,7 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am5themes_Animated from '@amcharts/amcharts4/themes/animated';
-import { Subject, switchMap, takeUntil } from 'rxjs';
+import { EMPTY, map, Subject, switchMap, takeUntil } from 'rxjs';
 import { ChartComponent } from 'ng-apexcharts';
 
 import { BalanceInformation } from '@app/core/models/wallet-model/balance-information.model';
@@ -70,43 +70,63 @@ export class HomeComponent {
   }
 
   OnInitMethod() {
-    this.modelsVisibilityService.canUserSeePaymentModels().pipe(
+    this.authService.currentUserAffiliate.pipe(
       takeUntil(this.destroy$),
-      switchMap(canSee => {
-        this.canSeePaymentModels = canSee;
-        return this.authService.currentUserAffiliate;
+      switchMap(user => {
+        if (user && user.id) {
+          this.user = user;
+          return this.modelsVisibilityService.canUserSeePaymentModels().pipe(
+            map(canSee => ({ user, canSee }))
+          );
+        }
+        return EMPTY;
       })
-    ).subscribe((user) => {
-      if (user && user.id) {
-        this.user = user;
-        this.loadUserData(user.id);
-      }
+    ).subscribe(({ user, canSee }) => {
+      this.canSeePaymentModels = canSee;
+      this.resetComponent();
+      this.loadUserData(user.id);
     });
 
     this.loadLocations();
+    this.getPurchasesInMyNetwork()
   }
 
   loadUserData(userId: number) {
-    Promise.all([
-      this.getPurchasesInMyNetwork(),
-      this.getBalanceInformationModel2(userId),
-      this.getBalanceInformationModel1A(userId),
-      this.canSeePaymentModels ? this.getBalanceInformationModel1B(userId) : Promise.resolve()
-    ]).then(() => {
-      this.ngZone.run(() => {
-        this.initializeAllCharts();
-        this.cdr.detectChanges();
+    this.loadBalancesWithRetry(userId, 5)
+      .then(() => {
+        this.ngZone.run(() => {
+          this.initializeBalanceCharts();
+          this.cdr.detectChanges();
+        });
+      })
+      .catch(error => {
+        console.error('Failed to load balance data after multiple retries:', error);
       });
-    });
   }
 
-  initializeAllCharts() {
-    this.initChartModel2();
-    this.initChartModel1A();
-    if (this.canSeePaymentModels) {
-      this.initChartModel1B();
+  initializeBalanceCharts() {
+
+    try {
+      this.initChartModel2();
+    } catch (error) {
+      console.error('Error initializing Model 2 Chart:', error);
     }
-    this.initializeAreaLineChart();
+
+    try {
+      this.initChartModel1A();
+    } catch (error) {
+      console.error('Error initializing Model 1A Chart:', error);
+    }
+
+    if (this.canSeePaymentModels) {
+      try {
+        this.initChartModel1B();
+      } catch (error) {
+        console.error('Error initializing Model 1B Chart:', error);
+      }
+    } else {
+      console.log('User cannot see payment models, skipping Model 1B Chart');
+    }
   }
 
   get registerUrl() {
@@ -140,13 +160,13 @@ export class HomeComponent {
     circle.strokeWidth = 1;
     circle.nonScaling = true;
 
-    circle.tooltipText = '[bold]{title}[/]\nCantidad: {value}';
+    circle.tooltipText = '[bold]{Title}[/]\nCantidad: {Value}';
 
-    imageSeriesTemplate.propertyFields.latitude = 'lat';
-    imageSeriesTemplate.propertyFields.longitude = 'lng';
+    imageSeriesTemplate.propertyFields.latitude = 'Lat';
+    imageSeriesTemplate.propertyFields.longitude = 'Lng';
 
     const centerLabel = imageSeriesTemplate.createChild(am4core.Label);
-    centerLabel.text = '{value}';
+    centerLabel.text = '{Value}';
     centerLabel.horizontalCenter = 'middle';
     centerLabel.verticalCenter = 'middle';
     centerLabel.fill = am4core.color('#55555');
@@ -258,7 +278,20 @@ export class HomeComponent {
     }
   };
 
+  isBalanceInformationValid(balance: BalanceInformation): boolean {
+    return balance.serviceBalance !== undefined &&
+      balance.availableBalance !== undefined &&
+      balance.totalCommissionsPaid !== undefined &&
+      balance.totalAcquisitions !== undefined &&
+      balance.reverseBalance !== undefined;
+  }
+
   private initChartModel2() {
+
+    if (!this.balanceInformation || !this.isBalanceInformationValid(this.balanceInformation)) {
+      console.error('Invalid balance information for Model 2');
+      return;
+    }
     this.pieChartOptions = {
       series: [
         this.balanceInformation.serviceBalance,
@@ -308,6 +341,11 @@ export class HomeComponent {
   }
 
   private initChartModel1A() {
+
+    if (!this.balanceInformationModel1A || !this.isBalanceInformationValid(this.balanceInformationModel1A)) {
+      console.error('Invalid balance information for Model 1A');
+      return;
+    }
     this.pieChartOptionsModel1A = {
       series: [
         this.balanceInformationModel1A.serviceBalance,
@@ -357,6 +395,11 @@ export class HomeComponent {
   }
 
   private initChartModel1B() {
+
+    if (!this.balanceInformationModel1B || !this.isBalanceInformationValid(this.balanceInformationModel1B)) {
+      console.error('Invalid balance information for Model 1B');
+      return;
+    }
     this.pieChartOptionsModel1B = {
       series: [
         this.balanceInformationModel1B.serviceBalance,
@@ -409,6 +452,7 @@ export class HomeComponent {
     this.affiliateService.getTotalAffiliatesByCountries().subscribe({
       next: (value) => {
         this.maps = value.data;
+        console.log(value.data);
         this.setMapInfo();
       },
       error: (err) => {
@@ -426,6 +470,7 @@ export class HomeComponent {
       if (data) {
         this.currentYearPurchases = data.currentYearPurchases;
         this.previousYearPurchases = data.previousYearPurchases;
+        console.log(data);
         this.initializeAreaLineChart();
       }
     });
@@ -442,49 +487,97 @@ export class HomeComponent {
   }
 
   getBalanceInformationModel2(id: number): Promise<void> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.walletService.getBalanceInformationByAffiliateId(id).subscribe({
         next: (value: BalanceInformation) => {
           this.balanceInformation = value;
           resolve();
         },
         error: (err) => {
-          console.log(err);
-          resolve();
+          console.error('Error fetching balance information for Model 2:', err);
+          reject(err);
         }
       });
     });
   }
 
   getBalanceInformationModel1A(id: number): Promise<void> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.walletModel1AService.getBalanceInformationByAffiliateId(id).subscribe({
         next: (value: BalanceInformationModel1A) => {
           this.balanceInformationModel1A = value;
           resolve();
         },
         error: (err) => {
-          console.log(err);
-          resolve();
+          console.error('Error fetching balance information for Model 1A:', err);
+          reject(err);
         }
       });
     });
   }
 
   getBalanceInformationModel1B(id: number): Promise<void> {
-    if (!this.canSeePaymentModels) return;
+    if (!this.canSeePaymentModels) {
+      return Promise.resolve();
+    }
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.walletModel1BService.getBalanceInformationByAffiliateId(id).subscribe({
         next: (value: BalanceInformationModel1B) => {
           this.balanceInformationModel1B = value;
           resolve();
         },
         error: (err) => {
-          console.log(err);
-          resolve();
+          console.error('Error fetching balance information for Model 1B:', err);
+          reject(err);
         }
       });
     });
+  }
+
+  loadBalancesWithRetry(userId: number, maxRetries: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const attemptLoad = (retryCount: number) => {
+        Promise.all([
+          this.getBalanceInformationModel2(userId),
+          this.getBalanceInformationModel1A(userId),
+          this.canSeePaymentModels ? this.getBalanceInformationModel1B(userId) : Promise.resolve()
+        ]).then(() => {
+          resolve();
+        }).catch((error) => {
+          if (retryCount < maxRetries) {
+            setTimeout(() => attemptLoad(retryCount + 1), 2000);
+          } else {
+            reject(error);
+          }
+        });
+      };
+      attemptLoad(0);
+    });
+  }
+
+  initChartWithRetry(initFunction: () => void, chartName: string, maxRetries: number = 5) {
+    const attempt = (retryCount: number) => {
+      try {
+        initFunction();
+      } catch (error) {
+        console.error(`Error initializing ${chartName}:`, error);
+        if (retryCount < maxRetries) {
+          setTimeout(() => attempt(retryCount + 1), 1000);
+        } else {
+          console.error(`Failed to initialize ${chartName} after ${maxRetries} attempts:`, error);
+        }
+      }
+    };
+    attempt(0);
+  }
+
+  resetComponent() {
+    this.balanceInformation = new BalanceInformation();
+    this.balanceInformationModel1A = new BalanceInformationModel1A();
+    this.balanceInformationModel1B = new BalanceInformationModel1B();
+    this.pieChartOptions = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
+    this.pieChartOptionsModel1A = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
+    this.pieChartOptionsModel1B = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
   }
 }

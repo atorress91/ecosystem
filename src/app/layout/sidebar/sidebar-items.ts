@@ -197,7 +197,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'MENUITEMS.TOOLS.TEXT',
     iconType: 'feather',
     icon: 'tag',
-    class: '',
+    class: 'menu-toggle',
     groupTitle: false,
     badge: '',
     badgeClass: '',

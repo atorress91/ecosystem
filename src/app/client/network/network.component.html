@@ -61,10 +61,10 @@
                   <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-STATE.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div *ngIf="row.activation_date != null" class="badge-outline col-green">
-                        Activo
+                        {{ 'NETWORK-PAGE.ACTIVE.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.activation_date == null" class="badge-outline col-red">
-                        Inactivo
+                        {{ 'NETWORK-PAGE.INACTIVE.TEXT' | translate }}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
@@ -75,11 +75,6 @@
                       {{ getNameGrading(row.external_grading_before_id) }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <!-- <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-EMAIL.TEXT' | translate }}">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.email }}
-                    </ng-template>
-                  </ngx-datatable-column> -->
                   <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-DETAIL.TEXT' | translate }}" sortable="false">
                     <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                       <div ngbDropdown container="body">
@@ -92,26 +87,17 @@
                           <a ngbDropdownItem id="btn-deleteGlobal" *ngIf="isNewUser"
                             (click)="showConfirmationTransferBalanceForMembership(row)">
                             <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px">Activar membresía del
-                              afiliado con saldo disponible</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.BALANCE.TEXT' | translate }}</span>
                           </a>
                           <a ngbDropdownItem *ngIf="isNewUser" (click)="createPagaditoTransaction(row)">
                             <i class="bi bi-credit-card"></i>
-                            <span style="margin-left: 10px">Activar membresía
-                              del
-                              afiliado con tarjeta</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.CARD.TEXT' | translate }}</span>
                           </a>
                           <a ngbDropdownItem id="btn-detailGlobal" *ngIf="row.activation_date != null"
                             (click)="showConfirmationTransferBalance(row)">
                             <i class="bi bi-currency-exchange"></i>
-                            <span style="margin-left: 10px">Transferir
-                              saldo</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.TRANSFER-BALANCE.TEXT' | translate }}</span>
                           </a>
-                          <!-- <a ngbDropdownItem id="btn-purchase"
-                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation">
-                            <i class="bi bi-cart-check-fill"></i>
-                            <span style="margin-left: 10px" (click)="redirectToPurchases(row)">Realizar Compra</span>
-                          </a> -->
                         </div>
                       </div>
                     </ng-template>
@@ -124,7 +110,6 @@
         </div>
       </div>
     </div>
-
     <div class="row">
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
@@ -160,20 +145,20 @@
                       <li class="nav-item m-2" (click)="redirectToUnilevelTree()">
                         <button type="button" class="btn btn-primary">
                           <i class="bi bi-diagram-3 ms-2"></i>
-                          Ver mi red
+                          {{ 'NETWORK-PAGE.VIEW-NETWORK.TEXT' | translate }}
                         </button>
                       </li>
                       <li class="nav-item m-2" (click)="copyTableData()">
                         <button type="button" class="btn btn-primary">
                           <i class="bi bi-clipboard-check"></i>
-                          Copiar
+                          {{ 'NETWORK-PAGE.COPY.TEXT' | translate }}
                         </button>
                       </li>
 
                       <li class="nav-item m-2" (click)="downloadPDF()">
                         <button type="button" class="btn btn-primary">
                           <i class="bi bi-printer"></i>
-                          PDF
+                          {{ 'NETWORK-PAGE.PDF.TEXT' | translate }}
                         </button>
                       </li>
                     </ul>
@@ -190,10 +175,10 @@
                   <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-STATE.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div *ngIf="row.activationDate != null" class="badge-outline col-green">
-                        Activo
+                        {{ 'NETWORK-PAGE.ACTIVE.TEXT' | translate }}
                       </div>
                       <div *ngIf="row.activationDate == null" class="badge-outline col-red">
-                        Inactivo
+                        {{ 'NETWORK-PAGE.INACTIVE.TEXT' | translate }}
                       </div>
                     </ng-template>
                   </ngx-datatable-column>
@@ -204,11 +189,6 @@
                       {{ getNameGrading(row.externalGradingIdBefore) }}
                     </ng-template>
                   </ngx-datatable-column>
-                  <!-- <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-EMAIL.TEXT' | translate }}">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row.email }}
-                    </ng-template>
-                  </ngx-datatable-column> -->
                   <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-DETAIL.TEXT' | translate }}" sortable="false">
                     <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                       <div ngbDropdown container="body">
@@ -218,36 +198,21 @@
                           }}
                         </button>
                         <div ngbDropdownMenu>
-                          <!-- <a ngbDropdownItem id="btn-delete" *ngIf="row.activation_date == null">
-                            <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px"
-                              (click)=" showConfirmationTransferBalanceForMembership(row)">Transferir
-                              saldo para membresia</span>
-                          </a> -->
                           <a ngbDropdownItem id="btn-detail" *ngIf="row.activationDate != null"
                             (click)="showConfirmationTransferBalance(row)">
                             <i class="bi bi-currency-exchange"></i>
-                            <span style="margin-left: 10px">Transferir
-                              saldo</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.TRANSFER-BALANCE.TEXT' | translate }}</span>
                           </a>
                           <a ngbDropdownItem id="btn-deleteGlobal" *ngIf="row.activationDate == null"
                             (click)="showConfirmationTransferBalanceForMembership(row)">
                             <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px">Activar membresía del
-                              afiliado con saldo disponible</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.BALANCE.TEXT' | translate }}</span>
                           </a>
                           <a ngbDropdownItem *ngIf="row.activationDate == null"
                             (click)="createPagaditoTransaction(row)">
                             <i class="bi bi-credit-card"></i>
-                            <span style="margin-left: 10px">Activar membresía
-                              del
-                              afiliado con tarjeta</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.CARD.TEXT' | translate }}</span>
                           </a>
-                          <!-- <a ngbDropdownItem id="btn-purchase"
-                            *ngIf="withdrawalConfiguration.activate_invoice_cancellation">
-                            <i class="bi bi-cart-check-fill"></i>
-                            <span style="margin-left: 10px" (click)="redirectToPurchases(row)">Realizar Compra</span>
-                          </a> -->
                         </div>
                       </div>
                     </ng-template>
