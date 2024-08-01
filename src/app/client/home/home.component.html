@@ -4,17 +4,16 @@
       <h5 class="page-title m-b-0">{{ 'MENUITEMS.HOME.TEXT' | translate }}</h5>
     </li>
     <li class="breadcrumb-item bcrumb-1">
-      <a routerLink="/dashboard/main"> <i class="fas fa-home font-17"></i></a>
+      <a routerLink="/dashboard/main"><i class="fas fa-home font-17"></i></a>
     </li>
   </ul>
   <div class="section-body">
     <div class="row">
-      <ng-container *ngIf="canSeePaymentModels; then model1BContent else emptyContent"></ng-container>
-      <ng-template #model1BContent>
+      <ng-container *ngIf="canSeePaymentModels && balanceInformationModel1B && isBalanceInformationValid(balanceInformationModel1B)">
         <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
           <div class="card">
             <div class="card-header">
-              <h4 class="badge-outline col-green">Información Modelo R</h4>
+              <h4 class="badge-outline col-green">{{ 'HOME-PAGE-CLIENT.INFORMATION-R.TEXT' | translate }}</h4>
             </div>
             <div class="card-body">
               <div id="chart1">
@@ -29,35 +28,31 @@
                   <tbody>
                     <tr>
                       <td class="col-red">
-                        <i class="fa fa-circle col-red msr-2"></i> Saldo de servicios
+                        <i class="fa fa-circle col-red msr-2"></i>{{ 'HOME-PAGE-CLIENT.SERVICE-BALANCE.TEXT' | translate }}
                       </td>
                       <td class="col-red">USD {{balanceInformationModel1B.serviceBalance | truncateDecimals:2}}</td>
                     </tr>
                     <tr>
                       <td class="col-blue">
-                        <i class="fa fa-circle col-blue msr-2 "></i>Saldo Disponible
+                        <i class="fa fa-circle col-blue msr-2 "></i>{{ 'HOME-PAGE-CLIENT.AVAILABLE-BALANCE.TEXT' | translate }}
                       </td>
                       <td class="col-blue">USD {{balanceInformationModel1B.availableBalance | truncateDecimals:2}}</td>
                     </tr>
                     <tr>
                       <td class="col-emerald">
-                        <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
+                        <i class="fa fa-circle col-emerald msr-2"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-PAID.TEXT' | translate }}
                       </td>
-                      <td class="col-emerald">USD {{balanceInformationModel1B.totalCommissionsPaid |
-                        truncateDecimals:2}}
-                      </td>
+                      <td class="col-emerald">USD {{balanceInformationModel1B.totalCommissionsPaid | truncateDecimals:2}}</td>
                     </tr>
                     <tr>
                       <td class="col-green">
-                        <i class="fa fa-circle col-green msr-2 col-green"></i>Total
-                        Adquisiciones
+                        <i class="fa fa-circle col-green msr-2 col-green"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-ACQUISITIONS.TEXT' | translate }}
                       </td>
-                      <td class="col-green">USD {{balanceInformationModel1B.totalAcquisitions | truncateDecimals:2}}
-                      </td>
+                      <td class="col-green">USD {{balanceInformationModel1B.totalAcquisitions | truncateDecimals:2}}</td>
                     </tr>
                     <tr>
                       <td class="col-purple">
-                        <i class="fa fa-circle col-purple msr-2 col-purple"></i>Solicitud de modelo
+                        <i class="fa fa-circle col-purple msr-2 col-purple"></i>{{ 'HOME-PAGE-CLIENT.MODEL-REQUEST.TEXT' | translate }}
                       </td>
                       <td class="col-purple">USD {{balanceInformationModel1B.reverseBalance | truncateDecimals:2}}</td>
                     </tr>
@@ -67,14 +62,14 @@
             </div>
           </div>
         </div>
-      </ng-template>
-      <ng-template #emptyContent></ng-template>
-      <div
+      </ng-container>
+
+      <div *ngIf="balanceInformation && isBalanceInformationValid(balanceInformation)"
         [ngClass]="{'col-xl-4 col-lg-12 col-md-12 col-sm-12': canSeePaymentModels, 'col-xl-6 col-lg-12 col-md-12 col-sm-12': !canSeePaymentModels}"
         class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="badge-outline col-green">Información Modelo 1</h4>
+            <h4 class="badge-outline col-green">{{ 'HOME-PAGE-CLIENT.INFORMATION-1.TEXT' | translate }}</h4>
           </div>
           <div class="card-body">
             <div id="chart1">
@@ -89,34 +84,31 @@
                 <tbody>
                   <tr>
                     <td class="col-red">
-                      <i class="fa fa-circle col-red msr-2"></i> Saldo de servicios
+                      <i class="fa fa-circle col-red msr-2"></i>{{ 'HOME-PAGE-CLIENT.SERVICE-BALANCE.TEXT' | translate }}
                     </td>
                     <td class="col-red">USD {{balanceInformationModel1A.serviceBalance | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-blue">
-                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo Disponible
+                      <i class="fa fa-circle col-blue msr-2 "></i>{{ 'HOME-PAGE-CLIENT.AVAILABLE-BALANCE.TEXT' | translate }}
                     </td>
                     <td class="col-blue">USD {{balanceInformationModel1A.availableBalance | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-emerald">
-                      <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
+                      <i class="fa fa-circle col-emerald msr-2"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-PAID.TEXT' | translate }}
                     </td>
-                    <td class="col-emerald">USD {{balanceInformationModel1A.totalCommissionsPaid | truncateDecimals:2}}
-                    </td>
+                    <td class="col-emerald">USD {{balanceInformationModel1A.totalCommissionsPaid | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-green">
-                      <i class="fa fa-circle col-green msr-2 col-green"></i>Total
-                      Adquisiciones
+                      <i class="fa fa-circle col-green msr-2 col-green"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-ACQUISITIONS.TEXT' | translate }}
                     </td>
                     <td class="col-green">USD {{balanceInformationModel1A.totalAcquisitions | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-purple">
-                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Solicitud de modelo
-
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>{{ 'HOME-PAGE-CLIENT.MODEL-REQUEST.TEXT' | translate }}
                     </td>
                     <td class="col-purple">USD {{balanceInformationModel1A.reverseBalance | truncateDecimals:2}}</td>
                   </tr>
@@ -126,12 +118,13 @@
           </div>
         </div>
       </div>
-      <div
+
+      <div *ngIf="balanceInformation && isBalanceInformationValid(balanceInformation)"
         [ngClass]="{'col-xl-4 col-lg-12 col-md-12 col-sm-12': canSeePaymentModels, 'col-xl-6 col-lg-12 col-md-12 col-sm-12': !canSeePaymentModels}"
         class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="badge-outline col-green">{{ 'HOME-PAGE-CLIENT.INFORMATION.TEXT' | translate }} Modelo 2</h4>
+            <h4 class="badge-outline col-green">{{ 'HOME-PAGE-CLIENT.INFORMATION-2.TEXT' | translate }}</h4>
           </div>
           <div class="card-body">
             <div id="chart1">
@@ -146,35 +139,31 @@
                 <tbody>
                   <tr>
                     <td class="col-red">
-                      <i class="fa fa-circle col-red msr-2"></i> Saldo de servicios
+                      <i class="fa fa-circle col-red msr-2"></i>{{ 'HOME-PAGE-CLIENT.SERVICE-BALANCE.TEXT' | translate }}
                     </td>
                     <td class="col-red">USD {{ balanceInformation.serviceBalance ?? 0 | truncateDecimals:2 }}</td>
                   </tr>
                   <tr>
                     <td class="col-blue">
-                      <i class="fa fa-circle col-blue msr-2 "></i>Saldo
-                      Disponible
+                      <i class="fa fa-circle col-blue msr-2 "></i>{{ 'HOME-PAGE-CLIENT.AVAILABLE-BALANCE.TEXT' | translate }}
                     </td>
                     <td class="col-blue">USD {{ balanceInformation.availableBalance ?? 0 | truncateDecimals:2 }}</td>
                   </tr>
                   <tr>
                     <td class="col-emerald">
-                      <i class="fa fa-circle col-emerald msr-2"></i>Total Pagado
+                      <i class="fa fa-circle col-emerald msr-2"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-PAID.TEXT' | translate }}
                     </td>
-                    <td class="col-emerald">USD {{balanceInformation.totalCommissionsPaid ?? 0 | truncateDecimals:2}}
-                    </td>
+                    <td class="col-emerald">USD {{balanceInformation.totalCommissionsPaid ?? 0 | truncateDecimals:2}}</td>
                   </tr>
                   <tr>
                     <td class="col-green">
-                      <i class="fa fa-circle col-green msr-2 col-green"></i>Total
-                      Adquisiciones
+                      <i class="fa fa-circle col-green msr-2 col-green"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-ACQUISITIONS.TEXT' | translate }}
                     </td>
                     <td class="col-green">USD {{balanceInformation.totalAcquisitions ?? 0}}</td>
                   </tr>
                   <tr>
                     <td class="col-purple">
-                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>Solicitud de modelo
-
+                      <i class="fa fa-circle col-purple msr-2 col-purple"></i>{{ 'HOME-PAGE-CLIENT.MODEL-REQUEST.TEXT' | translate }}
                     </td>
                     <td class="col-purple">USD {{balanceInformation.reverseBalance ?? 0}}</td>
                   </tr>
@@ -184,26 +173,24 @@
           </div>
         </div>
       </div>
+
       <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4>
-              {{ 'HOME-PAGE-CLIENT.TITTLE-FIRST-CHART.TEXT' | translate }}
-            </h4>
+            <h4>{{ 'HOME-PAGE-CLIENT.TITTLE-FIRST-CHART.TEXT' | translate }}</h4>
           </div>
           <div class="card-body">
             <div class="row">
               <div id="chartdiv"></div>
             </div>
             <div class="row">
-              <div id="new-orders" class="media-list position-relative"
-                style="position: relative; max-height: 170px !important" [perfectScrollbar]>
+              <div id="new-orders" class="media-list position-relative" style="position: relative; max-height: 170px !important" [perfectScrollbar]>
                 <div class="table">
                   <table id="new-orders-table" class="table table-hover table-xl table-row-border mb-0">
                     <tbody *ngFor="let item of maps">
                       <tr>
-                        <td class="text-truncate">{{item.title}}</td>
-                        <td class="text-truncate">{{item.value}}</td>
+                        <td class="text-truncate">{{item.Title}}</td>
+                        <td class="text-truncate">{{item.Value}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -213,12 +200,11 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12  d-none d-sm-none d-md-block d-xl-block d-xxl-block">
+
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 d-none d-sm-none d-md-block d-xl-block d-xxl-block">
         <div class="card">
           <div class="card-header">
-            <h4>
-              {{ 'HOME-PAGE-CLIENT.TITTLE-SECOND-CHART.TEXT' | translate }}
-            </h4>
+            <h4>{{ 'HOME-PAGE-CLIENT.TITTLE-SECOND-CHART.TEXT' | translate }}</h4>
           </div>
           <div class="card-body m-2">
             <div echarts [options]="area_line_chart" class="echart-height"></div>
@@ -226,6 +212,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
@@ -236,46 +223,26 @@
             <div class="py-4">
               <p class="clearfix">
                 <span role="button" class="float-start" (click)="openNewWindow(registerUrl)">
-                  Registro
+                  {{ 'HOME-PAGE-CLIENT.REGISTER.TEXT' | translate }}
                 </span>
-                <button class="btn btn-primary float-end" (click)="shareModalComponent.openShareModal(registerUrl)"><i
-                    class="bi bi-share-fill ms-2"></i>Compartir link</button>
+                <button class="btn btn-primary float-end" (click)="shareModalComponent.openShareModal(registerUrl)">
+                  <i class="bi bi-share-fill ms-2"></i>{{ 'HOME-PAGE-CLIENT.SHARE-LINK.TEXT' | translate }}
+                </button>
               </p>
               <p class="clearfix">
                 <span role="button" class="float-start" (click)="openNewWindow('https://ecosystemfx.net/')">
                   {{ 'HOME-PAGE-CLIENT.PUBLIC-STORE.TEXT' | translate }}
                 </span>
-                <button class="btn btn-primary float-end"
-                  (click)="shareModalComponent.openShareModal('https://ecosystemfx.net/')"><i
-                    class="bi bi-share-fill ms-2"></i>Compartir link</button>
+                <button class="btn btn-primary float-end" (click)="shareModalComponent.openShareModal('https://ecosystemfx.net/')">
+                  <i class="bi bi-share-fill ms-2"></i>{{ 'HOME-PAGE-CLIENT.SHARE-LINK.TEXT' | translate }}
+                </button>
               </p>
-              <!-- <p class="clearfix">
-                <span class="float-start">
-                  Presentación Estrategia de Negocio EcosystemFx
-                </span>
-                <span class="float-end text-muted">
-                  <a rel="noopener"
-                    href="https://drive.google.com/file/d/1J7y3WjCpk60b5t6VEGUpmz88wCsg21Lw/view?usp=sharing"
-                    target="_blank">https://drive.google.com/file/d/1J7y3WjCpk60b5t6VEGUpmz88wCsg21Lw/view?usp=sharing</a>
-                </span>
-              </p> -->
               <p class="clearfix">
-                <span class="float-start">
-                  Sitio web
-                </span>
+                <span class="float-start">{{ 'HOME-PAGE-CLIENT.WEBSITE.TEXT' | translate }}</span>
                 <span class="float-end text-muted">
                   <a rel="noopener" href="https://ecosystemfx.com" target="_blank">https://ecosystemfx.com</a>
                 </span>
               </p>
-              <!-- <p class="clearfix">
-                <span class="float-start">
-                  Términos y condiciones
-                </span>
-                <span class="float-end text-muted">
-                  <a rel="noopener" href="https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf"
-                    target="_blank">https://ecosystemfx.com/wp-content/uploads/2024/01/ECOSYSTEM-V3.pdf</a>
-                </span>
-              </p> -->
             </div>
           </div>
         </div>
@@ -283,4 +250,5 @@
     </div>
   </div>
 </section>
+
 <app-share-modal #shareModalComponent></app-share-modal>

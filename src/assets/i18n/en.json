@@ -103,19 +103,19 @@
       "TEXT": "HOME"
     },
     "EDUCATIONAL-COURSES": {
-      "TEXT": "Shop Educational Courses"
+      "TEXT": "Educational Courses"
     },
     "FUNDING-ACCOUNTS": {
       "TEXT": "Support capital"
     },
     "SERVICES-AND-PRODUCTS": {
-      "TEXT": "Products"
+      "TEXT": "Services and Products"
     },
     "BILLING-PURCHASE": {
       "TEXT": "Environmental store"
     },
     "BILLING-MY-PURCHASES": {
-      "TEXT": "Review my invoices"
+      "TEXT": "Billing My Purchases"
     },
     "BILLING-MY-ORDERS": {
       "TEXT": "My orders"
@@ -158,59 +158,25 @@
     },
     "NEWS": {
       "TEXT": "News"
+    }
+  },
+  "EDUCATIONAL-COURSES": {
+    "ACADEMY-TRADING": {
+      "TEXT": "Academy Trading"
+    }
+  },
+  "SERVICES-AND-PRODUCTS": {
+    "NEWS": {
+      "TEXT": "News"
     },
-    "APPS": {
-      "TEXT": "-- Apps"
+    "MECANICLICK": {
+      "TEXT": "MecaniClick"
     },
-    "CALENDAR": {
-      "TEXT": "Calendar"
+    "ALTERNATIVE-HEALTH-AMERICA": {
+      "TEXT": "Alternative Health America"
     },
-    "EMAIL": {
-      "TEXT": "Email",
-      "LIST": {
-        "INBOX": "Inbox",
-        "COMPOSE": "Compose",
-        "READ": "Read Email"
-      }
-    },
-    "MORE-APPS": {
-      "TEXT": "More Apps",
-      "LIST": {
-        "CHAT": "Chat",
-        "BLOG": "Blog",
-        "DRAG-DROP": "Drag & Drop",
-        "CONTACT-GRID": "Contact Grid"
-      }
-    },
-    "COMPONENTS": {
-      "TEXT": "-- Components"
-    },
-    "WIDGETS": {
-      "TEXT": "Widgets",
-      "LIST": {
-        "CHART-WIDGET": "Chart-Widget",
-        "DATA-WIDGET": "Data-Widget"
-      }
-    },
-    "FORMS": {
-      "TEXT": "Forms",
-      "LIST": {
-        "BASIC": "Basic Form",
-        "ADVANCE": "Advance Control",
-        "EXAMPLE": "Form Examples",
-        "VALIDATION": "Form Validation",
-        "WIZARD": "Wizard",
-        "INPUT-MASK": "Input Mask",
-        "SELECT-ITEM": "Select Item",
-        "EDITORS": "Editors"
-      }
-    },
-    "TABLES": {
-      "TEXT": "Tables",
-      "LIST": {
-        "BASIC": "Basic Tables",
-        "ADVANCE": "Advance Tables"
-      }
+    "ALTERNATIVE-HEALTH-EUROPE": {
+      "TEXT": "Alternative Health Europe"
     }
   },
   "REQUESTS-WALLET": {
@@ -341,6 +307,48 @@
     },
     "CLOSE-BTN": {
       "TEXT": "Close"
+    },
+    "REQUEST-TYPE": {
+      "TEXT": "Type of request"
+    },
+    "ADMIN-ANSWER.NOT-ATTENDED": {
+      "TEXT": "Not Attended"
+    },
+    "ADMIN-ANSWER.ATTENDED": {
+      "TEXT": "Attended"
+    },
+    "ADMIN-ANSWER.CANCELLED": {
+      "TEXT": "Cancelled"
+    },
+    "STATE.PENDING": {
+      "TEXT": "Pending"
+    },
+    "STATE.APPROVED": {
+      "TEXT": "Approved"
+    },
+    "STATE.CANCELLED": {
+      "TEXT": "Cancelled"
+    },
+    "TYPE.WITHDRAWAL": {
+      "TEXT": "Withdrawal"
+    },
+    "REQUEST-TYPE.REVERT-INVOICE": {
+      "TEXT": "Revert Invoice"
+    },
+    "AMOUNT-REQUESTED-ERROR": {
+      "TEXT": "Enter an amount equal to or less than the available balance."
+    },
+    "ACCESS-KEY-ERROR": {
+      "TEXT": "Password is required."
+    },
+    "OBSERVATION-ERROR": {
+      "TEXT": "Observation is required."
+    },
+    "CONFIRM-CODE-ERROR": {
+      "TEXT": "Security code is required."
+    },
+    "GENERATE-CODE-BTN": {
+      "TEXT": "Generate Code"
     }
   },
   "ECOPOOL-PAGE": {
@@ -426,91 +434,220 @@
     },
     "SUBMENU-TITLE": {
       "TEXT": "Wallet"
+    },
+    "COPY-BTN": {
+      "TEXT": "Copy"
+    },
+    "PDF-BTN": {
+      "TEXT": "PDF"
+    },
+    "STATE": {
+      "ATTENDED": {
+        "TEXT": "Attended"
+      },
+      "NOT-ATTENDED": {
+        "TEXT": "Not Attended"
+      }
+    }
+  },
+  "TICKETS-PAGE": {
+    "TICKETS": {
+      "TEXT": "Tickets"
+    },
+    "MY-TICKETS": {
+      "TEXT": "My Tickets"
+    },
+    "CREATE-TICKET-BTN": {
+      "TEXT": "Create Ticket"
+    },
+    "DELETE-BTN": {
+      "TITLE": "Delete"
+    },
+    "SELECT-COLUMN": {
+      "TEXT": "Select"
+    },
+    "STATUS-COLUMN": {
+      "TEXT": "Status"
+    },
+    "STATUS-CLOSED": {
+      "TEXT": "Closed"
+    },
+    "STATUS-OPEN": {
+      "TEXT": "Open"
+    },
+    "MESSAGE-COLUMN": {
+      "TEXT": "Message"
+    },
+    "CATEGORY-COLUMN": {
+      "TEXT": "Category"
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Date"
+    },
+    "IMAGE-COLUMN": {
+      "TEXT": "Image"
+    },
+    "IMAGE-ALT": {
+      "TEXT": "Click to view"
+    },
+    "NO-IMAGE": {
+      "TEXT": "No Image"
+    },
+    "IMAGE-MODAL": {
+      "TITLE": "Images"
+    },
+    "SLIDE-IMAGE-ALT": {
+      "TEXT": "Slide image"
+    },
+    "SHOWING": {
+      "TEXT": "Showing"
+    },
+    "CREATE-TICKET": {
+      "TITLE": "Create Ticket"
+    },
+    "SUBJECT": {
+      "LABEL": "Subject",
+      "PLACEHOLDER": "Subject",
+      "REQUIRED-ERROR": "Subject is required."
+    },
+    "CATEGORY": {
+      "LABEL": "Category",
+      "DEFAULT-OPTION": "Select an option",
+      "REQUIRED-ERROR": "A category must be selected."
+    },
+    "DESCRIPTION": {
+      "LABEL": "Description",
+      "PLACEHOLDER": "Description",
+      "REQUIRED-ERROR": "Description is required.",
+      "MAXLENGTH-ERROR": "Description cannot exceed 255 characters."
+    },
+    "ADD-IMAGE": {
+      "LABEL": "Add Image",
+      "DROPZONE": "Drop it!"
+    },
+    "SUBMIT-BTN": {
+      "TEXT": "Submit"
+    },
+    "DISCARD-BTN": {
+      "TEXT": "Discard"
     }
   },
   "HOME-PAGE-CLIENT": {
-    "MAP": {
-      "TEXT": "Map"
+    "INFORMATION-R": {
+      "TEXT": "Information Model R"
     },
-    "INFORMATION": {
-      "TEXT": "Information"
+    "INFORMATION-1": {
+      "TEXT": "Information Model 1"
+    },
+    "INFORMATION-2": {
+      "TEXT": "Information Model 2"
+    },
+    "SERVICE-BALANCE": {
+      "TEXT": "Service Balance"
     },
     "AVAILABLE-BALANCE": {
       "TEXT": "Available Balance"
     },
+    "TOTAL-PAID": {
+      "TEXT": "Total Paid"
+    },
     "TOTAL-ACQUISITIONS": {
       "TEXT": "Total Acquisitions"
     },
-    "QUALIFICATION": {
-      "TEXT": "Qualification"
-    },
-    "COMMISSIONS-CALCULATED": {
-      "TEXT": "Commissions Calculated"
-    },
-    "RECEIVABLE": {
-      "TEXT": "Receivable"
-    },
-    "TOTAL-PAID": {
-      "TEXT": "Receivable"
+    "MODEL-REQUEST": {
+      "TEXT": "Model Request"
     },
     "TITTLE-FIRST-CHART": {
-      "TEXT": "Affiliates registered"
+      "TEXT": "Affiliates Registered"
     },
     "TITTLE-SECOND-CHART": {
-      "TEXT": "Purchases made in my network"
-    },
-    "CHART-DIRECTS": {
-      "TEXT": "Directs"
-    },
-    "CHART-DEPTH": {
-      "TEXT": "Depth"
-    },
-    "CHART-COMMISSIONABLE": {
-      "TEXT": "Commissionable"
-    },
-    "CHART-PURCHASES": {
-      "TEXT": "Purchases"
+      "TEXT": "Purchases Made in My Network"
     },
     "TITTLE-BANNERS": {
       "TEXT": "Banners"
     },
-    "URL": {
-      "TEXT": "URL"
+    "REGISTER": {
+      "TEXT": "Register"
+    },
+    "SHARE-LINK": {
+      "TEXT": "Share Link"
+    },
+    "WEBSITE": {
+      "TEXT": "Website"
     },
     "PUBLIC-STORE": {
-      "TEXT": "Public store"
-    },
-    "LIMIT-COINPAYMENTS": {
-      "TEXT": "Coinpayments Cap"
-    },
-    "DESCRIPTION-COINPAYMENTS": {
-      "TEXT": "(If your Ecopool acquisition limit is greater than 10k, communicate through a ticket for authorization.)"
+      "TEXT": "Public Store"
     }
   },
   "BILLING-PURCHASES-PAGE": {
     "BILLING-PURCHASES-TITLE": {
-      "TEXT": "Shopping list"
+      "TEXT": "Billing Purchases"
     },
     "SEARCH": {
       "TEXT": "Search"
     },
+    "COPY": {
+      "TEXT": "Copy"
+    },
+    "PDF": {
+      "TEXT": "PDF"
+    },
     "ROW-NO-BILL": {
-      "TEXT": "Bill number"
+      "TEXT": "Bill No."
     },
     "ROW-DATE": {
       "TEXT": "Date"
     },
     "ROW-BILL-STATE": {
-      "TEXT": "Invoice State"
+      "TEXT": "Bill State"
     },
     "ROW-PAID": {
       "TEXT": "Paid"
     },
-    "ROW-DETAIL": {
-      "TEXT": "Details"
+    "ROW-NOT-PAID": {
+      "TEXT": "Not Paid"
     },
-    "BTN-INVOICE-STATE": {
+    "ROW-ACTIVE": {
       "TEXT": "Active"
+    },
+    "ROW-CANCELLED": {
+      "TEXT": "Cancelled"
+    },
+    "ROW-MODEL": {
+      "TEXT": "Model"
+    },
+    "MODEL-1B": {
+      "TEXT": "Model 1B"
+    },
+    "MODEL-1A": {
+      "TEXT": "Model 1A"
+    },
+    "MODEL-2": {
+      "TEXT": "Model 2"
+    },
+    "TRADING-ACADEMY": {
+      "TEXT": "Trading Academy"
+    },
+    "FUNDING-ACCOUNTS": {
+      "TEXT": "Funding Accounts"
+    },
+    "MEMBERSHIP": {
+      "TEXT": "Membership"
+    },
+    "ALTERNATIVE-HEALTH": {
+      "TEXT": "Alternative Health"
+    },
+    "RECURRING-MODEL": {
+      "TEXT": "Recurring Model"
+    },
+    "TOTAL-AMOUNT": {
+      "TEXT": "Total Amount"
+    },
+    "ROW-DETAIL": {
+      "TEXT": "Detail"
+    },
+    "ACTIONS": {
+      "TEXT": "Actions"
     },
     "BTN-SEE-DETAILS": {
       "TEXT": "See Details"
@@ -549,14 +686,11 @@
     }
   },
   "NETWORK-PAGE": {
-    "NETWORK-TITLE": {
-      "TEXT": "Find my customers"
-    },
     "NETWORK-ALL-CUSTOMERS": {
-      "TEXT": "Search all customers"
+      "TEXT": "Network All Customers"
     },
-    "NETWORK-SUBTITLE": {
-      "TEXT": "Direct Affiliates"
+    "SEARCH": {
+      "TEXT": "Search"
     },
     "ROW-USER": {
       "TEXT": "User"
@@ -567,17 +701,61 @@
     "ROW-QUALIFICATION": {
       "TEXT": "Qualification"
     },
-    "ROW-EMAIL": {
-      "TEXT": "Email"
-    },
     "ROW-DETAIL": {
       "TEXT": "Detail"
     },
     "BTN-ACTIONS": {
       "TEXT": "Actions"
     },
-    "SEARCH": {
-      "TEXT": "Search"
+    "ACTIVATE-MEMBERSHIP.BALANCE": {
+      "TEXT": "Activate membership with available balance"
+    },
+    "ACTIVATE-MEMBERSHIP.CARD": {
+      "TEXT": "Activate membership with card"
+    },
+    "TRANSFER-BALANCE": {
+      "TEXT": "Transfer balance"
+    },
+    "ACTIVE": {
+      "TEXT": "Active"
+    },
+    "INACTIVE": {
+      "TEXT": "Inactive"
+    },
+    "NETWORK-TITLE": {
+      "TEXT": "My Network"
+    },
+    "VIEW-NETWORK": {
+      "TEXT": "View My Network"
+    },
+    "COPY": {
+      "TEXT": "Copy"
+    },
+    "PDF": {
+      "TEXT": "PDF"
+    }
+  },
+  "MY-NETWORK-PAGE": {
+    "TITLE": {
+      "TEXT": "My Network"
+    },
+    "NETWORK-TREES": {
+      "TEXT": "My Network Trees"
+    },
+    "UNILEVEL-MODEL": {
+      "TEXT": "Model 1, 2, 3 (Unilevel)"
+    },
+    "BINARY-MODEL": {
+      "TEXT": "Model 4 (Binary)"
+    },
+    "MATRIX-MODEL-5": {
+      "TEXT": "Model 5 (Matrix)"
+    },
+    "MATRIX-MODEL-6": {
+      "TEXT": "Model 6 (Matrix)"
+    },
+    "BACK": {
+      "TEXT": "Back"
     }
   },
   "COMMISSIONS-PAGE": {

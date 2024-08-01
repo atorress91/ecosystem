@@ -19,7 +19,7 @@
           <div class="padding-20">
             <ul ngbNav #nav="ngbNav" [activeId]="active" (activeIdChange)="onTabChange($event)" class="nav-tabs">
               <li [ngbNavItem]="3">
-                <a ngbNavLink>Academia Trading</a>
+                <a ngbNavLink>{{ 'EDUCATIONAL-COURSES.ACADEMY-TRADING.TEXT' | translate }}</a>
                 <ng-template ngbNavContent>
                   <div class="tab-pane">
                     <div class="card-body">
