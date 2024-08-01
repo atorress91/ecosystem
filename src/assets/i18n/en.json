@@ -893,17 +893,47 @@
     }
   },
   "CART-PAGE": {
+    "CART-TITLE": {
+      "TEXT": "Shopping Cart"
+    },
+    "BILLED-TO": {
+      "TEXT": "Billed To"
+    },
+    "ADDRESS": {
+      "TEXT": "Address"
+    },
+    "EMAIL": {
+      "TEXT": "Email"
+    },
+    "ORDER-DATE": {
+      "TEXT": "Order Date"
+    },
+    "ORDER-SUMMARY": {
+      "TEXT": "Order Summary"
+    },
     "COL-NAME": {
-      "TEXT": "Product Name"
+      "TEXT": "Name"
     },
     "COL-IMG": {
-      "TEXT": "Product Image"
+      "TEXT": "Image"
     },
     "COL-DESCRIPTION": {
       "TEXT": "Description"
     },
+    "POINTS-CALIF": {
+      "TEXT": "Calif Points"
+    },
+    "POINTS-BINARY": {
+      "TEXT": "Binary Points"
+    },
+    "COMMISSIONABLE": {
+      "TEXT": "Commissionable"
+    },
     "COL-PRICE": {
       "TEXT": "Price"
+    },
+    "DISCOUNT": {
+      "TEXT": "Discount"
     },
     "COL-QUANTITY": {
       "TEXT": "Quantity"
@@ -914,29 +944,44 @@
     "COL-ACTION": {
       "TEXT": "Action"
     },
-    "BTN-EMPTY-CART": {
+    "REMOVE-ITEM": {
+      "TEXT": "Remove Item"
+    },
+    "SUBTOTAL": {
+      "TEXT": "Subtotal"
+    },
+    "VAT": {
+      "TEXT": "VAT"
+    },
+    "INCLUDED": {
+      "TEXT": "Included"
+    },
+    "TOTAL-DISCOUNT": {
+      "TEXT": "Total Discount"
+    },
+    "TOTAL": {
+      "TEXT": "Total"
+    },
+    "CREDIT-DEBIT-PAYMENT": {
+      "TEXT": "Payment with credit and debit card"
+    },
+    "COINPAY-PAYMENT": {
+      "TEXT": "Payment with Coinpay CR"
+    },
+    "BUY-MORE": {
+      "TEXT": "Buy More"
+    },
+    "SERVICE-BALANCE-PAYMENT": {
+      "TEXT": "Payment with service balance"
+    },
+    "BALANCE-PAYMENT": {
+      "TEXT": "Payment with available balance"
+    },
+    "MODEL-BALANCE-PAYMENT": {
+      "TEXT": "Payment with model request"
+    },
+    "EMPTY-CART": {
       "TEXT": "Empty Cart"
-    },
-    "BTN-SHOP-MORE": {
-      "TEXT": "Shop More"
-    },
-    "BTN-CHECKOUT": {
-      "TEXT": "Checkout"
-    },
-    "LBL-GRAND-TOTAL": {
-      "TEXT": "Grand Total"
-    },
-    "CART-TITLE": {
-      "TEXT": "My Cart"
-    },
-    "CART-DESCRIPTION": {
-      "TEXT": "Your cart is empty!"
-    },
-    "CART-ITEM": {
-      "TEXT": "Add item to it now"
-    },
-    "BTN-SHOP-NOW": {
-      "TEXT": "Shop Now"
     }
   },
   "HOME-ADMIN-PAGE": {

@@ -896,17 +896,47 @@
     }
   },
   "CART-PAGE": {
+    "CART-TITLE": {
+      "TEXT": "Carrito de Compras"
+    },
+    "BILLED-TO": {
+      "TEXT": "Facturado a"
+    },
+    "ADDRESS": {
+      "TEXT": "Dirección"
+    },
+    "EMAIL": {
+      "TEXT": "Correo Electrónico"
+    },
+    "ORDER-DATE": {
+      "TEXT": "Fecha de Orden"
+    },
+    "ORDER-SUMMARY": {
+      "TEXT": "Resumen del Pedido"
+    },
     "COL-NAME": {
-      "TEXT": "Nombre Producto"
+      "TEXT": "Nombre"
     },
     "COL-IMG": {
-      "TEXT": "Imagen Producto"
+      "TEXT": "Imagen"
     },
     "COL-DESCRIPTION": {
       "TEXT": "Descripción"
     },
+    "POINTS-CALIF": {
+      "TEXT": "Puntos Calif"
+    },
+    "POINTS-BINARY": {
+      "TEXT": "Puntos Binarios"
+    },
+    "COMMISSIONABLE": {
+      "TEXT": "Comisionable"
+    },
     "COL-PRICE": {
       "TEXT": "Precio"
+    },
+    "DISCOUNT": {
+      "TEXT": "Descuento"
     },
     "COL-QUANTITY": {
       "TEXT": "Cantidad"
@@ -917,29 +947,44 @@
     "COL-ACTION": {
       "TEXT": "Acción"
     },
-    "BTN-EMPTY-CART": {
+    "REMOVE-ITEM": {
+      "TEXT": "Eliminar Artículo"
+    },
+    "SUBTOTAL": {
+      "TEXT": "Subtotal"
+    },
+    "VAT": {
+      "TEXT": "I.V.A"
+    },
+    "INCLUDED": {
+      "TEXT": "Incluido"
+    },
+    "TOTAL-DISCOUNT": {
+      "TEXT": "Total Descuento"
+    },
+    "TOTAL": {
+      "TEXT": "Total"
+    },
+    "CREDIT-DEBIT-PAYMENT": {
+      "TEXT": "Pago con tarjeta de crédito y débito"
+    },
+    "COINPAY-PAYMENT": {
+      "TEXT": "Pago con Coinpay CR"
+    },
+    "BUY-MORE": {
+      "TEXT": "Comprar Más"
+    },
+    "SERVICE-BALANCE-PAYMENT": {
+      "TEXT": "Pago con saldo de servicios"
+    },
+    "BALANCE-PAYMENT": {
+      "TEXT": "Pago con saldo disponible"
+    },
+    "MODEL-BALANCE-PAYMENT": {
+      "TEXT": "Pago con solicitud modelo"
+    },
+    "EMPTY-CART": {
       "TEXT": "Vaciar Carrito"
-    },
-    "BTN-SHOP-MORE": {
-      "TEXT": "Comprar más"
-    },
-    "BTN-CHECKOUT": {
-      "TEXT": "Verificar"
-    },
-    "LBL-GRAND-TOTAL": {
-      "TEXT": "Gran Total"
-    },
-    "CART-TITLE": {
-      "TEXT": "Mi Carrito"
-    },
-    "CART-DESCRIPTION": {
-      "TEXT": "¡Tu carrito esta vacío!"
-    },
-    "CART-ITEM": {
-      "TEXT": "Añadir elemento ahora"
-    },
-    "BTN-SHOP-NOW": {
-      "TEXT": "Compra ahora"
     }
   },
   "HOME-ADMIN-PAGE": {
