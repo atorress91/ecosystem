@@ -9,7 +9,11 @@ import { environment } from '@environments/environment';
 
 const httpOptions = {
 
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.systemConfigurationService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': environment.tokens.systemConfigurationService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString()
+  }),
 };
 
 @Injectable({

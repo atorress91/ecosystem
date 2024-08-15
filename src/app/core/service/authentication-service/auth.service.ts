@@ -17,6 +17,7 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     Authorization: environment.tokens.accountService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString()
   }),
 };
 @Injectable({
