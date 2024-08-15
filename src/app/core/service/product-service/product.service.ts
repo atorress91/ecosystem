@@ -8,7 +8,11 @@ import { Response } from '@app/core/models/response-model/response.model';
 import { Product } from '@app/core/models/product-model/product.model';
 const httpOptions = {
 
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.inventoryService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': environment.tokens.inventoryService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString()
+  }),
 };
 @Injectable({
   providedIn: 'root',

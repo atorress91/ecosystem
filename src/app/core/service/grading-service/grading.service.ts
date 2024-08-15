@@ -9,7 +9,11 @@ import { Response } from '@app/core/models/response-model/response.model';
 
 const httpOptions = {
 
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.systemConfigurationService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': environment.tokens.systemConfigurationService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString()
+  }),
 };
 @Injectable({
   providedIn: 'root',
