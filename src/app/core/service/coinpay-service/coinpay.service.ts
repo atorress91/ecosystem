@@ -8,7 +8,11 @@ import { environment } from '@environments/environment';
 import { RequestPayment } from '@app/core/models/coinpay-model/request-payment.model';
 import { Response } from '@app/core/models/response-model/response.model';
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.walletService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': environment.tokens.walletService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString()
+  }),
 };
 
 @Injectable({

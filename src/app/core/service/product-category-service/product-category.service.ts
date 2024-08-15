@@ -9,7 +9,11 @@ import { ProductCategory } from '@app/core/models/product-category-model/product
 
 const httpOptions = {
 
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.inventoryService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': environment.tokens.inventoryService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString()
+  }),
 };
 @Injectable({
   providedIn: 'root',

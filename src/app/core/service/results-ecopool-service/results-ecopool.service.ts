@@ -8,7 +8,11 @@ import { environment } from '@environments/environment';
 
 const httpOptions = {
 
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.walletService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': environment.tokens.walletService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString()
+  }),
 };
 
 @Injectable({ providedIn: 'root' })

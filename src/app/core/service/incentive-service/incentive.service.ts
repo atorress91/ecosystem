@@ -9,7 +9,11 @@ import { Incentive } from '@app/core/models/incentive-model/incentive.model';
 
 const httpOptions = {
 
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': environment.tokens.systemConfigurationService.toString() }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': environment.tokens.systemConfigurationService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString()
+  }),
 };
 @Injectable({
   providedIn: 'root',
@@ -45,7 +49,7 @@ export class IncentiveService {
 
   delete(id: number) {
     return this.http
-      .delete<Response>(this.urlApi.concat('/incentives/', id.toString()),httpOptions)
+      .delete<Response>(this.urlApi.concat('/incentives/', id.toString()), httpOptions)
       .pipe(
         map((data) => {
           return data;
