@@ -9,6 +9,7 @@ import { ConfigureWalletService } from '@app/core/service/configure-wallet-servi
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { AddressBtc } from "@app/core/models/affiliate-btc-model/addressBtc.model";
 
 @Component({
   selector: 'app-configure-wallet',
@@ -53,11 +54,11 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
     return this.walletAddress.controls;
   }
 
-  showSuccess(message) {
+  showSuccess(message: string) {
     this.toastr.success(message);
   }
 
-  showError(message) {
+  showError(message: string) {
     this.toastr.error(message);
   }
 
@@ -78,10 +79,14 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
     })
   }
 
-  setConfiguration(value) {
-    this.walletAddress.patchValue({
-      trc_address: value.Address
-    });
+  setConfiguration(value: AddressBtc[]) {
+    const item = value.find((item) => item && item.networkId == 99);
+
+    if (item) {
+      this.walletAddress.patchValue({
+        trc_address: item.address
+      });
+    }
   }
 
   onSaveConfiguration() {
@@ -89,9 +94,8 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
     if (this.walletAddress.invalid)
       return;
 
-    this.affiliateBtc.affiliate_id = this.user.id;
-    this.affiliateBtc.address = this.walletAddress.value.trc_address;
-    this.affiliateBtc.Status = 1;
+    this.affiliateBtc.affiliateId = this.user.id;
+    this.affiliateBtc.trc20Address = this.walletAddress.value.trc_address;
 
     this.affiliateBtcService.createAffiliateBtc(this.affiliateBtc).subscribe({
       next: (value) => {
@@ -102,7 +106,7 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
           this.showError('Billetera no valida.');
         }
       },
-      error: (error) => {
+      error: () => {
         this.showError('Error');
       },
     })
@@ -158,7 +162,7 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
         }
 
         this.affiliateBtc.password = password;
-        this.affiliateBtc.verification_code = code;
+        this.affiliateBtc.verificationCode = code;
       }
     }).then((result) => {
       if (result.isConfirmed) {
@@ -167,12 +171,12 @@ export class ConfigureWalletComponent implements OnInit, AfterViewInit, OnDestro
     });
   }
 
-
-
   generateVerificationCode() {
     this.affiliateService.generateVerificationCode(this.user.id, false).subscribe({
       next: (value) => {
-        this.showSuccess('Se ha generado un código de seguridad, por favor revisa el correo electronico.');
+        if (value.success) {
+          this.showSuccess('Se ha generado un código de seguridad, por favor revisa el correo electronico.');
+        }
       },
       error: () => {
         this.showError('Error');

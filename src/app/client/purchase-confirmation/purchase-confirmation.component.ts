@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InvoiceService } from '@app/core/service/invoice-service/invoice.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,18 +10,26 @@ import Swal from 'sweetalert2';
   templateUrl: './purchase-confirmation.component.html',
   styleUrls: ['./purchase-confirmation.component.sass']
 })
-export class PurchaseConfirmationComponent {
+export class PurchaseConfirmationComponent implements OnInit {
   private invoiceDownloaded = false;
+  private brandId: number | null = null;
+  private token: string | null = null;
+  private reference: string | null = null;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private invoiceService: InvoiceService, private toastrService: ToastrService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private invoiceService: InvoiceService,
+    private toastrService: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      const token = params['parametro1'];
-      const reference = params['parametro2'];
+      this.token = params['parametro1'];
+      this.reference = params['parametro2'];
 
-      if (token && reference) {
-        this.showConfirmationAlert(token, reference);
+      if (this.token && this.reference) {
+        this.showConfirmationAlert(this.token, this.reference);
       }
     });
   }
@@ -44,7 +52,7 @@ export class PurchaseConfirmationComponent {
       if (counter === 0 || this.invoiceDownloaded) {
         clearInterval(swalTimerInterval);
         Swal.close();
-        this.router.navigate(['/app/home']);
+        this.handleRedirection();
       }
       counter--;
     }, 1000);
@@ -60,9 +68,17 @@ export class PurchaseConfirmationComponent {
       },
     }).then((result) => {
       if (result.dismiss === Swal.DismissReason.timer) {
-        this.router.navigate(['/app/home']);
+        this.handleRedirection();
       }
     });
+  }
+
+  private handleRedirection() {
+    if (this.brandId === 2 && this.token && this.reference) {
+      window.location.href = `https://recycoin.net/purchase-confirmation/${this.token}/${this.reference}`;
+    } else {
+      this.router.navigate(['/app/home']);
+    }
   }
 
   onDownloadInvoice(reference: string) {
@@ -72,8 +88,10 @@ export class PurchaseConfirmationComponent {
         take(3)
       ))
     ).subscribe({
-      next: (blob: Blob) => {
-        const blobUrl = window.URL.createObjectURL(blob);
+      next: (result: { blob: Blob, brandId: number | null }) => {
+        this.brandId = result.brandId;
+
+        const blobUrl = window.URL.createObjectURL(result.blob);
 
         const a = document.createElement('a');
         a.href = blobUrl;
