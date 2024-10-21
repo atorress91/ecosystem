@@ -1,7 +1,7 @@
 import { ModelBalancesInvoices } from './../../models/invoice-model/model-balances-invoices';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { Response } from '@app/core/models/response-model/response.model';
@@ -112,24 +112,36 @@ export class InvoiceService {
       responseType: 'blob' as 'json',
       params: new HttpParams().set('invoiceId', invoiceId.toString()),
       headers: new HttpHeaders({
-        'Authorization': environment.tokens.walletService.toString()
-
+        'Authorization': environment.tokens.walletService.toString(),
+        'X-Client-ID': environment.tokens.clientID.toString()
       })
     };
 
     return this.http.get<Blob>(`${this.urlApi}/invoice/create_invoice`, options);
   }
 
-  createInvoiceByReference(reference: string): Observable<Blob> {
+  createInvoiceByReference(reference: string): Observable<{ blob: Blob, brandId: number | null }> {
     const options = {
       responseType: 'blob' as 'json',
       params: new HttpParams().set('reference', reference.toString()),
       headers: new HttpHeaders({
-        'Authorization': environment.tokens.walletService.toString()
-
-      })
+        'Authorization': environment.tokens.walletService.toString(),
+        'X-Client-ID': environment.tokens.clientID.toString()
+      }),
+      observe: 'response' as 'response'
     };
 
-    return this.http.get<Blob>(`${this.urlApi}/invoice/create_invoice_by_reference`, options);
+    return this.http.get(`${this.urlApi}/invoice/create_invoice_by_reference`, options)
+      .pipe(
+        map((response: HttpResponse<Blob>) => {
+          const brandIdHeader = response.headers.get('X-Brand-Id');
+          const brandId = brandIdHeader ? parseInt(brandIdHeader, 10) : null;
+          console.log('Brand ID:', brandId);
+          return {
+            blob: response.body as Blob,
+            brandId: brandId
+          };
+        })
+      );
   }
 }

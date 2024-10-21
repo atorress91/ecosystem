@@ -82,7 +82,7 @@ export class CreateRequestsModalComponent implements OnInit {
   }
 
   onSaveRequest() {
-    if (!this.affiliateBtc || this.affiliateBtc.address == null) {
+    if (!this.affiliateBtc || this.affiliateBtc.trc20Address == null) {
       this.showError('Tiene que tener configurada su dirección de billetera para poder realizar la solicitud.');
       return;
     }

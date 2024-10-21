@@ -22,9 +22,10 @@ export class TicketHubService {
   public connectionEstablished = new BehaviorSubject<boolean>(false);
   private urlApi: string;
   public ticketSummaries = new BehaviorSubject<TicketSummary[]>([]);
-
+  private brandId: number;
 
   constructor() {
+    this.brandId = 1;
     this.urlApi = environment.apis.accountServiceSignalR;
     this.startConnection().then();
     const savedTicket = localStorage.getItem('ticket');
@@ -122,7 +123,7 @@ export class TicketHubService {
     }
 
     return new Promise((resolve, reject) => {
-      this.hubConnection.invoke('CreateTicket', ticketRequest)
+      this.hubConnection.invoke('CreateTicket', ticketRequest, this.brandId)
         .then(response => resolve(response))
         .catch(error => {
           console.error(`Error al crear el ticket: ${error}`);
@@ -133,7 +134,7 @@ export class TicketHubService {
 
   public getAllTicketsByAffiliateId(affiliateId: number): Subject<Ticket[]> {
     if (this.hubConnection.state === HubConnectionState.Connected) {
-      this.hubConnection.invoke('GetAllTicketsByAffiliateId', affiliateId)
+      this.hubConnection.invoke('GetAllTicketsByAffiliateId', affiliateId, this.brandId)
         .catch(error => {
           console.error(`Error retrieving tickets: ${error}`);
         });
@@ -145,7 +146,7 @@ export class TicketHubService {
 
   public getAllTickets(): Subject<Ticket[]> {
     if (this.hubConnection.state === HubConnectionState.Connected) {
-      this.hubConnection.invoke('GetAllTickets')
+      this.hubConnection.invoke('GetAllTickets', this.brandId)
         .catch(error => {
           console.error(`Error retrieving tickets: ${error}`);
         });
@@ -193,7 +194,7 @@ export class TicketHubService {
 
   public async getTicketSummariesByAffiliateId(affiliateId: number): Promise<void> {
     if (this.hubConnection.state === HubConnectionState.Connected) {
-      this.hubConnection.invoke('GetTicketSummariesByAffiliateId', affiliateId)
+      this.hubConnection.invoke('GetTicketSummariesByAffiliateId', affiliateId, this.brandId)
         .catch(error => console.error(`Error al obtener tickets: ${error}`));
     } else {
       console.error('Connection is not in the \'Connected\' State.');
@@ -202,7 +203,7 @@ export class TicketHubService {
 
   public async markTicketMessagesAsRead(ticketId: number): Promise<void> {
     if (this.hubConnection.state === HubConnectionState.Connected) {
-      this.hubConnection.invoke('MarkTicketMessagesAsRead', ticketId)
+      this.hubConnection.invoke('MarkTicketMessagesAsRead', ticketId, this.brandId)
         .catch(error => console.error(`Error al marcar mensajes como leidos: ${error}`));
     } else {
       console.error('Connection is not in the \'Connected\' State.');
@@ -211,7 +212,7 @@ export class TicketHubService {
 
   public async getAllTicketSummaries(): Promise<void> {
     if (this.hubConnection.state === HubConnectionState.Connected) {
-      this.hubConnection.invoke('GetAllTicketSummaries')
+      this.hubConnection.invoke('GetAllTicketSummaries', this.brandId)
         .catch(error => console.error(`Error al obtener tickets: ${error}`));
     } else {
       console.error('Connection is not in the \'Connected\' State.');

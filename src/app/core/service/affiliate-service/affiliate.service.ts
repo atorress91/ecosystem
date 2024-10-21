@@ -370,7 +370,6 @@ export class AffiliateService {
       );
   }
 
-
   getTotalActiveMembers() {
     return this.http
       .get<Response>(
