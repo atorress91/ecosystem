@@ -41,7 +41,7 @@ export class PassivePackComponent implements OnInit {
     this.invoiceService.getAllInvoices().subscribe((resp: Invoice[]) => {
       if (resp != null) {
         const data = resp.map(invoice => {
-          return invoice.invoiceDetail.map(detail => {
+          return invoice.invoicesDetails.map(detail => {
             return {
               ...detail,
               invoiceId: invoice.id,

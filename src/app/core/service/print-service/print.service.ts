@@ -173,7 +173,7 @@ export class PrintService {
         let totalTax = 0;
         let subTotal = 0;
 
-        const bodyData = invoice.invoiceDetail.map((detail) => {
+        const bodyData = invoice.invoicesDetails.map((detail) => {
           totalDiscount += detail.productDiscount;
           totalTax = detail.productIva;
           subTotal += detail.productPrice;

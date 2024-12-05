@@ -76,9 +76,9 @@ export class BillingPurchasesDetailModalComponent implements OnInit, OnDestroy {
   }
 
   billingPurchasesOpenModal(content, invoice: Invoice) {
-    this.totalDiscount = invoice.invoiceDetail[0].productDiscount;
-    this.totalTax = invoice.invoiceDetail[0].productIva;
-    const subTotal = invoice.invoiceDetail.reduce((accumulator, item) => {
+    this.totalDiscount = invoice.invoicesDetails[0].productDiscount;
+    this.totalTax = invoice.invoicesDetails[0].productIva;
+    const subTotal = invoice.invoicesDetails.reduce((accumulator, item) => {
       return accumulator + (item.productPrice * item.productQuantity);
     }, 0);
 
