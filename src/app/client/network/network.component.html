@@ -87,16 +87,19 @@
                           <a ngbDropdownItem id="btn-deleteGlobal" *ngIf="isNewUser"
                             (click)="showConfirmationTransferBalanceForMembership(row)">
                             <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.BALANCE.TEXT' | translate }}</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.BALANCE.TEXT' |
+                              translate }}</span>
                           </a>
                           <a ngbDropdownItem *ngIf="isNewUser" (click)="createPagaditoTransaction(row)">
                             <i class="bi bi-credit-card"></i>
-                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.CARD.TEXT' | translate }}</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.CARD.TEXT' | translate
+                              }}</span>
                           </a>
                           <a ngbDropdownItem id="btn-detailGlobal" *ngIf="row.activation_date != null"
                             (click)="showConfirmationTransferBalance(row)">
                             <i class="bi bi-currency-exchange"></i>
-                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.TRANSFER-BALANCE.TEXT' | translate }}</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.TRANSFER-BALANCE.TEXT' | translate
+                              }}</span>
                           </a>
                         </div>
                       </div>
@@ -172,6 +175,16 @@
                       {{ row.userName }}
                     </ng-template>
                   </ngx-datatable-column>
+                  <ngx-datatable-column name="Name ">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.fullName }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Email">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.email }}
+                    </ng-template>
+                  </ngx-datatable-column>
                   <ngx-datatable-column name="{{ 'NETWORK-PAGE.ROW-STATE.TEXT' | translate }}">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       <div *ngIf="row.activationDate != null" class="badge-outline col-green">
@@ -201,17 +214,20 @@
                           <a ngbDropdownItem id="btn-detail" *ngIf="row.activationDate != null"
                             (click)="showConfirmationTransferBalance(row)">
                             <i class="bi bi-currency-exchange"></i>
-                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.TRANSFER-BALANCE.TEXT' | translate }}</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.TRANSFER-BALANCE.TEXT' | translate
+                              }}</span>
                           </a>
                           <a ngbDropdownItem id="btn-deleteGlobal" *ngIf="row.activationDate == null"
                             (click)="showConfirmationTransferBalanceForMembership(row)">
                             <i class="bi bi-person-badge"></i>
-                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.BALANCE.TEXT' | translate }}</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.BALANCE.TEXT' |
+                              translate }}</span>
                           </a>
                           <a ngbDropdownItem *ngIf="row.activationDate == null"
                             (click)="createPagaditoTransaction(row)">
                             <i class="bi bi-credit-card"></i>
-                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.CARD.TEXT' | translate }}</span>
+                            <span style="margin-left: 10px">{{ 'NETWORK-PAGE.ACTIVATE-MEMBERSHIP.CARD.TEXT' | translate
+                              }}</span>
                           </a>
                         </div>
                       </div>

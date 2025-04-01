@@ -9,8 +9,8 @@
   </ul>
   <div class="section-body">
     <div class="row">
-      <ng-container *ngIf="canSeePaymentModels && balanceInformationModel1B && isBalanceInformationValid(balanceInformationModel1B)">
-        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+      <ng-container>
+        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
           <div class="card">
             <div class="card-header">
               <h4 class="badge-outline col-green">{{ 'HOME-PAGE-CLIENT.INFORMATION-R.TEXT' | translate }}</h4>
@@ -28,31 +28,38 @@
                   <tbody>
                     <tr>
                       <td class="col-red">
-                        <i class="fa fa-circle col-red msr-2"></i>{{ 'HOME-PAGE-CLIENT.SERVICE-BALANCE.TEXT' | translate }}
+                        <i class="fa fa-circle col-red msr-2"></i>{{ 'HOME-PAGE-CLIENT.SERVICE-BALANCE.TEXT' | translate
+                        }}
                       </td>
                       <td class="col-red">USD {{balanceInformationModel1B.serviceBalance | truncateDecimals:2}}</td>
                     </tr>
                     <tr>
                       <td class="col-blue">
-                        <i class="fa fa-circle col-blue msr-2 "></i>{{ 'HOME-PAGE-CLIENT.AVAILABLE-BALANCE.TEXT' | translate }}
+                        <i class="fa fa-circle col-blue msr-2 "></i>{{ 'HOME-PAGE-CLIENT.AVAILABLE-BALANCE.TEXT' |
+                        translate }}
                       </td>
                       <td class="col-blue">USD {{balanceInformationModel1B.availableBalance | truncateDecimals:2}}</td>
                     </tr>
                     <tr>
                       <td class="col-emerald">
-                        <i class="fa fa-circle col-emerald msr-2"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-PAID.TEXT' | translate }}
+                        <i class="fa fa-circle col-emerald msr-2"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-PAID.TEXT' | translate
+                        }}
                       </td>
-                      <td class="col-emerald">USD {{balanceInformationModel1B.totalCommissionsPaid | truncateDecimals:2}}</td>
+                      <td class="col-emerald">USD {{balanceInformationModel1B.totalCommissionsPaid |
+                        truncateDecimals:2}}</td>
                     </tr>
                     <tr>
                       <td class="col-green">
-                        <i class="fa fa-circle col-green msr-2 col-green"></i>{{ 'HOME-PAGE-CLIENT.TOTAL-ACQUISITIONS.TEXT' | translate }}
+                        <i class="fa fa-circle col-green msr-2 col-green"></i>{{
+                        'HOME-PAGE-CLIENT.TOTAL-ACQUISITIONS.TEXT' | translate }}
                       </td>
-                      <td class="col-green">USD {{balanceInformationModel1B.totalAcquisitions | truncateDecimals:2}}</td>
+                      <td class="col-green">USD {{balanceInformationModel1B.totalAcquisitions | truncateDecimals:2}}
+                      </td>
                     </tr>
                     <tr>
                       <td class="col-purple">
-                        <i class="fa fa-circle col-purple msr-2 col-purple"></i>{{ 'HOME-PAGE-CLIENT.MODEL-REQUEST.TEXT' | translate }}
+                        <i class="fa fa-circle col-purple msr-2 col-purple"></i>{{ 'HOME-PAGE-CLIENT.MODEL-REQUEST.TEXT'
+                        | translate }}
                       </td>
                       <td class="col-purple">USD {{balanceInformationModel1B.reverseBalance | truncateDecimals:2}}</td>
                     </tr>
@@ -64,7 +71,7 @@
         </div>
       </ng-container>
 
-      <div *ngIf="balanceInformation && isBalanceInformationValid(balanceInformation)"
+      <!-- <div *ngIf="balanceInformation && isBalanceInformationValid(balanceInformation)"
         [ngClass]="{'col-xl-4 col-lg-12 col-md-12 col-sm-12': canSeePaymentModels, 'col-xl-6 col-lg-12 col-md-12 col-sm-12': !canSeePaymentModels}"
         class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
@@ -117,9 +124,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div *ngIf="balanceInformation && isBalanceInformationValid(balanceInformation)"
+      <!-- <div *ngIf="balanceInformation && isBalanceInformationValid(balanceInformation)"
         [ngClass]="{'col-xl-4 col-lg-12 col-md-12 col-sm-12': canSeePaymentModels, 'col-xl-6 col-lg-12 col-md-12 col-sm-12': !canSeePaymentModels}"
         class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
@@ -172,9 +179,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 h-100">
         <div class="card">
           <div class="card-header">
             <h4>{{ 'HOME-PAGE-CLIENT.TITTLE-FIRST-CHART.TEXT' | translate }}</h4>
@@ -184,7 +191,8 @@
               <div id="chartdiv"></div>
             </div>
             <div class="row">
-              <div id="new-orders" class="media-list position-relative" style="position: relative; max-height: 170px !important" [perfectScrollbar]>
+              <div id="new-orders" class="media-list position-relative"
+                style="position: relative; max-height: 170px !important" [perfectScrollbar]>
                 <div class="table">
                   <table id="new-orders-table" class="table table-hover table-xl table-row-border mb-0">
                     <tbody *ngFor="let item of maps">
@@ -233,7 +241,8 @@
                 <span role="button" class="float-start" (click)="openNewWindow('https://ecosystemfx.net/')">
                   {{ 'HOME-PAGE-CLIENT.PUBLIC-STORE.TEXT' | translate }}
                 </span>
-                <button class="btn btn-primary float-end" (click)="shareModalComponent.openShareModal('https://ecosystemfx.net/')">
+                <button class="btn btn-primary float-end"
+                  (click)="shareModalComponent.openShareModal('https://ecosystemfx.net/')">
                   <i class="bi bi-share-fill ms-2"></i>{{ 'HOME-PAGE-CLIENT.SHARE-LINK.TEXT' | translate }}
                 </button>
               </p>
