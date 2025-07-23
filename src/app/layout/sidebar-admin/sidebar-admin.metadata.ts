@@ -9,4 +9,5 @@ export interface RouteInfo {
   badge: string;
   badgeClass: string;
   submenu: RouteInfo[];
+  roles?: string[];
 }

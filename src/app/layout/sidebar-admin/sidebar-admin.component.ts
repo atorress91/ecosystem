@@ -1,11 +1,20 @@
-import {UserService} from '@app/core/service/user-service/user.service';
-import {NavigationEnd, Router} from '@angular/router';
-import {DOCUMENT} from '@angular/common';
-import {Component, ElementRef, HostListener, Inject, OnDestroy, OnInit, Renderer2,} from '@angular/core';
-import {ROUTESADMIN} from './sidebar-admin-items';
-import {AuthService} from 'src/app/core/service/authentication-service/auth.service';
-import {User} from '@app/core/models/user-model/user.model';
-import {Subject, takeUntil} from 'rxjs';
+import { UserService } from '@app/core/service/user-service/user.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
+import { ROUTESADMIN } from './sidebar-admin-items';
+import { AuthService } from 'src/app/core/service/authentication-service/auth.service';
+import { User } from '@app/core/models/user-model/user.model';
+import { Subject, takeUntil } from 'rxjs';
+import { RouteInfo } from './sidebar-admin.metadata';
 
 @Component({
   selector: 'app-sidebar-admin',
@@ -72,7 +81,6 @@ export class SidebarAdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.authService.currentUserAdmin
       .pipe(takeUntil(this.destroy$))
       .subscribe((user) => {
@@ -83,7 +91,8 @@ export class SidebarAdminComponent implements OnInit, OnDestroy {
       });
 
     if (this.authService.currentUserAdminValue) {
-      this.sidebarItems = ROUTESADMIN.filter((sidebarItem) => sidebarItem);
+      this.user = this.authService.currentUserAdminValue;
+      this.initializeSidebar();
     }
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
@@ -95,6 +104,18 @@ export class SidebarAdminComponent implements OnInit, OnDestroy {
     this.routerObj.unsubscribe();
     this.destroy$.next(true);
     this.destroy$.complete();
+  }
+
+  initializeSidebar() {
+    if (this.user?.rol_name) {
+      this.sidebarItems = this.filterRoutesByRole(
+        ROUTESADMIN,
+        this.user.rol_name
+      );
+    } else {
+      this.sidebarItems = [];
+    }
+    this.initLeftSidebar();
   }
 
   initLeftSidebar() {
@@ -152,5 +173,38 @@ export class SidebarAdminComponent implements OnInit, OnDestroy {
         this.user = response.data;
       }
     });
+  }
+
+  filterRoutesByRole(routes: RouteInfo[], userRole: string): RouteInfo[] {
+    if (userRole === 'SUPER_ADMIN') {
+      return routes;
+    }
+
+    const filteredRoutes: RouteInfo[] = [];
+
+    routes.forEach((route) => {
+      const routeCopy = { ...route };
+
+      if (routeCopy.submenu && routeCopy.submenu.length > 0) {
+        routeCopy.submenu = this.filterRoutesByRole(
+          routeCopy.submenu,
+          userRole
+        );
+      }
+
+      const hasAccess = !routeCopy.roles || routeCopy.roles.includes(userRole);
+
+      if (hasAccess) {
+        if (
+          routeCopy.class === 'menu-toggle' &&
+          (!routeCopy.submenu || routeCopy.submenu.length === 0)
+        ) {
+        } else {
+          filteredRoutes.push(routeCopy);
+        }
+      }
+    });
+
+    return filteredRoutes;
   }
 }
