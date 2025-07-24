@@ -1,31 +1,31 @@
-import { TranslateService } from '@ngx-translate/core';
-import { CartService } from 'src/app/core/service/cart.service/cart.service';
-import Swal from 'sweetalert2';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { Subject, takeUntil } from 'rxjs';
+import { CartService } from 'src/app/core/service/cart.service/cart.service';
+import Swal from 'sweetalert2';
 
-import { NetworkAffiliate } from '@app/core/models/network-affiliate/network.affiliate.model';
-import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
-import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 import { Grading } from '@app/core/models/grading-model/grading.model';
-import { GradingService } from '@app/core/service/grading-service/grading.service';
-import { AuthService } from '@app/core/service/authentication-service/auth.service';
-import { WalletService } from '@app/core/service/wallet-service/wallet.service';
-import { ToastrService } from 'ngx-toastr';
-import { TransferBalance } from '@app/core/models/wallet-model/transfer-balance.model';
-import { EncryptService } from '@app/core/service/encrypt-service/encrypt.service';
-import { ConfigurationService } from '@app/core/service/configuration-service/configuration.service';
-import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
-import { TruncateDecimalsPipe } from "@app/shared/truncate-decimals.pipe";
-import { PagaditoTransactionDetailRequest } from '@app/core/models/pagadito-model/pagadito-transaction-detail-request.model';
+import { NetworkAffiliate } from '@app/core/models/network-affiliate/network.affiliate.model';
 import { CreatePagaditoTransactionRequest } from '@app/core/models/pagadito-model/create-pagadito-transaction-request.model';
-import { PagaditoService } from '@app/core/service/pagadito-service/pagadito.service';
+import { PagaditoTransactionDetailRequest } from '@app/core/models/pagadito-model/pagadito-transaction-detail-request.model';
 import { Product } from '@app/core/models/product-model/product.model';
+import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
+import { TransferBalance } from '@app/core/models/wallet-model/transfer-balance.model';
+import { WalletWithdrawalsConfiguration } from '@app/core/models/wallet-withdrawals-configuration-model/wallet-withdrawals-configuration.model';
+import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
+import { AuthService } from '@app/core/service/authentication-service/auth.service';
+import { ConfigurationService } from '@app/core/service/configuration-service/configuration.service';
+import { EncryptService } from '@app/core/service/encrypt-service/encrypt.service';
+import { GradingService } from '@app/core/service/grading-service/grading.service';
+import { PagaditoService } from '@app/core/service/pagadito-service/pagadito.service';
 import { ProductService } from '@app/core/service/product-service/product.service';
+import { WalletService } from '@app/core/service/wallet-service/wallet.service';
+import { TruncateDecimalsPipe } from "@app/shared/truncate-decimals.pipe";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-network',
@@ -83,6 +83,7 @@ export class NetworkComponent implements OnInit {
         });
 
         this.affiliateService.GetPersonalNetwork(user.id).pipe(takeUntil(this.destroy$)).subscribe((affiliates: NetworkAffiliate[]) => {
+          console.log(affiliates)
           this.temp = [...affiliates];
           this.rows = affiliates;
         });

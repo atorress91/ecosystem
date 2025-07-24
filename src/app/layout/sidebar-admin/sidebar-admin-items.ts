@@ -115,7 +115,7 @@ export const ROUTESADMIN: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
-    roles: ['Administrador'],
+    roles: ['Administrador', 'subAdministrador'],
     submenu: [
       {
         path: '/admin/purchases-list',

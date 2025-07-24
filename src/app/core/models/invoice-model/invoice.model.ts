@@ -26,7 +26,7 @@ export class Invoice {
   recurring: number;
   createdAt: Date;
   updatedAt: Date;
-  invoiceDetail: InvoiceDetail[];
+  invoicesDetails: InvoiceDetail[];
 
   constructor() {
     this.id = 0;
@@ -55,6 +55,6 @@ export class Invoice {
     this.recurring = 0;
     this.createdAt = new Date();
     this.updatedAt = new Date();
-    this.invoiceDetail = [];
+    this.invoicesDetails = [];
   }
 }
