@@ -156,7 +156,6 @@ export class SigninComponent implements OnInit {
   }
 
   onKeyDown(event: KeyboardEvent): void {
-    // Permitir activación con Enter o Espacio
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       this.togglePasswordVisibility();
@@ -164,7 +163,6 @@ export class SigninComponent implements OnInit {
   }
 
   onKeyUp(event: KeyboardEvent): void {
-    // Opcional: manejar eventos adicionales si es necesario
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
     }
