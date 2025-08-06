@@ -1,11 +1,10 @@
 import { AuthService } from 'src/app/core/service/authentication-service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Response } from '@app/core/models/response-model/response.model';
 import { ToastrService } from 'ngx-toastr';
-declare var particlesJS: any;
+declare let particlesJS: any;
 import { TranslateService } from '@ngx-translate/core';
 
 import { Signin } from '@app/core/models/signin-model/signin.model';
@@ -34,6 +33,7 @@ export class SigninComponent implements OnInit {
   passwordErrorMessage =
     'La contraseña debe tener al menos 6 y un máximo de 15 caracteres';
   userNameErrorMessage = 'El nombre de usuario no es válido';
+  showPassword = false;
 
   constructor(
     private router: Router,
@@ -99,19 +99,19 @@ export class SigninComponent implements OnInit {
     this.error = '';
     signin.userName = this.authLogin.value.email;
     signin.password = this.authLogin.value.pwd;
-  
+
     signin.browserInfo = this.deviceService.getDeviceInfo().browser;
     signin.operatingSystem = this.deviceService.getDeviceInfo().os;
-  
+
     this.authService.fetchIpAddress().subscribe((ip) => {
       signin.ipAddress = ip;
       console.log(signin);
-  
+
       if (signin.userName === '' || signin.password === '') {
         return;
       }
       this.loading = true;
-  
+
       this.authService.loginUser(signin).subscribe((response: Response) => {
         if (response.success) {
           if (response.data.is_affiliate) {
@@ -149,5 +149,24 @@ export class SigninComponent implements OnInit {
 
   getTheme() {
     this.logoUrl = this.logoService.getLogoSrc();
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    // Permitir activación con Enter o Espacio
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.togglePasswordVisibility();
+    }
+  }
+
+  onKeyUp(event: KeyboardEvent): void {
+    // Opcional: manejar eventos adicionales si es necesario
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+    }
   }
 }

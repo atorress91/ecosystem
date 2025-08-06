@@ -36,9 +36,15 @@
                     <label for="pwd" class="auth-labels" style="font-size: 14px;">{{password}} <span
                         class="text-danger">*</span></label>
                     <i-feather name="key" class="login-icons" style="top: 45px !important;"></i-feather>
-                    <input id="pwd" type="password" class="form-control psl-5" formControlName="pwd"
-                      placeholder="{{password}}" required="required"
+                    <input id="pwd" [type]="showPassword ? 'text' : 'password'" class="form-control psl-5 pr-5"
+                      formControlName="pwd" placeholder="{{password}}" required="required"
                       [ngClass]="{'is-invalid': submitted && Pwd.errors}" />
+                    <!-- Icono Bootstrap para mostrar/ocultar contraseña -->
+                    <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" class="password-toggle-icon"
+                      (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)"
+                      style="position: absolute; right: 15px; top: 45px; cursor: pointer; z-index: 10; font-size: 16px;"
+                      (click)="togglePasswordVisibility()">
+                    </i>
                     <div class="form-text text-danger mb-3 msl-3 fw-bold"
                       *ngIf="Pwd.errors?.['minlength'] || Pwd.errors?.['maxlength'] && (Pwd.dirty || Pwd.touched)">
                       {{passwordErrorMessage}}
@@ -48,6 +54,8 @@
                       {{passwordIsRequerid}}
                     </div>
                   </div>
+
+
                   <div class="d-flex justify-content-between">
                     <div class="form-group">
                       <p class="forgot-pass auth-labels mb-0"><a routerLink="/forgot"
@@ -60,9 +68,9 @@
 
                   <div class="text-center">
                     <button class="btn btn-primary auth-form-btn" type="submit" [disabled]="loading">
-                      <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+                      <output *ngIf="loading" class="spinner-border spinner-border-sm">
                         <span class="sr-only">Loading...</span>
-                      </div>
+                      </output>
                       {{signin}}
                     </button>
                   </div>
