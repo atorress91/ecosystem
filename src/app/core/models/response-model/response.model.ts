@@ -1,6 +1,6 @@
-export class Response {
+export class Response<T = any> {
   success: boolean;
-  data: any;
+  data: T;
   message: string;
   code: number;
   errors: any;

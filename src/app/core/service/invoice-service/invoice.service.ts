@@ -1,20 +1,26 @@
-import { ModelBalancesInvoices } from './../../models/invoice-model/model-balances-invoices';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { PagedResult } from './../../interfaces/paged-result';
+import { PaginationRequest } from './../../interfaces/pagination-request';
+import { ModelBalancesInvoices } from './../../models/invoice-model/model-balances-invoices';
 
+import { Invoice } from '@app/core/models/invoice-model/invoice.model';
 import { Response } from '@app/core/models/response-model/response.model';
 import { environment } from '@environments/environment';
-import { Invoice } from '@app/core/models/invoice-model/invoice.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 const httpOptions = {
-
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': environment.tokens.walletService.toString(),
-    'X-Client-ID': environment.tokens.clientID.toString()
+    Authorization: environment.tokens.walletService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString(),
   }),
 };
 
@@ -27,44 +33,60 @@ export class InvoiceService {
   }
 
   getAllInvoicesUser(id: number): Observable<Invoice[]> {
-    return this.http.get<Invoice[]>(
-      this.urlApi.concat(
-        '/invoice/GetAllInvoicesByUserId?id=',
-        id.toString()
-      ),
-      httpOptions
-    ).pipe(
-      map((response) => {
-        if (Array.isArray(response)) {
-          return response;
-        } else {
-          console.error('ERROR: ' + response);
-          return null;
-        }
-      }),
-    );
+    return this.http
+      .get<Invoice[]>(
+        this.urlApi.concat(
+          '/invoice/GetAllInvoicesByUserId?id=',
+          id.toString()
+        ),
+        httpOptions
+      )
+      .pipe(
+        map((response) => {
+          if (Array.isArray(response)) {
+            return response;
+          } else {
+            console.error('ERROR: ' + response);
+            return null;
+          }
+        })
+      );
   }
 
-  getAllInvoices(): Observable<Invoice[]> {
-    return this.http.get<Invoice[]>(
-      this.urlApi.concat(
-        '/invoice/GetAllInvoices'),
-      httpOptions
-    ).pipe(
-      map((response) => {
-        if (Array.isArray(response)) {
-          return response;
-        } else {
-          console.error('ERROR: ' + response);
-          return null;
-        }
-      }),
-    );
+  getAllInvoices(
+    request: PaginationRequest
+  ): Observable<Response<PagedResult<Invoice>> | null> {
+    const params = new HttpParams({
+      fromObject: {
+        pageSize: request.pageSize.toString(),
+        pageNumber: request.pageNumber.toString(),
+        ...(request.startDate && {
+          startDate: request.startDate.toISOString(),
+        }),
+        ...(request.endDate && { endDate: request.endDate.toISOString() }),
+      },
+    });
+
+    return this.http
+      .get<Response<PagedResult<Invoice>>>(
+        `${this.urlApi}/invoice/GetAllInvoices`,
+        { ...httpOptions, params }
+      )
+      .pipe(
+        map((response) => response || null),
+        catchError((error) => {
+          console.error('Error getting invoices:', error);
+          return of(null);
+        })
+      );
   }
 
   getAllInvoicesForTradingAcademyPurchases() {
     return this.http
-      .get<Response>(this.urlApi.concat('/invoice/GetAllInvoicesForTradingAcademyPurchases'), httpOptions)
+      .get<Response>(
+        this.urlApi.concat('/invoice/GetAllInvoicesForTradingAcademyPurchases'),
+        httpOptions
+      )
       .pipe(
         map((response) => {
           return response.data;
@@ -73,23 +95,24 @@ export class InvoiceService {
   }
 
   sendInvitationsForUpcomingCourses(link: string, code: string) {
-    let params = new HttpParams()
-      .set('link', link)
-      .set('code', code);
+    let params = new HttpParams().set('link', link).set('code', code);
 
-    const urlWithParams = `${this.urlApi}/invoice/SendInvitationsForUpcomingCourses?${params.toString()}`;
-    return this.http
-      .post<Response>(urlWithParams, {}, httpOptions)
-      .pipe(
-        map((response) => {
-          return response;
-        })
-      );
+    const urlWithParams = `${
+      this.urlApi
+    }/invoice/SendInvitationsForUpcomingCourses?${params.toString()}`;
+    return this.http.post<Response>(urlWithParams, {}, httpOptions).pipe(
+      map((response) => {
+        return response;
+      })
+    );
   }
 
   getAllInvoicesForModelOneAndTwo() {
     return this.http
-      .get<Response>(this.urlApi.concat('/invoice/GetAllInvoicesForModelOneAndTwo'), httpOptions)
+      .get<Response>(
+        this.urlApi.concat('/invoice/GetAllInvoicesForModelOneAndTwo'),
+        httpOptions
+      )
       .pipe(
         map((response) => {
           return response.data;
@@ -99,7 +122,11 @@ export class InvoiceService {
 
   processAndReturnBalancesForModels1A1B2(request: ModelBalancesInvoices) {
     return this.http
-      .post<Response>(this.urlApi.concat('/invoice/ProcessAndReturnBalancesForModels1A1B2'), request, httpOptions)
+      .post<Response>(
+        this.urlApi.concat('/invoice/ProcessAndReturnBalancesForModels1A1B2'),
+        request,
+        httpOptions
+      )
       .pipe(
         map((response) => {
           return response.data;
@@ -112,26 +139,32 @@ export class InvoiceService {
       responseType: 'blob' as 'json',
       params: new HttpParams().set('invoiceId', invoiceId.toString()),
       headers: new HttpHeaders({
-        'Authorization': environment.tokens.walletService.toString(),
-        'X-Client-ID': environment.tokens.clientID.toString()
-      })
+        Authorization: environment.tokens.walletService.toString(),
+        'X-Client-ID': environment.tokens.clientID.toString(),
+      }),
     };
 
-    return this.http.get<Blob>(`${this.urlApi}/invoice/create_invoice`, options);
+    return this.http.get<Blob>(
+      `${this.urlApi}/invoice/create_invoice`,
+      options
+    );
   }
 
-  createInvoiceByReference(reference: string): Observable<{ blob: Blob, brandId: number | null }> {
+  createInvoiceByReference(
+    reference: string
+  ): Observable<{ blob: Blob; brandId: number | null }> {
     const options = {
       responseType: 'blob' as 'json',
       params: new HttpParams().set('reference', reference.toString()),
       headers: new HttpHeaders({
-        'Authorization': environment.tokens.walletService.toString(),
-        'X-Client-ID': environment.tokens.clientID.toString()
+        Authorization: environment.tokens.walletService.toString(),
+        'X-Client-ID': environment.tokens.clientID.toString(),
       }),
-      observe: 'response' as 'response'
+      observe: 'response' as const,
     };
 
-    return this.http.get(`${this.urlApi}/invoice/create_invoice_by_reference`, options)
+    return this.http
+      .get(`${this.urlApi}/invoice/create_invoice_by_reference`, options)
       .pipe(
         map((response: HttpResponse<Blob>) => {
           const brandIdHeader = response.headers.get('X-Brand-Id');
@@ -139,9 +172,29 @@ export class InvoiceService {
           console.log('Brand ID:', brandId);
           return {
             blob: response.body as Blob,
-            brandId: brandId
+            brandId: brandId,
           };
         })
       );
+  }
+
+  exportToExcel(startDate?: Date, endDate?: Date): Observable<Blob> {
+    const params = new HttpParams({
+      fromObject: {
+        ...(startDate && { startDate: startDate.toISOString() }),
+        ...(endDate && { endDate: endDate.toISOString() }),
+      },
+    });
+
+    const options = {
+      responseType: 'blob' as 'json',
+      params,
+      headers: new HttpHeaders({
+        Authorization: environment.tokens.walletService.toString(),
+        'X-Client-ID': environment.tokens.clientID.toString(),
+      }),
+    };
+
+    return this.http.get<Blob>(`${this.urlApi}/invoice/ExportToExcel`, options);
   }
 }
