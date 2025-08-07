@@ -15,11 +15,10 @@ import { CreateAffiliate } from '@app/core/models/user-affiliate-model/create-af
 import { RequestResetPassword } from '@app/core/models/user-affiliate-model/request-reset-password-model';
 
 const httpOptions = {
-
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': environment.tokens.accountService.toString(),
-    'X-Client-ID': environment.tokens.clientID.toString()
+    Authorization: environment.tokens.accountService.toString(),
+    'X-Client-ID': environment.tokens.clientID.toString(),
   }),
 };
 @Injectable({
@@ -40,7 +39,10 @@ export class AffiliateService {
 
   getAll() {
     return this.http
-      .get<Response>(this.urlApi.concat('/userAffiliateInfo/get_all'), httpOptions)
+      .get<Response>(
+        this.urlApi.concat('/userAffiliateInfo/get_all'),
+        httpOptions
+      )
       .pipe(
         map((response) => {
           if (response.success) return response.data;
@@ -54,7 +56,10 @@ export class AffiliateService {
 
   getAllAffiliatesAuthorization() {
     return this.http
-      .get<Response>(this.urlApi.concat('/userAffiliateInfo/get_all_without_authorization'), httpOptions)
+      .get<Response>(
+        this.urlApi.concat('/userAffiliateInfo/get_all_without_authorization'),
+        httpOptions
+      )
       .pipe(
         map((response) => {
           if (response.success) return response.data;
@@ -135,7 +140,11 @@ export class AffiliateService {
   sendEmailConfirm(id: number) {
     return this.http
       .post<Response>(
-        this.urlApi.concat('/useraffiliateinfo/send_email_confirmation/', id.toString()), {},
+        this.urlApi.concat(
+          '/useraffiliateinfo/send_email_confirmation/',
+          id.toString()
+        ),
+        {},
         httpOptions
       )
       .pipe(
@@ -222,7 +231,10 @@ export class AffiliateService {
   updatePassword(user: UpdatePassword) {
     return this.http
       .put<Response>(
-        this.urlApi.concat('/useraffiliateinfo/update_password_user/', user.id.toString()),
+        this.urlApi.concat(
+          '/useraffiliateinfo/update_password_user/',
+          user.id.toString()
+        ),
         user,
         httpOptions
       )
@@ -237,7 +249,8 @@ export class AffiliateService {
     return this.http
       .put<Response>(
         `${this.urlApi}/useraffiliateinfo/update_pin/${user.id})`,
-        user, httpOptions
+        user,
+        httpOptions
       )
       .pipe(
         map((data) => {
@@ -250,7 +263,8 @@ export class AffiliateService {
     return this.http
       .put<Response>(
         `${this.urlApi}/useraffiliateinfo/secret_question/${data.id})`,
-        data, httpOptions
+        data,
+        httpOptions
       )
       .pipe(
         map((data) => {
@@ -260,81 +274,68 @@ export class AffiliateService {
   }
 
   getBinaryTree(id: number) {
-    let url = id == 0 ? `/LeaderBoard/model4/getTree` : `/LeaderBoard/model4/getTree?id=${id}`;
+    let url =
+      id == 0
+        ? `/LeaderBoard/model4/getTree`
+        : `/LeaderBoard/model4/getTree?id=${id}`;
 
-    return this.http
-      .get<Response>(
-        `${this.urlApi}${url}`,
-        httpOptions
-      )
-      .pipe(
-        map((response) => {
-          if (response.success) return JSON.parse(response.data);
-          else {
-            console.error('ERROR: ' + response);
-            return null;
-          }
-        })
-      );
+    return this.http.get<Response>(`${this.urlApi}${url}`, httpOptions).pipe(
+      map((response) => {
+        if (response.success) return JSON.parse(response.data);
+        else {
+          console.error('ERROR: ' + response);
+          return null;
+        }
+      })
+    );
   }
 
   getTreeModel5(id: number) {
-    let url = id == 0 ? `/LeaderBoard/model5/getTree` : `/LeaderBoard/model5/getTree?id=${id}`;
+    let url =
+      id == 0
+        ? `/LeaderBoard/model5/getTree`
+        : `/LeaderBoard/model5/getTree?id=${id}`;
 
-    return this.http
-      .get<Response>(
-        `${this.urlApi}${url}`,
-        httpOptions
-      )
-      .pipe(
-        map((response) => {
-          if (response.success) return response.data;
-          else {
-            console.error('ERROR: ' + response);
-            return null;
-          }
-        })
-      );
+    return this.http.get<Response>(`${this.urlApi}${url}`, httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR: ' + response);
+          return null;
+        }
+      })
+    );
   }
 
   getTreeModel6(id: number) {
-    let url = id == 0 ? `/LeaderBoard/model6/getTree` : `/LeaderBoard/model6/getTree?id=${id}`;
+    let url =
+      id == 0
+        ? `/LeaderBoard/model6/getTree`
+        : `/LeaderBoard/model6/getTree?id=${id}`;
 
-    return this.http
-      .get<Response>(
-        `${this.urlApi}${url}`,
-        httpOptions
-      )
-      .pipe(
-        map((response) => {
-          if (response.success) return response.data;
-          else {
-            console.error('ERROR: ' + response);
-            return null;
-          }
-        })
-      );
+    return this.http.get<Response>(`${this.urlApi}${url}`, httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR: ' + response);
+          return null;
+        }
+      })
+    );
   }
 
   getUniLevelTree(id: number) {
-
     const url = id == 0 ? `/matrix/uni_level` : `/matrix/uni_level?id=${id}`;
 
-    return this.http
-      .get<Response>(
-        `${this.urlApi}${url}`,
-        httpOptions
-      )
-      .pipe(
-        map((response) => {
-          if (response.success)
-            return response.data;
-          else {
-            console.error('ERROR: ' + response);
-            return null;
-          }
-        })
-      );
+    return this.http.get<Response>(`${this.urlApi}${url}`, httpOptions).pipe(
+      map((response) => {
+        if (response.success) return response.data;
+        else {
+          console.error('ERROR: ' + response);
+          return null;
+        }
+      })
+    );
   }
 
   updateImageIdPath(updateImageIdPath: UpdateImageIdPath) {
@@ -355,11 +356,20 @@ export class AffiliateService {
       );
   }
 
-  generateVerificationCode(id: number, checkDate: boolean): Observable<Response> {
+  generateVerificationCode(
+    id: number,
+    checkDate: boolean
+  ): Observable<Response> {
     const params = new HttpParams().set('checkDate', checkDate.toString());
 
     return this.http
-      .post<Response>(`${this.urlApi}/useraffiliateinfo/generateVerificationCode/${id.toString()}`, {}, { headers: httpOptions.headers, params: params })
+      .post<Response>(
+        `${
+          this.urlApi
+        }/useraffiliateinfo/generateVerificationCode/${id.toString()}`,
+        {},
+        { headers: httpOptions.headers, params: params }
+      )
       .pipe(
         map((response) => {
           if (!response.success) {
@@ -412,7 +422,8 @@ export class AffiliateService {
     return this.http
       .post<Response>(
         this.urlApi.concat('/useraffiliateinfo/sendEmailToChangePassword'),
-        JSON.stringify(email), httpOptions
+        JSON.stringify(email),
+        httpOptions
       )
       .pipe(
         map((data) => {
@@ -424,7 +435,9 @@ export class AffiliateService {
   getAffiliateByVerificationCode(code: string) {
     return this.http
       .get<Response>(
-        this.urlApi.concat('/useraffiliateinfo/getAffiliateByVerificationCode/' + code),
+        this.urlApi.concat(
+          '/useraffiliateinfo/getAffiliateByVerificationCode/' + code
+        ),
         httpOptions
       )
       .pipe(
@@ -445,7 +458,8 @@ export class AffiliateService {
     return this.http
       .post<Response>(
         this.urlApi.concat('/useraffiliateinfo/resetPassword'),
-        requestResetPassword, httpOptions
+        requestResetPassword,
+        httpOptions
       )
       .pipe(
         map((data) => {
@@ -510,4 +524,10 @@ export class AffiliateService {
       );
   }
 
+  getLastRegisteredAffiliates(): Observable<Response> {
+    return this.http.get<Response>(
+      `${this.urlApi}/useraffiliateinfo/get_last_registered_users`,
+      httpOptions
+    );
+  }
 }

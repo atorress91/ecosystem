@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -20,13 +19,13 @@ import {
 
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
-import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
-import am5themes_Animated from "@amcharts/amcharts4/themes/animated";
+import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
+import am5themes_Animated from '@amcharts/amcharts4/themes/animated';
 import { EChartsOption } from 'echarts';
 import { WalletService } from '@app/core/service/wallet-service/wallet.service';
 import { AffiliateService } from '@app/core/service/affiliate-service/affiliate.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { UserAffiliate } from '@app/core/models/user-affiliate-model/user.affiliate.model';
 
 am4core.useTheme(am5themes_Animated);
 
@@ -62,15 +61,28 @@ export class HomeAdminComponent implements OnInit {
   totalReverseBalance: number;
   maps: any[] = [];
   @ViewChild('chart') chart1: ChartComponent;
+  lastRegisteredUsers: UserAffiliate[] = [];
 
-  constructor(private walletService: WalletService, private affiliateService: AffiliateService, private toastr: ToastrService,) {
-    this.pieChartOptions = { series: [], chart: {}, labels: [], responsive: [], dataLabels: {}, legend: {} };
+  constructor(
+    private walletService: WalletService,
+    private affiliateService: AffiliateService,
+    private toastr: ToastrService
+  ) {
+    this.pieChartOptions = {
+      series: [],
+      chart: {},
+      labels: [],
+      responsive: [],
+      dataLabels: {},
+      legend: {},
+    };
     this.getBalanceInformationAdmin();
   }
 
   ngOnInit() {
     this.initChartReport();
     this.loadLocations();
+    this.getLastRegisteredUsers();
   }
 
   showSuccess(message) {
@@ -107,7 +119,7 @@ export class HomeAdminComponent implements OnInit {
         'Total afiliados',
         'Total comisiones calculadas',
         'Total Pagado',
-        'Saldo Modelo 2'
+        'Saldo Modelo 2',
       ],
       responsive: [
         {
@@ -116,14 +128,14 @@ export class HomeAdminComponent implements OnInit {
             dataLabels: {
               enabled: true,
               formatter: function (val) {
-                return val + "%"
+                return val + '%';
               },
               plotOptions: {
                 pie: {
-                  expandOnClick: false
-                }
-              }
-            }
+                  expandOnClick: false,
+                },
+              },
+            },
           },
         },
       ],
@@ -313,7 +325,7 @@ export class HomeAdminComponent implements OnInit {
       error: (err) => {
         console.log(err);
       },
-    })
+    });
   }
 
   setMapInfo() {
@@ -347,26 +359,42 @@ export class HomeAdminComponent implements OnInit {
     centerLabel.fill = am4core.color('#55555');
     centerLabel.nonScaling = true;
 
-    const data = this.maps.map(item => item);
+    const data = this.maps.map((item) => item);
     imageSeries.addData(data);
 
     let polygonTemplate = polygonSeries.mapPolygons.template;
     polygonTemplate.tooltipText = '{name}';
     polygonTemplate.fill = am4core.color('#96a2b4');
     let hs = polygonTemplate.states.create('hover');
-    hs.properties.fill = am4core.color('#74X999');
+    hs.properties.fill = am4core.color('#749999');
   }
 
   loadLocations() {
     this.affiliateService.getTotalAffiliatesByCountries().subscribe({
       next: (value) => {
-        this.maps = value.data;
+        this.maps = value.data.map((item) => ({
+          title: item.Title,
+          value: item.Value,
+          lat: item.Lat,
+          lng: item.Lng,
+        }));
+
         this.setMapInfo();
       },
-      error: (err) => {
-        this.showError("Error");
+      error: () => {
+        this.showError('Error');
       },
-    })
+    });
+  }
+
+  getLastRegisteredUsers() {
+    this.affiliateService.getLastRegisteredAffiliates().subscribe({
+      next: (value) => {
+        this.lastRegisteredUsers = value.data;
+      },
+      error: () => {
+        this.showError('Error');
+      },
+    });
   }
 }
-

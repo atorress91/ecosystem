@@ -1,661 +1,534 @@
 {
-  "HEADER": {
-    "PROFILE": {
-      "TEXT": "My profile"
+  "ACCREDITED-COMMISSIONS": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
     },
-    "USER-EDIT": {
-      "TEXT": "Edit profile"
+    "BTN-DETAILS": {
+      "TEXT": "See Details"
     },
-    "USER-SUMMARY": {
-      "TEXT": "Full summary"
+    "BTN-PRINT": {
+      "TEXT": "Print"
     },
-    "USER-SETTINGS": {
-      "TEXT": "Setting"
+    "BTN-PROCESS": {
+      "TEXT": "Process"
     },
-    "LOGOUT": {
-      "TEXT": "Logout"
-    }
-  },
-  "SIGNIN": {
-    "USER-NAME": {
-      "TEXT": "Your User Name"
+    "COL-AFFILIATE": {
+      "TEXT": "Affiliate"
     },
-    "PASSWORD": {
-      "TEXT": "Password"
+    "COL-AMOUNT": {
+      "TEXT": "Amount (USD)"
     },
-    "REMEMBER-ME": {
-      "TEXT": "Remember me"
+    "COL-DETAILS": {
+      "TEXT": "Details"
     },
-    "FORGOT-PASS": {
-      "TEXT": "Forgot password"
+    "COL-NAME": {
+      "TEXT": "Name and Last Name"
+    },
+    "RADIO-BTN-1": {
+      "TEXT": "Pass it to wallet"
+    },
+    "RADIO-BTN-2": {
+      "TEXT": "Pay it all"
+    },
+    "SUBTITLE": {
+      "TEXT": "Commissions to be credited"
     },
     "TITLE": {
-      "TEXT": "Signin"
+      "TEXT": "Accredited Commissions"
+    }
+  },
+  "ADDRESSES-PAGE": {
+    "ADDRESSES-TITLE": {
+      "TEXT": "My Addresses"
     },
-    "PASS-MESSAGE-ERROR": {
-      "TEXT": "Password should be at least 6 and at max 15 characters long"
+    "BTN-COPY": {
+      "TEXT": "Copy"
     },
-    "USER-NAME-MESSAGE-ERROR": {
-      "TEXT": "User name is invalid"
+    "BTN-NEW-ADDRESS": {
+      "TEXT": "Add new address"
     },
-    "PASS-IS-REQUIRED": {
-      "TEXT": "Password is required"
+    "BTN-PRINT": {
+      "TEXT": "Print"
     },
-    "USER-NAME-IS-REQUIRED": {
-      "TEXT": "User name is required"
+    "ROW-ACTIONS": {
+      "TEXT": "Actions"
+    },
+    "ROW-ADDRESS": {
+      "TEXT": "Addresses"
+    },
+    "ROW-COMPANY": {
+      "TEXT": "Company"
+    },
+    "ROW-COUNTRY": {
+      "TEXT": "Country"
+    },
+    "ROW-NAME": {
+      "TEXT": "Name"
+    },
+    "ROW-PHONE-NUMBER": {
+      "TEXT": "Telephone numbers"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    }
+  },
+  "ADMIN-EDIT-PASSWORD-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "LBL-CONFIRM-PASSWORD": {
+      "TEXT": "Confirm Password"
+    },
+    "LBL-CURRENT-PASSWORD": {
+      "TEXT": "Current password"
+    },
+    "LBL-NEW-PASSWORD": {
+      "TEXT": "New Password"
+    },
+    "MSJ-ERROR-CONFIRM-EQUALS-PASSWORD": {
+      "TEXT": "Passwords must match."
+    },
+    "MSJ-ERROR-CONFIRM-PASSWORD": {
+      "TEXT": "Password confirmation is required"
+    },
+    "MSJ-ERROR-CURRENT-PASSWORD": {
+      "TEXT": "Current password is required"
+    },
+    "MSJ-ERROR-NEW-PASSWORD": {
+      "TEXT": "The new password is required"
+    },
+    "MSJ-ERROR-SIZE-PASSWORD": {
+      "TEXT": "Password should be a least 6 and at the max 15 characters long."
+    },
+    "TITLE": {
+      "TEXT": "Change of password"
+    }
+  },
+  "ADMIN-EDIT-PERSONAL-INFO-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "LBL-ADDRESS": {
+      "TEXT": "Address"
+    },
+    "LBL-EMAIL": {
+      "TEXT": "Email"
+    },
+    "LBL-LASTNAME": {
+      "TEXT": "Last name"
+    },
+    "LBL-NAME": {
+      "TEXT": "Name"
+    },
+    "LBL-PHONE": {
+      "TEXT": "Phone"
+    },
+    "MSJ-ERROR-ADDRESS": {
+      "TEXT": "The Address is required."
+    },
+    "MSJ-ERROR-EMAIL": {
+      "TEXT": "The Email is required."
+    },
+    "MSJ-ERROR-LASTNAME": {
+      "TEXT": "The Last name is required."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "The User name is required."
+    },
+    "MSJ-ERROR-PHONE": {
+      "TEXT": "The Phone is required."
+    },
+    "TITLE": {
+      "TEXT": "Edit Profile Data"
     }
   },
   "ADMIN-ITEMS": {
-    "USERS": {
-      "TEXT": "Users"
+    "AFFILIATES": {
+      "TEXT": "Affiliates"
     },
     "AUTHORIZE-PURCHASES": {
       "TEXT": "Authorize Purchases"
     },
-    "HOME": {
-      "TEXT": "Home"
-    },
-    "AFFILIATES": {
-      "TEXT": "Affiliates"
-    },
-    "PURCHASES": {
-      "TEXT": "Purchases"
-    },
     "COMMISSIONS": {
       "TEXT": "Commissions"
-    },
-    "PRODUCTS-SERVICES": {
-      "TEXT": "Products and Services"
     },
     "COMPENSATION-PLANS": {
       "TEXT": "Compensation plans"
     },
-    "VIRTUAL-WALLET": {
-      "TEXT": "Virtual Wallet"
-    },
-    "IMPORT": {
-      "TEXT": "Import"
-    },
-    "TICKETS": {
-      "TEXT": "Tickets"
-    },
-    "NEWS": {
-      "TEXT": "News"
+    "CONFIGURATIONS": {
+      "TEXT": "Configurations"
     },
     "GENERAL-REPORTS": {
       "TEXT": "General Reports"
     },
-    "CONFIGURATIONS": {
-      "TEXT": "Configurations"
-    }
-  },
-  "MENUITEMS": {
-    "TOOLS": {
-      "TEXT": "Customer service"
-    },
-    "USER": {
-      "POST": "DEVELOPER"
-    },
-    "MAIN": {
-      "TEXT": "-- Principal"
-    },
     "HOME": {
-      "TEXT": "HOME"
+      "TEXT": "Home"
     },
-    "EDUCATIONAL-COURSES": {
-      "TEXT": "Educational Courses"
-    },
-    "FUNDING-ACCOUNTS": {
-      "TEXT": "Support capital"
-    },
-    "SERVICES-AND-PRODUCTS": {
-      "TEXT": "Services and Products"
-    },
-    "BILLING-PURCHASE": {
-      "TEXT": "Environmental store"
-    },
-    "BILLING-MY-PURCHASES": {
-      "TEXT": "Billing My Purchases"
-    },
-    "BILLING-MY-ORDERS": {
-      "TEXT": "My orders"
-    },
-    "PROCUREMENT-ECOPOOL": {
-      "TEXT": "Ecopool Acquisitions"
-    },
-    "NETWORK": {
-      "TEXT": "My clients"
-    },
-    "WALLET": {
-      "TEXT": "My wallet"
-    },
-    "COMMISSIONS": {
-      "TEXT": "Commissions"
-    },
-    "MY-COMMISSIONS": {
-      "TEXT": "Commissions"
-    },
-    "COMMISSIONS-BALANCE": {
-      "TEXT": "Balance"
-    },
-    "INDUCEMENTS": {
-      "TEXT": "Incentives"
-    },
-    "REQUESTS": {
-      "TEXT": "REQUESTS"
-    },
-    "REQUEST-PAY": {
-      "TEXT": "Request Payment"
-    },
-    "REQUEST-WALLET": {
-      "TEXT": "Request to Wallet"
-    },
-    "ADDRESSES": {
-      "TEXT": "My Addresses"
-    },
-    "MY-TICKETS": {
-      "TEXT": "Tickets"
+    "IMPORT": {
+      "TEXT": "Import"
     },
     "NEWS": {
       "TEXT": "News"
-    }
-  },
-  "EDUCATIONAL-COURSES": {
-    "ACADEMY-TRADING": {
-      "TEXT": "Academy Trading"
-    }
-  },
-  "SERVICES-AND-PRODUCTS": {
-    "NEWS": {
-      "TEXT": "News"
     },
-    "MECANICLICK": {
-      "TEXT": "MecaniClick"
+    "PRODUCTS-SERVICES": {
+      "TEXT": "Products and Services"
     },
-    "ALTERNATIVE-HEALTH-AMERICA": {
-      "TEXT": "Alternative Health America"
+    "PURCHASES": {
+      "TEXT": "Purchases"
     },
-    "ALTERNATIVE-HEALTH-EUROPE": {
-      "TEXT": "Alternative Health Europe"
-    }
-  },
-  "REQUESTS-WALLET": {
-    "TITTLE-PAGE": {
-      "TEXT": "Request Balance to Wallet"
-    },
-    "RELOAD-AMOUNT": {
-      "TEXT": "Top Up Amount"
-    },
-    "AMOUNT": {
-      "TEXT": "Amount"
-    },
-    "PAYMENT-METHODS": {
-      "TEXT": "Payment Methods"
-    },
-    "BANK": {
-      "TEXT": "Bank"
-    },
-    "SUPPORT": {
-      "TEXT": "Support"
-    },
-    "PAYMENT-DATE": {
-      "TEXT": "Payment date"
-    },
-    "SEND-REQUEST": {
-      "TEXT": "Send request"
-    },
-    "TITTLE-TABLE": {
-      "TEXT": "My Recharge Requests"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "ORDER-NUM-COLUMN": {
-      "TEXT": "# Order"
-    },
-    "DATE-COLUMN": {
-      "TEXT": "Date"
-    },
-    "CREDIT-COLUMN": {
-      "TEXT": "Credit"
-    },
-    "PAYMENT-METHOD-COLUMN": {
-      "TEXT": "Payment method"
-    },
-    "BANK-COLUMN": {
-      "TEXT": "Bank"
-    },
-    "SUPPORT-COLUMN": {
-      "TEXT": "Support"
-    },
-    "TRASACTION-DATE-COLUMN": {
-      "TEXT": "Transaction date"
-    },
-    "STATUS-COLUMN": {
-      "TEXT": "Status"
-    },
-    "SUBMIT-BTN": {
-      "TEXT": "Send"
-    },
-    "CLOSE-BTN": {
-      "TEXT": "Close"
-    }
-  },
-  "REQUESTS-PAGE": {
-    "TITTLE-PAGE": {
-      "TEXT": "Make payment request"
-    },
-    "FIST-MSJ-INFO": {
-      "TEXT": "The amount you request must be less than or equal to the available amount you have in your wallet."
-    },
-    "SECOND-MSJ-INFO": {
-      "TEXT": "The minimum amount to withdraw is USD"
-    },
-    "THIRD-MSJ-INFO": {
-      "TEXT": "The maximum amount to withdraw is USD"
-    },
-    "TITTLE-MSJ-INFO": {
-      "TEXT": "Information"
-    },
-    "AVAILABLE-BALANCE-WALLET": {
-      "TEXT": "Available Balance in the Wallet:"
-    },
-    "AMOUNT-REQUESTED": {
-      "TEXT": "Amount Requested"
-    },
-    "OBSERVATION-FIELD": {
-      "TEXT": "Observation"
-    },
-    "ACCESS-KEY": {
-      "TEXT": "Access Key"
-    },
-    "GENERATION-CODE": {
-      "TEXT": "Generate code"
-    },
-    "CONFIRM-CODE": {
-      "TEXT": "Confirmation code"
-    },
-    "SEGURITY-PIN": {
-      "TEXT": "Security Pin"
-    },
-    "SEND-REQUEST": {
-      "TEXT": "Send request"
-    },
-    "TITTLE-TABLE": {
-      "TEXT": "Requests"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "DATE-COLUMN": {
-      "TEXT": "Date"
-    },
-    "AMOUNT-WITHDRAW-COLUMN": {
-      "TEXT": "Amount to Withdraw"
-    },
-    "OBSERVATION-COLUMN": {
-      "TEXT": "Observation"
-    },
-    "ADMIN-ANSWER-COLUMN": {
-      "TEXT": "Administration response"
-    },
-    "STATE-COLUMN": {
-      "TEXT": "Status"
-    },
-    "SUBMIT-BTN": {
-      "TEXT": "Send"
-    },
-    "CLOSE-BTN": {
-      "TEXT": "Close"
-    },
-    "REQUEST-TYPE": {
-      "TEXT": "Type of request"
-    },
-    "ADMIN-ANSWER.NOT-ATTENDED": {
-      "TEXT": "Not Attended"
-    },
-    "ADMIN-ANSWER.ATTENDED": {
-      "TEXT": "Attended"
-    },
-    "ADMIN-ANSWER.CANCELLED": {
-      "TEXT": "Cancelled"
-    },
-    "STATE.PENDING": {
-      "TEXT": "Pending"
-    },
-    "STATE.APPROVED": {
-      "TEXT": "Approved"
-    },
-    "STATE.CANCELLED": {
-      "TEXT": "Cancelled"
-    },
-    "TYPE.WITHDRAWAL": {
-      "TEXT": "Withdrawal"
-    },
-    "REQUEST-TYPE.REVERT-INVOICE": {
-      "TEXT": "Revert Invoice"
-    },
-    "AMOUNT-REQUESTED-ERROR": {
-      "TEXT": "Enter an amount equal to or less than the available balance."
-    },
-    "ACCESS-KEY-ERROR": {
-      "TEXT": "Password is required."
-    },
-    "OBSERVATION-ERROR": {
-      "TEXT": "Observation is required."
-    },
-    "CONFIRM-CODE-ERROR": {
-      "TEXT": "Security code is required."
-    },
-    "GENERATE-CODE-BTN": {
-      "TEXT": "Generate Code"
-    }
-  },
-  "ECOPOOL-PAGE": {
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "TITTLE-PAGE": {
-      "TEXT": "Passive pack"
-    },
-    "NUM-BILL-COLUMN": {
-      "TEXT": "Invoice number"
-    },
-    "DATE-INIT-COLUMN": {
-      "TEXT": "Start date"
-    },
-    "PACKS-COLUMN": {
-      "TEXT": "Packs"
-    },
-    "AMOUNT-BASE-COLUMN": {
-      "TEXT": "Base amount"
-    },
-    "PERCENTAGE-COLUMN": {
-      "TEXT": "Percentage"
-    },
-    "PAYMENTS-COLUMN": {
-      "TEXT": "Payments"
-    },
-    "STATE-COLUMN": {
-      "TEXT": "State"
-    },
-    "DETAILS-COLUMN": {
-      "TEXT": "Details"
-    },
-    "BTN-SEE-DETAILS": {
-      "TEXT": "See details"
-    }
-  },
-  "WALLET-PAGE": {
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "TITTLE-TABLE": {
-      "TEXT": "Movements"
-    },
-    "AVAILABLE-BALANCE": {
-      "TEXT": "Available Balance"
-    },
-    "REVERSE-BALANCE": {
-      "TEXT": "Balance amount"
-    },
-    "REQUEST-RECHARGE": {
-      "TEXT": "Recharge Requested"
-    },
-    "WITHDRAWAL-PENDING": {
-      "TEXT": "Withdrawal Pending"
-    },
-    "USER-COLUMN": {
-      "TEXT": "Responsible user"
-    },
-    "AFFILIATE-COLUMN": {
-      "TEXT": "Affiliate"
-    },
-    "CREDIT-COLUMN": {
-      "TEXT": "Credit"
-    },
-    "DEBIT-COLUMN": {
-      "TEXT": "Debit"
-    },
-    "STATE-COLUMN": {
-      "TEXT": "State"
-    },
-    "CONCEPT-COLUMN": {
-      "TEXT": "Concept"
-    },
-    "DATE-COLUMN": {
-      "TEXT": "Date"
-    },
-    "DETAILS-COLUMN": {
-      "TEXT": "Details"
-    },
-    "DETAILS-BTN": {
-      "TEXT": "No novelties"
-    },
-    "SUBMENU-TITLE": {
-      "TEXT": "Wallet"
-    },
-    "COPY-BTN": {
-      "TEXT": "Copy"
-    },
-    "PDF-BTN": {
-      "TEXT": "PDF"
-    },
-    "STATE": {
-      "ATTENDED": {
-        "TEXT": "Attended"
-      },
-      "NOT-ATTENDED": {
-        "TEXT": "Not Attended"
-      }
-    }
-  },
-  "TICKETS-PAGE": {
     "TICKETS": {
       "TEXT": "Tickets"
     },
-    "MY-TICKETS": {
-      "TEXT": "My Tickets"
+    "USERS": {
+      "TEXT": "Users"
     },
-    "CREATE-TICKET-BTN": {
-      "TEXT": "Create Ticket"
+    "VIRTUAL-WALLET": {
+      "TEXT": "Virtual Wallet"
+    }
+  },
+  "ADMIN-MY-PROFILE": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
     },
-    "DELETE-BTN": {
-      "TITLE": "Delete"
+    "BTN-EDIT-PERSONAL-INFO": {
+      "TEXT": "Edit personal data"
     },
-    "SELECT-COLUMN": {
-      "TEXT": "Select"
+    "BTN-OPTIONS": {
+      "TEXT": "Options"
     },
-    "STATUS-COLUMN": {
-      "TEXT": "Status"
+    "BTN-PRINT": {
+      "TEXT": "Print"
     },
-    "STATUS-CLOSED": {
-      "TEXT": "Closed"
-    },
-    "STATUS-OPEN": {
-      "TEXT": "Open"
-    },
-    "MESSAGE-COLUMN": {
-      "TEXT": "Message"
-    },
-    "CATEGORY-COLUMN": {
-      "TEXT": "Category"
-    },
-    "DATE-COLUMN": {
+    "COL-DATE": {
       "TEXT": "Date"
     },
-    "IMAGE-COLUMN": {
-      "TEXT": "Image"
+    "COL-IP": {
+      "TEXT": "IP"
     },
-    "IMAGE-ALT": {
-      "TEXT": "Click to view"
+    "COL-MOVEMENTS": {
+      "TEXT": "Movements"
     },
-    "NO-IMAGE": {
-      "TEXT": "No Image"
+    "LBL-ADDRESS": {
+      "TEXT": "Address"
     },
-    "IMAGE-MODAL": {
-      "TITLE": "Images"
+    "LBL-CHANGE-PASSWORD": {
+      "TEXT": "Change Password"
     },
-    "SLIDE-IMAGE-ALT": {
-      "TEXT": "Slide image"
+    "LBL-CHANGE-PASSWORD-UPLOAD": {
+      "TEXT": "Change Password Upload"
     },
-    "SHOWING": {
-      "TEXT": "Showing"
+    "LBL-CHANGE-SECRET-QUESTION": {
+      "TEXT": "Change secret question"
     },
-    "CREATE-TICKET": {
-      "TITLE": "Create Ticket"
+    "LBL-EMAIL": {
+      "TEXT": "Email"
     },
-    "SUBJECT": {
-      "LABEL": "Subject",
-      "PLACEHOLDER": "Subject",
-      "REQUIRED-ERROR": "Subject is required."
+    "LBL-LAST-MOVEMENTS": {
+      "TEXT": "Last Movements"
     },
-    "CATEGORY": {
-      "LABEL": "Category",
-      "DEFAULT-OPTION": "Select an option",
-      "REQUIRED-ERROR": "A category must be selected."
+    "LBL-OBSERVATION": {
+      "TEXT": "Observation"
     },
-    "DESCRIPTION": {
-      "LABEL": "Description",
-      "PLACEHOLDER": "Description",
-      "REQUIRED-ERROR": "Description is required.",
-      "MAXLENGTH-ERROR": "Description cannot exceed 255 characters."
+    "LBL-PHONE": {
+      "TEXT": "Phone"
     },
-    "ADD-IMAGE": {
-      "LABEL": "Add Image",
-      "DROPZONE": "Drop it!"
-    },
-    "SUBMIT-BTN": {
-      "TEXT": "Submit"
-    },
-    "DISCARD-BTN": {
-      "TEXT": "Discard"
+    "TITLE": {
+      "TEXT": "My Profile"
     }
   },
-  "HOME-PAGE-CLIENT": {
-    "INFORMATION-R": {
-      "TEXT": "Information Model R"
+  "ADMIN-PASSWORD-UPLOAD-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
     },
-    "INFORMATION-1": {
-      "TEXT": "Information Model 1"
+    "BTN-SAVE": {
+      "TEXT": "Save"
     },
-    "INFORMATION-2": {
-      "TEXT": "Information Model 2"
+    "LBL-CONFIRM-PASSWORD": {
+      "TEXT": "Repeat new password Upload"
     },
-    "SERVICE-BALANCE": {
-      "TEXT": "Service Balance"
+    "LBL-PASSWORD": {
+      "TEXT": "New password Upload"
     },
-    "AVAILABLE-BALANCE": {
-      "TEXT": "Available Balance"
+    "MSJ-ERROR-CONFIRM-PASSWORD": {
+      "TEXT": "The confirm password is required"
     },
-    "TOTAL-PAID": {
-      "TEXT": "Total Paid"
+    "MSJ-ERROR-PASSWORD": {
+      "TEXT": "The password is required"
     },
-    "TOTAL-ACQUISITIONS": {
-      "TEXT": "Total Acquisitions"
-    },
-    "MODEL-REQUEST": {
-      "TEXT": "Model Request"
-    },
-    "TITTLE-FIRST-CHART": {
-      "TEXT": "Affiliates Registered"
-    },
-    "TITTLE-SECOND-CHART": {
-      "TEXT": "Purchases Made in My Network"
-    },
-    "TITTLE-BANNERS": {
-      "TEXT": "Banners"
-    },
-    "REGISTER": {
-      "TEXT": "Register"
-    },
-    "SHARE-LINK": {
-      "TEXT": "Share Link"
-    },
-    "WEBSITE": {
-      "TEXT": "Website"
-    },
-    "PUBLIC-STORE": {
-      "TEXT": "Public Store"
+    "TITLE": {
+      "TEXT": "Change password Upload"
     }
   },
-  "BILLING-PURCHASES-PAGE": {
-    "BILLING-PURCHASES-TITLE": {
-      "TEXT": "Billing Purchases"
+  "AFFILIATES-LIST-PAGE": {
+    "BINARY-GENEALOGICAL-TREE": {
+      "TEXT": "Binary Genealogical tree"
+    },
+    "BTN-ACTIONS": {
+      "TEXT": "Actions"
+    },
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "CHANGE-SPONSOR": {
+      "TEXT": "Change sponsor"
+    },
+    "COL-AFFILIATE-MODE": {
+      "TEXT": "Affiliate mode"
+    },
+    "COL-BINARY-SPONSOR": {
+      "TEXT": "Binary Sponsor"
+    },
+    "COL-CALIFICATION": {
+      "TEXT": "Calification"
+    },
+    "COL-DATE": {
+      "TEXT": "Date"
+    },
+    "COL-DETAILS": {
+      "TEXT": "Details"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Email"
+    },
+    "COL-FATHER": {
+      "TEXT": "Father"
+    },
+    "COL-SPONSOR": {
+      "TEXT": "Sponsor"
+    },
+    "COL-STATUS": {
+      "TEXT": "State"
+    },
+    "COL-USER": {
+      "TEXT": "User"
+    },
+    "EDIT": {
+      "TEXT": "Edit"
+    },
+    "FORCED-GENEALOGICAL-TREE": {
+      "TEXT": "Forced Genealogical tree"
+    },
+    "MAKE-PURCHASE": {
+      "TEXT": "Make a purchase"
+    },
+    "MORE-DETAILS": {
+      "TEXT": "More Details"
+    },
+    "NETWORK-PURCHASE-REGISTRY": {
+      "TEXT": "Network purchase registry"
+    },
+    "QUALIFICATION-AUDIT": {
+      "TEXT": "Qualification audit"
+    },
+    "REMOVE-AFFILIATE": {
+      "TEXT": "Remove Affiliate"
+    },
+    "TITLE": {
+      "TEXT": "List of Affiliates"
+    },
+    "TOPE-MAX-COINPAYMENTS": {
+      "TEXT": "Tope Max Coinpayments"
+    },
+    "UNILEVEL-FAMILY-TREE": {
+      "TEXT": "Unilevel family tree"
+    },
+    "WALLET-BALANCE": {
+      "TEXT": "Wallet Balance"
+    }
+  },
+  "ARRAYS-CONFIGURATIONS-PAGE": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "LBL-ACTIVE-MATRIX-BINARY": {
+      "TEXT": "Activate binary matrix"
+    },
+    "LBL-ACTIVE-MATRIX-FORCED": {
+      "TEXT": "Enable Forced Matrix"
+    },
+    "LBL-ACTIVE-MATRIX-UNILEVEL": {
+      "TEXT": "Activate Unilevel Matrix"
+    },
+    "LBL-MATRIX-BINARY": {
+      "TEXT": "Binary Matrix"
+    },
+    "LBL-MATRIX-FORCED": {
+      "TEXT": "Forced Matrix"
+    },
+    "LBL-MATRIX-UNILEVEL": {
+      "TEXT": "Unilevel Matrix"
+    },
+    "LBL-NUMBER-FRONT-AFFILIATES": {
+      "TEXT": "Number of fronts for affiliates:"
+    },
+    "LBL-NUMBER-FRONT-SOFTWARE-MILLENIUM": {
+      "TEXT": "Front numbers for Millenium Software:"
+    },
+    "MSJ-INFO": {
+      "TEXT": "When the box is checked, the network is structured in a unilevel, forced or binary way."
+    },
+    "SUBTITLE": {
+      "TEXT": "Matrix Configuration"
+    },
+    "TITLE": {
+      "TEXT": "Arrays"
+    }
+  },
+  "ATTRIBUTES-LIST": {
+    "SUBTITLE": {
+      "TEXT": "Attributes List"
+    },
+    "TITLE": {
+      "TEXT": "Attributes"
+    }
+  },
+  "AUTHORIZE-AFFILIATES": {
+    "BTN-AUTHORIZE-ALL": {
+      "TEXT": "Authorize All"
+    },
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-DELETE-ALL": {
+      "TEXT": "Delete All"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "BTN-PROCESS-SELECTION": {
+      "TEXT": "Process Selection"
+    },
+    "BTN-SEE-DETAILS": {
+      "TEXT": "See Details"
+    },
+    "COL-AUTHORIZE": {
+      "TEXT": "Authorize"
+    },
+    "COL-BINARY-SPONSOR": {
+      "TEXT": "Binary Sponsor"
+    },
+    "COL-DELETE": {
+      "TEXT": "Delete"
+    },
+    "COL-DETAILS": {
+      "TEXT": "Details"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Email"
+    },
+    "COL-FATHER": {
+      "TEXT": "Father"
+    },
+    "COL-IDENTITY": {
+      "TEXT": "Identity"
+    },
+    "COL-REGISTER-DATE": {
+      "TEXT": "Registration date"
+    },
+    "COL-SPONSOR": {
+      "TEXT": "Sponsor"
+    },
+    "COL-USER": {
+      "TEXT": "User"
+    },
+    "MSJ": {
+      "TEXT": "There are records for affiliation payments, verify the payment before authorizing the affiliate. To see the data supplied by the affiliate, click on the See Details button."
     },
     "SEARCH": {
       "TEXT": "Search"
     },
-    "COPY": {
+    "SUBTITLE": {
+      "TEXT": "Unauthorized affiliations"
+    },
+    "TITLE": {
+      "TEXT": "Authorize Affiliates"
+    }
+  },
+  "AUTHORIZE-PURCHASES": {
+    "BTN-COPY": {
       "TEXT": "Copy"
     },
-    "PDF": {
-      "TEXT": "PDF"
+    "BTN-PRINT": {
+      "TEXT": "Print"
     },
-    "ROW-NO-BILL": {
-      "TEXT": "Bill No."
-    },
-    "ROW-DATE": {
-      "TEXT": "Date"
-    },
-    "ROW-BILL-STATE": {
-      "TEXT": "Bill State"
-    },
-    "ROW-PAID": {
-      "TEXT": "Paid"
-    },
-    "ROW-NOT-PAID": {
-      "TEXT": "Not Paid"
-    },
-    "ROW-ACTIVE": {
-      "TEXT": "Active"
-    },
-    "ROW-CANCELLED": {
-      "TEXT": "Cancelled"
-    },
-    "ROW-MODEL": {
-      "TEXT": "Model"
-    },
-    "MODEL-1B": {
-      "TEXT": "Model 1B"
-    },
-    "MODEL-1A": {
-      "TEXT": "Model 1A"
-    },
-    "MODEL-2": {
-      "TEXT": "Model 2"
-    },
-    "TRADING-ACADEMY": {
-      "TEXT": "Trading Academy"
-    },
-    "FUNDING-ACCOUNTS": {
-      "TEXT": "Funding Accounts"
-    },
-    "MEMBERSHIP": {
-      "TEXT": "Membership"
-    },
-    "ALTERNATIVE-HEALTH": {
-      "TEXT": "Alternative Health"
-    },
-    "RECURRING-MODEL": {
-      "TEXT": "Recurring Model"
-    },
-    "TOTAL-AMOUNT": {
-      "TEXT": "Total Amount"
-    },
-    "ROW-DETAIL": {
-      "TEXT": "Detail"
-    },
-    "ACTIONS": {
-      "TEXT": "Actions"
+    "BTN-PROCESS-SELECTION": {
+      "TEXT": "Process Selection"
     },
     "BTN-SEE-DETAILS": {
       "TEXT": "See Details"
+    },
+    "CHECK-APPROVE-ORDER": {
+      "TEXT": "Approve Order"
+    },
+    "CHECK-DENY-ORDER": {
+      "TEXT": "Denied Order"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Afiliado"
+    },
+    "COL-BANK": {
+      "TEXT": "BanK"
+    },
+    "COL-DATE": {
+      "TEXT": "Date"
+    },
+    "COL-DETAIL": {
+      "TEXT": "Details"
+    },
+    "COL-ORDER": {
+      "TEXT": "Order"
+    },
+    "COL-PAID-METHOD": {
+      "TEXT": "Payment method"
+    },
+    "COL-SUPPORT": {
+      "TEXT": "Support"
+    },
+    "COL-TRASACTION-DATE": {
+      "TEXT": "Transaction date"
+    },
+    "TITLE": {
+      "TEXT": "List of Orders to Authorize"
+    }
+  },
+  "BALANCE-OF-WALLET": {
+    "SUBTITLE": {
+      "TEXT": "Registers"
+    },
+    "TITLE": {
+      "TEXT": "Balance of Wallet"
     }
   },
   "BILLING-ORDERS-PAGE": {
+    "BILLING-ORDERS-TITLE": {
+      "TEXT": "Purchase Order List"
+    },
+    "BTN-SEE-DETAILS": {
+      "TEXT": "See Details"
+    },
+    "ROW-BANK": {
+      "TEXT": "Bank"
+    },
+    "ROW-CONDITION": {
+      "TEXT": "Condition"
+    },
     "ROW-DATE": {
       "TEXT": "Date"
+    },
+    "ROW-DETAILS": {
+      "TEXT": "Details"
     },
     "ROW-ORDER": {
       "TEXT": "Order"
@@ -663,203 +536,8 @@
     "ROW-PAY-METHOD": {
       "TEXT": "Payment method"
     },
-    "ROW-BANK": {
-      "TEXT": "Bank"
-    },
     "ROW-STATE": {
       "TEXT": "State"
-    },
-    "ROW-CONDITION": {
-      "TEXT": "Condition"
-    },
-    "ROW-DETAILS": {
-      "TEXT": "Details"
-    },
-    "BTN-SEE-DETAILS": {
-      "TEXT": "See Details"
-    },
-    "BILLING-ORDERS-TITLE": {
-      "TEXT": "Purchase Order List"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    }
-  },
-  "NETWORK-PAGE": {
-    "NETWORK-ALL-CUSTOMERS": {
-      "TEXT": "Network All Customers"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "ROW-USER": {
-      "TEXT": "User"
-    },
-    "ROW-STATE": {
-      "TEXT": "State"
-    },
-    "ROW-QUALIFICATION": {
-      "TEXT": "Qualification"
-    },
-    "ROW-DETAIL": {
-      "TEXT": "Detail"
-    },
-    "BTN-ACTIONS": {
-      "TEXT": "Actions"
-    },
-    "ACTIVATE-MEMBERSHIP.BALANCE": {
-      "TEXT": "Activate membership with available balance"
-    },
-    "ACTIVATE-MEMBERSHIP.CARD": {
-      "TEXT": "Activate membership with card"
-    },
-    "TRANSFER-BALANCE": {
-      "TEXT": "Transfer balance"
-    },
-    "ACTIVE": {
-      "TEXT": "Active"
-    },
-    "INACTIVE": {
-      "TEXT": "Inactive"
-    },
-    "NETWORK-TITLE": {
-      "TEXT": "My Network"
-    },
-    "VIEW-NETWORK": {
-      "TEXT": "View My Network"
-    },
-    "COPY": {
-      "TEXT": "Copy"
-    },
-    "PDF": {
-      "TEXT": "PDF"
-    }
-  },
-  "MY-NETWORK-PAGE": {
-    "TITLE": {
-      "TEXT": "My Network"
-    },
-    "NETWORK-TREES": {
-      "TEXT": "My Network Trees"
-    },
-    "UNILEVEL-MODEL": {
-      "TEXT": "Model 1, 2, 3 (Unilevel)"
-    },
-    "BINARY-MODEL": {
-      "TEXT": "Model 4 (Binary)"
-    },
-    "MATRIX-MODEL-5": {
-      "TEXT": "Model 5 (Matrix)"
-    },
-    "MATRIX-MODEL-6": {
-      "TEXT": "Model 6 (Matrix)"
-    },
-    "BACK": {
-      "TEXT": "Back"
-    }
-  },
-  "COMMISSIONS-PAGE": {
-    "COMMISSIONS-TITLE": {
-      "TEXT": "Consult"
-    },
-    "COMMISSIONS-LBL-CONCEPT": {
-      "TEXT": "Concept"
-    },
-    "COMMISSIONS-LBL-PERIOD": {
-      "TEXT": "Period"
-    },
-    "SLT-OPTION-BONO": {
-      "TEXT": "Binary bonus"
-    },
-    "SLT-OPTION-1ERLEVEL": {
-      "TEXT": "1erlevel"
-    },
-    "SLT-OPTION-SHOP": {
-      "TEXT": "Shop"
-    },
-    "SLT-OPTION-ALL": {
-      "TEXT": "See All"
-    },
-    "SLT-OPTION-PERIOD": {
-      "TEXT": "Current period"
-    }
-  },
-  "INDUCEMENTS-PAGE": {
-    "INDUCEMENTS-TITLE": {
-      "TEXT": "Earned Inducements"
-    },
-    "ROW-INDUCEMENTS": {
-      "TEXT": "Inducement"
-    },
-    "ROW-DESCRIPTION": {
-      "TEXT": "Description"
-    },
-    "ROW-ASSIGNMENT-DATE": {
-      "TEXT": "Assignment Date"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    }
-  },
-  "COMMISSIONS-BALANCE-PAGE": {
-    "COMMISSIONS-TITLE": {
-      "TEXT": "My Balance"
-    },
-    "ROW-DATE": {
-      "TEXT": "Date"
-    },
-    "ROW-CONCEPT": {
-      "TEXT": "Concept"
-    },
-    "ROW-CREDITS": {
-      "TEXT": "Credits"
-    },
-    "ROW-DEBITS": {
-      "TEXT": "Debits"
-    },
-    "ROW-STATE": {
-      "TEXT": "State"
-    },
-    "ROW-RESIDUALS-PAID": {
-      "TEXT": "Residuals Paids"
-    }
-  },
-  "ADDRESSES-PAGE": {
-    "ADDRESSES-TITLE": {
-      "TEXT": "My Addresses"
-    },
-    "ROW-COMPANY": {
-      "TEXT": "Company"
-    },
-    "ROW-NAME": {
-      "TEXT": "Name"
-    },
-    "ROW-ADDRESS": {
-      "TEXT": "Addresses"
-    },
-    "ROW-COUNTRY": {
-      "TEXT": "Country"
-    },
-    "ROW-PHONE-NUMBER": {
-      "TEXT": "Telephone numbers"
-    },
-    "ROW-ACTIONS": {
-      "TEXT": "Actions"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-NEW-ADDRESS": {
-      "TEXT": "Add new address"
     },
     "SEARCH": {
       "TEXT": "Search"
@@ -876,801 +554,88 @@
       "TEXT": "Model 2"
     }
   },
-  "SAVINGS-PLANS-PAGE": {
-    "TITLE": {
-      "TEXT": "Model 1"
-    },
-    "SUBTITLE": {
-      "TEXT": "Model 1"
-    }
-  },
-  "SAVINGS-PLANS-ONEB-PAGE": {
-    "TITLE": {
-      "TEXT": "Model R"
-    },
-    "SUBTITLE": {
-      "TEXT": "Model R"
-    }
-  },
-  "CART-PAGE": {
-    "CART-TITLE": {
-      "TEXT": "Shopping Cart"
-    },
-    "BILLED-TO": {
-      "TEXT": "Billed To"
-    },
-    "ADDRESS": {
-      "TEXT": "Address"
-    },
-    "EMAIL": {
-      "TEXT": "Email"
-    },
-    "ORDER-DATE": {
-      "TEXT": "Order Date"
-    },
-    "ORDER-SUMMARY": {
-      "TEXT": "Order Summary"
-    },
-    "COL-NAME": {
-      "TEXT": "Name"
-    },
-    "COL-IMG": {
-      "TEXT": "Image"
-    },
-    "COL-DESCRIPTION": {
-      "TEXT": "Description"
-    },
-    "POINTS-CALIF": {
-      "TEXT": "Calif Points"
-    },
-    "POINTS-BINARY": {
-      "TEXT": "Binary Points"
-    },
-    "COMMISSIONABLE": {
-      "TEXT": "Commissionable"
-    },
-    "COL-PRICE": {
-      "TEXT": "Price"
-    },
-    "DISCOUNT": {
-      "TEXT": "Discount"
-    },
-    "COL-QUANTITY": {
-      "TEXT": "Quantity"
-    },
-    "COL-TOTAL": {
-      "TEXT": "Total"
-    },
-    "COL-ACTION": {
-      "TEXT": "Action"
-    },
-    "REMOVE-ITEM": {
-      "TEXT": "Remove Item"
-    },
-    "SUBTOTAL": {
-      "TEXT": "Subtotal"
-    },
-    "VAT": {
-      "TEXT": "VAT"
-    },
-    "INCLUDED": {
-      "TEXT": "Included"
-    },
-    "TOTAL-DISCOUNT": {
-      "TEXT": "Total Discount"
-    },
-    "TOTAL": {
-      "TEXT": "Total"
-    },
-    "CREDIT-DEBIT-PAYMENT": {
-      "TEXT": "Payment with credit and debit card"
-    },
-    "COINPAY-PAYMENT": {
-      "TEXT": "Payment with Coinpay CR"
-    },
-    "BUY-MORE": {
-      "TEXT": "Buy More"
-    },
-    "SERVICE-BALANCE-PAYMENT": {
-      "TEXT": "Payment with service balance"
-    },
-    "BALANCE-PAYMENT": {
-      "TEXT": "Payment with available balance"
-    },
-    "MODEL-BALANCE-PAYMENT": {
-      "TEXT": "Payment with model request"
-    },
-    "EMPTY-CART": {
-      "TEXT": "Empty Cart"
-    }
-  },
-  "HOME-ADMIN-PAGE": {
-    "ACTIVE-AFFILIATES": {
-      "TEXT": "Active Affiliates"
-    },
-    "COMMISSIONS-CALCULATED": {
-      "TEXT": "Commissions Calculated"
-    },
-    "WALLET-BENEFIT": {
-      "TEXT": "Wallet Benefit"
-    },
-    "TOTAL-COMMISSIONS-PAID": {
-      "TEXT": "Total Commissions Paid"
-    },
-    "AFFILIATES-ENTERED": {
-      "TEXT": "Affiliates entered"
-    },
-    "RECORD-SOURCE": {
-      "TEXT": "Record Source"
-    },
-    "PURCHASES-MADE": {
-      "TEXT": "Purchases Made"
-    },
-    "LAST-REGISTERED-AFFILIATES": {
-      "TEXT": "Last registered affiliates"
-    },
-    "NO-SPONSORSHIPS": {
-      "TEXT": "No Sponsorships"
-    },
-    "SPONSORED": {
-      "TEXT": "Sponsored"
-    },
-    "TOTAL-PURCHASES": {
-      "TEXT": "Total purchases"
-    },
-    "TOTAL-COMMISSIONABLE": {
-      "TEXT": "Total commissionable"
-    }
-  },
-  "USERS-LIST-PAGE": {
-    "USERS-LIST-TITLE": {
-      "TEXT": "Users List"
-    },
-    "USERS-LIST-SUBTITLE": {
-      "TEXT": "Register"
-    },
-    "USERS-SEARCH": {
-      "TEXT": "Search"
-    },
-    "COL-ID": {
-      "TEXT": "ID"
-    },
-    "COL-USER": {
-      "TEXT": "User"
-    },
-    "COL-ROL": {
-      "TEXT": "Rol"
-    },
-    "COL-NAME": {
-      "TEXT": "Name"
-    },
-    "COL-LAST-NAME": {
-      "TEXT": "Last name"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Email"
-    },
-    "COL-ACTIONS": {
+  "BILLING-PURCHASES-PAGE": {
+    "ACTIONS": {
       "TEXT": "Actions"
     },
-    "BTN-PRINT": {
-      "TEXT": "Print"
+    "ALTERNATIVE-HEALTH": {
+      "TEXT": "Alternative Health"
     },
-    "BTN-COPY": {
+    "BILLING-PURCHASES-TITLE": {
+      "TEXT": "Billing Purchases"
+    },
+    "BTN-SEE-DETAILS": {
+      "TEXT": "See Details"
+    },
+    "COPY": {
       "TEXT": "Copy"
     },
-    "BTN-ADD-USER": {
-      "TEXT": "Add user"
+    "FUNDING-ACCOUNTS": {
+      "TEXT": "Funding Accounts"
     },
-    "BTN-EDIT": {
-      "TEXT": "Edit"
-    }
-  },
-  "USERS-LIST-CREATE-MODAL": {
-    "TITLE": {
-      "TEXT": "Create User"
+    "MEMBERSHIP": {
+      "TEXT": "Membership"
     },
-    "COL-USER": {
-      "TEXT": "User"
+    "MODEL-1A": {
+      "TEXT": "Model 1A"
     },
-    "COL-PASSWORD": {
-      "TEXT": "Password"
+    "MODEL-1B": {
+      "TEXT": "Model 1B"
     },
-    "COL-CONFIRM-PASSWORD": {
-      "TEXT": "Confirm Password"
+    "MODEL-2": {
+      "TEXT": "Model 2"
     },
-    "COL-EMAIL": {
-      "TEXT": "Email"
+    "PDF": {
+      "TEXT": "PDF"
     },
-    "COL-OBSERVATION": {
-      "TEXT": "Observation"
+    "RECURRING-MODEL": {
+      "TEXT": "Recurring Model"
     },
-    "COL-NAME": {
-      "TEXT": "Name"
+    "ROW-ACTIVE": {
+      "TEXT": "Active"
     },
-    "COL-LASTNAME": {
-      "TEXT": "Last name"
+    "ROW-BILL-STATE": {
+      "TEXT": "Bill State"
     },
-    "COL-PHONE": {
-      "TEXT": "Telephone"
+    "ROW-CANCELLED": {
+      "TEXT": "Cancelled"
     },
-    "COL-ADDRESS": {
-      "TEXT": "Address"
-    },
-    "COL-ROLE": {
-      "TEXT": "Role"
-    },
-    "BTN-STATUS": {
-      "TEXT": "Status"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "LBL-SELECT-ROLE": {
-      "TEXT": "Select an option"
-    },
-    "MSJ-ERROR-USER": {
-      "TEXT": "The User name is required."
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "The Name is required."
-    },
-    "MSJ-ERROR-PASS": {
-      "TEXT": "The password is required"
-    },
-    "MSJ-ERROR-LASTNAME": {
-      "TEXT": "The Last name is required."
-    },
-    "MSJ-ERROR-CONFIRM-PASS": {
-      "TEXT": "The confirm password is required"
-    },
-    "MSJ-ERROR-PHONE": {
-      "TEXT": "The Phone is required."
-    },
-    "MSJ-ERROR-EMAIL": {
-      "TEXT": "The Email is required."
-    },
-    "MSJ-ERROR-ROL": {
-      "TEXT": "The Rol is required."
-    },
-    "MSJ-ERROR-OBSERVATION": {
-      "TEXT": "The Observation is required."
-    },
-    "MSJ-ERROR-ADDRESS": {
-      "TEXT": "The Address is required."
-    },
-    "MSJ-ERROR-EQUALS-PASS": {
-      "TEXT": "Passwords must match."
-    },
-    "MSJ-ERROR-EMAIL-INVALID": {
-      "TEXT": "The Email is invalid."
-    }
-  },
-  "USER-LIST-DETAIL-MODAL": {
-    "TITLE": {
-      "TEXT": "User Details"
-    },
-    "LBL-PHONE": {
-      "TEXT": "Phone"
-    },
-    "LBL-ADDRESS": {
-      "TEXT": "Address"
-    },
-    "LBL-EMAIL": {
-      "TEXT": "Email"
-    },
-    "LBL-USER": {
-      "TEXT": "User Name"
-    },
-    "LBL-OBSERVATION": {
-      "TEXT": "Observation"
-    },
-    "LBL-MOVEMENTS": {
-      "TEXT": "Last Movements"
-    },
-    "COL-MOVEMENTS": {
-      "TEXT": "Movements"
-    },
-    "COL-IP": {
-      "TEXT": "IP"
-    },
-    "COL-DATE": {
+    "ROW-DATE": {
       "TEXT": "Date"
     },
-    "BTN-COPY": {
-      "TEXT": "Copy"
+    "ROW-DETAIL": {
+      "TEXT": "Detail"
     },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    }
-  },
-  "USERS-LIST-EDIT-MODAL": {
-    "TITLE": {
-      "TEXT": "Edit User"
+    "ROW-MODEL": {
+      "TEXT": "Model"
     },
-    "COL-USER-NAME": {
-      "TEXT": "User Name"
+    "ROW-NO-BILL": {
+      "TEXT": "Bill No."
     },
-    "COL-NAME": {
-      "TEXT": "Name"
+    "ROW-NOT-PAID": {
+      "TEXT": "Not Paid"
     },
-    "COL-LASTNAME": {
-      "TEXT": "Last name"
-    },
-    "COL-PHONE": {
-      "TEXT": "Phone"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Email"
-    },
-    "COL-ROL": {
-      "TEXT": "Role"
-    },
-    "COL-OBSERVATION": {
-      "TEXT": "Observation"
-    },
-    "COL-ADDRESS": {
-      "TEXT": "Address"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    },
-    "MSJ-ERROR-USER": {
-      "TEXT": "The User name is required."
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "The Name is required."
-    },
-    "MSJ-ERROR-LASTNAME": {
-      "TEXT": "The Last name is required."
-    },
-    "MSJ-ERROR-PHONE": {
-      "TEXT": "The Phone is required."
-    },
-    "MSJ-ERROR-EMAIL": {
-      "TEXT": "The Email is required."
-    },
-    "MSJ-ERROR-ADDRESS": {
-      "TEXT": "The Address is required."
-    },
-    "MSJ-ERROR-OBSERVATION": {
-      "TEXT": "The Observation is required."
-    },
-    "MSJ-ERROR-ROL": {
-      "TEXT": "The Role is required."
-    },
-    "MSJ-ERROR-EMAIL-INVALID": {
-      "TEXT": "The Email is invalid."
-    }
-  },
-  "ROL-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "Rol list"
-    },
-    "SUBTITLE": {
-      "TEXT": "Register"
-    },
-    "COL-ROLE": {
-      "TEXT": "Role"
-    },
-    "COL-DESCRIPTION": {
-      "TEXT": "Description"
-    },
-    "COL-ASSOCIATED-USERS": {
-      "TEXT": "Associated users"
-    },
-    "COL-ROL-ACTIONS": {
-      "TEXT": "Actions"
-    },
-    "COL-ROL-PERMISSIONS": {
-      "TEXT": "Permissions"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-EDIT": {
-      "TEXT": "Edit"
-    },
-    "BTN-PERMISSIONS": {
-      "TEXT": "Permissions"
-    },
-    "BTN-SUMMARY": {
-      "TEXT": "Summary"
-    },
-    "BTN-DELETE": {
-      "TEXT": "Delete"
-    }
-  },
-  "ROL-LIST-SUMMARY-MODAL": {
-    "TITLE": {
-      "TEXT": "Summary"
-    },
-    "SUBTITLE": {
-      "TEXT": "Role Details"
-    },
-    "SECOND-SUBTITLE": {
-      "TEXT": "Users assigned to the Role"
-    },
-    "LBL-ROL-NAME": {
-      "TEXT": "Role Name:"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Description:"
-    },
-    "COL-USER": {
-      "TEXT": "User"
-    },
-    "COL-FULL-NAME": {
-      "TEXT": "Full Name"
-    }
-  },
-  "ROL-LIST-EDIT-MODAL": {
-    "TITLE": {
-      "TEXT": "Edit"
-    },
-    "LBL-ROL-NAME": {
-      "TEXT": "Role Name:"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Description"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "The Rol name is required"
-    },
-    "MSJ-ERROR-DESCRIPTION": {
-      "TEXT": "The description is required"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    }
-  },
-  "ROL-LIST-PERMISSIONS-MODAL": {
-    "TITLE": {
-      "TEXT": "Edit Permissions"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "COL-MENU": {
-      "TEXT": "Menú"
-    },
-    "COL-SUBMENU": {
-      "TEXT": "Sub Menú"
-    },
-    "COL-READ": {
-      "TEXT": "Read"
-    },
-    "COL-EDIT": {
-      "TEXT": "Edit"
-    },
-    "COL-CREATE": {
-      "TEXT": "Create"
-    },
-    "COL-DELETE": {
-      "TEXT": "Delete"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    }
-  },
-  "ROL-LIST-CREATE-MODAL": {
-    "TITLE": {
-      "TEXT": "Create Role"
-    },
-    "LBL-ROL-NAME": {
-      "TEXT": "Role Name:"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Description:"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "The Rol name is required"
-    },
-    "MSJ-ERROR-DESCRIPTION": {
-      "TEXT": "The Description name is required"
-    }
-  },
-  "AFFILIATES-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "List of Affiliates"
-    },
-    "COL-USER": {
-      "TEXT": "User"
-    },
-    "COL-STATUS": {
-      "TEXT": "State"
-    },
-    "COL-AFFILIATE-MODE": {
-      "TEXT": "Affiliate mode"
-    },
-    "COL-CALIFICATION": {
-      "TEXT": "Calification"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Email"
-    },
-    "COL-DATE": {
-      "TEXT": "Date"
-    },
-    "COL-FATHER": {
-      "TEXT": "Father"
-    },
-    "COL-SPONSOR": {
-      "TEXT": "Sponsor"
-    },
-    "COL-BINARY-SPONSOR": {
-      "TEXT": "Binary Sponsor"
-    },
-    "COL-DETAILS": {
-      "TEXT": "Details"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "MORE-DETAILS": {
-      "TEXT": "More Details"
-    },
-    "EDIT": {
-      "TEXT": "Edit"
-    },
-    "UNILEVEL-FAMILY-TREE": {
-      "TEXT": "Unilevel family tree"
-    },
-    "FORCED-GENEALOGICAL-TREE": {
-      "TEXT": "Forced Genealogical tree"
-    },
-    "BINARY-GENEALOGICAL-TREE": {
-      "TEXT": "Binary Genealogical tree"
-    },
-    "WALLET-BALANCE": {
-      "TEXT": "Wallet Balance"
-    },
-    "MAKE-PURCHASE": {
-      "TEXT": "Make a purchase"
-    },
-    "CHANGE-SPONSOR": {
-      "TEXT": "Change sponsor"
-    },
-    "QUALIFICATION-AUDIT": {
-      "TEXT": "Qualification audit"
-    },
-    "NETWORK-PURCHASE-REGISTRY": {
-      "TEXT": "Network purchase registry"
-    },
-    "TOPE-MAX-COINPAYMENTS": {
-      "TEXT": "Tope Max Coinpayments"
-    },
-    "REMOVE-AFFILIATE": {
-      "TEXT": "Remove Affiliate"
-    },
-    "BTN-ACTIONS": {
-      "TEXT": "Actions"
-    }
-  },
-  "PURCHASES-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "Shopping list"
-    },
-    "SUBTITLE": {
-      "TEXT": "Unauthorized affiliations"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Affiliate"
-    },
-    "COL-NAME-AND-LASTNAME": {
-      "TEXT": "Name and Last Name"
-    },
-    "COL-BILL": {
-      "TEXT": "Bill number"
-    },
-    "COL-DATE": {
-      "TEXT": "Date"
-    },
-    "COL-BILL-STATE": {
-      "TEXT": "State Bill"
-    },
-    "COL-PAID": {
+    "ROW-PAID": {
       "TEXT": "Paid"
     },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-DETAILS": {
-      "TEXT": "See Details"
-    },
-    "COL-DETAILS": {
-      "TEXT": "Detail"
-    }
-  },
-  "AUTHORIZE-AFFILIATES": {
-    "TITLE": {
-      "TEXT": "Authorize Affiliates"
-    },
-    "SUBTITLE": {
-      "TEXT": "Unauthorized affiliations"
-    },
-    "COL-AUTHORIZE": {
-      "TEXT": "Authorize"
-    },
-    "COL-DELETE": {
-      "TEXT": "Delete"
-    },
-    "COL-USER": {
-      "TEXT": "User"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Email"
-    },
-    "COL-IDENTITY": {
-      "TEXT": "Identity"
-    },
-    "COL-REGISTER-DATE": {
-      "TEXT": "Registration date"
-    },
-    "COL-FATHER": {
-      "TEXT": "Father"
-    },
-    "COL-SPONSOR": {
-      "TEXT": "Sponsor"
-    },
-    "COL-BINARY-SPONSOR": {
-      "TEXT": "Binary Sponsor"
-    },
-    "COL-DETAILS": {
-      "TEXT": "Details"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-AUTHORIZE-ALL": {
-      "TEXT": "Authorize All"
-    },
-    "BTN-DELETE-ALL": {
-      "TEXT": "Delete All"
-    },
-    "BTN-PROCESS-SELECTION": {
-      "TEXT": "Process Selection"
-    },
     "SEARCH": {
       "TEXT": "Search"
     },
-    "BTN-SEE-DETAILS": {
-      "TEXT": "See Details"
+    "TOTAL-AMOUNT": {
+      "TEXT": "Total Amount"
     },
-    "MSJ": {
-      "TEXT": "There are records for affiliation payments, verify the payment before authorizing the affiliate. To see the data supplied by the affiliate, click on the See Details button."
+    "TRADING-ACADEMY": {
+      "TEXT": "Trading Academy"
     }
   },
-  "PURCHASE-ORDER-LIST": {
+  "BINARY-GENEALOGICAL-TREE-PAGE": {
     "TITLE": {
-      "TEXT": "Purchase Order List"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Affiliate"
-    },
-    "COL-ORDER": {
-      "TEXT": "Order"
-    },
-    "COL-DATE": {
-      "TEXT": "Date"
-    },
-    "COL-PAID-METHOD": {
-      "TEXT": "Payment method"
-    },
-    "COL-BANK": {
-      "TEXT": "Bank"
-    },
-    "COL-STATUS": {
-      "TEXT": "Status"
-    },
-    "COL-STATE": {
-      "TEXT": "State"
-    },
-    "COL-DETAIL": {
-      "TEXT": "Details"
-    },
-    "BTN-SEE-DETAIL": {
-      "TEXT": "See details"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    }
-  },
-  "AUTHORIZE-PURCHASES": {
-    "TITLE": {
-      "TEXT": "List of Orders to Authorize"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Afiliado"
-    },
-    "COL-ORDER": {
-      "TEXT": "Order"
-    },
-    "COL-DATE": {
-      "TEXT": "Date"
-    },
-    "COL-PAID-METHOD": {
-      "TEXT": "Payment method"
-    },
-    "COL-BANK": {
-      "TEXT": "BanK"
-    },
-    "COL-SUPPORT": {
-      "TEXT": "Support"
-    },
-    "COL-TRASACTION-DATE": {
-      "TEXT": "Transaction date"
-    },
-    "COL-DETAIL": {
-      "TEXT": "Details"
-    },
-    "CHECK-APPROVE-ORDER": {
-      "TEXT": "Approve Order"
-    },
-    "CHECK-DENY-ORDER": {
-      "TEXT": "Denied Order"
-    },
-    "BTN-PROCESS-SELECTION": {
-      "TEXT": "Process Selection"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-SEE-DETAILS": {
-      "TEXT": "See Details"
+      "TEXT": "Binary Genealogical tree"
     }
   },
   "CALCULATE-COMMISSIONS": {
-    "TITLE": {
-      "TEXT": "Calculate Commissions"
-    },
-    "SUBTITLE": {
-      "TEXT": "Process Calculations"
-    },
-    "FIRST-MSJ": {
-      "TEXT": "Important: Before calculating the payment concepts, make sure that you have previously updated the Volume of points and purchases."
-    },
-    "SECOND-MSJ": {
-      "TEXT": "This process may take several minutes, please wait for it to finish after starting the process and do not close the window."
+    "BTN-RECURRING-CHARGES": {
+      "TEXT": "Run recurring charges"
     },
     "BTN-UPDATE-VOLUME": {
       "TEXT": "Update Volume"
@@ -1678,23 +643,211 @@
     "BTN-WITHOUT-UPDATE": {
       "TEXT": "Continue without Update"
     },
-    "BTN-RECURRING-CHARGES": {
-      "TEXT": "Run recurring charges"
+    "FIRST-MSJ": {
+      "TEXT": "Important: Before calculating the payment concepts, make sure that you have previously updated the Volume of points and purchases."
+    },
+    "SECOND-MSJ": {
+      "TEXT": "This process may take several minutes, please wait for it to finish after starting the process and do not close the window."
+    },
+    "SUBTITLE": {
+      "TEXT": "Process Calculations"
+    },
+    "TITLE": {
+      "TEXT": "Calculate Commissions"
+    }
+  },
+  "CALCULATED-COMMISSIONS": {
+    "BTN-CONSULT": {
+      "TEXT": "Consult"
+    },
+    "LBL-CONCEPT": {
+      "TEXT": "Concept"
+    },
+    "LBL-PERIOD": {
+      "TEXT": "Period"
+    },
+    "SLT-OPTION-1ERLEVEL": {
+      "TEXT": "1ernivel"
+    },
+    "SLT-OPTION-ALL": {
+      "TEXT": "See All"
+    },
+    "SLT-OPTION-BONO": {
+      "TEXT": "Binary bonus"
+    },
+    "SLT-OPTION-PERIOD": {
+      "TEXT": "Current period"
+    },
+    "SLT-OPTION-SHOP": {
+      "TEXT": "Shop"
+    },
+    "TITLE": {
+      "TEXT": "Calculated Commissions"
+    }
+  },
+  "CALCULATION-GROUPS-CREATE-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Description"
+    },
+    "LBL-NAME": {
+      "TEXT": "Name"
+    },
+    "MSJ-ERROR-DESCRIPTION": {
+      "TEXT": "The Description for the calculation group is required."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "The name for the calculation group is required."
+    },
+    "TITLE": {
+      "TEXT": "Create calculation group"
+    }
+  },
+  "CALCULATION-GROUPS-EDIT-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Description"
+    },
+    "LBL-NAME": {
+      "TEXT": "Name"
+    },
+    "MSJ-ERROR-DESCRIPTION": {
+      "TEXT": "The Description for the calculation group is required."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "The name for the calculation group is required."
+    },
+    "TITLE": {
+      "TEXT": "Edit calculation group"
+    }
+  },
+  "CALCULATION-GROUPS-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "List of Calculation Groups"
+    },
+    "TITLE": {
+      "TEXT": "Calculation Groups"
+    }
+  },
+  "CALIFICATIONS-LIST-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Califications List"
+    },
+    "TITLE": {
+      "TEXT": "Califications"
+    }
+  },
+  "CART-PAGE": {
+    "ADDRESS": {
+      "TEXT": "Address"
+    },
+    "BALANCE-PAYMENT": {
+      "TEXT": "Payment with available balance"
+    },
+    "BILLED-TO": {
+      "TEXT": "Billed To"
+    },
+    "BUY-MORE": {
+      "TEXT": "Buy More"
+    },
+    "CART-TITLE": {
+      "TEXT": "Shopping Cart"
+    },
+    "COINPAY-PAYMENT": {
+      "TEXT": "Payment with Coinpay CR"
+    },
+    "COL-ACTION": {
+      "TEXT": "Action"
+    },
+    "COL-DESCRIPTION": {
+      "TEXT": "Description"
+    },
+    "COL-IMG": {
+      "TEXT": "Image"
+    },
+    "COL-NAME": {
+      "TEXT": "Name"
+    },
+    "COL-PRICE": {
+      "TEXT": "Price"
+    },
+    "COL-QUANTITY": {
+      "TEXT": "Quantity"
+    },
+    "COL-TOTAL": {
+      "TEXT": "Total"
+    },
+    "COMMISSIONABLE": {
+      "TEXT": "Commissionable"
+    },
+    "CREDIT-DEBIT-PAYMENT": {
+      "TEXT": "Payment with credit and debit card"
+    },
+    "DISCOUNT": {
+      "TEXT": "Discount"
+    },
+    "EMAIL": {
+      "TEXT": "Email"
+    },
+    "EMPTY-CART": {
+      "TEXT": "Empty Cart"
+    },
+    "INCLUDED": {
+      "TEXT": "Included"
+    },
+    "MODEL-BALANCE-PAYMENT": {
+      "TEXT": "Payment with model request"
+    },
+    "ORDER-DATE": {
+      "TEXT": "Order Date"
+    },
+    "ORDER-SUMMARY": {
+      "TEXT": "Order Summary"
+    },
+    "POINTS-BINARY": {
+      "TEXT": "Binary Points"
+    },
+    "POINTS-CALIF": {
+      "TEXT": "Calif Points"
+    },
+    "REMOVE-ITEM": {
+      "TEXT": "Remove Item"
+    },
+    "SERVICE-BALANCE-PAYMENT": {
+      "TEXT": "Payment with service balance"
+    },
+    "SUBTOTAL": {
+      "TEXT": "Subtotal"
+    },
+    "TOTAL": {
+      "TEXT": "Total"
+    },
+    "TOTAL-DISCOUNT": {
+      "TEXT": "Total Discount"
+    },
+    "VAT": {
+      "TEXT": "VAT"
+    }
+  },
+  "CATEGORIES": {
+    "SUBTITLE": {
+      "TEXT": "Categories List"
+    },
+    "TITLE": {
+      "TEXT": "Categories"
     }
   },
   "CLOSURE-CONCEPTS": {
-    "TITLE": {
-      "TEXT": "Closure of concepts"
-    },
-    "SUBTITLE": {
-      "TEXT": "List of Concepts"
-    },
-    "COL-CONCEPT": {
-      "TEXT": "Concept"
-    },
-    "COL-TOTAL-PAID": {
-      "TEXT": "Total to pay"
-    },
     "BTN-CLOSE-CONCEPTS": {
       "TEXT": "Close selected concepts"
     },
@@ -1703,658 +856,105 @@
     },
     "BTN-PRINT": {
       "TEXT": "Print"
-    }
-  },
-  "PERIOD-CLOSING": {
-    "TITLE": {
-      "TEXT": "Period Closing"
-    },
-    "SUBTITLE": {
-      "TEXT": "Period closing history"
-    },
-    "MSJ": {
-      "TEXT": "Important: This process is irreversible, at the end of the current period the network volume will be reset to zero for all affiliates and if the inactivation of affiliates by end of period is active, all affiliates will be inactivated"
-    },
-    "COL-RESPONSIBLE": {
-      "TEXT": "Responsible"
-    },
-    "COL-DATE": {
-      "TEXT": "Date"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-CLOSE-PERIOD": {
-      "TEXT": "Close current period"
-    }
-  },
-  "CALCULATED-COMMISSIONS": {
-    "TITLE": {
-      "TEXT": "Calculated Commissions"
-    },
-    "LBL-CONCEPT": {
-      "TEXT": "Concept"
-    },
-    "LBL-PERIOD": {
-      "TEXT": "Period"
-    },
-    "SLT-OPTION-BONO": {
-      "TEXT": "Binary bonus"
-    },
-    "SLT-OPTION-1ERLEVEL": {
-      "TEXT": "1ernivel"
-    },
-    "SLT-OPTION-SHOP": {
-      "TEXT": "Shop"
-    },
-    "SLT-OPTION-ALL": {
-      "TEXT": "See All"
-    },
-    "SLT-OPTION-PERIOD": {
-      "TEXT": "Current period"
-    },
-    "BTN-CONSULT": {
-      "TEXT": "Consult"
-    }
-  },
-  "ACCREDITED-COMMISSIONS": {
-    "TITLE": {
-      "TEXT": "Accredited Commissions"
-    },
-    "SUBTITLE": {
-      "TEXT": "Commissions to be credited"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Affiliate"
-    },
-    "COL-NAME": {
-      "TEXT": "Name and Last Name"
-    },
-    "COL-AMOUNT": {
-      "TEXT": "Amount (USD)"
-    },
-    "COL-DETAILS": {
-      "TEXT": "Details"
-    },
-    "RADIO-BTN-1": {
-      "TEXT": "Pass it to wallet"
-    },
-    "RADIO-BTN-2": {
-      "TEXT": "Pay it all"
-    },
-    "BTN-PROCESS": {
-      "TEXT": "Process"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-DETAILS": {
-      "TEXT": "See Details"
-    }
-  },
-  "COMMISSIONS-PAID": {
-    "TITLE": {
-      "TEXT": "Commissions Paid"
-    },
-    "SUBTITLE": {
-      "TEXT": "Records"
-    },
-    "COL-DATE": {
-      "TEXT": "Date"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Affiliate"
-    },
-    "COL-NAME": {
-      "TEXT": "Name and Last Name"
     },
     "COL-CONCEPT": {
       "TEXT": "Concept"
     },
-    "COL-RESIDUALS": {
+    "COL-TOTAL-PAID": {
+      "TEXT": "Total to pay"
+    },
+    "SUBTITLE": {
+      "TEXT": "List of Concepts"
+    },
+    "TITLE": {
+      "TEXT": "Closure of concepts"
+    }
+  },
+  "COMMISSIONS-BALANCE-PAGE": {
+    "COMMISSIONS-TITLE": {
+      "TEXT": "My Balance"
+    },
+    "ROW-CONCEPT": {
+      "TEXT": "Concept"
+    },
+    "ROW-CREDITS": {
+      "TEXT": "Credits"
+    },
+    "ROW-DATE": {
+      "TEXT": "Date"
+    },
+    "ROW-DEBITS": {
+      "TEXT": "Debits"
+    },
+    "ROW-RESIDUALS-PAID": {
       "TEXT": "Residuals Paids"
+    },
+    "ROW-STATE": {
+      "TEXT": "State"
+    }
+  },
+  "COMMISSIONS-PAGE": {
+    "COMMISSIONS-LBL-CONCEPT": {
+      "TEXT": "Concept"
+    },
+    "COMMISSIONS-LBL-PERIOD": {
+      "TEXT": "Period"
+    },
+    "COMMISSIONS-TITLE": {
+      "TEXT": "Consult"
+    },
+    "SLT-OPTION-1ERLEVEL": {
+      "TEXT": "1erlevel"
+    },
+    "SLT-OPTION-ALL": {
+      "TEXT": "See All"
+    },
+    "SLT-OPTION-BONO": {
+      "TEXT": "Binary bonus"
+    },
+    "SLT-OPTION-PERIOD": {
+      "TEXT": "Current period"
+    },
+    "SLT-OPTION-SHOP": {
+      "TEXT": "Shop"
+    }
+  },
+  "COMMISSIONS-PAID": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-DETAILS": {
+      "TEXT": "See Detail"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Affiliate"
     },
     "COL-AMOUNT": {
       "TEXT": "Amount (USD)"
     },
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-DETAILS": {
-      "TEXT": "See Detail"
-    }
-  },
-  "INCENTIVES-DELIVERED": {
-    "TITLE": {
-      "TEXT": "Incentives Delivered"
-    },
-    "SUBTITLE": {
-      "TEXT": "List of incentives delivered"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Affiliate"
-    },
-    "COL-NAME": {
-      "TEXT": "Name and Last Name"
-    },
-    "COL-INCENTIVE": {
-      "TEXT": "Incentive Earned"
-    },
-    "COL-DESCRIPTION": {
-      "TEXT": "Incentive Description"
-    },
-    "COL-DATE": {
-      "TEXT": "Calculation Date"
-    },
-    "COL-DATE-ASSIGNED": {
-      "TEXT": "Assigned Date"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    }
-  },
-  "INCENTIVES-FOR-DELIVERING": {
-    "TITLE": {
-      "TEXT": "Incentives to deliver"
-    },
-    "SUBTITLE": {
-      "TEXT": "List of incentives to deliver"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Affiliate"
-    },
-    "COL-NAME": {
-      "TEXT": "Name and Last Name"
-    },
-    "COL-INCENTIVE": {
-      "TEXT": "Incentive Earned"
-    },
-    "COL-DATE": {
-      "TEXT": "Date"
-    },
-    "COL-KEEP": {
-      "TEXT": "Keep"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "SEARCH": {
-      "TEXT": "Search"
-    },
-    "BTN-DELIVER": {
-      "TEXT": "Deliver incentives"
-    }
-  },
-  "ADMIN-MY-PROFILE": {
-    "TITLE": {
-      "TEXT": "My Profile"
-    },
-    "LBL-PHONE": {
-      "TEXT": "Phone"
-    },
-    "LBL-ADDRESS": {
-      "TEXT": "Address"
-    },
-    "LBL-EMAIL": {
-      "TEXT": "Email"
-    },
-    "LBL-OBSERVATION": {
-      "TEXT": "Observation"
-    },
-    "LBL-CHANGE-PASSWORD": {
-      "TEXT": "Change Password"
-    },
-    "LBL-CHANGE-PASSWORD-UPLOAD": {
-      "TEXT": "Change Password Upload"
-    },
-    "LBL-CHANGE-SECRET-QUESTION": {
-      "TEXT": "Change secret question"
-    },
-    "BTN-EDIT-PERSONAL-INFO": {
-      "TEXT": "Edit personal data"
-    },
-    "LBL-LAST-MOVEMENTS": {
-      "TEXT": "Last Movements"
-    },
-    "COL-MOVEMENTS": {
-      "TEXT": "Movements"
-    },
-    "COL-IP": {
-      "TEXT": "IP"
-    },
-    "COL-DATE": {
-      "TEXT": "Date"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-OPTIONS": {
-      "TEXT": "Options"
-    }
-  },
-  "ADMIN-EDIT-PASSWORD-MODAL": {
-    "TITLE": {
-      "TEXT": "Change of password"
-    },
-    "LBL-CURRENT-PASSWORD": {
-      "TEXT": "Current password"
-    },
-    "LBL-NEW-PASSWORD": {
-      "TEXT": "New Password"
-    },
-    "LBL-CONFIRM-PASSWORD": {
-      "TEXT": "Confirm Password"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    },
-    "MSJ-ERROR-CURRENT-PASSWORD": {
-      "TEXT": "Current password is required"
-    },
-    "MSJ-ERROR-NEW-PASSWORD": {
-      "TEXT": "The new password is required"
-    },
-    "MSJ-ERROR-CONFIRM-PASSWORD": {
-      "TEXT": "Password confirmation is required"
-    },
-    "MSJ-ERROR-CONFIRM-EQUALS-PASSWORD": {
-      "TEXT": "Passwords must match."
-    },
-    "MSJ-ERROR-SIZE-PASSWORD": {
-      "TEXT": "Password should be a least 6 and at the max 15 characters long."
-    }
-  },
-  "ADMIN-EDIT-PERSONAL-INFO-MODAL": {
-    "TITLE": {
-      "TEXT": "Edit Profile Data"
-    },
-    "LBL-NAME": {
-      "TEXT": "Name"
-    },
-    "LBL-LASTNAME": {
-      "TEXT": "Last name"
-    },
-    "LBL-EMAIL": {
-      "TEXT": "Email"
-    },
-    "LBL-PHONE": {
-      "TEXT": "Phone"
-    },
-    "LBL-ADDRESS": {
-      "TEXT": "Address"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "The User name is required."
-    },
-    "MSJ-ERROR-LASTNAME": {
-      "TEXT": "The Last name is required."
-    },
-    "MSJ-ERROR-EMAIL": {
-      "TEXT": "The Email is required."
-    },
-    "MSJ-ERROR-PHONE": {
-      "TEXT": "The Phone is required."
-    },
-    "MSJ-ERROR-ADDRESS": {
-      "TEXT": "The Address is required."
-    }
-  },
-  "ADMIN-PASSWORD-UPLOAD-MODAL": {
-    "TITLE": {
-      "TEXT": "Change password Upload"
-    },
-    "LBL-PASSWORD": {
-      "TEXT": "New password Upload"
-    },
-    "LBL-CONFIRM-PASSWORD": {
-      "TEXT": "Repeat new password Upload"
-    },
-    "MSJ-ERROR-PASSWORD": {
-      "TEXT": "The password is required"
-    },
-    "MSJ-ERROR-CONFIRM-PASSWORD": {
-      "TEXT": "The confirm password is required"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    }
-  },
-  "UNILEVEL-TREE-PAGE": {
-    "TITLE": {
-      "TEXT": "Unilevel family tree"
-    }
-  },
-  "FORCED-GENEALOGICAL-TREE-PAGE": {
-    "TITLE": {
-      "TEXT": "Forced Genealogical tree"
-    }
-  },
-  "BINARY-GENEALOGICAL-TREE-PAGE": {
-    "TITLE": {
-      "TEXT": "Binary Genealogical tree"
-    }
-  },
-  "ARRAYS-CONFIGURATIONS-PAGE": {
-    "TITLE": {
-      "TEXT": "Arrays"
-    },
-    "SUBTITLE": {
-      "TEXT": "Matrix Configuration"
-    },
-    "MSJ-INFO": {
-      "TEXT": "When the box is checked, the network is structured in a unilevel, forced or binary way."
-    },
-    "LBL-MATRIX-UNILEVEL": {
-      "TEXT": "Unilevel Matrix"
-    },
-    "LBL-ACTIVE-MATRIX-UNILEVEL": {
-      "TEXT": "Activate Unilevel Matrix"
-    },
-    "LBL-MATRIX-FORCED": {
-      "TEXT": "Forced Matrix"
-    },
-    "LBL-ACTIVE-MATRIX-FORCED": {
-      "TEXT": "Enable Forced Matrix"
-    },
-    "LBL-MATRIX-BINARY": {
-      "TEXT": "Binary Matrix"
-    },
-    "LBL-ACTIVE-MATRIX-BINARY": {
-      "TEXT": "Activate binary matrix"
-    },
-    "LBL-NUMBER-FRONT-AFFILIATES": {
-      "TEXT": "Number of fronts for affiliates:"
-    },
-    "LBL-NUMBER-FRONT-SOFTWARE-MILLENIUM": {
-      "TEXT": "Front numbers for Millenium Software:"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    }
-  },
-  "CONCEPT-LIST-PAGE": {
-    "TITLE": {
+    "COL-CONCEPT": {
       "TEXT": "Concept"
     },
-    "SUBTITLE": {
-      "TEXT": "Concept List"
+    "COL-DATE": {
+      "TEXT": "Date"
     },
-    "COL-CONCEPT-NAME": {
-      "TEXT": "Concept Name"
+    "COL-NAME": {
+      "TEXT": "Name and Last Name"
     },
-    "COL-CONCEPT-STATUS": {
-      "TEXT": "State of the Concept"
+    "COL-RESIDUALS": {
+      "TEXT": "Residuals Paids"
     },
-    "COL-CALCULATE-GROUP": {
-      "TEXT": "Calculation Group"
-    },
-    "COL-PAID-CONCEPT": {
-      "TEXT": "Pay concept to"
-    },
-    "COL-CALCULATE-CONCEPT": {
-      "TEXT": "Calculate concept by"
-    },
-    "COL-POSITION-COMPRESSION": {
-      "TEXT": "Position compression"
-    },
-    "COL-EQUALIZATION": {
-      "TEXT": "Equalization"
-    },
-    "COL-ACTIONS": {
-      "TEXT": "Actions"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copy"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Print"
-    },
-    "BTN-DETAILS": {
-      "TEXT": "See Details"
-    },
-    "BTN-EDIT": {
-      "TEXT": "Edit"
-    },
-    "BTN-DELETE": {
-      "TEXT": "Delete"
-    },
-    "BTN-BINARY-CONFIG": {
-      "TEXT": "Binary Configuration"
-    },
-    "BTN-CONFIGURATIONS": {
-      "TEXT": "Configuration"
-    },
-    "BTN-SEARCH": {
+    "SEARCH": {
       "TEXT": "Search"
-    }
-  },
-  "CONCEPT-LIST-CREATE-MODAL": {
-    "TITLE": {
-      "TEXT": "Create Concept"
-    },
-    "LBL-CONCEPT-NAME": {
-      "TEXT": "Name of Concept:"
-    },
-    "CHECK-COMPRESSION": {
-      "TEXT": "Include compression"
-    },
-    "SLT-CALCULATE-GROUP": {
-      "TEXT": "Calculation Group:"
-    },
-    "SLT-DEFAULT-OPTION": {
-      "TEXT": "Select an option"
-    },
-    "CHECK-EQUALIZATION-BONO": {
-      "TEXT": "Match Bonus"
-    },
-    "SLT-PAID-CONCEPT": {
-      "TEXT": "Pay concept to:"
-    },
-    "CHECK-ACTIVE-DATE": {
-      "TEXT": "Ignore activation date"
-    },
-    "SLT-CALCULATE-CONCEPT": {
-      "TEXT": "Calculate Concept by:"
-    },
-    "CHECK-ACTIVE-CONCEPT": {
-      "TEXT": "Activate Concept"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    }
-  },
-  "CONCEPT-LIST-EDIT-MODAL": {
-    "TITLE": {
-      "TEXT": "Edit Concept"
-    },
-    "LBL-CONCEPT-NAME": {
-      "TEXT": "Name of Concept:"
-    },
-    "CHECK-COMPRESSION": {
-      "TEXT": "Include compression"
-    },
-    "SLT-CALCULATE-GROUP": {
-      "TEXT": "Calculation Group:"
-    },
-    "SLT-DEFAULT-OPTION": {
-      "TEXT": "Select an option"
-    },
-    "CHECK-EQUALIZATION-BONO": {
-      "TEXT": "Match Bonus"
-    },
-    "SLT-PAID-CONCEPT": {
-      "TEXT": "Pay concept to:"
-    },
-    "CHECK-ACTIVE-DATE": {
-      "TEXT": "Ignore activation date"
-    },
-    "SLT-CALCULATE-CONCEPT": {
-      "TEXT": "Calculate Concept by:"
-    },
-    "CHECK-ACTIVE-CONCEPT": {
-      "TEXT": "Activate Concept"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    }
-  },
-  "CONCEPT-LIST-DETAILS-MODAL": {
-    "TITLE": {
-      "TEXT": "Concept Data"
-    },
-    "LBL-CONCEPT-NAME": {
-      "TEXT": "Concept Name"
-    },
-    "LBL-CALCULATE-GROUP": {
-      "TEXT": "Calculation Group"
-    },
-    "LBL-PAID-CONCEPT": {
-      "TEXT": "Pay concept to"
-    },
-    "LBL-CALCULATE-CONCEPT": {
-      "TEXT": "Calculate Concept by"
-    },
-    "LBL-COMPRESSION-POSITION": {
-      "TEXT": "Position Compression"
-    },
-    "LBL-EQUALIZATION-BONO": {
-      "TEXT": "Match Bonus"
-    },
-    "LBL-ACTIVE-DATE": {
-      "TEXT": "Ignore activation date"
-    },
-    "LBL-STATE": {
-      "TEXT": "Status"
-    },
-    "LBL-CONCEPT-DETAILS": {
-      "TEXT": "Concept Details"
-    },
-    "COL-LEVEL": {
-      "TEXT": "Level"
-    },
-    "COL-PERCENTAGE": {
-      "TEXT": "Percentage"
-    },
-    "COL-CALIFICATION": {
-      "TEXT": "Qualification"
-    },
-    "COL-STATE": {
-      "TEXT": "Status"
-    }
-  },
-  "CALIFICATIONS-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "Califications"
     },
     "SUBTITLE": {
-      "TEXT": "Califications List"
-    }
-  },
-  "INCENTIVES-LIST-PAGE": {
+      "TEXT": "Records"
+    },
     "TITLE": {
-      "TEXT": "Incentives"
-    },
-    "SUBTITLE": {
-      "TEXT": "Incentives List"
-    }
-  },
-  "CALCULATION-GROUPS-PAGE": {
-    "TITLE": {
-      "TEXT": "Calculation Groups"
-    },
-    "SUBTITLE": {
-      "TEXT": "List of Calculation Groups"
-    }
-  },
-  "CALCULATION-GROUPS-CREATE-MODAL": {
-    "TITLE": {
-      "TEXT": "Create calculation group"
-    },
-    "LBL-NAME": {
-      "TEXT": "Name"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Description"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "The name for the calculation group is required."
-    },
-    "MSJ-ERROR-DESCRIPTION": {
-      "TEXT": "The Description for the calculation group is required."
-    }
-  },
-  "CALCULATION-GROUPS-EDIT-MODAL": {
-    "TITLE": {
-      "TEXT": "Edit calculation group"
-    },
-    "LBL-NAME": {
-      "TEXT": "Name"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Description"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Save"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancel"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "The name for the calculation group is required."
-    },
-    "MSJ-ERROR-DESCRIPTION": {
-      "TEXT": "The Description for the calculation group is required."
+      "TEXT": "Commissions Paid"
     }
   },
   "COMPENSANTIONS-PLANS-CONFIGURATION": {
@@ -2362,15 +962,596 @@
       "TEXT": "Configuration"
     }
   },
-  "PRODUCTS-AND-SERVICES": {
+  "CONCEPT-LIST-CREATE-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "CHECK-ACTIVE-CONCEPT": {
+      "TEXT": "Activate Concept"
+    },
+    "CHECK-ACTIVE-DATE": {
+      "TEXT": "Ignore activation date"
+    },
+    "CHECK-COMPRESSION": {
+      "TEXT": "Include compression"
+    },
+    "CHECK-EQUALIZATION-BONO": {
+      "TEXT": "Match Bonus"
+    },
+    "LBL-CONCEPT-NAME": {
+      "TEXT": "Name of Concept:"
+    },
+    "SLT-CALCULATE-CONCEPT": {
+      "TEXT": "Calculate Concept by:"
+    },
+    "SLT-CALCULATE-GROUP": {
+      "TEXT": "Calculation Group:"
+    },
+    "SLT-DEFAULT-OPTION": {
+      "TEXT": "Select an option"
+    },
+    "SLT-PAID-CONCEPT": {
+      "TEXT": "Pay concept to:"
+    },
     "TITLE": {
-      "TEXT": "Products"
+      "TEXT": "Create Concept"
+    }
+  },
+  "CONCEPT-LIST-DETAILS-MODAL": {
+    "COL-CALIFICATION": {
+      "TEXT": "Qualification"
+    },
+    "COL-LEVEL": {
+      "TEXT": "Level"
+    },
+    "COL-PERCENTAGE": {
+      "TEXT": "Percentage"
+    },
+    "COL-STATE": {
+      "TEXT": "Status"
+    },
+    "LBL-ACTIVE-DATE": {
+      "TEXT": "Ignore activation date"
+    },
+    "LBL-CALCULATE-CONCEPT": {
+      "TEXT": "Calculate Concept by"
+    },
+    "LBL-CALCULATE-GROUP": {
+      "TEXT": "Calculation Group"
+    },
+    "LBL-COMPRESSION-POSITION": {
+      "TEXT": "Position Compression"
+    },
+    "LBL-CONCEPT-DETAILS": {
+      "TEXT": "Concept Details"
+    },
+    "LBL-CONCEPT-NAME": {
+      "TEXT": "Concept Name"
+    },
+    "LBL-EQUALIZATION-BONO": {
+      "TEXT": "Match Bonus"
+    },
+    "LBL-PAID-CONCEPT": {
+      "TEXT": "Pay concept to"
+    },
+    "LBL-STATE": {
+      "TEXT": "Status"
+    },
+    "TITLE": {
+      "TEXT": "Concept Data"
+    }
+  },
+  "CONCEPT-LIST-EDIT-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "CHECK-ACTIVE-CONCEPT": {
+      "TEXT": "Activate Concept"
+    },
+    "CHECK-ACTIVE-DATE": {
+      "TEXT": "Ignore activation date"
+    },
+    "CHECK-COMPRESSION": {
+      "TEXT": "Include compression"
+    },
+    "CHECK-EQUALIZATION-BONO": {
+      "TEXT": "Match Bonus"
+    },
+    "LBL-CONCEPT-NAME": {
+      "TEXT": "Name of Concept:"
+    },
+    "SLT-CALCULATE-CONCEPT": {
+      "TEXT": "Calculate Concept by:"
+    },
+    "SLT-CALCULATE-GROUP": {
+      "TEXT": "Calculation Group:"
+    },
+    "SLT-DEFAULT-OPTION": {
+      "TEXT": "Select an option"
+    },
+    "SLT-PAID-CONCEPT": {
+      "TEXT": "Pay concept to:"
+    },
+    "TITLE": {
+      "TEXT": "Edit Concept"
+    }
+  },
+  "CONCEPT-LIST-PAGE": {
+    "BTN-BINARY-CONFIG": {
+      "TEXT": "Binary Configuration"
+    },
+    "BTN-CONFIGURATIONS": {
+      "TEXT": "Configuration"
+    },
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-DELETE": {
+      "TEXT": "Delete"
+    },
+    "BTN-DETAILS": {
+      "TEXT": "See Details"
+    },
+    "BTN-EDIT": {
+      "TEXT": "Edit"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "BTN-SEARCH": {
+      "TEXT": "Search"
+    },
+    "COL-ACTIONS": {
+      "TEXT": "Actions"
+    },
+    "COL-CALCULATE-CONCEPT": {
+      "TEXT": "Calculate concept by"
+    },
+    "COL-CALCULATE-GROUP": {
+      "TEXT": "Calculation Group"
+    },
+    "COL-CONCEPT-NAME": {
+      "TEXT": "Concept Name"
+    },
+    "COL-CONCEPT-STATUS": {
+      "TEXT": "State of the Concept"
+    },
+    "COL-EQUALIZATION": {
+      "TEXT": "Equalization"
+    },
+    "COL-PAID-CONCEPT": {
+      "TEXT": "Pay concept to"
+    },
+    "COL-POSITION-COMPRESSION": {
+      "TEXT": "Position compression"
     },
     "SUBTITLE": {
-      "TEXT": "Product List"
+      "TEXT": "Concept List"
+    },
+    "TITLE": {
+      "TEXT": "Concept"
+    }
+  },
+  "ECOPOOL-PAGE": {
+    "AMOUNT-BASE-COLUMN": {
+      "TEXT": "Base amount"
+    },
+    "BTN-SEE-DETAILS": {
+      "TEXT": "See details"
+    },
+    "DATE-INIT-COLUMN": {
+      "TEXT": "Start date"
+    },
+    "DETAILS-COLUMN": {
+      "TEXT": "Details"
+    },
+    "NUM-BILL-COLUMN": {
+      "TEXT": "Invoice number"
+    },
+    "PACKS-COLUMN": {
+      "TEXT": "Packs"
+    },
+    "PAYMENTS-COLUMN": {
+      "TEXT": "Payments"
+    },
+    "PERCENTAGE-COLUMN": {
+      "TEXT": "Percentage"
     },
     "SEARCH": {
       "TEXT": "Search"
+    },
+    "STATE-COLUMN": {
+      "TEXT": "State"
+    },
+    "TITTLE-PAGE": {
+      "TEXT": "Passive pack"
+    }
+  },
+  "EDUCATIONAL-COURSES": {
+    "ACADEMY-TRADING": {
+      "TEXT": "Academy Trading"
+    }
+  },
+  "FORCED-GENEALOGICAL-TREE-PAGE": {
+    "TITLE": {
+      "TEXT": "Forced Genealogical tree"
+    }
+  },
+  "HEADER": {
+    "LOGOUT": {
+      "TEXT": "Logout"
+    },
+    "PROFILE": {
+      "TEXT": "My profile"
+    },
+    "USER-EDIT": {
+      "TEXT": "Edit profile"
+    },
+    "USER-SETTINGS": {
+      "TEXT": "Setting"
+    },
+    "USER-SUMMARY": {
+      "TEXT": "Full summary"
+    }
+  },
+  "HOME-ADMIN-PAGE": {
+    "ACTIVE-AFFILIATES": {
+      "TEXT": "Active Affiliates"
+    },
+    "AFFILIATES-ENTERED": {
+      "TEXT": "Affiliates entered"
+    },
+    "COMMISSIONS-CALCULATED": {
+      "TEXT": "Commissions Calculated"
+    },
+    "INFORMATION": {
+      "TEXT": "Information"
+    },
+    "LAST-REGISTERED-AFFILIATES": {
+      "TEXT": "Last registered affiliates"
+    },
+    "NO-SPONSORSHIPS": {
+      "TEXT": "No Sponsorships"
+    },
+    "PURCHASES-MADE": {
+      "TEXT": "Purchases Made"
+    },
+    "RECORD-SOURCE": {
+      "TEXT": "Record Source"
+    },
+    "SPONSORED": {
+      "TEXT": "Sponsored"
+    },
+    "TOTAL-COMMISSIONABLE": {
+      "TEXT": "Total commissionable"
+    },
+    "TOTAL-COMMISSIONS-PAID": {
+      "TEXT": "Total Commissions Paid"
+    },
+    "TOTAL-PURCHASES": {
+      "TEXT": "Total purchases"
+    },
+    "WALLET-BENEFIT": {
+      "TEXT": "Wallet Benefit"
+    }
+  },
+  "HOME-PAGE-CLIENT": {
+    "AVAILABLE-BALANCE": {
+      "TEXT": "Available Balance"
+    },
+    "INFORMATION-1": {
+      "TEXT": "Information Model 1"
+    },
+    "INFORMATION-2": {
+      "TEXT": "Information Model 2"
+    },
+    "INFORMATION-R": {
+      "TEXT": "Information Model R"
+    },
+    "MODEL-REQUEST": {
+      "TEXT": "Model Request"
+    },
+    "PUBLIC-STORE": {
+      "TEXT": "Public Store"
+    },
+    "REGISTER": {
+      "TEXT": "Register"
+    },
+    "SERVICE-BALANCE": {
+      "TEXT": "Service Balance"
+    },
+    "SHARE-LINK": {
+      "TEXT": "Share Link"
+    },
+    "TITTLE-BANNERS": {
+      "TEXT": "Banners"
+    },
+    "TITTLE-FIRST-CHART": {
+      "TEXT": "Affiliates Registered"
+    },
+    "TITTLE-SECOND-CHART": {
+      "TEXT": "Purchases Made in My Network"
+    },
+    "TOTAL-ACQUISITIONS": {
+      "TEXT": "Total Acquisitions"
+    },
+    "TOTAL-PAID": {
+      "TEXT": "Total Paid"
+    },
+    "WEBSITE": {
+      "TEXT": "Website"
+    }
+  },
+  "INCENTIVES-DELIVERED": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Affiliate"
+    },
+    "COL-DATE": {
+      "TEXT": "Calculation Date"
+    },
+    "COL-DATE-ASSIGNED": {
+      "TEXT": "Assigned Date"
+    },
+    "COL-DESCRIPTION": {
+      "TEXT": "Incentive Description"
+    },
+    "COL-INCENTIVE": {
+      "TEXT": "Incentive Earned"
+    },
+    "COL-NAME": {
+      "TEXT": "Name and Last Name"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    },
+    "SUBTITLE": {
+      "TEXT": "List of incentives delivered"
+    },
+    "TITLE": {
+      "TEXT": "Incentives Delivered"
+    }
+  },
+  "INCENTIVES-FOR-DELIVERING": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-DELIVER": {
+      "TEXT": "Deliver incentives"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Affiliate"
+    },
+    "COL-DATE": {
+      "TEXT": "Date"
+    },
+    "COL-INCENTIVE": {
+      "TEXT": "Incentive Earned"
+    },
+    "COL-KEEP": {
+      "TEXT": "Keep"
+    },
+    "COL-NAME": {
+      "TEXT": "Name and Last Name"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    },
+    "SUBTITLE": {
+      "TEXT": "List of incentives to deliver"
+    },
+    "TITLE": {
+      "TEXT": "Incentives to deliver"
+    }
+  },
+  "INCENTIVES-LIST-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Incentives List"
+    },
+    "TITLE": {
+      "TEXT": "Incentives"
+    }
+  },
+  "INDUCEMENTS-PAGE": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "INDUCEMENTS-TITLE": {
+      "TEXT": "Earned Inducements"
+    },
+    "ROW-ASSIGNMENT-DATE": {
+      "TEXT": "Assignment Date"
+    },
+    "ROW-DESCRIPTION": {
+      "TEXT": "Description"
+    },
+    "ROW-INDUCEMENTS": {
+      "TEXT": "Inducement"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    }
+  },
+  "MENUITEMS": {
+    "ADDRESSES": {
+      "TEXT": "My Addresses"
+    },
+    "BILLING-MY-ORDERS": {
+      "TEXT": "My orders"
+    },
+    "BILLING-MY-PURCHASES": {
+      "TEXT": "Billing My Purchases"
+    },
+    "BILLING-PURCHASE": {
+      "TEXT": "Environmental store"
+    },
+    "COMMISSIONS": {
+      "TEXT": "Commissions"
+    },
+    "COMMISSIONS-BALANCE": {
+      "TEXT": "Balance"
+    },
+    "EDUCATIONAL-COURSES": {
+      "TEXT": "Educational Courses"
+    },
+    "FUNDING-ACCOUNTS": {
+      "TEXT": "Support capital"
+    },
+    "HOME": {
+      "TEXT": "HOME"
+    },
+    "INDUCEMENTS": {
+      "TEXT": "Incentives"
+    },
+    "MAIN": {
+      "TEXT": "-- Principal"
+    },
+    "MY-COMMISSIONS": {
+      "TEXT": "Commissions"
+    },
+    "MY-TICKETS": {
+      "TEXT": "Tickets"
+    },
+    "NETWORK": {
+      "TEXT": "My clients"
+    },
+    "NEWS": {
+      "TEXT": "News"
+    },
+    "PROCUREMENT-ECOPOOL": {
+      "TEXT": "Ecopool Acquisitions"
+    },
+    "REQUEST-PAY": {
+      "TEXT": "Request Payment"
+    },
+    "REQUEST-WALLET": {
+      "TEXT": "Request to Wallet"
+    },
+    "REQUESTS": {
+      "TEXT": "REQUESTS"
+    },
+    "SERVICES-AND-PRODUCTS": {
+      "TEXT": "Services and Products"
+    },
+    "TOOLS": {
+      "TEXT": "Customer service"
+    },
+    "USER": {
+      "POST": "DEVELOPER"
+    },
+    "WALLET": {
+      "TEXT": "My wallet"
+    }
+  },
+  "MY-NETWORK-PAGE": {
+    "BACK": {
+      "TEXT": "Back"
+    },
+    "BINARY-MODEL": {
+      "TEXT": "Model 4 (Binary)"
+    },
+    "MATRIX-MODEL-5": {
+      "TEXT": "Model 5 (Matrix)"
+    },
+    "MATRIX-MODEL-6": {
+      "TEXT": "Model 6 (Matrix)"
+    },
+    "NETWORK-TREES": {
+      "TEXT": "My Network Trees"
+    },
+    "TITLE": {
+      "TEXT": "My Network"
+    },
+    "UNILEVEL-MODEL": {
+      "TEXT": "Model 1, 2, 3 (Unilevel)"
+    }
+  },
+  "NETWORK-PAGE": {
+    "ACTIVATE-MEMBERSHIP.BALANCE": {
+      "TEXT": "Activate membership with available balance"
+    },
+    "ACTIVATE-MEMBERSHIP.CARD": {
+      "TEXT": "Activate membership with card"
+    },
+    "ACTIVE": {
+      "TEXT": "Active"
+    },
+    "BTN-ACTIONS": {
+      "TEXT": "Actions"
+    },
+    "COPY": {
+      "TEXT": "Copy"
+    },
+    "INACTIVE": {
+      "TEXT": "Inactive"
+    },
+    "NETWORK-ALL-CUSTOMERS": {
+      "TEXT": "Network All Customers"
+    },
+    "NETWORK-TITLE": {
+      "TEXT": "My Network"
+    },
+    "PDF": {
+      "TEXT": "PDF"
+    },
+    "ROW-DETAIL": {
+      "TEXT": "Detail"
+    },
+    "ROW-QUALIFICATION": {
+      "TEXT": "Qualification"
+    },
+    "ROW-STATE": {
+      "TEXT": "State"
+    },
+    "ROW-USER": {
+      "TEXT": "User"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    },
+    "TRANSFER-BALANCE": {
+      "TEXT": "Transfer balance"
+    },
+    "VIEW-NETWORK": {
+      "TEXT": "View My Network"
+    }
+  },
+  "PASSIVE-PACK-LIST": {
+    "SUBTITLE": {
+      "TEXT": "List of Passive Packs"
+    },
+    "TITLE": {
+      "TEXT": "Passive Packs"
+    }
+  },
+  "PAY-WALLET-BALANCE": {
+    "SUBTITLE": {
+      "TEXT": "Registers"
+    },
+    "TITLE": {
+      "TEXT": "Pay wallet balance"
+    }
+  },
+  "PERIOD-CLOSING": {
+    "BTN-CLOSE-PERIOD": {
+      "TEXT": "Close current period"
     },
     "BTN-COPY": {
       "TEXT": "Copy"
@@ -2378,17 +1559,49 @@
     "BTN-PRINT": {
       "TEXT": "Print"
     },
+    "COL-DATE": {
+      "TEXT": "Date"
+    },
+    "COL-RESPONSIBLE": {
+      "TEXT": "Responsible"
+    },
+    "MSJ": {
+      "TEXT": "Important: This process is irreversible, at the end of the current period the network volume will be reset to zero for all affiliates and if the inactivation of affiliates by end of period is active, all affiliates will be inactivated"
+    },
+    "SUBTITLE": {
+      "TEXT": "Period closing history"
+    },
+    "TITLE": {
+      "TEXT": "Period Closing"
+    }
+  },
+  "PRODUCTS-AND-SERVICES": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "COL-ACTIONS": {
+      "TEXT": "Actions"
+    },
+    "COL-EXISTENCE": {
+      "TEXT": "Existence"
+    },
+    "COL-IMAGE-REF": {
+      "TEXT": "Image Ref"
+    },
     "COL-NAME": {
       "TEXT": "Product Name"
     },
     "COL-PRODUCT-CODE": {
       "TEXT": "Product Code "
     },
+    "COL-SALE-PRICE": {
+      "TEXT": "Sale Price"
+    },
     "COL-TYPE": {
       "TEXT": "Type"
-    },
-    "COL-IMAGE-REF": {
-      "TEXT": "Image Ref"
     },
     "COL-VAL-COMMISSIONABLE": {
       "TEXT": "Val. Commssionable"
@@ -2396,94 +1609,884 @@
     "COL-VOL-POINTS": {
       "TEXT": "Vol. Points"
     },
-    "COL-SALE-PRICE": {
-      "TEXT": "Sale Price"
-    },
-    "COL-EXISTENCE": {
-      "TEXT": "Existence"
-    },
-    "COL-ACTIONS": {
-      "TEXT": "Actions"
-    }
-  },
-  "CATEGORIES": {
-    "TITLE": {
-      "TEXT": "Categories"
+    "SEARCH": {
+      "TEXT": "Search"
     },
     "SUBTITLE": {
-      "TEXT": "Categories List"
-    }
-  },
-  "ATTRIBUTES-LIST": {
-    "TITLE": {
-      "TEXT": "Attributes"
+      "TEXT": "Product List"
     },
-    "SUBTITLE": {
-      "TEXT": "Attributes List"
-    }
-  },
-  "PASSIVE-PACK-LIST": {
     "TITLE": {
-      "TEXT": "Passive Packs"
-    },
-    "SUBTITLE": {
-      "TEXT": "List of Passive Packs"
+      "TEXT": "Products"
     }
   },
   "PRODUCTS-SERVICES-CONFIGURATION": {
-    "TITLE": {
-      "TEXT": "Configuration"
-    },
     "SUBTITLE": {
       "TEXT": "General Store Settings"
+    },
+    "TITLE": {
+      "TEXT": "Configuration"
     }
   },
-  "BALANCE-OF-WALLET": {
-    "TITLE": {
-      "TEXT": "Balance of Wallet"
+  "PURCHASE-ORDER-LIST": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
     },
-    "SUBTITLE": {
-      "TEXT": "Registers"
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "BTN-SEE-DETAIL": {
+      "TEXT": "See details"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Affiliate"
+    },
+    "COL-BANK": {
+      "TEXT": "Bank"
+    },
+    "COL-DATE": {
+      "TEXT": "Date"
+    },
+    "COL-DETAIL": {
+      "TEXT": "Details"
+    },
+    "COL-ORDER": {
+      "TEXT": "Order"
+    },
+    "COL-PAID-METHOD": {
+      "TEXT": "Payment method"
+    },
+    "COL-STATE": {
+      "TEXT": "State"
+    },
+    "COL-STATUS": {
+      "TEXT": "Status"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    },
+    "TITLE": {
+      "TEXT": "Purchase Order List"
     }
   },
-  "WALLET-REFILL": {
-    "TITLE": {
-      "TEXT": "Wallet Refill"
+  "PURCHASES-LIST-PAGE": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-DETAILS": {
+      "TEXT": "See Details"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Affiliate"
+    },
+    "COL-BILL": {
+      "TEXT": "Bill number"
+    },
+    "COL-BILL-STATE": {
+      "TEXT": "State Bill"
+    },
+    "COL-DATE": {
+      "TEXT": "Date"
+    },
+    "COL-DETAILS": {
+      "TEXT": "Detail"
+    },
+    "COL-NAME-AND-LASTNAME": {
+      "TEXT": "Name and Last Name"
+    },
+    "COL-PAID": {
+      "TEXT": "Paid"
     },
     "SUBTITLE": {
-      "TEXT": "Registers"
+      "TEXT": "Unauthorized affiliations"
+    },
+    "TITLE": {
+      "TEXT": "Shopping list"
     }
   },
-  "WALLET-REMOVAL": {
-    "TITLE": {
-      "TEXT": "Wallet Withdrawal"
+  "REQUESTS-PAGE": {
+    "ACCESS-KEY": {
+      "TEXT": "Access Key"
     },
-    "SUBTITLE": {
-      "TEXT": "Registers"
+    "ACCESS-KEY-ERROR": {
+      "TEXT": "Password is required."
+    },
+    "ADMIN-ANSWER-COLUMN": {
+      "TEXT": "Administration response"
+    },
+    "ADMIN-ANSWER.ATTENDED": {
+      "TEXT": "Attended"
+    },
+    "ADMIN-ANSWER.CANCELLED": {
+      "TEXT": "Cancelled"
+    },
+    "ADMIN-ANSWER.NOT-ATTENDED": {
+      "TEXT": "Not Attended"
+    },
+    "AMOUNT-REQUESTED": {
+      "TEXT": "Amount Requested"
+    },
+    "AMOUNT-REQUESTED-ERROR": {
+      "TEXT": "Enter an amount equal to or less than the available balance."
+    },
+    "AMOUNT-WITHDRAW-COLUMN": {
+      "TEXT": "Amount to Withdraw"
+    },
+    "AVAILABLE-BALANCE-WALLET": {
+      "TEXT": "Available Balance in the Wallet:"
+    },
+    "CLOSE-BTN": {
+      "TEXT": "Close"
+    },
+    "CONFIRM-CODE": {
+      "TEXT": "Confirmation code"
+    },
+    "CONFIRM-CODE-ERROR": {
+      "TEXT": "Security code is required."
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Date"
+    },
+    "FIST-MSJ-INFO": {
+      "TEXT": "The amount you request must be less than or equal to the available amount you have in your wallet."
+    },
+    "GENERATE-CODE-BTN": {
+      "TEXT": "Generate Code"
+    },
+    "GENERATION-CODE": {
+      "TEXT": "Generate code"
+    },
+    "OBSERVATION-COLUMN": {
+      "TEXT": "Observation"
+    },
+    "OBSERVATION-ERROR": {
+      "TEXT": "Observation is required."
+    },
+    "OBSERVATION-FIELD": {
+      "TEXT": "Observation"
+    },
+    "REQUEST-TYPE": {
+      "TEXT": "Type of request"
+    },
+    "REQUEST-TYPE.REVERT-INVOICE": {
+      "TEXT": "Revert Invoice"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    },
+    "SECOND-MSJ-INFO": {
+      "TEXT": "The minimum amount to withdraw is USD"
+    },
+    "SEGURITY-PIN": {
+      "TEXT": "Security Pin"
+    },
+    "SEND-REQUEST": {
+      "TEXT": "Send request"
+    },
+    "STATE-COLUMN": {
+      "TEXT": "Status"
+    },
+    "STATE.APPROVED": {
+      "TEXT": "Approved"
+    },
+    "STATE.CANCELLED": {
+      "TEXT": "Cancelled"
+    },
+    "STATE.PENDING": {
+      "TEXT": "Pending"
+    },
+    "SUBMIT-BTN": {
+      "TEXT": "Send"
+    },
+    "THIRD-MSJ-INFO": {
+      "TEXT": "The maximum amount to withdraw is USD"
+    },
+    "TITTLE-MSJ-INFO": {
+      "TEXT": "Information"
+    },
+    "TITTLE-PAGE": {
+      "TEXT": "Make payment request"
+    },
+    "TITTLE-TABLE": {
+      "TEXT": "Requests"
+    },
+    "TYPE.WITHDRAWAL": {
+      "TEXT": "Withdrawal"
     }
   },
-  "PAY-WALLET-BALANCE": {
+  "REQUESTS-WALLET": {
+    "AMOUNT": {
+      "TEXT": "Amount"
+    },
+    "BANK": {
+      "TEXT": "Bank"
+    },
+    "BANK-COLUMN": {
+      "TEXT": "Bank"
+    },
+    "CLOSE-BTN": {
+      "TEXT": "Close"
+    },
+    "CREDIT-COLUMN": {
+      "TEXT": "Credit"
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Date"
+    },
+    "ORDER-NUM-COLUMN": {
+      "TEXT": "# Order"
+    },
+    "PAYMENT-DATE": {
+      "TEXT": "Payment date"
+    },
+    "PAYMENT-METHOD-COLUMN": {
+      "TEXT": "Payment method"
+    },
+    "PAYMENT-METHODS": {
+      "TEXT": "Payment Methods"
+    },
+    "RELOAD-AMOUNT": {
+      "TEXT": "Top Up Amount"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    },
+    "SEND-REQUEST": {
+      "TEXT": "Send request"
+    },
+    "STATUS-COLUMN": {
+      "TEXT": "Status"
+    },
+    "SUBMIT-BTN": {
+      "TEXT": "Send"
+    },
+    "SUPPORT": {
+      "TEXT": "Support"
+    },
+    "SUPPORT-COLUMN": {
+      "TEXT": "Support"
+    },
+    "TITTLE-PAGE": {
+      "TEXT": "Request Balance to Wallet"
+    },
+    "TITTLE-TABLE": {
+      "TEXT": "My Recharge Requests"
+    },
+    "TRASACTION-DATE-COLUMN": {
+      "TEXT": "Transaction date"
+    }
+  },
+  "ROL-LIST-CREATE-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Description:"
+    },
+    "LBL-ROL-NAME": {
+      "TEXT": "Role Name:"
+    },
+    "MSJ-ERROR-DESCRIPTION": {
+      "TEXT": "The Description name is required"
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "The Rol name is required"
+    },
     "TITLE": {
-      "TEXT": "Pay wallet balance"
+      "TEXT": "Create Role"
+    }
+  },
+  "ROL-LIST-EDIT-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Description"
+    },
+    "LBL-ROL-NAME": {
+      "TEXT": "Role Name:"
+    },
+    "MSJ-ERROR-DESCRIPTION": {
+      "TEXT": "The description is required"
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "The Rol name is required"
+    },
+    "TITLE": {
+      "TEXT": "Edit"
+    }
+  },
+  "ROL-LIST-PAGE": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-DELETE": {
+      "TEXT": "Delete"
+    },
+    "BTN-EDIT": {
+      "TEXT": "Edit"
+    },
+    "BTN-PERMISSIONS": {
+      "TEXT": "Permissions"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "BTN-SUMMARY": {
+      "TEXT": "Summary"
+    },
+    "COL-ASSOCIATED-USERS": {
+      "TEXT": "Associated users"
+    },
+    "COL-DESCRIPTION": {
+      "TEXT": "Description"
+    },
+    "COL-ROL-ACTIONS": {
+      "TEXT": "Actions"
+    },
+    "COL-ROL-PERMISSIONS": {
+      "TEXT": "Permissions"
+    },
+    "COL-ROLE": {
+      "TEXT": "Role"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
     },
     "SUBTITLE": {
-      "TEXT": "Registers"
+      "TEXT": "Register"
+    },
+    "TITLE": {
+      "TEXT": "Rol list"
+    }
+  },
+  "ROL-LIST-PERMISSIONS-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "COL-CREATE": {
+      "TEXT": "Create"
+    },
+    "COL-DELETE": {
+      "TEXT": "Delete"
+    },
+    "COL-EDIT": {
+      "TEXT": "Edit"
+    },
+    "COL-MENU": {
+      "TEXT": "Menú"
+    },
+    "COL-READ": {
+      "TEXT": "Read"
+    },
+    "COL-SUBMENU": {
+      "TEXT": "Sub Menú"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    },
+    "TITLE": {
+      "TEXT": "Edit Permissions"
+    }
+  },
+  "ROL-LIST-SUMMARY-MODAL": {
+    "COL-FULL-NAME": {
+      "TEXT": "Full Name"
+    },
+    "COL-USER": {
+      "TEXT": "User"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Description:"
+    },
+    "LBL-ROL-NAME": {
+      "TEXT": "Role Name:"
+    },
+    "SECOND-SUBTITLE": {
+      "TEXT": "Users assigned to the Role"
+    },
+    "SUBTITLE": {
+      "TEXT": "Role Details"
+    },
+    "TITLE": {
+      "TEXT": "Summary"
+    }
+  },
+  "SAVINGS-PLANS-ONEB-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Model R"
+    },
+    "TITLE": {
+      "TEXT": "Model R"
+    }
+  },
+  "SAVINGS-PLANS-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Model 1"
+    },
+    "TITLE": {
+      "TEXT": "Model 1"
+    }
+  },
+  "SERVICES-AND-PRODUCTS": {
+    "ALTERNATIVE-HEALTH-AMERICA": {
+      "TEXT": "Alternative Health America"
+    },
+    "ALTERNATIVE-HEALTH-EUROPE": {
+      "TEXT": "Alternative Health Europe"
+    },
+    "MECANICLICK": {
+      "TEXT": "MecaniClick"
+    },
+    "NEWS": {
+      "TEXT": "News"
+    }
+  },
+  "SIGNIN": {
+    "FORGOT-PASS": {
+      "TEXT": "Forgot password"
+    },
+    "PASS-IS-REQUIRED": {
+      "TEXT": "Password is required"
+    },
+    "PASS-MESSAGE-ERROR": {
+      "TEXT": "Password should be at least 6 and at max 15 characters long"
+    },
+    "PASSWORD": {
+      "TEXT": "Password"
+    },
+    "REMEMBER-ME": {
+      "TEXT": "Remember me"
+    },
+    "TITLE": {
+      "TEXT": "Signin"
+    },
+    "USER-NAME": {
+      "TEXT": "Your User Name"
+    },
+    "USER-NAME-IS-REQUIRED": {
+      "TEXT": "User name is required"
+    },
+    "USER-NAME-MESSAGE-ERROR": {
+      "TEXT": "User name is invalid"
+    }
+  },
+  "TICKETS-PAGE": {
+    "ADD-IMAGE": {
+      "DROPZONE": "Drop it!",
+      "LABEL": "Add Image"
+    },
+    "CATEGORY": {
+      "DEFAULT-OPTION": "Select an option",
+      "LABEL": "Category",
+      "REQUIRED-ERROR": "A category must be selected."
+    },
+    "CATEGORY-COLUMN": {
+      "TEXT": "Category"
+    },
+    "CREATE-TICKET": {
+      "TITLE": "Create Ticket"
+    },
+    "CREATE-TICKET-BTN": {
+      "TEXT": "Create Ticket"
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Date"
+    },
+    "DELETE-BTN": {
+      "TITLE": "Delete"
+    },
+    "DESCRIPTION": {
+      "LABEL": "Description",
+      "MAXLENGTH-ERROR": "Description cannot exceed 255 characters.",
+      "PLACEHOLDER": "Description",
+      "REQUIRED-ERROR": "Description is required."
+    },
+    "DISCARD-BTN": {
+      "TEXT": "Discard"
+    },
+    "IMAGE-ALT": {
+      "TEXT": "Click to view"
+    },
+    "IMAGE-COLUMN": {
+      "TEXT": "Image"
+    },
+    "IMAGE-MODAL": {
+      "TITLE": "Images"
+    },
+    "MESSAGE-COLUMN": {
+      "TEXT": "Message"
+    },
+    "MY-TICKETS": {
+      "TEXT": "My Tickets"
+    },
+    "NO-IMAGE": {
+      "TEXT": "No Image"
+    },
+    "SELECT-COLUMN": {
+      "TEXT": "Select"
+    },
+    "SHOWING": {
+      "TEXT": "Showing"
+    },
+    "SLIDE-IMAGE-ALT": {
+      "TEXT": "Slide image"
+    },
+    "STATUS-CLOSED": {
+      "TEXT": "Closed"
+    },
+    "STATUS-COLUMN": {
+      "TEXT": "Status"
+    },
+    "STATUS-OPEN": {
+      "TEXT": "Open"
+    },
+    "SUBJECT": {
+      "LABEL": "Subject",
+      "PLACEHOLDER": "Subject",
+      "REQUIRED-ERROR": "Subject is required."
+    },
+    "SUBMIT-BTN": {
+      "TEXT": "Submit"
+    },
+    "TICKETS": {
+      "TEXT": "Tickets"
     }
   },
   "TRANSACTIONS-COMMISSION": {
-    "TITLE": {
-      "TEXT": "Transactions Commision"
-    },
     "SUBTITLE": {
       "TEXT": "Registers"
+    },
+    "TITLE": {
+      "TEXT": "Transactions Commision"
+    }
+  },
+  "UNILEVEL-TREE-PAGE": {
+    "TITLE": {
+      "TEXT": "Unilevel family tree"
+    }
+  },
+  "USER-LIST-DETAIL-MODAL": {
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "COL-DATE": {
+      "TEXT": "Date"
+    },
+    "COL-IP": {
+      "TEXT": "IP"
+    },
+    "COL-MOVEMENTS": {
+      "TEXT": "Movements"
+    },
+    "LBL-ADDRESS": {
+      "TEXT": "Address"
+    },
+    "LBL-EMAIL": {
+      "TEXT": "Email"
+    },
+    "LBL-MOVEMENTS": {
+      "TEXT": "Last Movements"
+    },
+    "LBL-OBSERVATION": {
+      "TEXT": "Observation"
+    },
+    "LBL-PHONE": {
+      "TEXT": "Phone"
+    },
+    "LBL-USER": {
+      "TEXT": "User Name"
+    },
+    "TITLE": {
+      "TEXT": "User Details"
+    }
+  },
+  "USERS-LIST-CREATE-MODAL": {
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "BTN-STATUS": {
+      "TEXT": "Status"
+    },
+    "COL-ADDRESS": {
+      "TEXT": "Address"
+    },
+    "COL-CONFIRM-PASSWORD": {
+      "TEXT": "Confirm Password"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Email"
+    },
+    "COL-LASTNAME": {
+      "TEXT": "Last name"
+    },
+    "COL-NAME": {
+      "TEXT": "Name"
+    },
+    "COL-OBSERVATION": {
+      "TEXT": "Observation"
+    },
+    "COL-PASSWORD": {
+      "TEXT": "Password"
+    },
+    "COL-PHONE": {
+      "TEXT": "Telephone"
+    },
+    "COL-ROLE": {
+      "TEXT": "Role"
+    },
+    "COL-USER": {
+      "TEXT": "User"
+    },
+    "LBL-SELECT-ROLE": {
+      "TEXT": "Select an option"
+    },
+    "MSJ-ERROR-ADDRESS": {
+      "TEXT": "The Address is required."
+    },
+    "MSJ-ERROR-CONFIRM-PASS": {
+      "TEXT": "The confirm password is required"
+    },
+    "MSJ-ERROR-EMAIL": {
+      "TEXT": "The Email is required."
+    },
+    "MSJ-ERROR-EMAIL-INVALID": {
+      "TEXT": "The Email is invalid."
+    },
+    "MSJ-ERROR-EQUALS-PASS": {
+      "TEXT": "Passwords must match."
+    },
+    "MSJ-ERROR-LASTNAME": {
+      "TEXT": "The Last name is required."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "The Name is required."
+    },
+    "MSJ-ERROR-OBSERVATION": {
+      "TEXT": "The Observation is required."
+    },
+    "MSJ-ERROR-PASS": {
+      "TEXT": "The password is required"
+    },
+    "MSJ-ERROR-PHONE": {
+      "TEXT": "The Phone is required."
+    },
+    "MSJ-ERROR-ROL": {
+      "TEXT": "The Rol is required."
+    },
+    "MSJ-ERROR-USER": {
+      "TEXT": "The User name is required."
+    },
+    "TITLE": {
+      "TEXT": "Create User"
+    }
+  },
+  "USERS-LIST-EDIT-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancel"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Save"
+    },
+    "COL-ADDRESS": {
+      "TEXT": "Address"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Email"
+    },
+    "COL-LASTNAME": {
+      "TEXT": "Last name"
+    },
+    "COL-NAME": {
+      "TEXT": "Name"
+    },
+    "COL-OBSERVATION": {
+      "TEXT": "Observation"
+    },
+    "COL-PHONE": {
+      "TEXT": "Phone"
+    },
+    "COL-ROL": {
+      "TEXT": "Role"
+    },
+    "COL-USER-NAME": {
+      "TEXT": "User Name"
+    },
+    "MSJ-ERROR-ADDRESS": {
+      "TEXT": "The Address is required."
+    },
+    "MSJ-ERROR-EMAIL": {
+      "TEXT": "The Email is required."
+    },
+    "MSJ-ERROR-EMAIL-INVALID": {
+      "TEXT": "The Email is invalid."
+    },
+    "MSJ-ERROR-LASTNAME": {
+      "TEXT": "The Last name is required."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "The Name is required."
+    },
+    "MSJ-ERROR-OBSERVATION": {
+      "TEXT": "The Observation is required."
+    },
+    "MSJ-ERROR-PHONE": {
+      "TEXT": "The Phone is required."
+    },
+    "MSJ-ERROR-ROL": {
+      "TEXT": "The Role is required."
+    },
+    "MSJ-ERROR-USER": {
+      "TEXT": "The User name is required."
+    },
+    "TITLE": {
+      "TEXT": "Edit User"
+    }
+  },
+  "USERS-LIST-PAGE": {
+    "BTN-ADD-USER": {
+      "TEXT": "Add user"
+    },
+    "BTN-COPY": {
+      "TEXT": "Copy"
+    },
+    "BTN-EDIT": {
+      "TEXT": "Edit"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Print"
+    },
+    "COL-ACTIONS": {
+      "TEXT": "Actions"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Email"
+    },
+    "COL-ID": {
+      "TEXT": "ID"
+    },
+    "COL-LAST-NAME": {
+      "TEXT": "Last name"
+    },
+    "COL-NAME": {
+      "TEXT": "Name"
+    },
+    "COL-ROL": {
+      "TEXT": "Rol"
+    },
+    "COL-USER": {
+      "TEXT": "User"
+    },
+    "USERS-LIST-SUBTITLE": {
+      "TEXT": "Register"
+    },
+    "USERS-LIST-TITLE": {
+      "TEXT": "Users List"
+    },
+    "USERS-SEARCH": {
+      "TEXT": "Search"
+    }
+  },
+  "WALLET-PAGE": {
+    "AFFILIATE-COLUMN": {
+      "TEXT": "Affiliate"
+    },
+    "AVAILABLE-BALANCE": {
+      "TEXT": "Available Balance"
+    },
+    "CONCEPT-COLUMN": {
+      "TEXT": "Concept"
+    },
+    "COPY-BTN": {
+      "TEXT": "Copy"
+    },
+    "CREDIT-COLUMN": {
+      "TEXT": "Credit"
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Date"
+    },
+    "DEBIT-COLUMN": {
+      "TEXT": "Debit"
+    },
+    "DETAILS-BTN": {
+      "TEXT": "No novelties"
+    },
+    "DETAILS-COLUMN": {
+      "TEXT": "Details"
+    },
+    "PDF-BTN": {
+      "TEXT": "PDF"
+    },
+    "REQUEST-RECHARGE": {
+      "TEXT": "Recharge Requested"
+    },
+    "REVERSE-BALANCE": {
+      "TEXT": "Balance amount"
+    },
+    "SEARCH": {
+      "TEXT": "Search"
+    },
+    "STATE": {
+      "ATTENDED": {
+        "TEXT": "Attended"
+      },
+      "NOT-ATTENDED": {
+        "TEXT": "Not Attended"
+      }
+    },
+    "STATE-COLUMN": {
+      "TEXT": "State"
+    },
+    "SUBMENU-TITLE": {
+      "TEXT": "Wallet"
+    },
+    "TITTLE-TABLE": {
+      "TEXT": "Movements"
+    },
+    "USER-COLUMN": {
+      "TEXT": "Responsible user"
+    },
+    "WITHDRAWAL-PENDING": {
+      "TEXT": "Withdrawal Pending"
     }
   },
   "WALLET-PARAMETERS": {
-    "TITLE": {
-      "TEXT": "Request Parameters"
-    },
     "SUBTITLE": {
       "TEXT": "Parameter settings"
+    },
+    "TITLE": {
+      "TEXT": "Request Parameters"
+    }
+  },
+  "WALLET-REFILL": {
+    "SUBTITLE": {
+      "TEXT": "Registers"
+    },
+    "TITLE": {
+      "TEXT": "Wallet Refill"
+    }
+  },
+  "WALLET-REMOVAL": {
+    "SUBTITLE": {
+      "TEXT": "Registers"
+    },
+    "TITLE": {
+      "TEXT": "Wallet Withdrawal"
     }
   }
 }

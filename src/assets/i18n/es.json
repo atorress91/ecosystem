@@ -1,664 +1,531 @@
 {
-  "HEADER": {
-    "PROFILE": {
-      "TEXT": "Mi perfil"
+  "ACCREDITED-COMMISSIONS": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
     },
-    "USER-EDIT": {
-      "TEXT": "Editar perfil "
+    "BTN-DETAILS": {
+      "TEXT": "Ver Detalles"
     },
-    "USER-SUMMARY": {
-      "TEXT": "Resumen completo"
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
     },
-    "USER-SETTINGS": {
-      "TEXT": "Configuración"
+    "BTN-PROCESS": {
+      "TEXT": "Procesar"
     },
-    "LOGOUT": {
-      "TEXT": "Salir"
+    "COL-AFFILIATE": {
+      "TEXT": "Afiliado"
     },
-    "USER-NAME": {
-      "TEXT": "Usuario"
-    }
-  },
-  "SIGNIN": {
-    "USER-NAME": {
-      "TEXT": "Su Usuario"
+    "COL-AMOUNT": {
+      "TEXT": "Monto (USD)"
     },
-    "PASSWORD": {
-      "TEXT": "Contraseña"
+    "COL-DETAILS": {
+      "TEXT": "Detalles"
     },
-    "REMEMBER-ME": {
-      "TEXT": "Recordar"
+    "COL-NAME": {
+      "TEXT": "Nombre y Apellido"
     },
-    "FORGOT-PASS": {
-      "TEXT": "Cambiar contraseña"
+    "RADIO-BTN-1": {
+      "TEXT": "Pasarlo a Billetera"
+    },
+    "RADIO-BTN-2": {
+      "TEXT": "Pagarlo del todo"
+    },
+    "SUBTITLE": {
+      "TEXT": "Comisiones por acreditar"
     },
     "TITLE": {
-      "TEXT": "Iniciar sesión"
+      "TEXT": "Comisiones Acreditas"
+    }
+  },
+  "ADDRESSES-PAGE": {
+    "ADDRESSES-TITLE": {
+      "TEXT": "Mis Direcciones"
     },
-    "PASS-MESSAGE-ERROR": {
-      "TEXT": "La contraseña debe tener al menos 6 y un máximo de 15 caracteres."
+    "BTN-COPY": {
+      "TEXT": "Copiar"
     },
-    "USER-NAME-MESSAGE-ERROR": {
-      "TEXT": "El usuario es invalido."
+    "BTN-NEW-ADDRESS": {
+      "TEXT": "Añadir nueva Dirección"
     },
-    "PASS-IS-REQUIRED": {
-      "TEXT": "La contraseña es requerida."
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
     },
-    "USER-NAME-IS-REQUIRED": {
-      "TEXT": "El usuario es requerido."
+    "ROW-ACTIONS": {
+      "TEXT": "Acciones"
+    },
+    "ROW-ADDRESS": {
+      "TEXT": "Dirección"
+    },
+    "ROW-COMPANY": {
+      "TEXT": "Empresa"
+    },
+    "ROW-COUNTRY": {
+      "TEXT": "País"
+    },
+    "ROW-NAME": {
+      "TEXT": "Nombre"
+    },
+    "ROW-PHONE-NUMBER": {
+      "TEXT": "Número(s) de Teléfono"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    }
+  },
+  "ADMIN-EDIT-PASSWORD-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "LBL-CONFIRM-PASSWORD": {
+      "TEXT": "Confirmar Contraseña"
+    },
+    "LBL-CURRENT-PASSWORD": {
+      "TEXT": "Contraseña Actual"
+    },
+    "LBL-NEW-PASSWORD": {
+      "TEXT": "Nueva Contraseña"
+    },
+    "MSJ-ERROR-CONFIRM-EQUALS-PASSWORD": {
+      "TEXT": "Las contraseñas deben coincidir."
+    },
+    "MSJ-ERROR-CONFIRM-PASSWORD": {
+      "TEXT": "La confirmación de la contraseña es requerida"
+    },
+    "MSJ-ERROR-CURRENT-PASSWORD": {
+      "TEXT": "La contraseña actual es requerida"
+    },
+    "MSJ-ERROR-NEW-PASSWORD": {
+      "TEXT": "La nueva contraseña es requerida"
+    },
+    "MSJ-ERROR-SIZE-PASSWORD": {
+      "TEXT": "La contraseña debe tener un mínimo de 6 y un máximo de 15 caracteres."
+    },
+    "TITLE": {
+      "TEXT": "Cambio de Contraseña"
+    }
+  },
+  "ADMIN-EDIT-PERSONAL-INFO-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "LBL-ADDRESS": {
+      "TEXT": "Dirección"
+    },
+    "LBL-EMAIL": {
+      "TEXT": "Email"
+    },
+    "LBL-LASTNAME": {
+      "TEXT": "Apellidos"
+    },
+    "LBL-NAME": {
+      "TEXT": "Nombre"
+    },
+    "LBL-PHONE": {
+      "TEXT": "Teléfono"
+    },
+    "MSJ-ERROR-ADDRESS": {
+      "TEXT": "La dirección es requerida."
+    },
+    "MSJ-ERROR-EMAIL": {
+      "TEXT": "El correo es requerido."
+    },
+    "MSJ-ERROR-LASTNAME": {
+      "TEXT": "El apellido es requerido."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "El nombre de usuario es requerido."
+    },
+    "MSJ-ERROR-PHONE": {
+      "TEXT": "El teléfono es requerido."
+    },
+    "TITLE": {
+      "TEXT": "Editar Datos de Perfil"
     }
   },
   "ADMIN-ITEMS": {
-    "USERS": {
-      "TEXT": "Usuarios"
+    "AFFILIATES": {
+      "TEXT": "Afiliados"
     },
     "AUTHORIZE-PURCHASES": {
       "TEXT": "Autorizar Compras"
     },
-    "HOME": {
-      "TEXT": "Inicio"
-    },
-    "AFFILIATES": {
-      "TEXT": "Afiliados"
-    },
-    "PURCHASES": {
-      "TEXT": "Compras"
-    },
     "COMMISSIONS": {
       "TEXT": "Comisiones"
-    },
-    "PRODUCTS-SERVICES": {
-      "TEXT": "Productos y Servicios"
     },
     "COMPENSATION-PLANS": {
       "TEXT": "Planes de Compensación"
     },
-    "VIRTUAL-WALLET": {
-      "TEXT": "Billetera Virtual"
-    },
-    "IMPORT": {
-      "TEXT": "Importar"
-    },
-    "TICKETS": {
-      "TEXT": "Ticketes"
-    },
-    "NEWS": {
-      "TEXT": "Noticias"
+    "CONFIGURATIONS": {
+      "TEXT": "Configuraciones"
     },
     "GENERAL-REPORTS": {
       "TEXT": "Reportes Generales"
     },
-    "CONFIGURATIONS": {
-      "TEXT": "Configuraciones"
-    }
-  },
-  "MENUITEMS": {
-    "TOOLS": {
-      "TEXT": "Servicio al cliente"
-    },
-    "USER": {
-      "POST": "Desarrollador"
-    },
-    "MAIN": {
-      "TEXT": "-- Principal"
-    },
     "HOME": {
       "TEXT": "Inicio"
     },
-    "EDUCATIONAL-COURSES": {
-      "TEXT": "Cursos Educativos"
-    },
-    "FUNDING-ACCOUNTS": {
-      "TEXT": "Capital de apoyo"
-    },
-    "SERVICES-AND-PRODUCTS": {
-      "TEXT": "Servicios y Productos"
-    },
-    "BILLING-PURCHASE": {
-      "TEXT": "Tienda medio ambiente"
-    },
-    "BILLING-MY-PURCHASES": {
-      "TEXT": "Facturación Mis Compras"
-    },
-    "BILLING-MY-ORDERS": {
-      "TEXT": "Mis Ordenes"
-    },
-    "PROCUREMENT-ECOPOOL": {
-      "TEXT": "Ecopool Adquisiciones"
-    },
-    "NETWORK": {
-      "TEXT": "Mis Clientes"
-    },
-    "WALLET": {
-      "TEXT": "Mi Billetera"
-    },
-    "COMMISSIONS": {
-      "TEXT": "Comisiones"
-    },
-    "MY-COMMISSIONS": {
-      "TEXT": "Comisiones"
-    },
-    "COMMISSIONS-BALANCE": {
-      "TEXT": "Balance"
-    },
-    "INDUCEMENTS": {
-      "TEXT": "Incentivos"
-    },
-    "REQUESTS": {
-      "TEXT": "Solicitudes"
-    },
-    "REQUEST-PAY": {
-      "TEXT": "Solicitar Pago"
-    },
-    "REQUEST-WALLET": {
-      "TEXT": "Solicitar a Billetera"
-    },
-    "ADDRESSES": {
-      "TEXT": "Mis Direcciones"
-    },
-    "MY-TICKETS": {
-      "TEXT": "Tickets"
+    "IMPORT": {
+      "TEXT": "Importar"
     },
     "NEWS": {
       "TEXT": "Noticias"
+    },
+    "PRODUCTS-SERVICES": {
+      "TEXT": "Productos y Servicios"
+    },
+    "PURCHASES": {
+      "TEXT": "Compras"
+    },
+    "TICKETS": {
+      "TEXT": "Ticketes"
+    },
+    "USERS": {
+      "TEXT": "Usuarios"
+    },
+    "VIRTUAL-WALLET": {
+      "TEXT": "Billetera Virtual"
     }
   },
-  "EDUCATIONAL-COURSES": {
-    "ACADEMY-TRADING": {
-      "TEXT": "Academia de Trading"
-    }
-  },
-  "SERVICES-AND-PRODUCTS": {
-    "NEWS": {
-      "TEXT": "Novedades"
+  "ADMIN-MY-PROFILE": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
     },
-    "MECANICLICK": {
-      "TEXT": "MecaniClick"
+    "BTN-EDIT-PERSONAL-INFO": {
+      "TEXT": "Editar datos personales"
     },
-    "ALTERNATIVE-HEALTH-AMERICA": {
-      "TEXT": "Salud Alternativa América"
+    "BTN-OPTIONS": {
+      "TEXT": "Opciones"
     },
-    "ALTERNATIVE-HEALTH-EUROPE": {
-      "TEXT": "Salud Alternativa Europa"
-    }
-  },
-  "REQUESTS-WALLET": {
-    "TITTLE-PAGE": {
-      "TEXT": "Solicitar Saldo a Billetera"
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
     },
-    "RELOAD-AMOUNT": {
-      "TEXT": "Monto de Recarga"
-    },
-    "AMOUNT": {
-      "TEXT": "Monto"
-    },
-    "PAYMENT-METHODS": {
-      "TEXT": "Metodos de Pagos"
-    },
-    "BANK": {
-      "TEXT": "Banco"
-    },
-    "SUPPORT": {
-      "TEXT": "Soporte"
-    },
-    "PAYMENT-DATE": {
-      "TEXT": "Fecha de Pago"
-    },
-    "SEND-REQUEST": {
-      "TEXT": "Enviar Solicitud"
-    },
-    "TITTLE-TABLE": {
-      "TEXT": "Mis Solicitudes de Recargas"
-    },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    },
-    "ORDER-NUM-COLUMN": {
-      "TEXT": "# Orden"
-    },
-    "DATE-COLUMN": {
+    "COL-DATE": {
       "TEXT": "Fecha"
     },
-    "CREDIT-COLUMN": {
-      "TEXT": "Credito"
+    "COL-IP": {
+      "TEXT": "IP"
     },
-    "PAYMENT-METHOD-COLUMN": {
-      "TEXT": "Metodo de Pago"
-    },
-    "BANK-COLUMN": {
-      "TEXT": "Banco"
-    },
-    "SUPPORT-COLUMN": {
-      "TEXT": "Soporte"
-    },
-    "TRASACTION-DATE-COLUMN": {
-      "TEXT": "Fecha de Transacción"
-    },
-    "STATUS-COLUMN": {
-      "TEXT": "Estado"
-    },
-    "SUBMIT-BTN": {
-      "TEXT": "Enviar"
-    },
-    "CLOSE-BTN": {
-      "TEXT": "Cerrar"
-    }
-  },
-  "REQUESTS-PAGE": {
-    "TITTLE-PAGE": {
-      "TEXT": "Realizar solicitud de pago"
-    },
-    "FIST-MSJ-INFO": {
-      "TEXT": "El monto que solicita debe ser menor o igual al monto disponible que tenga en su billetera."
-    },
-    "SECOND-MSJ-INFO": {
-      "TEXT": "El monto mínimo para retirar es de USD"
-    },
-    "THIRD-MSJ-INFO": {
-      "TEXT": "El monto máximo para retirar es de USD"
-    },
-    "TITTLE-MSJ-INFO": {
-      "TEXT": "Información"
-    },
-    "AVAILABLE-BALANCE-WALLET": {
-      "TEXT": "Saldo Disponible en Billetera:"
-    },
-    "AMOUNT-REQUESTED": {
-      "TEXT": "Monto que Solicita"
-    },
-    "OBSERVATION-FIELD": {
-      "TEXT": "Observación"
-    },
-    "ACCESS-KEY": {
-      "TEXT": "Clave de acceso"
-    },
-    "GENERATION-CODE": {
-      "TEXT": "Generar código"
-    },
-    "CONFIRM-CODE": {
-      "TEXT": "Código de confirmación"
-    },
-    "SEGURITY-PIN": {
-      "TEXT": "Pin de Seguridad"
-    },
-    "SEND-REQUEST": {
-      "TEXT": "Enviar Solicitud"
-    },
-    "TITTLE-TABLE": {
-      "TEXT": "Solicitudes"
-    },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    },
-    "DATE-COLUMN": {
-      "TEXT": "Fecha"
-    },
-    "AMOUNT-WITHDRAW-COLUMN": {
-      "TEXT": "Monto a Retirar"
-    },
-    "OBSERVATION-COLUMN": {
-      "TEXT": "Observación"
-    },
-    "ADMIN-ANSWER-COLUMN": {
-      "TEXT": "Respuesta administración"
-    },
-    "STATE-COLUMN": {
-      "TEXT": "Estado"
-    },
-    "SUBMIT-BTN": {
-      "TEXT": "Enviar"
-    },
-    "CLOSE-BTN": {
-      "TEXT": "Cerrar"
-    },
-    "REQUEST-TYPE": {
-      "TEXT": "Tipo de solicitud"
-    },
-    "ADMIN-ANSWER.NOT-ATTENDED": {
-      "TEXT": "No Atendido"
-    },
-    "ADMIN-ANSWER.ATTENDED": {
-      "TEXT": "Atendido"
-    },
-    "ADMIN-ANSWER.CANCELLED": {
-      "TEXT": "Cancelado"
-    },
-    "STATE.PENDING": {
-      "TEXT": "Pendiente"
-    },
-    "STATE.APPROVED": {
-      "TEXT": "Aprobado"
-    },
-    "STATE.CANCELLED": {
-      "TEXT": "Cancelado"
-    },
-    "TYPE.WITHDRAWAL": {
-      "TEXT": "Retiro de Saldo"
-    },
-    "REQUEST-TYPE.REVERT-INVOICE": {
-      "TEXT": "Devolución de Factura"
-    },
-    "AMOUNT-REQUESTED-ERROR": {
-      "TEXT": "Ingrese un monto igual o menor al balance disponible."
-    },
-    "ACCESS-KEY-ERROR": {
-      "TEXT": "La contraseña es requerida."
-    },
-    "OBSERVATION-ERROR": {
-      "TEXT": "La observación es requerida."
-    },
-    "CONFIRM-CODE-ERROR": {
-      "TEXT": "El código de seguridad es requerido."
-    },
-    "GENERATE-CODE-BTN": {
-      "TEXT": "Generar Código"
-    }
-  },
-  "WALLET-PAGE": {
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    },
-    "TITTLE-TABLE": {
+    "COL-MOVEMENTS": {
       "TEXT": "Movimientos"
     },
-    "AVAILABLE-BALANCE": {
-      "TEXT": "Saldo Disponible"
+    "LBL-ADDRESS": {
+      "TEXT": "Dirección"
     },
-    "REVERSE-BALANCE": {
-      "TEXT": "Saldo balance"
+    "LBL-CHANGE-PASSWORD": {
+      "TEXT": "Cambiar contraseña"
     },
-    "REQUEST-RECHARGE": {
-      "TEXT": "Recarga Solicitada"
+    "LBL-CHANGE-PASSWORD-UPLOAD": {
+      "TEXT": "Cambiar contraseña Upload"
     },
-    "WITHDRAWAL-PENDING": {
-      "TEXT": "Retiro Pendiente"
+    "LBL-CHANGE-SECRET-QUESTION": {
+      "TEXT": "Cambiar pregunta secreta"
     },
-    "USER-COLUMN": {
-      "TEXT": "Usuario Responsable"
+    "LBL-EMAIL": {
+      "TEXT": "Correo"
     },
-    "AFFILIATE-COLUMN": {
-      "TEXT": "Afiliado"
+    "LBL-LAST-MOVEMENTS": {
+      "TEXT": "Últimos Movimientos"
     },
-    "CREDIT-COLUMN": {
-      "TEXT": "Crédito"
+    "LBL-OBSERVATION": {
+      "TEXT": "Observación"
     },
-    "DEBIT-COLUMN": {
-      "TEXT": "Débito"
+    "LBL-PHONE": {
+      "TEXT": "Teléfono"
     },
-    "STATE-COLUMN": {
-      "TEXT": "Estado"
-    },
-    "CONCEPT-COLUMN": {
-      "TEXT": "Concepto"
-    },
-    "DATE-COLUMN": {
-      "TEXT": "Fecha"
-    },
-    "DETAILS-COLUMN": {
-      "TEXT": "Ver detalle"
-    },
-    "DETAILS-BTN": {
-      "TEXT": "Sin novedades"
-    },
-    "SUBMENU-TITLE": {
-      "TEXT": "Billetera"
-    },
-    "COPY-BTN": {
-      "TEXT": "Copiar"
-    },
-    "PDF-BTN": {
-      "TEXT": "PDF"
-    },
-    "STATE": {
-      "ATTENDED": {
-        "TEXT": "Atendido"
-      },
-      "NOT-ATTENDED": {
-        "TEXT": "No Atendido"
-      }
+    "TITLE": {
+      "TEXT": "Mi Perfil"
     }
   },
-  "ECOPOOL-PAGE": {
+  "ADMIN-PASSWORD-UPLOAD-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "LBL-CONFIRM-PASSWORD": {
+      "TEXT": "Repita nueva contraseña Upload"
+    },
+    "LBL-PASSWORD": {
+      "TEXT": "Nueva contraseña Upload"
+    },
+    "MSJ-ERROR-CONFIRM-PASSWORD": {
+      "TEXT": "La confirmación de la contraseña es requerida"
+    },
+    "MSJ-ERROR-PASSWORD": {
+      "TEXT": "La contraseña es requerida"
+    },
+    "TITLE": {
+      "TEXT": "Cambiar contraseña Upload"
+    }
+  },
+  "AFFILIATES-LIST-PAGE": {
+    "BINARY-GENEALOGICAL-TREE": {
+      "TEXT": "Árbol Sistema 1B"
+    },
+    "BTN-ACTIONS": {
+      "TEXT": "Acciones"
+    },
+    "BTN-COPY": {
+      "TEXT": "Copiar`"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "CHANGE-SPONSOR": {
+      "TEXT": "Cambiar Patrocinador"
+    },
+    "COL-AFFILIATE-MODE": {
+      "TEXT": "Modo afiliado"
+    },
+    "COL-BINARY-SPONSOR": {
+      "TEXT": "Patrocinador Binario"
+    },
+    "COL-CALIFICATION": {
+      "TEXT": "Calificación"
+    },
+    "COL-DATE": {
+      "TEXT": "FechaR"
+    },
+    "COL-DETAILS": {
+      "TEXT": "Detalles"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Correo"
+    },
+    "COL-FATHER": {
+      "TEXT": "Padre"
+    },
+    "COL-SPONSOR": {
+      "TEXT": "Patrocinador"
+    },
+    "COL-STATUS": {
+      "TEXT": "Estado"
+    },
+    "COL-USER": {
+      "TEXT": "Usuario"
+    },
+    "EDIT": {
+      "TEXT": "Editar"
+    },
+    "FORCED-GENEALOGICAL-TREE": {
+      "TEXT": "Árbol Sistema 3MF"
+    },
+    "MAKE-PURCHASE": {
+      "TEXT": "Realizar Compra"
+    },
+    "MORE-DETAILS": {
+      "TEXT": "Más Detalles"
+    },
+    "NETWORK-PURCHASE-REGISTRY": {
+      "TEXT": "Registro de compras de red"
+    },
+    "QUALIFICATION-AUDIT": {
+      "TEXT": "Auditoria de Calificación"
+    },
+    "REMOVE-AFFILIATE": {
+      "TEXT": "Eliminar Afiliado"
+    },
+    "TITLE": {
+      "TEXT": "Lista de Afiliados"
+    },
+    "TOPE-MAX-COINPAYMENTS": {
+      "TEXT": "Tope Max Coinpayments"
+    },
+    "UNILEVEL-FAMILY-TREE": {
+      "TEXT": "Árbol Sistema 2U"
+    },
+    "WALLET-BALANCE": {
+      "TEXT": "Balance de Billetera"
+    }
+  },
+  "ARRAYS-CONFIGURATIONS-PAGE": {
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "LBL-ACTIVE-MATRIX-BINARY": {
+      "TEXT": "Activar Matriz Binaria"
+    },
+    "LBL-ACTIVE-MATRIX-FORCED": {
+      "TEXT": "Activar Matriz Forzada"
+    },
+    "LBL-ACTIVE-MATRIX-UNILEVEL": {
+      "TEXT": "Activar Matriz Unilevel"
+    },
+    "LBL-MATRIX-BINARY": {
+      "TEXT": "Matriz Binaria"
+    },
+    "LBL-MATRIX-FORCED": {
+      "TEXT": "Matriz Forzada"
+    },
+    "LBL-MATRIX-UNILEVEL": {
+      "TEXT": "Matriz Unilevel"
+    },
+    "LBL-NUMBER-FRONT-AFFILIATES": {
+      "TEXT": "Numero de frontales para afiliados:"
+    },
+    "LBL-NUMBER-FRONT-SOFTWARE-MILLENIUM": {
+      "TEXT": "Numero frontales para Software Millenium:"
+    },
+    "MSJ-INFO": {
+      "TEXT": "Al estar marcada la casilla la red se estructura de forma unilevel, forzada o binaria."
+    },
+    "SUBTITLE": {
+      "TEXT": "Configuración de Matrices"
+    },
+    "TITLE": {
+      "TEXT": "Matrices"
+    }
+  },
+  "ATTRIBUTES-LIST": {
+    "SUBTITLE": {
+      "TEXT": "Lista de Atributos"
+    },
+    "TITLE": {
+      "TEXT": "Atributos"
+    }
+  },
+  "AUTHORIZE-AFFILIATES": {
+    "BTN-AUTHORIZE-ALL": {
+      "TEXT": "Autorizar Todos"
+    },
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-DELETE-ALL": {
+      "TEXT": "Borrar Todos"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "BTN-PROCESS-SELECTION": {
+      "TEXT": "Procesar Selección"
+    },
+    "BTN-SEE-DETAILS": {
+      "TEXT": "Ver Detalles"
+    },
+    "COL-AUTHORIZE": {
+      "TEXT": "Autorizar"
+    },
+    "COL-BINARY-SPONSOR": {
+      "TEXT": "Patrocinador Binario"
+    },
+    "COL-DELETE": {
+      "TEXT": "Borrar"
+    },
+    "COL-DETAILS": {
+      "TEXT": "Detalles"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Correo"
+    },
+    "COL-FATHER": {
+      "TEXT": "Padre"
+    },
+    "COL-IDENTITY": {
+      "TEXT": "Identidad"
+    },
+    "COL-REGISTER-DATE": {
+      "TEXT": "Fecha Registro"
+    },
+    "COL-SPONSOR": {
+      "TEXT": "Patrocinador"
+    },
+    "COL-USER": {
+      "TEXT": "Usuario"
+    },
+    "MSJ": {
+      "TEXT": "Existen registros por pagos de afiliación, verifique el pago antes de autorizar al afiliado. Para ver los datos suministrados por el afiliado de click en el boton Ver Detalles."
+    },
     "SEARCH": {
       "TEXT": "Búsqueda"
     },
-    "TITTLE-PAGE": {
-      "TEXT": "Pack pasivos"
+    "SUBTITLE": {
+      "TEXT": "Afiliaciones sin autorizar"
     },
-    "NUM-BILL-COLUMN": {
-      "TEXT": "No. Factura"
-    },
-    "DATE-INIT-COLUMN": {
-      "TEXT": "Fecha de inicio"
-    },
-    "PACKS-COLUMN": {
-      "TEXT": "Packs"
-    },
-    "AMOUNT-BASE-COLUMN": {
-      "TEXT": "Monto base"
-    },
-    "PERCENTAGE-COLUMN": {
-      "TEXT": "Porcentaje"
-    },
-    "PAYMENTS-COLUMN": {
-      "TEXT": "Pagos"
-    },
-    "STATE-COLUMN": {
-      "TEXT": "Estado"
-    },
-    "DETAILS-COLUMN": {
-      "TEXT": "Detalles"
-    },
-    "BTN-SEE-DETAILS": {
-      "TEXT": "Ver Detalles"
+    "TITLE": {
+      "TEXT": "Autorizar Afiliados"
     }
   },
-  "TICKETS-PAGE": {
-    "TICKETS": {
-      "TEXT": "Tickets"
-    },
-    "MY-TICKETS": {
-      "TEXT": "Mis tickets"
-    },
-    "CREATE-TICKET-BTN": {
-      "TEXT": "Crear Ticket"
-    },
-    "DELETE-BTN": {
-      "TITLE": "Eliminar"
-    },
-    "SELECT-COLUMN": {
-      "TEXT": "Seleccionar"
-    },
-    "STATUS-COLUMN": {
-      "TEXT": "Estado"
-    },
-    "STATUS-CLOSED": {
-      "TEXT": "Cerrado"
-    },
-    "STATUS-OPEN": {
-      "TEXT": "Abierto"
-    },
-    "MESSAGE-COLUMN": {
-      "TEXT": "Mensaje"
-    },
-    "CATEGORY-COLUMN": {
-      "TEXT": "Categoría"
-    },
-    "DATE-COLUMN": {
-      "TEXT": "Fecha"
-    },
-    "IMAGE-COLUMN": {
-      "TEXT": "Imagen"
-    },
-    "IMAGE-ALT": {
-      "TEXT": "Click para ver"
-    },
-    "NO-IMAGE": {
-      "TEXT": "Sin Imagen"
-    },
-    "IMAGE-MODAL": {
-      "TITLE": "Imágenes"
-    },
-    "SLIDE-IMAGE-ALT": {
-      "TEXT": "Imagen de diapositiva"
-    },
-    "SHOWING": {
-      "TEXT": "Mostrando"
-    },
-    "CREATE-TICKET": {
-      "TITLE": "Crear Ticket"
-    },
-    "SUBJECT": {
-      "LABEL": "Asunto",
-      "PLACEHOLDER": "Asunto",
-      "REQUIRED-ERROR": "El asunto es obligatorio."
-    },
-    "CATEGORY": {
-      "LABEL": "Categoría",
-      "DEFAULT-OPTION": "Seleccione una opción",
-      "REQUIRED-ERROR": "Debe seleccionar una categoría."
-    },
-    "DESCRIPTION": {
-      "LABEL": "Explicación",
-      "PLACEHOLDER": "Explicación",
-      "REQUIRED-ERROR": "La descripción es requerida.",
-      "MAXLENGTH-ERROR": "La descripción no puede exceder los 255 caracteres."
-    },
-    "ADD-IMAGE": {
-      "LABEL": "Agregar Imagen",
-      "DROPZONE": "¡Suelta aquí!"
-    },
-    "SUBMIT-BTN": {
-      "TEXT": "Enviar"
-    },
-    "DISCARD-BTN": {
-      "TEXT": "Descartar"
-    }
-  },
-  "HOME-PAGE-CLIENT": {
-    "INFORMATION-R": {
-      "TEXT": "Información Modelo R"
-    },
-    "INFORMATION-1": {
-      "TEXT": "Información Modelo 1"
-    },
-    "INFORMATION-2": {
-      "TEXT": "Información Modelo 2"
-    },
-    "SERVICE-BALANCE": {
-      "TEXT": "Saldo de servicios"
-    },
-    "AVAILABLE-BALANCE": {
-      "TEXT": "Saldo Disponible"
-    },
-    "TOTAL-PAID": {
-      "TEXT": "Total Pagado"
-    },
-    "TOTAL-ACQUISITIONS": {
-      "TEXT": "Total Adquisiciones"
-    },
-    "MODEL-REQUEST": {
-      "TEXT": "Solicitud de modelo"
-    },
-    "TITTLE-FIRST-CHART": {
-      "TEXT": "Afiliados registrados"
-    },
-    "TITTLE-SECOND-CHART": {
-      "TEXT": "Compras realizadas en mi red"
-    },
-    "TITTLE-BANNERS": {
-      "TEXT": "Banners"
-    },
-    "REGISTER": {
-      "TEXT": "Registro"
-    },
-    "SHARE-LINK": {
-      "TEXT": "Compartir enlace"
-    },
-    "WEBSITE": {
-      "TEXT": "Sitio web"
-    },
-    "PUBLIC-STORE": {
-      "TEXT": "Tienda Pública"
-    }
-  },
-  "BILLING-PURCHASES-PAGE": {
-    "BILLING-PURCHASES-TITLE": {
-      "TEXT": "Facturación"
-    },
-    "SEARCH": {
-      "TEXT": "Buscar"
-    },
-    "COPY": {
+  "AUTHORIZE-PURCHASES": {
+    "BTN-COPY": {
       "TEXT": "Copiar"
     },
-    "PDF": {
-      "TEXT": "PDF"
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
     },
-    "ROW-NO-BILL": {
-      "TEXT": "No. de Factura"
-    },
-    "ROW-DATE": {
-      "TEXT": "Fecha"
-    },
-    "ROW-BILL-STATE": {
-      "TEXT": "Estado de Factura"
-    },
-    "ROW-PAID": {
-      "TEXT": "Pagado"
-    },
-    "ROW-NOT-PAID": {
-      "TEXT": "No Pagado"
-    },
-    "ROW-ACTIVE": {
-      "TEXT": "Activa"
-    },
-    "ROW-CANCELLED": {
-      "TEXT": "Cancelada"
-    },
-    "ROW-MODEL": {
-      "TEXT": "Modelo"
-    },
-    "MODEL-1B": {
-      "TEXT": "Modelo 1B"
-    },
-    "MODEL-1A": {
-      "TEXT": "Modelo 1A"
-    },
-    "MODEL-2": {
-      "TEXT": "Modelo 2"
-    },
-    "TRADING-ACADEMY": {
-      "TEXT": "Academia de Trading"
-    },
-    "FUNDING-ACCOUNTS": {
-      "TEXT": "Cuentas de Fondeo"
-    },
-    "MEMBERSHIP": {
-      "TEXT": "Membresía"
-    },
-    "ALTERNATIVE-HEALTH": {
-      "TEXT": "Salud Alternativa"
-    },
-    "RECURRING-MODEL": {
-      "TEXT": "Modelo Recurrente"
-    },
-    "TOTAL-AMOUNT": {
-      "TEXT": "Monto Total"
-    },
-    "ROW-DETAIL": {
-      "TEXT": "Detalle"
-    },
-    "ACTIONS": {
-      "TEXT": "Acciones"
+    "BTN-PROCESS-SELECTION": {
+      "TEXT": "Procesar Selección"
     },
     "BTN-SEE-DETAILS": {
       "TEXT": "Ver Detalles"
+    },
+    "CHECK-APPROVE-ORDER": {
+      "TEXT": "Aprobar Orden"
+    },
+    "CHECK-DENY-ORDER": {
+      "TEXT": "Negar Orden"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Afiliado"
+    },
+    "COL-BANK": {
+      "TEXT": "Banco"
+    },
+    "COL-DATE": {
+      "TEXT": "Fecha"
+    },
+    "COL-DETAIL": {
+      "TEXT": "Detalles"
+    },
+    "COL-ORDER": {
+      "TEXT": "Orden"
+    },
+    "COL-PAID-METHOD": {
+      "TEXT": "Metodo de Pago"
+    },
+    "COL-SUPPORT": {
+      "TEXT": "Soporte"
+    },
+    "COL-TRASACTION-DATE": {
+      "TEXT": "Fecha de Transacción"
+    },
+    "TITLE": {
+      "TEXT": "Lista de Ordenes por Autorizar"
+    }
+  },
+  "BALANCE-OF-WALLET": {
+    "SUBTITLE": {
+      "TEXT": "Registros"
+    },
+    "TITLE": {
+      "TEXT": "Balance de Billetera"
     }
   },
   "BILLING-ORDERS-PAGE": {
+    "BILLING-ORDERS-TITLE": {
+      "TEXT": "Lista de Ordenes de Compra"
+    },
+    "BTN-SEE-DETAILS": {
+      "TEXT": "Ver Detalles"
+    },
+    "ROW-BANK": {
+      "TEXT": "Banco"
+    },
+    "ROW-CONDITION": {
+      "TEXT": "Estado"
+    },
     "ROW-DATE": {
       "TEXT": "Fecha"
+    },
+    "ROW-DETAILS": {
+      "TEXT": "Detalles"
     },
     "ROW-ORDER": {
       "TEXT": "Orden"
@@ -666,203 +533,8 @@
     "ROW-PAY-METHOD": {
       "TEXT": "Método de pago"
     },
-    "ROW-BANK": {
-      "TEXT": "Banco"
-    },
     "ROW-STATE": {
       "TEXT": "Estatus"
-    },
-    "ROW-CONDITION": {
-      "TEXT": "Estado"
-    },
-    "ROW-DETAILS": {
-      "TEXT": "Detalles"
-    },
-    "BTN-SEE-DETAILS": {
-      "TEXT": "Ver Detalles"
-    },
-    "BILLING-ORDERS-TITLE": {
-      "TEXT": "Lista de Ordenes de Compra"
-    },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    }
-  },
-  "NETWORK-PAGE": {
-    "NETWORK-ALL-CUSTOMERS": {
-      "TEXT": "Red de Todos los Clientes"
-    },
-    "SEARCH": {
-      "TEXT": "Buscar"
-    },
-    "ROW-USER": {
-      "TEXT": "Usuario"
-    },
-    "ROW-STATE": {
-      "TEXT": "Estado"
-    },
-    "ROW-QUALIFICATION": {
-      "TEXT": "Calificación"
-    },
-    "ROW-DETAIL": {
-      "TEXT": "Detalle"
-    },
-    "BTN-ACTIONS": {
-      "TEXT": "Acciones"
-    },
-    "ACTIVATE-MEMBERSHIP.BALANCE": {
-      "TEXT": "Activar membresía del afiliado con saldo disponible"
-    },
-    "ACTIVATE-MEMBERSHIP.CARD": {
-      "TEXT": "Activar membresía del afiliado con tarjeta"
-    },
-    "TRANSFER-BALANCE": {
-      "TEXT": "Transferir saldo"
-    },
-    "ACTIVE": {
-      "TEXT": "Activo"
-    },
-    "INACTIVE": {
-      "TEXT": "Inactivo"
-    },
-    "NETWORK-TITLE": {
-      "TEXT": "Mi Red"
-    },
-    "VIEW-NETWORK": {
-      "TEXT": "Ver Mi Red"
-    },
-    "COPY": {
-      "TEXT": "Copiar"
-    },
-    "PDF": {
-      "TEXT": "PDF"
-    }
-  },
-  "MY-NETWORK-PAGE": {
-    "TITLE": {
-      "TEXT": "Mi Red"
-    },
-    "NETWORK-TREES": {
-      "TEXT": "Árboles de mi Red"
-    },
-    "UNILEVEL-MODEL": {
-      "TEXT": "Modelo 1, 2, 3 (Unilevel)"
-    },
-    "BINARY-MODEL": {
-      "TEXT": "Modelo 4 (Binario)"
-    },
-    "MATRIX-MODEL-5": {
-      "TEXT": "Modelo 5 (Matriz)"
-    },
-    "MATRIX-MODEL-6": {
-      "TEXT": "Modelo 6 (Matriz)"
-    },
-    "BACK": {
-      "TEXT": "Volver"
-    }
-  },
-  "COMMISSIONS-PAGE": {
-    "COMMISSIONS-TITLE": {
-      "TEXT": "Consultar"
-    },
-    "COMMISSIONS-LBL-CONCEPT": {
-      "TEXT": "Concepto"
-    },
-    "COMMISSIONS-LBL-PERIOD": {
-      "TEXT": "Periodo"
-    },
-    "SLT-OPTION-BONO": {
-      "TEXT": "Bono Binario"
-    },
-    "SLT-OPTION-1ERLEVEL": {
-      "TEXT": "1ernivel"
-    },
-    "SLT-OPTION-SHOP": {
-      "TEXT": "Tienda"
-    },
-    "SLT-OPTION-ALL": {
-      "TEXT": "Ver Todos"
-    },
-    "SLT-OPTION-PERIOD": {
-      "TEXT": "Periodo Actual"
-    }
-  },
-  "INDUCEMENTS-PAGE": {
-    "INDUCEMENTS-TITLE": {
-      "TEXT": "Incentivos Obtenidos"
-    },
-    "ROW-INDUCEMENTS": {
-      "TEXT": "Incentivo"
-    },
-    "ROW-DESCRIPTION": {
-      "TEXT": "Descripción"
-    },
-    "ROW-ASSIGNMENT-DATE": {
-      "TEXT": "Fecha de Asignación"
-    },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    }
-  },
-  "COMMISSIONS-BALANCE-PAGE": {
-    "COMMISSIONS-TITLE": {
-      "TEXT": "Mi Balance"
-    },
-    "ROW-DATE": {
-      "TEXT": "Fecha"
-    },
-    "ROW-CONCEPT": {
-      "TEXT": "Concepto"
-    },
-    "ROW-CREDITS": {
-      "TEXT": "Créditos"
-    },
-    "ROW-DEBITS": {
-      "TEXT": "Debitos"
-    },
-    "ROW-STATE": {
-      "TEXT": "Estado"
-    },
-    "ROW-RESIDUALS-PAID": {
-      "TEXT": "Residuales Pagados"
-    }
-  },
-  "ADDRESSES-PAGE": {
-    "ADDRESSES-TITLE": {
-      "TEXT": "Mis Direcciones"
-    },
-    "ROW-COMPANY": {
-      "TEXT": "Empresa"
-    },
-    "ROW-NAME": {
-      "TEXT": "Nombre"
-    },
-    "ROW-ADDRESS": {
-      "TEXT": "Dirección"
-    },
-    "ROW-COUNTRY": {
-      "TEXT": "País"
-    },
-    "ROW-PHONE-NUMBER": {
-      "TEXT": "Número(s) de Teléfono"
-    },
-    "ROW-ACTIONS": {
-      "TEXT": "Acciones"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-NEW-ADDRESS": {
-      "TEXT": "Añadir nueva Dirección"
     },
     "SEARCH": {
       "TEXT": "Búsqueda"
@@ -879,798 +551,88 @@
       "TEXT": "Modelo 2"
     }
   },
-  "SAVINGS-PLANS-PAGE": {
-    "TITLE": {
-      "TEXT": "Modelo 1"
-    },
-    "SUBTITLE": {
-      "TEXT": "Modelo 1"
-    }
-  },
-  "SAVINGS-PLANS-ONEB-PAGE": {
-    "TITLE": {
-      "TEXT": "Modelo R"
-    },
-    "SUBTITLE": {
-      "TEXT": "Modelo R"
-    }
-  },
-  "CART-PAGE": {
-    "CART-TITLE": {
-      "TEXT": "Carrito de Compras"
-    },
-    "BILLED-TO": {
-      "TEXT": "Facturado a"
-    },
-    "ADDRESS": {
-      "TEXT": "Dirección"
-    },
-    "EMAIL": {
-      "TEXT": "Correo Electrónico"
-    },
-    "ORDER-DATE": {
-      "TEXT": "Fecha de Orden"
-    },
-    "ORDER-SUMMARY": {
-      "TEXT": "Resumen del Pedido"
-    },
-    "COL-NAME": {
-      "TEXT": "Nombre"
-    },
-    "COL-IMG": {
-      "TEXT": "Imagen"
-    },
-    "COL-DESCRIPTION": {
-      "TEXT": "Descripción"
-    },
-    "POINTS-CALIF": {
-      "TEXT": "Puntos Calif"
-    },
-    "POINTS-BINARY": {
-      "TEXT": "Puntos Binarios"
-    },
-    "COMMISSIONABLE": {
-      "TEXT": "Comisionable"
-    },
-    "COL-PRICE": {
-      "TEXT": "Precio"
-    },
-    "DISCOUNT": {
-      "TEXT": "Descuento"
-    },
-    "COL-QUANTITY": {
-      "TEXT": "Cantidad"
-    },
-    "COL-TOTAL": {
-      "TEXT": "Total"
-    },
-    "COL-ACTION": {
-      "TEXT": "Acción"
-    },
-    "REMOVE-ITEM": {
-      "TEXT": "Eliminar Artículo"
-    },
-    "SUBTOTAL": {
-      "TEXT": "Subtotal"
-    },
-    "VAT": {
-      "TEXT": "I.V.A"
-    },
-    "INCLUDED": {
-      "TEXT": "Incluido"
-    },
-    "TOTAL-DISCOUNT": {
-      "TEXT": "Total Descuento"
-    },
-    "TOTAL": {
-      "TEXT": "Total"
-    },
-    "CREDIT-DEBIT-PAYMENT": {
-      "TEXT": "Pago con tarjeta de crédito y débito"
-    },
-    "COINPAY-PAYMENT": {
-      "TEXT": "Pago con Coinpay CR"
-    },
-    "BUY-MORE": {
-      "TEXT": "Comprar Más"
-    },
-    "SERVICE-BALANCE-PAYMENT": {
-      "TEXT": "Pago con saldo de servicios"
-    },
-    "BALANCE-PAYMENT": {
-      "TEXT": "Pago con saldo disponible"
-    },
-    "MODEL-BALANCE-PAYMENT": {
-      "TEXT": "Pago con solicitud modelo"
-    },
-    "EMPTY-CART": {
-      "TEXT": "Vaciar Carrito"
-    }
-  },
-  "HOME-ADMIN-PAGE": {
-    "ACTIVE-AFFILIATES": {
-      "TEXT": "Afiliados Activos"
-    },
-    "COMMISSIONS-CALCULATED": {
-      "TEXT": "Comisiones Calculadas"
-    },
-    "WALLET-BENEFIT": {
-      "TEXT": "Beneficio en Billetera"
-    },
-    "TOTAL-COMMISSIONS-PAID": {
-      "TEXT": "Total Comisiones Pagadas"
-    },
-    "AFFILIATES-ENTERED": {
-      "TEXT": "Afiliados Ingresados"
-    },
-    "RECORD-SOURCE": {
-      "TEXT": "Origen de Registros"
-    },
-    "PURCHASES-MADE": {
-      "TEXT": "Compras Realizadas"
-    },
-    "LAST-REGISTERED-AFFILIATES": {
-      "TEXT": "Ultimos afiliados registrados"
-    },
-    "NO-SPONSORSHIPS": {
-      "TEXT": "No Patrocinios"
-    },
-    "SPONSORED": {
-      "TEXT": "Patrocinados"
-    },
-    "TOTAL-PURCHASES": {
-      "TEXT": "Totales compras"
-    },
-    "TOTAL-COMMISSIONABLE": {
-      "TEXT": "Total comisionable"
-    }
-  },
-  "USERS-LIST-PAGE": {
-    "USERS-LIST-TITLE": {
-      "TEXT": "Lista de Usuarios"
-    },
-    "USERS-LIST-SUBTITLE": {
-      "TEXT": "Registro"
-    },
-    "USERS-SEARCH": {
-      "TEXT": "Búsqueda"
-    },
-    "COL-ID": {
-      "TEXT": "ID"
-    },
-    "COL-USER": {
-      "TEXT": "Usuario"
-    },
-    "COL-ROL": {
-      "TEXT": "Rol"
-    },
-    "COL-NAME": {
-      "TEXT": "Nombre"
-    },
-    "COL-LAST-NAME": {
-      "TEXT": "Apellido"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Correo"
-    },
-    "COL-ACTIONS": {
+  "BILLING-PURCHASES-PAGE": {
+    "ACTIONS": {
       "TEXT": "Acciones"
     },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-ADD-USER": {
-      "TEXT": "Agregar usuario"
-    },
-    "BTN-EDIT": {
-      "TEXT": "Editar"
-    }
-  },
-  "USERS-LIST-CREATE-MODAL": {
-    "TITLE": {
-      "TEXT": "Crear Usuario"
-    },
-    "COL-USER": {
-      "TEXT": "Usuario"
-    },
-    "COL-PASSWORD": {
-      "TEXT": "Contraseña"
-    },
-    "COL-CONFIRM-PASSWORD": {
-      "TEXT": "Repetir Contraseña"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Correo"
-    },
-    "COL-OBSERVATION": {
-      "TEXT": "Observación"
-    },
-    "COL-NAME": {
-      "TEXT": "Nombre"
-    },
-    "COL-LASTNAME": {
-      "TEXT": "Apellidos"
-    },
-    "COL-PHONE": {
-      "TEXT": "Teléfono"
-    },
-    "COL-ADDRESS": {
-      "TEXT": "Dirección"
-    },
-    "COL-ROLE": {
-      "TEXT": "Rol"
-    },
-    "BTN-STATUS": {
-      "TEXT": "Estado"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "LBL-SELECT-ROLE": {
-      "TEXT": "Seleccione una opción"
-    },
-    "MSJ-ERROR-USER": {
-      "TEXT": "El nombre de usuario es requerido."
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "El nombre es requerido."
-    },
-    "MSJ-ERROR-PASS": {
-      "TEXT": "La contraseña es requerida."
-    },
-    "MSJ-ERROR-LASTNAME": {
-      "TEXT": "El apellido es requerido."
-    },
-    "MSJ-ERROR-CONFIRM-PASS": {
-      "TEXT": "La confirmación de la contraseña es requerida."
-    },
-    "MSJ-ERROR-PHONE": {
-      "TEXT": "El teléfono es requerido."
-    },
-    "MSJ-ERROR-EMAIL": {
-      "TEXT": "El correo es requerido."
-    },
-    "MSJ-ERROR-ROL": {
-      "TEXT": "El rol es requerido."
-    },
-    "MSJ-ERROR-OBSERVATION": {
-      "TEXT": "La observación es requerida."
-    },
-    "MSJ-ERROR-ADDRESS": {
-      "TEXT": "La dirección es requerida."
-    },
-    "MSJ-ERROR-EQUALS-PASS": {
-      "TEXT": "Las contraseñas deben coincidir."
-    },
-    "MSJ-ERROR-EMAIL-INVALID": {
-      "TEXT": "El email no es válido."
-    }
-  },
-  "USER-LIST-DETAIL-MODAL": {
-    "TITLE": {
-      "TEXT": "Detalles del Usuario:"
-    },
-    "LBL-PHONE": {
-      "TEXT": "Teléfono"
-    },
-    "LBL-ADDRESS": {
-      "TEXT": "Dirección"
-    },
-    "LBL-EMAIL": {
-      "TEXT": "Correo"
-    },
-    "LBL-USER": {
-      "TEXT": "Nombre Usuario"
-    },
-    "LBL-OBSERVATION": {
-      "TEXT": "Observación"
-    },
-    "LBL-MOVEMENTS": {
-      "TEXT": "Últimos Movimientos"
-    },
-    "COL-MOVEMENTS": {
-      "TEXT": "Movimientos"
-    },
-    "COL-IP": {
-      "TEXT": "IP"
-    },
-    "COL-DATE": {
-      "TEXT": "Fecha"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    }
-  },
-  "USERS-LIST-EDIT-MODAL": {
-    "TITLE": {
-      "TEXT": "Editar Usuario"
-    },
-    "COL-USER-NAME": {
-      "TEXT": "Usuario"
-    },
-    "COL-NAME": {
-      "TEXT": "Nombre"
-    },
-    "COL-LASTNAME": {
-      "TEXT": "Apellidos"
-    },
-    "COL-PHONE": {
-      "TEXT": "Teléfono"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Correo"
-    },
-    "COL-ROL": {
-      "TEXT": "Rol"
-    },
-    "COL-OBSERVATION": {
-      "TEXT": "Observación"
-    },
-    "COL-ADDRESS": {
-      "TEXT": "Dirección"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    },
-    "MSJ-ERROR-USER": {
-      "TEXT": "El nombre de usuario es requerido."
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "El nombre es requerido."
-    },
-    "MSJ-ERROR-LASTNAME": {
-      "TEXT": "Los apellidos son requeridos"
-    },
-    "MSJ-ERROR-PHONE": {
-      "TEXT": "El teléfono es requerido."
-    },
-    "MSJ-ERROR-EMAIL": {
-      "TEXT": "El correo es requerido."
-    },
-    "MSJ-ERROR-ADDRESS": {
-      "TEXT": "La dirección es requerida."
-    },
-    "MSJ-ERROR-OBSERVATION": {
-      "TEXT": "La observación es requerida."
-    },
-    "MSJ-ERROR-ROL": {
-      "TEXT": "El rol es requerido."
-    },
-    "MSJ-ERROR-EMAIL-INVALID": {
-      "TEXT": "El email no es válido."
-    }
-  },
-  "ROL-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "Lista de Roles"
-    },
-    "SUBTITLE": {
-      "TEXT": "Registro"
-    },
-    "COL-ROLE": {
-      "TEXT": "Rol"
-    },
-    "COL-DESCRIPTION": {
-      "TEXT": "Descripción"
-    },
-    "COL-ASSOCIATED-USERS": {
-      "TEXT": "Usuarios Asociados"
-    },
-    "COL-ROL-ACTIONS": {
-      "TEXT": "Acciones"
-    },
-    "COL-ROL-PERMISSIONS": {
-      "TEXT": "Permisos"
-    },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-EDIT": {
-      "TEXT": "Editar"
-    },
-    "BTN-PERMISSIONS": {
-      "TEXT": "Permisos"
-    },
-    "BTN-SUMMARY": {
-      "TEXT": "Resumen"
-    },
-    "BTN-DELETE": {
-      "TEXT": "Eliminar"
-    }
-  },
-  "ROL-LIST-SUMMARY-MODAL": {
-    "TITLE": {
-      "TEXT": "Resumen"
-    },
-    "SUBTITLE": {
-      "TEXT": "Detalles del Rol:"
-    },
-    "SECOND-SUBTITLE": {
-      "TEXT": "Usuarios asignados al Rol"
-    },
-    "LBL-ROL-NAME": {
-      "TEXT": "Nombre del Rol:"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Descripción:"
-    },
-    "COL-USER": {
-      "TEXT": "Usuario"
-    },
-    "COL-FULL-NAME": {
-      "TEXT": "Nombre Completo"
-    }
-  },
-  "ROL-LIST-EDIT-MODAL": {
-    "TITLE": {
-      "TEXT": "Editar"
-    },
-    "LBL-ROL-NAME": {
-      "TEXT": "Nombre del Rol:"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Descripción"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "El nombre del rol es requerido"
-    },
-    "MSJ-ERROR-DESCRIPTION": {
-      "TEXT": "La descripción es requerida"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    }
-  },
-  "ROL-LIST-PERMISSIONS-MODAL": {
-    "TITLE": {
-      "TEXT": "Editar Permisos"
-    },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    },
-    "COL-MENU": {
-      "TEXT": "Menú"
-    },
-    "COL-SUBMENU": {
-      "TEXT": "Sub Menú"
-    },
-    "COL-READ": {
-      "TEXT": "Leer"
-    },
-    "COL-EDIT": {
-      "TEXT": "Editar"
-    },
-    "COL-CREATE": {
-      "TEXT": "Crear"
-    },
-    "COL-DELETE": {
-      "TEXT": "Eliminar"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    }
-  },
-  "ROL-LIST-CREATE-MODAL": {
-    "TITLE": {
-      "TEXT": "Crear Rol"
-    },
-    "LBL-ROL-NAME": {
-      "TEXT": "Nombre del Rol:"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Descripción:"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "El nombre del rol es requerido"
-    },
-    "MSJ-ERROR-DESCRIPTION": {
-      "TEXT": "La descripción es requerida"
-    }
-  },
-  "AFFILIATES-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "Lista de Afiliados"
-    },
-    "COL-USER": {
-      "TEXT": "Usuario"
-    },
-    "COL-STATUS": {
-      "TEXT": "Estado"
-    },
-    "COL-AFFILIATE-MODE": {
-      "TEXT": "Modo afiliado"
-    },
-    "COL-CALIFICATION": {
-      "TEXT": "Calificación"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Correo"
-    },
-    "COL-DATE": {
-      "TEXT": "FechaR"
-    },
-    "COL-FATHER": {
-      "TEXT": "Padre"
-    },
-    "COL-SPONSOR": {
-      "TEXT": "Patrocinador"
-    },
-    "COL-BINARY-SPONSOR": {
-      "TEXT": "Patrocinador Binario"
-    },
-    "COL-DETAILS": {
-      "TEXT": "Detalles"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar`"
-    },
-    "MORE-DETAILS": {
-      "TEXT": "Más Detalles"
-    },
-    "EDIT": {
-      "TEXT": "Editar"
-    },
-    "UNILEVEL-FAMILY-TREE": {
-      "TEXT": "Árbol Sistema 2U"
-    },
-    "FORCED-GENEALOGICAL-TREE": {
-      "TEXT": "Árbol Sistema 3MF"
-    },
-    "BINARY-GENEALOGICAL-TREE": {
-      "TEXT": "Árbol Sistema 1B"
-    },
-    "WALLET-BALANCE": {
-      "TEXT": "Balance de Billetera"
-    },
-    "MAKE-PURCHASE": {
-      "TEXT": "Realizar Compra"
-    },
-    "CHANGE-SPONSOR": {
-      "TEXT": "Cambiar Patrocinador"
-    },
-    "QUALIFICATION-AUDIT": {
-      "TEXT": "Auditoria de Calificación"
-    },
-    "NETWORK-PURCHASE-REGISTRY": {
-      "TEXT": "Registro de compras de red"
-    },
-    "TOPE-MAX-COINPAYMENTS": {
-      "TEXT": "Tope Max Coinpayments"
-    },
-    "REMOVE-AFFILIATE": {
-      "TEXT": "Eliminar Afiliado"
-    },
-    "BTN-ACTIONS": {
-      "TEXT": "Acciones"
-    }
-  },
-  "PURCHASES-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "Lista de Compras"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Afiliado"
-    },
-    "COL-NAME-AND-LASTNAME": {
-      "TEXT": "Nombre y Apellido"
-    },
-    "COL-BILL": {
-      "TEXT": "No.Factura"
-    },
-    "COL-DATE": {
-      "TEXT": "Fecha"
-    },
-    "COL-BILL-STATE": {
-      "TEXT": "Estado Factura"
-    },
-    "COL-PAID": {
-      "TEXT": "Pagado"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-DETAILS": {
-      "TEXT": "Ver Detalles"
-    },
-    "COL-DETAILS": {
-      "TEXT": "Detail"
-    }
-  },
-  "AUTHORIZE-AFFILIATES": {
-    "TITLE": {
-      "TEXT": "Autorizar Afiliados"
-    },
-    "SUBTITLE": {
-      "TEXT": "Afiliaciones sin autorizar"
-    },
-    "COL-AUTHORIZE": {
-      "TEXT": "Autorizar"
-    },
-    "COL-DELETE": {
-      "TEXT": "Borrar"
-    },
-    "COL-USER": {
-      "TEXT": "Usuario"
-    },
-    "COL-EMAIL": {
-      "TEXT": "Correo"
-    },
-    "COL-IDENTITY": {
-      "TEXT": "Identidad"
-    },
-    "COL-REGISTER-DATE": {
-      "TEXT": "Fecha Registro"
-    },
-    "COL-FATHER": {
-      "TEXT": "Padre"
-    },
-    "COL-SPONSOR": {
-      "TEXT": "Patrocinador"
-    },
-    "COL-BINARY-SPONSOR": {
-      "TEXT": "Patrocinador Binario"
-    },
-    "COL-DETAILS": {
-      "TEXT": "Detalles"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-AUTHORIZE-ALL": {
-      "TEXT": "Autorizar Todos"
-    },
-    "BTN-DELETE-ALL": {
-      "TEXT": "Borrar Todos"
-    },
-    "BTN-PROCESS-SELECTION": {
-      "TEXT": "Procesar Selección"
-    },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
+    "ALTERNATIVE-HEALTH": {
+      "TEXT": "Salud Alternativa"
+    },
+    "BILLING-PURCHASES-TITLE": {
+      "TEXT": "Facturación"
     },
     "BTN-SEE-DETAILS": {
       "TEXT": "Ver Detalles"
     },
-    "MSJ": {
-      "TEXT": "Existen registros por pagos de afiliación, verifique el pago antes de autorizar al afiliado. Para ver los datos suministrados por el afiliado de click en el boton Ver Detalles."
-    }
-  },
-  "PURCHASE-ORDER-LIST": {
-    "TITLE": {
-      "TEXT": "Lista de Ordenes de Compra"
+    "COPY": {
+      "TEXT": "Copiar"
     },
-    "COL-AFFILIATE": {
-      "TEXT": "Afiliado"
+    "FUNDING-ACCOUNTS": {
+      "TEXT": "Cuentas de Fondeo"
     },
-    "COL-ORDER": {
-      "TEXT": "Orden"
+    "MEMBERSHIP": {
+      "TEXT": "Membresía"
     },
-    "COL-DATE": {
+    "MODEL-1A": {
+      "TEXT": "Modelo 1A"
+    },
+    "MODEL-1B": {
+      "TEXT": "Modelo 1B"
+    },
+    "MODEL-2": {
+      "TEXT": "Modelo 2"
+    },
+    "PDF": {
+      "TEXT": "PDF"
+    },
+    "RECURRING-MODEL": {
+      "TEXT": "Modelo Recurrente"
+    },
+    "ROW-ACTIVE": {
+      "TEXT": "Activa"
+    },
+    "ROW-BILL-STATE": {
+      "TEXT": "Estado de Factura"
+    },
+    "ROW-CANCELLED": {
+      "TEXT": "Cancelada"
+    },
+    "ROW-DATE": {
       "TEXT": "Fecha"
     },
-    "COL-PAID-METHOD": {
-      "TEXT": "Metodo de Pago"
-    },
-    "COL-BANK": {
-      "TEXT": "Banco"
-    },
-    "COL-STATUS": {
-      "TEXT": "Estatus"
-    },
-    "COL-STATE": {
-      "TEXT": "Estado"
-    },
-    "COL-DETAIL": {
+    "ROW-DETAIL": {
       "TEXT": "Detalle"
     },
-    "BTN-SEE-DETAIL": {
-      "TEXT": "Ver detalle"
+    "ROW-MODEL": {
+      "TEXT": "Modelo"
     },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
+    "ROW-NO-BILL": {
+      "TEXT": "No. de Factura"
     },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
+    "ROW-NOT-PAID": {
+      "TEXT": "No Pagado"
+    },
+    "ROW-PAID": {
+      "TEXT": "Pagado"
     },
     "SEARCH": {
-      "TEXT": "Búsqueda"
+      "TEXT": "Buscar"
+    },
+    "TOTAL-AMOUNT": {
+      "TEXT": "Monto Total"
+    },
+    "TRADING-ACADEMY": {
+      "TEXT": "Academia de Trading"
     }
   },
-  "AUTHORIZE-PURCHASES": {
+  "BINARY-GENEALOGICAL-TREE-PAGE": {
     "TITLE": {
-      "TEXT": "Lista de Ordenes por Autorizar"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Afiliado"
-    },
-    "COL-ORDER": {
-      "TEXT": "Orden"
-    },
-    "COL-DATE": {
-      "TEXT": "Fecha"
-    },
-    "COL-PAID-METHOD": {
-      "TEXT": "Metodo de Pago"
-    },
-    "COL-BANK": {
-      "TEXT": "Banco"
-    },
-    "COL-SUPPORT": {
-      "TEXT": "Soporte"
-    },
-    "COL-TRASACTION-DATE": {
-      "TEXT": "Fecha de Transacción"
-    },
-    "COL-DETAIL": {
-      "TEXT": "Detalles"
-    },
-    "CHECK-APPROVE-ORDER": {
-      "TEXT": "Aprobar Orden"
-    },
-    "CHECK-DENY-ORDER": {
-      "TEXT": "Negar Orden"
-    },
-    "BTN-PROCESS-SELECTION": {
-      "TEXT": "Procesar Selección"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-SEE-DETAILS": {
-      "TEXT": "Ver Detalles"
+      "TEXT": "Árbol Sistema 1B"
     }
   },
   "CALCULATE-COMMISSIONS": {
-    "TITLE": {
-      "TEXT": "Calcular Comisiones"
-    },
-    "SUBTITLE": {
-      "TEXT": "Procesar Calculos"
-    },
-    "FIRST-MSJ": {
-      "TEXT": "Importante: Antes de calcular los conceptos de pago asegúrese de haber actualizado antes los Volúmenes de puntos y compras."
-    },
-    "SECOND-MSJ": {
-      "TEXT": "Este proceso puede tardar varios minutos, por favor luego de iniciar el proceso espere a que este finalize y no cierre la ventana."
+    "BTN-RECURRING-CHARGES": {
+      "TEXT": "Ejecutar cobros recurrentes"
     },
     "BTN-UPDATE-VOLUME": {
       "TEXT": "Actualizar Volumen"
@@ -1678,23 +640,211 @@
     "BTN-WITHOUT-UPDATE": {
       "TEXT": "Continuar sin actualizar"
     },
-    "BTN-RECURRING-CHARGES": {
-      "TEXT": "Ejecutar cobros recurrentes"
+    "FIRST-MSJ": {
+      "TEXT": "Importante: Antes de calcular los conceptos de pago asegúrese de haber actualizado antes los Volúmenes de puntos y compras."
+    },
+    "SECOND-MSJ": {
+      "TEXT": "Este proceso puede tardar varios minutos, por favor luego de iniciar el proceso espere a que este finalize y no cierre la ventana."
+    },
+    "SUBTITLE": {
+      "TEXT": "Procesar Calculos"
+    },
+    "TITLE": {
+      "TEXT": "Calcular Comisiones"
+    }
+  },
+  "CALCULATED-COMMISSIONS": {
+    "BTN-CONSULT": {
+      "TEXT": "Consultar"
+    },
+    "LBL-CONCEPT": {
+      "TEXT": "Concepto"
+    },
+    "LBL-PERIOD": {
+      "TEXT": "Periodo"
+    },
+    "SLT-OPTION-1ERLEVEL": {
+      "TEXT": "1ernivel"
+    },
+    "SLT-OPTION-ALL": {
+      "TEXT": "Ver Todos"
+    },
+    "SLT-OPTION-BONO": {
+      "TEXT": "Bono Binario"
+    },
+    "SLT-OPTION-PERIOD": {
+      "TEXT": "Periodo Actual"
+    },
+    "SLT-OPTION-SHOP": {
+      "TEXT": "Tienda"
+    },
+    "TITLE": {
+      "TEXT": "Comisiones Calculadas"
+    }
+  },
+  "CALCULATION-GROUPS-CREATE-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Descripción"
+    },
+    "LBL-NAME": {
+      "TEXT": "Nombre"
+    },
+    "MSJ-ERROR-DESCRIPTION": {
+      "TEXT": "La Descripción para el grupo de calculo es requerido."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "El nombre para el grupo de cálculo es requerido."
+    },
+    "TITLE": {
+      "TEXT": "Crear grupo de cálculo"
+    }
+  },
+  "CALCULATION-GROUPS-EDIT-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Descripción"
+    },
+    "LBL-NAME": {
+      "TEXT": "Nombre"
+    },
+    "MSJ-ERROR-DESCRIPTION": {
+      "TEXT": "La Descripción para el grupo de calculo es requerido."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "El nombre para el grupo de cálculo es requerido."
+    },
+    "TITLE": {
+      "TEXT": "Editar grupo de cálculo"
+    }
+  },
+  "CALCULATION-GROUPS-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Listado Grupos de Calculo"
+    },
+    "TITLE": {
+      "TEXT": "Grupos de Calculo"
+    }
+  },
+  "CALIFICATIONS-LIST-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Lista de Calificaciones"
+    },
+    "TITLE": {
+      "TEXT": "Calificaciones"
+    }
+  },
+  "CART-PAGE": {
+    "ADDRESS": {
+      "TEXT": "Dirección"
+    },
+    "BALANCE-PAYMENT": {
+      "TEXT": "Pago con saldo disponible"
+    },
+    "BILLED-TO": {
+      "TEXT": "Facturado a"
+    },
+    "BUY-MORE": {
+      "TEXT": "Comprar Más"
+    },
+    "CART-TITLE": {
+      "TEXT": "Carrito de Compras"
+    },
+    "COINPAY-PAYMENT": {
+      "TEXT": "Pago con Coinpay CR"
+    },
+    "COL-ACTION": {
+      "TEXT": "Acción"
+    },
+    "COL-DESCRIPTION": {
+      "TEXT": "Descripción"
+    },
+    "COL-IMG": {
+      "TEXT": "Imagen"
+    },
+    "COL-NAME": {
+      "TEXT": "Nombre"
+    },
+    "COL-PRICE": {
+      "TEXT": "Precio"
+    },
+    "COL-QUANTITY": {
+      "TEXT": "Cantidad"
+    },
+    "COL-TOTAL": {
+      "TEXT": "Total"
+    },
+    "COMMISSIONABLE": {
+      "TEXT": "Comisionable"
+    },
+    "CREDIT-DEBIT-PAYMENT": {
+      "TEXT": "Pago con tarjeta de crédito y débito"
+    },
+    "DISCOUNT": {
+      "TEXT": "Descuento"
+    },
+    "EMAIL": {
+      "TEXT": "Correo Electrónico"
+    },
+    "EMPTY-CART": {
+      "TEXT": "Vaciar Carrito"
+    },
+    "INCLUDED": {
+      "TEXT": "Incluido"
+    },
+    "MODEL-BALANCE-PAYMENT": {
+      "TEXT": "Pago con solicitud modelo"
+    },
+    "ORDER-DATE": {
+      "TEXT": "Fecha de Orden"
+    },
+    "ORDER-SUMMARY": {
+      "TEXT": "Resumen del Pedido"
+    },
+    "POINTS-BINARY": {
+      "TEXT": "Puntos Binarios"
+    },
+    "POINTS-CALIF": {
+      "TEXT": "Puntos Calif"
+    },
+    "REMOVE-ITEM": {
+      "TEXT": "Eliminar Artículo"
+    },
+    "SERVICE-BALANCE-PAYMENT": {
+      "TEXT": "Pago con saldo de servicios"
+    },
+    "SUBTOTAL": {
+      "TEXT": "Subtotal"
+    },
+    "TOTAL": {
+      "TEXT": "Total"
+    },
+    "TOTAL-DISCOUNT": {
+      "TEXT": "Total Descuento"
+    },
+    "VAT": {
+      "TEXT": "I.V.A"
+    }
+  },
+  "CATEGORIES": {
+    "SUBTITLE": {
+      "TEXT": "Lista de Categorías"
+    },
+    "TITLE": {
+      "TEXT": "Categorías"
     }
   },
   "CLOSURE-CONCEPTS": {
-    "TITLE": {
-      "TEXT": "Cierre de conceptos"
-    },
-    "SUBTITLE": {
-      "TEXT": "Listado de Conceptos"
-    },
-    "COL-CONCEPT": {
-      "TEXT": "Concepto"
-    },
-    "COL-TOTAL-PAID": {
-      "TEXT": "Total a pagar"
-    },
     "BTN-CLOSE-CONCEPTS": {
       "TEXT": "Cerrar conceptos seleccionados"
     },
@@ -1703,655 +853,105 @@
     },
     "BTN-PRINT": {
       "TEXT": "Imprimir"
-    }
-  },
-  "PERIOD-CLOSING": {
-    "TITLE": {
-      "TEXT": "Cierre de Periodo"
-    },
-    "SUBTITLE": {
-      "TEXT": "Historial cierres de periodo"
-    },
-    "MSJ": {
-      "TEXT": "Importante: Este proceso es irreversible, al cerrar el periodo actual el volumen de red sera reiniciado a cero para todos los afiliados y si esta activo la inactivacion de afiliados por cierre de periodo todos los afiliados se inactivaran"
-    },
-    "COL-RESPONSIBLE": {
-      "TEXT": "Responsable"
-    },
-    "COL-DATE": {
-      "TEXT": "Fecha"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-CLOSE-PERIOD": {
-      "TEXT": "Cerrar periodo actual"
-    }
-  },
-  "CALCULATED-COMMISSIONS": {
-    "TITLE": {
-      "TEXT": "Comisiones Calculadas"
-    },
-    "LBL-CONCEPT": {
-      "TEXT": "Concepto"
-    },
-    "LBL-PERIOD": {
-      "TEXT": "Periodo"
-    },
-    "SLT-OPTION-BONO": {
-      "TEXT": "Bono Binario"
-    },
-    "SLT-OPTION-1ERLEVEL": {
-      "TEXT": "1ernivel"
-    },
-    "SLT-OPTION-SHOP": {
-      "TEXT": "Tienda"
-    },
-    "SLT-OPTION-ALL": {
-      "TEXT": "Ver Todos"
-    },
-    "SLT-OPTION-PERIOD": {
-      "TEXT": "Periodo Actual"
-    },
-    "BTN-CONSULT": {
-      "TEXT": "Consultar"
-    }
-  },
-  "ACCREDITED-COMMISSIONS": {
-    "TITLE": {
-      "TEXT": "Comisiones Acreditas"
-    },
-    "SUBTITLE": {
-      "TEXT": "Comisiones por acreditar"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Afiliado"
-    },
-    "COL-NAME": {
-      "TEXT": "Nombre y Apellido"
-    },
-    "COL-AMOUNT": {
-      "TEXT": "Monto (USD)"
-    },
-    "COL-DETAILS": {
-      "TEXT": "Detalles"
-    },
-    "RADIO-BTN-1": {
-      "TEXT": "Pasarlo a Billetera"
-    },
-    "RADIO-BTN-2": {
-      "TEXT": "Pagarlo del todo"
-    },
-    "BTN-PROCESS": {
-      "TEXT": "Procesar"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-DETAILS": {
-      "TEXT": "Ver Detalles"
-    }
-  },
-  "COMMISSIONS-PAID": {
-    "TITLE": {
-      "TEXT": "Comisiones Pagadas"
-    },
-    "SUBTITLE": {
-      "TEXT": "Registros"
-    },
-    "COL-DATE": {
-      "TEXT": "Fecha"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Afiliado"
-    },
-    "COL-NAME": {
-      "TEXT": "Nombre y Apellido"
     },
     "COL-CONCEPT": {
       "TEXT": "Concepto"
     },
-    "COL-RESIDUALS": {
+    "COL-TOTAL-PAID": {
+      "TEXT": "Total a pagar"
+    },
+    "SUBTITLE": {
+      "TEXT": "Listado de Conceptos"
+    },
+    "TITLE": {
+      "TEXT": "Cierre de conceptos"
+    }
+  },
+  "COMMISSIONS-BALANCE-PAGE": {
+    "COMMISSIONS-TITLE": {
+      "TEXT": "Mi Balance"
+    },
+    "ROW-CONCEPT": {
+      "TEXT": "Concepto"
+    },
+    "ROW-CREDITS": {
+      "TEXT": "Créditos"
+    },
+    "ROW-DATE": {
+      "TEXT": "Fecha"
+    },
+    "ROW-DEBITS": {
+      "TEXT": "Debitos"
+    },
+    "ROW-RESIDUALS-PAID": {
       "TEXT": "Residuales Pagados"
+    },
+    "ROW-STATE": {
+      "TEXT": "Estado"
+    }
+  },
+  "COMMISSIONS-PAGE": {
+    "COMMISSIONS-LBL-CONCEPT": {
+      "TEXT": "Concepto"
+    },
+    "COMMISSIONS-LBL-PERIOD": {
+      "TEXT": "Periodo"
+    },
+    "COMMISSIONS-TITLE": {
+      "TEXT": "Consultar"
+    },
+    "SLT-OPTION-1ERLEVEL": {
+      "TEXT": "1ernivel"
+    },
+    "SLT-OPTION-ALL": {
+      "TEXT": "Ver Todos"
+    },
+    "SLT-OPTION-BONO": {
+      "TEXT": "Bono Binario"
+    },
+    "SLT-OPTION-PERIOD": {
+      "TEXT": "Periodo Actual"
+    },
+    "SLT-OPTION-SHOP": {
+      "TEXT": "Tienda"
+    }
+  },
+  "COMMISSIONS-PAID": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-DETAILS": {
+      "TEXT": "Ver detalle"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Afiliado"
     },
     "COL-AMOUNT": {
       "TEXT": "Monto (USD)"
     },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-DETAILS": {
-      "TEXT": "Ver detalle"
-    }
-  },
-  "INCENTIVES-DELIVERED": {
-    "TITLE": {
-      "TEXT": "Incentivos Entregados"
-    },
-    "SUBTITLE": {
-      "TEXT": "Listado de incentivos entregados"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Afiliado"
-    },
-    "COL-NAME": {
-      "TEXT": "Nombre y Apellido"
-    },
-    "COL-INCENTIVE": {
-      "TEXT": "Incentivo ganado"
-    },
-    "COL-DESCRIPTION": {
-      "TEXT": "Descripción del Incentivo"
-    },
-    "COL-DATE": {
-      "TEXT": "Fecha de Calculo"
-    },
-    "COL-DATE-ASSIGNED": {
-      "TEXT": "Fecha Asignado"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "SEARCH": {
-      "TEXT": "Búsqueda"
-    }
-  },
-  "INCENTIVES-FOR-DELIVERING": {
-    "TITLE": {
-      "TEXT": "Incentivos por entregar"
-    },
-    "SUBTITLE": {
-      "TEXT": "Listado de incentivos por entregar"
-    },
-    "COL-AFFILIATE": {
-      "TEXT": "Afiliado"
-    },
-    "COL-NAME": {
-      "TEXT": "Nombre y Apellido"
-    },
-    "COL-INCENTIVE": {
-      "TEXT": "Incentivo ganado"
+    "COL-CONCEPT": {
+      "TEXT": "Concepto"
     },
     "COL-DATE": {
       "TEXT": "Fecha"
     },
-    "COL-KEEP": {
-      "TEXT": "Mantener"
+    "COL-NAME": {
+      "TEXT": "Nombre y Apellido"
     },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
+    "COL-RESIDUALS": {
+      "TEXT": "Residuales Pagados"
     },
     "SEARCH": {
       "TEXT": "Búsqueda"
     },
-    "BTN-DELIVER": {
-      "TEXT": "Entregar incentivos"
-    }
-  },
-  "ADMIN-MY-PROFILE": {
-    "TITLE": {
-      "TEXT": "Mi Perfil"
-    },
-    "LBL-PHONE": {
-      "TEXT": "Teléfono"
-    },
-    "LBL-ADDRESS": {
-      "TEXT": "Dirección"
-    },
-    "LBL-EMAIL": {
-      "TEXT": "Correo"
-    },
-    "LBL-OBSERVATION": {
-      "TEXT": "Observación"
-    },
-    "LBL-CHANGE-PASSWORD": {
-      "TEXT": "Cambiar contraseña"
-    },
-    "LBL-CHANGE-PASSWORD-UPLOAD": {
-      "TEXT": "Cambiar contraseña Upload"
-    },
-    "LBL-CHANGE-SECRET-QUESTION": {
-      "TEXT": "Cambiar pregunta secreta"
-    },
-    "BTN-EDIT-PERSONAL-INFO": {
-      "TEXT": "Editar datos personales"
-    },
-    "LBL-LAST-MOVEMENTS": {
-      "TEXT": "Últimos Movimientos"
-    },
-    "COL-MOVEMENTS": {
-      "TEXT": "Movimientos"
-    },
-    "COL-IP": {
-      "TEXT": "IP"
-    },
-    "COL-DATE": {
-      "TEXT": "Fecha"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-OPTIONS": {
-      "TEXT": "Opciones"
-    }
-  },
-  "ADMIN-EDIT-PASSWORD-MODAL": {
-    "TITLE": {
-      "TEXT": "Cambio de Contraseña"
-    },
-    "LBL-CURRENT-PASSWORD": {
-      "TEXT": "Contraseña Actual"
-    },
-    "LBL-NEW-PASSWORD": {
-      "TEXT": "Nueva Contraseña"
-    },
-    "LBL-CONFIRM-PASSWORD": {
-      "TEXT": "Confirmar Contraseña"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    },
-    "MSJ-ERROR-CURRENT-PASSWORD": {
-      "TEXT": "La contraseña actual es requerida"
-    },
-    "MSJ-ERROR-NEW-PASSWORD": {
-      "TEXT": "La nueva contraseña es requerida"
-    },
-    "MSJ-ERROR-CONFIRM-PASSWORD": {
-      "TEXT": "La confirmación de la contraseña es requerida"
-    },
-    "MSJ-ERROR-CONFIRM-EQUALS-PASSWORD": {
-      "TEXT": "Las contraseñas deben coincidir."
-    },
-    "MSJ-ERROR-SIZE-PASSWORD": {
-      "TEXT": "La contraseña debe tener un mínimo de 6 y un máximo de 15 caracteres."
-    }
-  },
-  "ADMIN-EDIT-PERSONAL-INFO-MODAL": {
-    "TITLE": {
-      "TEXT": "Editar Datos de Perfil"
-    },
-    "LBL-NAME": {
-      "TEXT": "Nombre"
-    },
-    "LBL-LASTNAME": {
-      "TEXT": "Apellidos"
-    },
-    "LBL-EMAIL": {
-      "TEXT": "Email"
-    },
-    "LBL-PHONE": {
-      "TEXT": "Teléfono"
-    },
-    "LBL-ADDRESS": {
-      "TEXT": "Dirección"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "El nombre de usuario es requerido."
-    },
-    "MSJ-ERROR-LASTNAME": {
-      "TEXT": "El apellido es requerido."
-    },
-    "MSJ-ERROR-EMAIL": {
-      "TEXT": "El correo es requerido."
-    },
-    "MSJ-ERROR-PHONE": {
-      "TEXT": "El teléfono es requerido."
-    },
-    "MSJ-ERROR-ADDRESS": {
-      "TEXT": "La dirección es requerida."
-    }
-  },
-  "ADMIN-PASSWORD-UPLOAD-MODAL": {
-    "TITLE": {
-      "TEXT": "Cambiar contraseña Upload"
-    },
-    "LBL-PASSWORD": {
-      "TEXT": "Nueva contraseña Upload"
-    },
-    "LBL-CONFIRM-PASSWORD": {
-      "TEXT": "Repita nueva contraseña Upload"
-    },
-    "MSJ-ERROR-PASSWORD": {
-      "TEXT": "La contraseña es requerida"
-    },
-    "MSJ-ERROR-CONFIRM-PASSWORD": {
-      "TEXT": "La confirmación de la contraseña es requerida"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    }
-  },
-  "UNILEVEL-TREE-PAGE": {
-    "TITLE": {
-      "TEXT": "Árbol Sistema 2U"
-    }
-  },
-  "FORCED-GENEALOGICAL-TREE-PAGE": {
-    "TITLE": {
-      "TEXT": "Árbol Sistema 3MF"
-    }
-  },
-  "BINARY-GENEALOGICAL-TREE-PAGE": {
-    "TITLE": {
-      "TEXT": "Árbol Sistema 1B"
-    }
-  },
-  "ARRAYS-CONFIGURATIONS-PAGE": {
-    "TITLE": {
-      "TEXT": "Matrices"
-    },
     "SUBTITLE": {
-      "TEXT": "Configuración de Matrices"
+      "TEXT": "Registros"
     },
-    "MSJ-INFO": {
-      "TEXT": "Al estar marcada la casilla la red se estructura de forma unilevel, forzada o binaria."
-    },
-    "LBL-MATRIX-UNILEVEL": {
-      "TEXT": "Matriz Unilevel"
-    },
-    "LBL-ACTIVE-MATRIX-UNILEVEL": {
-      "TEXT": "Activar Matriz Unilevel"
-    },
-    "LBL-MATRIX-FORCED": {
-      "TEXT": "Matriz Forzada"
-    },
-    "LBL-ACTIVE-MATRIX-FORCED": {
-      "TEXT": "Activar Matriz Forzada"
-    },
-    "LBL-MATRIX-BINARY": {
-      "TEXT": "Matriz Binaria"
-    },
-    "LBL-ACTIVE-MATRIX-BINARY": {
-      "TEXT": "Activar Matriz Binaria"
-    },
-    "LBL-NUMBER-FRONT-AFFILIATES": {
-      "TEXT": "Numero de frontales para afiliados:"
-    },
-    "LBL-NUMBER-FRONT-SOFTWARE-MILLENIUM": {
-      "TEXT": "Numero frontales para Software Millenium:"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    }
-  },
-  "CONCEPT-LIST-PAGE": {
     "TITLE": {
-      "TEXT": "Conceptos"
-    },
-    "SUBTITLE": {
-      "TEXT": "Lista de Conceptos"
-    },
-    "COL-CONCEPT-NAME": {
-      "TEXT": "Nombre del Concepto"
-    },
-    "COL-CONCEPT-STATUS": {
-      "TEXT": "Estado del Concepto"
-    },
-    "COL-CALCULATE-GROUP": {
-      "TEXT": "Grupo de Calculo"
-    },
-    "COL-PAID-CONCEPT": {
-      "TEXT": "Pagar concepto a"
-    },
-    "COL-CALCULATE-CONCEPT": {
-      "TEXT": "Calcular concepto por"
-    },
-    "COL-POSITION-COMPRESSION": {
-      "TEXT": "Compresión de posición"
-    },
-    "COL-EQUALIZATION": {
-      "TEXT": "Igualación"
-    },
-    "COL-ACTIONS": {
-      "TEXT": "Acciones"
-    },
-    "BTN-COPY": {
-      "TEXT": "Copiar"
-    },
-    "BTN-PRINT": {
-      "TEXT": "Imprimir"
-    },
-    "BTN-DETAILS": {
-      "TEXT": "Ver Detalles"
-    },
-    "BTN-EDIT": {
-      "TEXT": "Editar"
-    },
-    "BTN-DELETE": {
-      "TEXT": "Eliminar"
-    },
-    "BTN-BINARY-CONFIG": {
-      "TEXT": "Configuración Binaria"
-    },
-    "BTN-CONFIGURATIONS": {
-      "TEXT": "Configurar"
-    },
-    "BTN-SEARCH": {
-      "TEXT": "Búsqueda"
-    }
-  },
-  "CONCEPT-LIST-CREATE-MODAL": {
-    "TITLE": {
-      "TEXT": "Crear Concepto"
-    },
-    "LBL-CONCEPT-NAME": {
-      "TEXT": "Nombre del Concepto"
-    },
-    "CHECK-COMPRESSION": {
-      "TEXT": "Incluir Compresión"
-    },
-    "SLT-CALCULATE-GROUP": {
-      "TEXT": "Grupo de Calculo"
-    },
-    "SLT-DEFAULT-OPTION": {
-      "TEXT": "Seleccione una opción"
-    },
-    "CHECK-EQUALIZATION-BONO": {
-      "TEXT": "Bono de igualación"
-    },
-    "SLT-PAID-CONCEPT": {
-      "TEXT": "Pagar concepto a:"
-    },
-    "CHECK-ACTIVE-DATE": {
-      "TEXT": "Ignorar fecha de activación"
-    },
-    "SLT-CALCULATE-CONCEPT": {
-      "TEXT": "Calcular Concepto por:"
-    },
-    "CHECK-ACTIVE-CONCEPT": {
-      "TEXT": "Activar Concepto"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    }
-  },
-  "CONCEPT-LIST-EDIT-MODAL": {
-    "TITLE": {
-      "TEXT": "Editar Concepto"
-    },
-    "LBL-CONCEPT-NAME": {
-      "TEXT": "Nombre del Concepto"
-    },
-    "CHECK-COMPRESSION": {
-      "TEXT": "Incluir Compresión"
-    },
-    "SLT-CALCULATE-GROUP": {
-      "TEXT": "Grupo de Calculo"
-    },
-    "SLT-DEFAULT-OPTION": {
-      "TEXT": "Seleccione una opción"
-    },
-    "CHECK-EQUALIZATION-BONO": {
-      "TEXT": "Bono de igualación"
-    },
-    "SLT-PAID-CONCEPT": {
-      "TEXT": "Pagar concepto a:"
-    },
-    "CHECK-ACTIVE-DATE": {
-      "TEXT": "Ignorar fecha de activación"
-    },
-    "SLT-CALCULATE-CONCEPT": {
-      "TEXT": "Calcular Concepto por:"
-    },
-    "CHECK-ACTIVE-CONCEPT": {
-      "TEXT": "Activar Concepto"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    }
-  },
-  "CONCEPT-LIST-DETAILS-MODAL": {
-    "TITLE": {
-      "TEXT": "Datos del Concepto"
-    },
-    "LBL-CONCEPT-NAME": {
-      "TEXT": "Nombre del Concepto"
-    },
-    "LBL-CALCULATE-GROUP": {
-      "TEXT": "Grupo de Cálculo"
-    },
-    "LBL-PAID-CONCEPT": {
-      "TEXT": "Pagar concepto a"
-    },
-    "LBL-CALCULATE-CONCEPT": {
-      "TEXT": "Calcular Concepto por"
-    },
-    "LBL-COMPRESSION-POSITION": {
-      "TEXT": "Compresión de Posición"
-    },
-    "LBL-EQUALIZATION-BONO": {
-      "TEXT": "Bono de igualación"
-    },
-    "LBL-ACTIVE-DATE": {
-      "TEXT": "Ignorar fecha de activación "
-    },
-    "LBL-STATE": {
-      "TEXT": "Estado"
-    },
-    "LBL-CONCEPT-DETAILS": {
-      "TEXT": "Detalles del Concepto"
-    },
-    "COL-LEVEL": {
-      "TEXT": "Nivel"
-    },
-    "COL-PERCENTAGE": {
-      "TEXT": "Porcentaje"
-    },
-    "COL-CALIFICATION": {
-      "TEXT": "Calificación"
-    },
-    "COL-STATE": {
-      "TEXT": "Estado"
-    }
-  },
-  "CALIFICATIONS-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "Calificaciones"
-    },
-    "SUBTITLE": {
-      "TEXT": "Lista de Calificaciones"
-    }
-  },
-  "INCENTIVES-LIST-PAGE": {
-    "TITLE": {
-      "TEXT": "Incentivos"
-    },
-    "SUBTITLE": {
-      "TEXT": "Lista de Incentivos"
-    }
-  },
-  "CALCULATION-GROUPS-PAGE": {
-    "TITLE": {
-      "TEXT": "Grupos de Calculo"
-    },
-    "SUBTITLE": {
-      "TEXT": "Listado Grupos de Calculo"
-    }
-  },
-  "CALCULATION-GROUPS-CREATE-MODAL": {
-    "TITLE": {
-      "TEXT": "Crear grupo de cálculo"
-    },
-    "LBL-NAME": {
-      "TEXT": "Nombre"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Descripción"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "El nombre para el grupo de cálculo es requerido."
-    },
-    "MSJ-ERROR-DESCRIPTION": {
-      "TEXT": "La Descripción para el grupo de calculo es requerido."
-    }
-  },
-  "CALCULATION-GROUPS-EDIT-MODAL": {
-    "TITLE": {
-      "TEXT": "Editar grupo de cálculo"
-    },
-    "LBL-NAME": {
-      "TEXT": "Nombre"
-    },
-    "LBL-DESCRIPTION": {
-      "TEXT": "Descripción"
-    },
-    "BTN-SAVE": {
-      "TEXT": "Guardar"
-    },
-    "BTN-CANCEL": {
-      "TEXT": "Cancelar"
-    },
-    "MSJ-ERROR-NAME": {
-      "TEXT": "El nombre para el grupo de cálculo es requerido."
-    },
-    "MSJ-ERROR-DESCRIPTION": {
-      "TEXT": "La Descripción para el grupo de calculo es requerido."
+      "TEXT": "Comisiones Pagadas"
     }
   },
   "COMPENSANTIONS-PLANS-CONFIGURATION": {
@@ -2359,15 +959,599 @@
       "TEXT": "Configuración"
     }
   },
-  "PRODUCTS-AND-SERVICES": {
+  "CONCEPT-LIST-CREATE-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "CHECK-ACTIVE-CONCEPT": {
+      "TEXT": "Activar Concepto"
+    },
+    "CHECK-ACTIVE-DATE": {
+      "TEXT": "Ignorar fecha de activación"
+    },
+    "CHECK-COMPRESSION": {
+      "TEXT": "Incluir Compresión"
+    },
+    "CHECK-EQUALIZATION-BONO": {
+      "TEXT": "Bono de igualación"
+    },
+    "LBL-CONCEPT-NAME": {
+      "TEXT": "Nombre del Concepto"
+    },
+    "SLT-CALCULATE-CONCEPT": {
+      "TEXT": "Calcular Concepto por:"
+    },
+    "SLT-CALCULATE-GROUP": {
+      "TEXT": "Grupo de Calculo"
+    },
+    "SLT-DEFAULT-OPTION": {
+      "TEXT": "Seleccione una opción"
+    },
+    "SLT-PAID-CONCEPT": {
+      "TEXT": "Pagar concepto a:"
+    },
     "TITLE": {
-      "TEXT": "Productos"
+      "TEXT": "Crear Concepto"
+    }
+  },
+  "CONCEPT-LIST-DETAILS-MODAL": {
+    "COL-CALIFICATION": {
+      "TEXT": "Calificación"
+    },
+    "COL-LEVEL": {
+      "TEXT": "Nivel"
+    },
+    "COL-PERCENTAGE": {
+      "TEXT": "Porcentaje"
+    },
+    "COL-STATE": {
+      "TEXT": "Estado"
+    },
+    "LBL-ACTIVE-DATE": {
+      "TEXT": "Ignorar fecha de activación "
+    },
+    "LBL-CALCULATE-CONCEPT": {
+      "TEXT": "Calcular Concepto por"
+    },
+    "LBL-CALCULATE-GROUP": {
+      "TEXT": "Grupo de Cálculo"
+    },
+    "LBL-COMPRESSION-POSITION": {
+      "TEXT": "Compresión de Posición"
+    },
+    "LBL-CONCEPT-DETAILS": {
+      "TEXT": "Detalles del Concepto"
+    },
+    "LBL-CONCEPT-NAME": {
+      "TEXT": "Nombre del Concepto"
+    },
+    "LBL-EQUALIZATION-BONO": {
+      "TEXT": "Bono de igualación"
+    },
+    "LBL-PAID-CONCEPT": {
+      "TEXT": "Pagar concepto a"
+    },
+    "LBL-STATE": {
+      "TEXT": "Estado"
+    },
+    "TITLE": {
+      "TEXT": "Datos del Concepto"
+    }
+  },
+  "CONCEPT-LIST-EDIT-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "CHECK-ACTIVE-CONCEPT": {
+      "TEXT": "Activar Concepto"
+    },
+    "CHECK-ACTIVE-DATE": {
+      "TEXT": "Ignorar fecha de activación"
+    },
+    "CHECK-COMPRESSION": {
+      "TEXT": "Incluir Compresión"
+    },
+    "CHECK-EQUALIZATION-BONO": {
+      "TEXT": "Bono de igualación"
+    },
+    "LBL-CONCEPT-NAME": {
+      "TEXT": "Nombre del Concepto"
+    },
+    "SLT-CALCULATE-CONCEPT": {
+      "TEXT": "Calcular Concepto por:"
+    },
+    "SLT-CALCULATE-GROUP": {
+      "TEXT": "Grupo de Calculo"
+    },
+    "SLT-DEFAULT-OPTION": {
+      "TEXT": "Seleccione una opción"
+    },
+    "SLT-PAID-CONCEPT": {
+      "TEXT": "Pagar concepto a:"
+    },
+    "TITLE": {
+      "TEXT": "Editar Concepto"
+    }
+  },
+  "CONCEPT-LIST-PAGE": {
+    "BTN-BINARY-CONFIG": {
+      "TEXT": "Configuración Binaria"
+    },
+    "BTN-CONFIGURATIONS": {
+      "TEXT": "Configurar"
+    },
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-DELETE": {
+      "TEXT": "Eliminar"
+    },
+    "BTN-DETAILS": {
+      "TEXT": "Ver Detalles"
+    },
+    "BTN-EDIT": {
+      "TEXT": "Editar"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "BTN-SEARCH": {
+      "TEXT": "Búsqueda"
+    },
+    "COL-ACTIONS": {
+      "TEXT": "Acciones"
+    },
+    "COL-CALCULATE-CONCEPT": {
+      "TEXT": "Calcular concepto por"
+    },
+    "COL-CALCULATE-GROUP": {
+      "TEXT": "Grupo de Calculo"
+    },
+    "COL-CONCEPT-NAME": {
+      "TEXT": "Nombre del Concepto"
+    },
+    "COL-CONCEPT-STATUS": {
+      "TEXT": "Estado del Concepto"
+    },
+    "COL-EQUALIZATION": {
+      "TEXT": "Igualación"
+    },
+    "COL-PAID-CONCEPT": {
+      "TEXT": "Pagar concepto a"
+    },
+    "COL-POSITION-COMPRESSION": {
+      "TEXT": "Compresión de posición"
     },
     "SUBTITLE": {
-      "TEXT": "Lista de Productos"
+      "TEXT": "Lista de Conceptos"
+    },
+    "TITLE": {
+      "TEXT": "Conceptos"
+    }
+  },
+  "ECOPOOL-PAGE": {
+    "AMOUNT-BASE-COLUMN": {
+      "TEXT": "Monto base"
+    },
+    "BTN-SEE-DETAILS": {
+      "TEXT": "Ver Detalles"
+    },
+    "DATE-INIT-COLUMN": {
+      "TEXT": "Fecha de inicio"
+    },
+    "DETAILS-COLUMN": {
+      "TEXT": "Detalles"
+    },
+    "NUM-BILL-COLUMN": {
+      "TEXT": "No. Factura"
+    },
+    "PACKS-COLUMN": {
+      "TEXT": "Packs"
+    },
+    "PAYMENTS-COLUMN": {
+      "TEXT": "Pagos"
+    },
+    "PERCENTAGE-COLUMN": {
+      "TEXT": "Porcentaje"
     },
     "SEARCH": {
       "TEXT": "Búsqueda"
+    },
+    "STATE-COLUMN": {
+      "TEXT": "Estado"
+    },
+    "TITTLE-PAGE": {
+      "TEXT": "Pack pasivos"
+    }
+  },
+  "EDUCATIONAL-COURSES": {
+    "ACADEMY-TRADING": {
+      "TEXT": "Academia de Trading"
+    }
+  },
+  "FORCED-GENEALOGICAL-TREE-PAGE": {
+    "TITLE": {
+      "TEXT": "Árbol Sistema 3MF"
+    }
+  },
+  "HEADER": {
+    "LOGOUT": {
+      "TEXT": "Salir"
+    },
+    "PROFILE": {
+      "TEXT": "Mi perfil"
+    },
+    "USER-EDIT": {
+      "TEXT": "Editar perfil "
+    },
+    "USER-NAME": {
+      "TEXT": "Usuario"
+    },
+    "USER-SETTINGS": {
+      "TEXT": "Configuración"
+    },
+    "USER-SUMMARY": {
+      "TEXT": "Resumen completo"
+    }
+  },
+  "HOME-ADMIN-PAGE": {
+    "ACTIVE-AFFILIATES": {
+      "TEXT": "Afiliados Activos"
+    },
+    "AFFILIATES-ENTERED": {
+      "TEXT": "Afiliados Ingresados"
+    },
+    "COMMISSIONS-CALCULATED": {
+      "TEXT": "Comisiones Calculadas"
+    },
+    "INFORMATION": {
+      "TEXT": "Información"
+    },
+    "LAST-REGISTERED-AFFILIATES": {
+      "TEXT": "Ultimos afiliados registrados"
+    },
+    "NO-SPONSORSHIPS": {
+      "TEXT": "No Patrocinios"
+    },
+    "PURCHASES-MADE": {
+      "TEXT": "Compras Realizadas"
+    },
+    "RECORD-SOURCE": {
+      "TEXT": "Origen de Registros"
+    },
+    "SPONSORED": {
+      "TEXT": "Patrocinados"
+    },
+    "TOTAL-COMMISSIONABLE": {
+      "TEXT": "Total comisionable"
+    },
+    "TOTAL-COMMISSIONS-PAID": {
+      "TEXT": "Total Comisiones Pagadas"
+    },
+    "TOTAL-PURCHASES": {
+      "TEXT": "Totales compras"
+    },
+    "WALLET-BENEFIT": {
+      "TEXT": "Beneficio en Billetera"
+    }
+  },
+  "HOME-PAGE-CLIENT": {
+    "AVAILABLE-BALANCE": {
+      "TEXT": "Saldo Disponible"
+    },
+    "INFORMATION-1": {
+      "TEXT": "Información Modelo 1"
+    },
+    "INFORMATION-2": {
+      "TEXT": "Información Modelo 2"
+    },
+    "INFORMATION-R": {
+      "TEXT": "Información Modelo R"
+    },
+    "MODEL-REQUEST": {
+      "TEXT": "Solicitud de modelo"
+    },
+    "PUBLIC-STORE": {
+      "TEXT": "Tienda Pública"
+    },
+    "REGISTER": {
+      "TEXT": "Registro"
+    },
+    "SERVICE-BALANCE": {
+      "TEXT": "Saldo de servicios"
+    },
+    "SHARE-LINK": {
+      "TEXT": "Compartir enlace"
+    },
+    "TITTLE-BANNERS": {
+      "TEXT": "Banners"
+    },
+    "TITTLE-FIRST-CHART": {
+      "TEXT": "Afiliados registrados"
+    },
+    "TITTLE-SECOND-CHART": {
+      "TEXT": "Compras realizadas en mi red"
+    },
+    "TOTAL-ACQUISITIONS": {
+      "TEXT": "Total Adquisiciones"
+    },
+    "TOTAL-PAID": {
+      "TEXT": "Total Pagado"
+    },
+    "WEBSITE": {
+      "TEXT": "Sitio web"
+    }
+  },
+  "INCENTIVES-DELIVERED": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Afiliado"
+    },
+    "COL-DATE": {
+      "TEXT": "Fecha de Calculo"
+    },
+    "COL-DATE-ASSIGNED": {
+      "TEXT": "Fecha Asignado"
+    },
+    "COL-DESCRIPTION": {
+      "TEXT": "Descripción del Incentivo"
+    },
+    "COL-INCENTIVE": {
+      "TEXT": "Incentivo ganado"
+    },
+    "COL-NAME": {
+      "TEXT": "Nombre y Apellido"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    },
+    "SUBTITLE": {
+      "TEXT": "Listado de incentivos entregados"
+    },
+    "TITLE": {
+      "TEXT": "Incentivos Entregados"
+    }
+  },
+  "INCENTIVES-FOR-DELIVERING": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-DELIVER": {
+      "TEXT": "Entregar incentivos"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Afiliado"
+    },
+    "COL-DATE": {
+      "TEXT": "Fecha"
+    },
+    "COL-INCENTIVE": {
+      "TEXT": "Incentivo ganado"
+    },
+    "COL-KEEP": {
+      "TEXT": "Mantener"
+    },
+    "COL-NAME": {
+      "TEXT": "Nombre y Apellido"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    },
+    "SUBTITLE": {
+      "TEXT": "Listado de incentivos por entregar"
+    },
+    "TITLE": {
+      "TEXT": "Incentivos por entregar"
+    }
+  },
+  "INCENTIVES-LIST-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Lista de Incentivos"
+    },
+    "TITLE": {
+      "TEXT": "Incentivos"
+    }
+  },
+  "INDUCEMENTS-PAGE": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "INDUCEMENTS-TITLE": {
+      "TEXT": "Incentivos Obtenidos"
+    },
+    "ROW-ASSIGNMENT-DATE": {
+      "TEXT": "Fecha de Asignación"
+    },
+    "ROW-DESCRIPTION": {
+      "TEXT": "Descripción"
+    },
+    "ROW-INDUCEMENTS": {
+      "TEXT": "Incentivo"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    }
+  },
+  "MENUITEMS": {
+    "ADDRESSES": {
+      "TEXT": "Mis Direcciones"
+    },
+    "BILLING-MY-ORDERS": {
+      "TEXT": "Mis Ordenes"
+    },
+    "BILLING-MY-PURCHASES": {
+      "TEXT": "Facturación Mis Compras"
+    },
+    "BILLING-PURCHASE": {
+      "TEXT": "Tienda medio ambiente"
+    },
+    "COMMISSIONS": {
+      "TEXT": "Comisiones"
+    },
+    "COMMISSIONS-BALANCE": {
+      "TEXT": "Balance"
+    },
+    "EDUCATIONAL-COURSES": {
+      "TEXT": "Cursos Educativos"
+    },
+    "FUNDING-ACCOUNTS": {
+      "TEXT": "Capital de apoyo"
+    },
+    "HOME": {
+      "TEXT": "Inicio"
+    },
+    "INDUCEMENTS": {
+      "TEXT": "Incentivos"
+    },
+    "MAIN": {
+      "TEXT": "-- Principal"
+    },
+    "MY-COMMISSIONS": {
+      "TEXT": "Comisiones"
+    },
+    "MY-TICKETS": {
+      "TEXT": "Tickets"
+    },
+    "NETWORK": {
+      "TEXT": "Mis Clientes"
+    },
+    "NEWS": {
+      "TEXT": "Noticias"
+    },
+    "PROCUREMENT-ECOPOOL": {
+      "TEXT": "Ecopool Adquisiciones"
+    },
+    "REQUEST-PAY": {
+      "TEXT": "Solicitar Pago"
+    },
+    "REQUEST-WALLET": {
+      "TEXT": "Solicitar a Billetera"
+    },
+    "REQUESTS": {
+      "TEXT": "Solicitudes"
+    },
+    "SERVICES-AND-PRODUCTS": {
+      "TEXT": "Servicios y Productos"
+    },
+    "TOOLS": {
+      "TEXT": "Servicio al cliente"
+    },
+    "USER": {
+      "POST": "Desarrollador"
+    },
+    "WALLET": {
+      "TEXT": "Mi Billetera"
+    }
+  },
+  "MY-NETWORK-PAGE": {
+    "BACK": {
+      "TEXT": "Volver"
+    },
+    "BINARY-MODEL": {
+      "TEXT": "Modelo 4 (Binario)"
+    },
+    "MATRIX-MODEL-5": {
+      "TEXT": "Modelo 5 (Matriz)"
+    },
+    "MATRIX-MODEL-6": {
+      "TEXT": "Modelo 6 (Matriz)"
+    },
+    "NETWORK-TREES": {
+      "TEXT": "Árboles de mi Red"
+    },
+    "TITLE": {
+      "TEXT": "Mi Red"
+    },
+    "UNILEVEL-MODEL": {
+      "TEXT": "Modelo 1, 2, 3 (Unilevel)"
+    }
+  },
+  "NETWORK-PAGE": {
+    "ACTIVATE-MEMBERSHIP.BALANCE": {
+      "TEXT": "Activar membresía del afiliado con saldo disponible"
+    },
+    "ACTIVATE-MEMBERSHIP.CARD": {
+      "TEXT": "Activar membresía del afiliado con tarjeta"
+    },
+    "ACTIVE": {
+      "TEXT": "Activo"
+    },
+    "BTN-ACTIONS": {
+      "TEXT": "Acciones"
+    },
+    "COPY": {
+      "TEXT": "Copiar"
+    },
+    "INACTIVE": {
+      "TEXT": "Inactivo"
+    },
+    "NETWORK-ALL-CUSTOMERS": {
+      "TEXT": "Red de Todos los Clientes"
+    },
+    "NETWORK-TITLE": {
+      "TEXT": "Mi Red"
+    },
+    "PDF": {
+      "TEXT": "PDF"
+    },
+    "ROW-DETAIL": {
+      "TEXT": "Detalle"
+    },
+    "ROW-QUALIFICATION": {
+      "TEXT": "Calificación"
+    },
+    "ROW-STATE": {
+      "TEXT": "Estado"
+    },
+    "ROW-USER": {
+      "TEXT": "Usuario"
+    },
+    "SEARCH": {
+      "TEXT": "Buscar"
+    },
+    "TRANSFER-BALANCE": {
+      "TEXT": "Transferir saldo"
+    },
+    "VIEW-NETWORK": {
+      "TEXT": "Ver Mi Red"
+    }
+  },
+  "PASSIVE-PACK-LIST": {
+    "SUBTITLE": {
+      "TEXT": "Lista de ECOPOOL Adquisiciones"
+    },
+    "TITLE": {
+      "TEXT": "ECOPOOL Adquisiciones"
+    }
+  },
+  "PAY-WALLET-BALANCE": {
+    "SUBTITLE": {
+      "TEXT": "Registros"
+    },
+    "TITLE": {
+      "TEXT": "Pagar saldo de billetera"
+    }
+  },
+  "PERIOD-CLOSING": {
+    "BTN-CLOSE-PERIOD": {
+      "TEXT": "Cerrar periodo actual"
     },
     "BTN-COPY": {
       "TEXT": "Copiar"
@@ -2375,17 +1559,49 @@
     "BTN-PRINT": {
       "TEXT": "Imprimir"
     },
+    "COL-DATE": {
+      "TEXT": "Fecha"
+    },
+    "COL-RESPONSIBLE": {
+      "TEXT": "Responsable"
+    },
+    "MSJ": {
+      "TEXT": "Importante: Este proceso es irreversible, al cerrar el periodo actual el volumen de red sera reiniciado a cero para todos los afiliados y si esta activo la inactivacion de afiliados por cierre de periodo todos los afiliados se inactivaran"
+    },
+    "SUBTITLE": {
+      "TEXT": "Historial cierres de periodo"
+    },
+    "TITLE": {
+      "TEXT": "Cierre de Periodo"
+    }
+  },
+  "PRODUCTS-AND-SERVICES": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "COL-ACTIONS": {
+      "TEXT": "Acciones"
+    },
+    "COL-EXISTENCE": {
+      "TEXT": "Existencias"
+    },
+    "COL-IMAGE-REF": {
+      "TEXT": "Imagen Ref"
+    },
     "COL-NAME": {
       "TEXT": "Nombre del Producto"
     },
     "COL-PRODUCT-CODE": {
       "TEXT": "Código Producto"
     },
+    "COL-SALE-PRICE": {
+      "TEXT": "Precio de Venta"
+    },
     "COL-TYPE": {
       "TEXT": "Tipo"
-    },
-    "COL-IMAGE-REF": {
-      "TEXT": "Imagen Ref"
     },
     "COL-VAL-COMMISSIONABLE": {
       "TEXT": "Val. Comisionable"
@@ -2393,94 +1609,881 @@
     "COL-VOL-POINTS": {
       "TEXT": "Vol. Puntos"
     },
-    "COL-SALE-PRICE": {
-      "TEXT": "Precio de Venta"
-    },
-    "COL-EXISTENCE": {
-      "TEXT": "Existencias"
-    },
-    "COL-ACTIONS": {
-      "TEXT": "Acciones"
-    }
-  },
-  "CATEGORIES": {
-    "TITLE": {
-      "TEXT": "Categorías"
+    "SEARCH": {
+      "TEXT": "Búsqueda"
     },
     "SUBTITLE": {
-      "TEXT": "Lista de Categorías"
-    }
-  },
-  "ATTRIBUTES-LIST": {
-    "TITLE": {
-      "TEXT": "Atributos"
+      "TEXT": "Lista de Productos"
     },
-    "SUBTITLE": {
-      "TEXT": "Lista de Atributos"
-    }
-  },
-  "PASSIVE-PACK-LIST": {
     "TITLE": {
-      "TEXT": "ECOPOOL Adquisiciones"
-    },
-    "SUBTITLE": {
-      "TEXT": "Lista de ECOPOOL Adquisiciones"
+      "TEXT": "Productos"
     }
   },
   "PRODUCTS-SERVICES-CONFIGURATION": {
-    "TITLE": {
-      "TEXT": "Configuración"
-    },
     "SUBTITLE": {
       "TEXT": "Configuraciones General de Tienda"
+    },
+    "TITLE": {
+      "TEXT": "Configuración"
     }
   },
-  "BALANCE-OF-WALLET": {
-    "TITLE": {
-      "TEXT": "Balance de Billetera"
+  "PURCHASE-ORDER-LIST": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
     },
-    "SUBTITLE": {
-      "TEXT": "Registros"
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "BTN-SEE-DETAIL": {
+      "TEXT": "Ver detalle"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Afiliado"
+    },
+    "COL-BANK": {
+      "TEXT": "Banco"
+    },
+    "COL-DATE": {
+      "TEXT": "Fecha"
+    },
+    "COL-DETAIL": {
+      "TEXT": "Detalle"
+    },
+    "COL-ORDER": {
+      "TEXT": "Orden"
+    },
+    "COL-PAID-METHOD": {
+      "TEXT": "Metodo de Pago"
+    },
+    "COL-STATE": {
+      "TEXT": "Estado"
+    },
+    "COL-STATUS": {
+      "TEXT": "Estatus"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    },
+    "TITLE": {
+      "TEXT": "Lista de Ordenes de Compra"
     }
   },
-  "WALLET-REFILL": {
-    "TITLE": {
-      "TEXT": "Recarga de Billetera"
+  "PURCHASES-LIST-PAGE": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
     },
-    "SUBTITLE": {
-      "TEXT": "Registros"
+    "BTN-DETAILS": {
+      "TEXT": "Ver Detalles"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "COL-AFFILIATE": {
+      "TEXT": "Afiliado"
+    },
+    "COL-BILL": {
+      "TEXT": "No.Factura"
+    },
+    "COL-BILL-STATE": {
+      "TEXT": "Estado Factura"
+    },
+    "COL-DATE": {
+      "TEXT": "Fecha"
+    },
+    "COL-DETAILS": {
+      "TEXT": "Detail"
+    },
+    "COL-NAME-AND-LASTNAME": {
+      "TEXT": "Nombre y Apellido"
+    },
+    "COL-PAID": {
+      "TEXT": "Pagado"
+    },
+    "TITLE": {
+      "TEXT": "Lista de Compras"
     }
   },
-  "WALLET-REMOVAL": {
-    "TITLE": {
-      "TEXT": "Retiro de Billetera"
+  "REQUESTS-PAGE": {
+    "ACCESS-KEY": {
+      "TEXT": "Clave de acceso"
     },
-    "SUBTITLE": {
-      "TEXT": "Registros"
+    "ACCESS-KEY-ERROR": {
+      "TEXT": "La contraseña es requerida."
+    },
+    "ADMIN-ANSWER-COLUMN": {
+      "TEXT": "Respuesta administración"
+    },
+    "ADMIN-ANSWER.ATTENDED": {
+      "TEXT": "Atendido"
+    },
+    "ADMIN-ANSWER.CANCELLED": {
+      "TEXT": "Cancelado"
+    },
+    "ADMIN-ANSWER.NOT-ATTENDED": {
+      "TEXT": "No Atendido"
+    },
+    "AMOUNT-REQUESTED": {
+      "TEXT": "Monto que Solicita"
+    },
+    "AMOUNT-REQUESTED-ERROR": {
+      "TEXT": "Ingrese un monto igual o menor al balance disponible."
+    },
+    "AMOUNT-WITHDRAW-COLUMN": {
+      "TEXT": "Monto a Retirar"
+    },
+    "AVAILABLE-BALANCE-WALLET": {
+      "TEXT": "Saldo Disponible en Billetera:"
+    },
+    "CLOSE-BTN": {
+      "TEXT": "Cerrar"
+    },
+    "CONFIRM-CODE": {
+      "TEXT": "Código de confirmación"
+    },
+    "CONFIRM-CODE-ERROR": {
+      "TEXT": "El código de seguridad es requerido."
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Fecha"
+    },
+    "FIST-MSJ-INFO": {
+      "TEXT": "El monto que solicita debe ser menor o igual al monto disponible que tenga en su billetera."
+    },
+    "GENERATE-CODE-BTN": {
+      "TEXT": "Generar Código"
+    },
+    "GENERATION-CODE": {
+      "TEXT": "Generar código"
+    },
+    "OBSERVATION-COLUMN": {
+      "TEXT": "Observación"
+    },
+    "OBSERVATION-ERROR": {
+      "TEXT": "La observación es requerida."
+    },
+    "OBSERVATION-FIELD": {
+      "TEXT": "Observación"
+    },
+    "REQUEST-TYPE": {
+      "TEXT": "Tipo de solicitud"
+    },
+    "REQUEST-TYPE.REVERT-INVOICE": {
+      "TEXT": "Devolución de Factura"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    },
+    "SECOND-MSJ-INFO": {
+      "TEXT": "El monto mínimo para retirar es de USD"
+    },
+    "SEGURITY-PIN": {
+      "TEXT": "Pin de Seguridad"
+    },
+    "SEND-REQUEST": {
+      "TEXT": "Enviar Solicitud"
+    },
+    "STATE-COLUMN": {
+      "TEXT": "Estado"
+    },
+    "STATE.APPROVED": {
+      "TEXT": "Aprobado"
+    },
+    "STATE.CANCELLED": {
+      "TEXT": "Cancelado"
+    },
+    "STATE.PENDING": {
+      "TEXT": "Pendiente"
+    },
+    "SUBMIT-BTN": {
+      "TEXT": "Enviar"
+    },
+    "THIRD-MSJ-INFO": {
+      "TEXT": "El monto máximo para retirar es de USD"
+    },
+    "TITTLE-MSJ-INFO": {
+      "TEXT": "Información"
+    },
+    "TITTLE-PAGE": {
+      "TEXT": "Realizar solicitud de pago"
+    },
+    "TITTLE-TABLE": {
+      "TEXT": "Solicitudes"
+    },
+    "TYPE.WITHDRAWAL": {
+      "TEXT": "Retiro de Saldo"
     }
   },
-  "PAY-WALLET-BALANCE": {
+  "REQUESTS-WALLET": {
+    "AMOUNT": {
+      "TEXT": "Monto"
+    },
+    "BANK": {
+      "TEXT": "Banco"
+    },
+    "BANK-COLUMN": {
+      "TEXT": "Banco"
+    },
+    "CLOSE-BTN": {
+      "TEXT": "Cerrar"
+    },
+    "CREDIT-COLUMN": {
+      "TEXT": "Credito"
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Fecha"
+    },
+    "ORDER-NUM-COLUMN": {
+      "TEXT": "# Orden"
+    },
+    "PAYMENT-DATE": {
+      "TEXT": "Fecha de Pago"
+    },
+    "PAYMENT-METHOD-COLUMN": {
+      "TEXT": "Metodo de Pago"
+    },
+    "PAYMENT-METHODS": {
+      "TEXT": "Metodos de Pagos"
+    },
+    "RELOAD-AMOUNT": {
+      "TEXT": "Monto de Recarga"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    },
+    "SEND-REQUEST": {
+      "TEXT": "Enviar Solicitud"
+    },
+    "STATUS-COLUMN": {
+      "TEXT": "Estado"
+    },
+    "SUBMIT-BTN": {
+      "TEXT": "Enviar"
+    },
+    "SUPPORT": {
+      "TEXT": "Soporte"
+    },
+    "SUPPORT-COLUMN": {
+      "TEXT": "Soporte"
+    },
+    "TITTLE-PAGE": {
+      "TEXT": "Solicitar Saldo a Billetera"
+    },
+    "TITTLE-TABLE": {
+      "TEXT": "Mis Solicitudes de Recargas"
+    },
+    "TRASACTION-DATE-COLUMN": {
+      "TEXT": "Fecha de Transacción"
+    }
+  },
+  "ROL-LIST-CREATE-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Descripción:"
+    },
+    "LBL-ROL-NAME": {
+      "TEXT": "Nombre del Rol:"
+    },
+    "MSJ-ERROR-DESCRIPTION": {
+      "TEXT": "La descripción es requerida"
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "El nombre del rol es requerido"
+    },
     "TITLE": {
-      "TEXT": "Pagar saldo de billetera"
+      "TEXT": "Crear Rol"
+    }
+  },
+  "ROL-LIST-EDIT-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Descripción"
+    },
+    "LBL-ROL-NAME": {
+      "TEXT": "Nombre del Rol:"
+    },
+    "MSJ-ERROR-DESCRIPTION": {
+      "TEXT": "La descripción es requerida"
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "El nombre del rol es requerido"
+    },
+    "TITLE": {
+      "TEXT": "Editar"
+    }
+  },
+  "ROL-LIST-PAGE": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-DELETE": {
+      "TEXT": "Eliminar"
+    },
+    "BTN-EDIT": {
+      "TEXT": "Editar"
+    },
+    "BTN-PERMISSIONS": {
+      "TEXT": "Permisos"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "BTN-SUMMARY": {
+      "TEXT": "Resumen"
+    },
+    "COL-ASSOCIATED-USERS": {
+      "TEXT": "Usuarios Asociados"
+    },
+    "COL-DESCRIPTION": {
+      "TEXT": "Descripción"
+    },
+    "COL-ROL-ACTIONS": {
+      "TEXT": "Acciones"
+    },
+    "COL-ROL-PERMISSIONS": {
+      "TEXT": "Permisos"
+    },
+    "COL-ROLE": {
+      "TEXT": "Rol"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
     },
     "SUBTITLE": {
-      "TEXT": "Registros"
+      "TEXT": "Registro"
+    },
+    "TITLE": {
+      "TEXT": "Lista de Roles"
+    }
+  },
+  "ROL-LIST-PERMISSIONS-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "COL-CREATE": {
+      "TEXT": "Crear"
+    },
+    "COL-DELETE": {
+      "TEXT": "Eliminar"
+    },
+    "COL-EDIT": {
+      "TEXT": "Editar"
+    },
+    "COL-MENU": {
+      "TEXT": "Menú"
+    },
+    "COL-READ": {
+      "TEXT": "Leer"
+    },
+    "COL-SUBMENU": {
+      "TEXT": "Sub Menú"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    },
+    "TITLE": {
+      "TEXT": "Editar Permisos"
+    }
+  },
+  "ROL-LIST-SUMMARY-MODAL": {
+    "COL-FULL-NAME": {
+      "TEXT": "Nombre Completo"
+    },
+    "COL-USER": {
+      "TEXT": "Usuario"
+    },
+    "LBL-DESCRIPTION": {
+      "TEXT": "Descripción:"
+    },
+    "LBL-ROL-NAME": {
+      "TEXT": "Nombre del Rol:"
+    },
+    "SECOND-SUBTITLE": {
+      "TEXT": "Usuarios asignados al Rol"
+    },
+    "SUBTITLE": {
+      "TEXT": "Detalles del Rol:"
+    },
+    "TITLE": {
+      "TEXT": "Resumen"
+    }
+  },
+  "SAVINGS-PLANS-ONEB-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Modelo R"
+    },
+    "TITLE": {
+      "TEXT": "Modelo R"
+    }
+  },
+  "SAVINGS-PLANS-PAGE": {
+    "SUBTITLE": {
+      "TEXT": "Modelo 1"
+    },
+    "TITLE": {
+      "TEXT": "Modelo 1"
+    }
+  },
+  "SERVICES-AND-PRODUCTS": {
+    "ALTERNATIVE-HEALTH-AMERICA": {
+      "TEXT": "Salud Alternativa América"
+    },
+    "ALTERNATIVE-HEALTH-EUROPE": {
+      "TEXT": "Salud Alternativa Europa"
+    },
+    "MECANICLICK": {
+      "TEXT": "MecaniClick"
+    },
+    "NEWS": {
+      "TEXT": "Novedades"
+    }
+  },
+  "SIGNIN": {
+    "FORGOT-PASS": {
+      "TEXT": "Cambiar contraseña"
+    },
+    "PASS-IS-REQUIRED": {
+      "TEXT": "La contraseña es requerida."
+    },
+    "PASS-MESSAGE-ERROR": {
+      "TEXT": "La contraseña debe tener al menos 6 y un máximo de 15 caracteres."
+    },
+    "PASSWORD": {
+      "TEXT": "Contraseña"
+    },
+    "REMEMBER-ME": {
+      "TEXT": "Recordar"
+    },
+    "TITLE": {
+      "TEXT": "Iniciar sesión"
+    },
+    "USER-NAME": {
+      "TEXT": "Su Usuario"
+    },
+    "USER-NAME-IS-REQUIRED": {
+      "TEXT": "El usuario es requerido."
+    },
+    "USER-NAME-MESSAGE-ERROR": {
+      "TEXT": "El usuario es invalido."
+    }
+  },
+  "TICKETS-PAGE": {
+    "ADD-IMAGE": {
+      "DROPZONE": "¡Suelta aquí!",
+      "LABEL": "Agregar Imagen"
+    },
+    "CATEGORY": {
+      "DEFAULT-OPTION": "Seleccione una opción",
+      "LABEL": "Categoría",
+      "REQUIRED-ERROR": "Debe seleccionar una categoría."
+    },
+    "CATEGORY-COLUMN": {
+      "TEXT": "Categoría"
+    },
+    "CREATE-TICKET": {
+      "TITLE": "Crear Ticket"
+    },
+    "CREATE-TICKET-BTN": {
+      "TEXT": "Crear Ticket"
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Fecha"
+    },
+    "DELETE-BTN": {
+      "TITLE": "Eliminar"
+    },
+    "DESCRIPTION": {
+      "LABEL": "Explicación",
+      "MAXLENGTH-ERROR": "La descripción no puede exceder los 255 caracteres.",
+      "PLACEHOLDER": "Explicación",
+      "REQUIRED-ERROR": "La descripción es requerida."
+    },
+    "DISCARD-BTN": {
+      "TEXT": "Descartar"
+    },
+    "IMAGE-ALT": {
+      "TEXT": "Click para ver"
+    },
+    "IMAGE-COLUMN": {
+      "TEXT": "Imagen"
+    },
+    "IMAGE-MODAL": {
+      "TITLE": "Imágenes"
+    },
+    "MESSAGE-COLUMN": {
+      "TEXT": "Mensaje"
+    },
+    "MY-TICKETS": {
+      "TEXT": "Mis tickets"
+    },
+    "NO-IMAGE": {
+      "TEXT": "Sin Imagen"
+    },
+    "SELECT-COLUMN": {
+      "TEXT": "Seleccionar"
+    },
+    "SHOWING": {
+      "TEXT": "Mostrando"
+    },
+    "SLIDE-IMAGE-ALT": {
+      "TEXT": "Imagen de diapositiva"
+    },
+    "STATUS-CLOSED": {
+      "TEXT": "Cerrado"
+    },
+    "STATUS-COLUMN": {
+      "TEXT": "Estado"
+    },
+    "STATUS-OPEN": {
+      "TEXT": "Abierto"
+    },
+    "SUBJECT": {
+      "LABEL": "Asunto",
+      "PLACEHOLDER": "Asunto",
+      "REQUIRED-ERROR": "El asunto es obligatorio."
+    },
+    "SUBMIT-BTN": {
+      "TEXT": "Enviar"
+    },
+    "TICKETS": {
+      "TEXT": "Tickets"
     }
   },
   "TRANSACTIONS-COMMISSION": {
-    "TITLE": {
-      "TEXT": "Comisión de Transacciones"
-    },
     "SUBTITLE": {
       "TEXT": "Registros"
+    },
+    "TITLE": {
+      "TEXT": "Comisión de Transacciones"
+    }
+  },
+  "UNILEVEL-TREE-PAGE": {
+    "TITLE": {
+      "TEXT": "Árbol Sistema 2U"
+    }
+  },
+  "USER-LIST-DETAIL-MODAL": {
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "COL-DATE": {
+      "TEXT": "Fecha"
+    },
+    "COL-IP": {
+      "TEXT": "IP"
+    },
+    "COL-MOVEMENTS": {
+      "TEXT": "Movimientos"
+    },
+    "LBL-ADDRESS": {
+      "TEXT": "Dirección"
+    },
+    "LBL-EMAIL": {
+      "TEXT": "Correo"
+    },
+    "LBL-MOVEMENTS": {
+      "TEXT": "Últimos Movimientos"
+    },
+    "LBL-OBSERVATION": {
+      "TEXT": "Observación"
+    },
+    "LBL-PHONE": {
+      "TEXT": "Teléfono"
+    },
+    "LBL-USER": {
+      "TEXT": "Nombre Usuario"
+    },
+    "TITLE": {
+      "TEXT": "Detalles del Usuario:"
+    }
+  },
+  "USERS-LIST-CREATE-MODAL": {
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "BTN-STATUS": {
+      "TEXT": "Estado"
+    },
+    "COL-ADDRESS": {
+      "TEXT": "Dirección"
+    },
+    "COL-CONFIRM-PASSWORD": {
+      "TEXT": "Repetir Contraseña"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Correo"
+    },
+    "COL-LASTNAME": {
+      "TEXT": "Apellidos"
+    },
+    "COL-NAME": {
+      "TEXT": "Nombre"
+    },
+    "COL-OBSERVATION": {
+      "TEXT": "Observación"
+    },
+    "COL-PASSWORD": {
+      "TEXT": "Contraseña"
+    },
+    "COL-PHONE": {
+      "TEXT": "Teléfono"
+    },
+    "COL-ROLE": {
+      "TEXT": "Rol"
+    },
+    "COL-USER": {
+      "TEXT": "Usuario"
+    },
+    "LBL-SELECT-ROLE": {
+      "TEXT": "Seleccione una opción"
+    },
+    "MSJ-ERROR-ADDRESS": {
+      "TEXT": "La dirección es requerida."
+    },
+    "MSJ-ERROR-CONFIRM-PASS": {
+      "TEXT": "La confirmación de la contraseña es requerida."
+    },
+    "MSJ-ERROR-EMAIL": {
+      "TEXT": "El correo es requerido."
+    },
+    "MSJ-ERROR-EMAIL-INVALID": {
+      "TEXT": "El email no es válido."
+    },
+    "MSJ-ERROR-EQUALS-PASS": {
+      "TEXT": "Las contraseñas deben coincidir."
+    },
+    "MSJ-ERROR-LASTNAME": {
+      "TEXT": "El apellido es requerido."
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "El nombre es requerido."
+    },
+    "MSJ-ERROR-OBSERVATION": {
+      "TEXT": "La observación es requerida."
+    },
+    "MSJ-ERROR-PASS": {
+      "TEXT": "La contraseña es requerida."
+    },
+    "MSJ-ERROR-PHONE": {
+      "TEXT": "El teléfono es requerido."
+    },
+    "MSJ-ERROR-ROL": {
+      "TEXT": "El rol es requerido."
+    },
+    "MSJ-ERROR-USER": {
+      "TEXT": "El nombre de usuario es requerido."
+    },
+    "TITLE": {
+      "TEXT": "Crear Usuario"
+    }
+  },
+  "USERS-LIST-EDIT-MODAL": {
+    "BTN-CANCEL": {
+      "TEXT": "Cancelar"
+    },
+    "BTN-SAVE": {
+      "TEXT": "Guardar"
+    },
+    "COL-ADDRESS": {
+      "TEXT": "Dirección"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Correo"
+    },
+    "COL-LASTNAME": {
+      "TEXT": "Apellidos"
+    },
+    "COL-NAME": {
+      "TEXT": "Nombre"
+    },
+    "COL-OBSERVATION": {
+      "TEXT": "Observación"
+    },
+    "COL-PHONE": {
+      "TEXT": "Teléfono"
+    },
+    "COL-ROL": {
+      "TEXT": "Rol"
+    },
+    "COL-USER-NAME": {
+      "TEXT": "Usuario"
+    },
+    "MSJ-ERROR-ADDRESS": {
+      "TEXT": "La dirección es requerida."
+    },
+    "MSJ-ERROR-EMAIL": {
+      "TEXT": "El correo es requerido."
+    },
+    "MSJ-ERROR-EMAIL-INVALID": {
+      "TEXT": "El email no es válido."
+    },
+    "MSJ-ERROR-LASTNAME": {
+      "TEXT": "Los apellidos son requeridos"
+    },
+    "MSJ-ERROR-NAME": {
+      "TEXT": "El nombre es requerido."
+    },
+    "MSJ-ERROR-OBSERVATION": {
+      "TEXT": "La observación es requerida."
+    },
+    "MSJ-ERROR-PHONE": {
+      "TEXT": "El teléfono es requerido."
+    },
+    "MSJ-ERROR-ROL": {
+      "TEXT": "El rol es requerido."
+    },
+    "MSJ-ERROR-USER": {
+      "TEXT": "El nombre de usuario es requerido."
+    },
+    "TITLE": {
+      "TEXT": "Editar Usuario"
+    }
+  },
+  "USERS-LIST-PAGE": {
+    "BTN-ADD-USER": {
+      "TEXT": "Agregar usuario"
+    },
+    "BTN-COPY": {
+      "TEXT": "Copiar"
+    },
+    "BTN-EDIT": {
+      "TEXT": "Editar"
+    },
+    "BTN-PRINT": {
+      "TEXT": "Imprimir"
+    },
+    "COL-ACTIONS": {
+      "TEXT": "Acciones"
+    },
+    "COL-EMAIL": {
+      "TEXT": "Correo"
+    },
+    "COL-ID": {
+      "TEXT": "ID"
+    },
+    "COL-LAST-NAME": {
+      "TEXT": "Apellido"
+    },
+    "COL-NAME": {
+      "TEXT": "Nombre"
+    },
+    "COL-ROL": {
+      "TEXT": "Rol"
+    },
+    "COL-USER": {
+      "TEXT": "Usuario"
+    },
+    "USERS-LIST-SUBTITLE": {
+      "TEXT": "Registro"
+    },
+    "USERS-LIST-TITLE": {
+      "TEXT": "Lista de Usuarios"
+    },
+    "USERS-SEARCH": {
+      "TEXT": "Búsqueda"
+    }
+  },
+  "WALLET-PAGE": {
+    "AFFILIATE-COLUMN": {
+      "TEXT": "Afiliado"
+    },
+    "AVAILABLE-BALANCE": {
+      "TEXT": "Saldo Disponible"
+    },
+    "CONCEPT-COLUMN": {
+      "TEXT": "Concepto"
+    },
+    "COPY-BTN": {
+      "TEXT": "Copiar"
+    },
+    "CREDIT-COLUMN": {
+      "TEXT": "Crédito"
+    },
+    "DATE-COLUMN": {
+      "TEXT": "Fecha"
+    },
+    "DEBIT-COLUMN": {
+      "TEXT": "Débito"
+    },
+    "DETAILS-BTN": {
+      "TEXT": "Sin novedades"
+    },
+    "DETAILS-COLUMN": {
+      "TEXT": "Ver detalle"
+    },
+    "PDF-BTN": {
+      "TEXT": "PDF"
+    },
+    "REQUEST-RECHARGE": {
+      "TEXT": "Recarga Solicitada"
+    },
+    "REVERSE-BALANCE": {
+      "TEXT": "Saldo balance"
+    },
+    "SEARCH": {
+      "TEXT": "Búsqueda"
+    },
+    "STATE": {
+      "ATTENDED": {
+        "TEXT": "Atendido"
+      },
+      "NOT-ATTENDED": {
+        "TEXT": "No Atendido"
+      }
+    },
+    "STATE-COLUMN": {
+      "TEXT": "Estado"
+    },
+    "SUBMENU-TITLE": {
+      "TEXT": "Billetera"
+    },
+    "TITTLE-TABLE": {
+      "TEXT": "Movimientos"
+    },
+    "USER-COLUMN": {
+      "TEXT": "Usuario Responsable"
+    },
+    "WITHDRAWAL-PENDING": {
+      "TEXT": "Retiro Pendiente"
     }
   },
   "WALLET-PARAMETERS": {
-    "TITLE": {
-      "TEXT": "Parámetros de Solicitudes"
-    },
     "SUBTITLE": {
       "TEXT": "Configuración de parametros"
+    },
+    "TITLE": {
+      "TEXT": "Parámetros de Solicitudes"
+    }
+  },
+  "WALLET-REFILL": {
+    "SUBTITLE": {
+      "TEXT": "Registros"
+    },
+    "TITLE": {
+      "TEXT": "Recarga de Billetera"
+    }
+  },
+  "WALLET-REMOVAL": {
+    "SUBTITLE": {
+      "TEXT": "Registros"
+    },
+    "TITLE": {
+      "TEXT": "Retiro de Billetera"
     }
   }
 }
